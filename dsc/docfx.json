@@ -87,7 +87,8 @@
       }
     ],
     "versions": {
-      "samples-v1.0": { "dest": "samples-v1.0" }
+      "dsc-2.0": { "dest": "dsc-2.0" },
+      "dsc-3.0": { "dest": "dsc-3.0" }
     },
     "overwrite": [],
     "externalReference": [],
