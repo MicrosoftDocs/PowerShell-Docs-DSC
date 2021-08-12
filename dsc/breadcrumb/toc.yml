@@ -1,0 +1,17 @@
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+  - name: PowerShell
+    tocHref: /powershell/
+    topicHref: /powershell/index
+    items:
+  - name: PowerShell DSC
+    tocHref: /powershell/dsc/
+    topicHref: /powershell/dsc/overview
+  - name: PowerShell DSC
+    tocHref: /powershell/module/dsc-2.0
+    topicHref: /powershell/dsc/overview
+  - name: PowerShell DSC
+    tocHref: /powershell/module/dsc-3.0
+    topicHref: /powershell/dsc/overview

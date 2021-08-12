@@ -1,0 +1,16 @@
+{
+    "dsc-2.0": {
+        "packageRoot": "dsc-2.0",
+        "conceptualToc": "docs-conceptual/dsc-2.0/toc.yml",
+        "conceptualTocUrl": "/powershell/dsc/dsc-2.0/toc.json",
+        "referenceTocUrl": "/powershell/module/dsc-2.0/toc.json",
+        "serviceMap": "mapping/serviceMapping.json"
+    },
+	"dsc-3.0": {
+        "packageRoot": "dsc-3.0",
+        "conceptualToc": "docs-conceptual/dsc-3.0/toc.yml",
+        "conceptualTocUrl": "/powershell/dsc/dsc-3.0/toc.json",
+        "referenceTocUrl": "/powershell/module/dsc-3.0/toc.json",
+        "serviceMap": "mapping/serviceMapping.json"
+    }
+}
