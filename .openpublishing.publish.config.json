@@ -10,6 +10,8 @@
       "open_to_public_contributors": false,
       "type_mapping": {
         "Conceptual": "Content",
+        "ManagedReference": "Content",
+        "RestApi": "Content",
         "PowershellModule": "Content",
         "PowershellCmdlet": "Content"
       },
