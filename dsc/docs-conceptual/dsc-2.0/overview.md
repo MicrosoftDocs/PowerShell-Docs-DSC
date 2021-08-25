@@ -1,6 +1,6 @@
 ---
 description: Overview of the PSDesiredStateConfiguration v2.0.5 module.
-ms.date: 06/22/2021
+ms.date: 08/25/2021
 title:  PSDesiredStateConfiguration v2.0.5
 ---
 # PSDesiredStateConfiguration v2.0.5
