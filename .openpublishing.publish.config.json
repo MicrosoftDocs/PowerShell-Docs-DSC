@@ -21,7 +21,7 @@
   ],
   "docsets_to_publish": [
     {
-      "base_path": "powershell/dsc",
+      "base_path": "powershell",
       "build_entry_point": "docs",
       "build_output_subfolder": "PowerShell-Docs-DSC",
       "build_source_folder": "dsc",
