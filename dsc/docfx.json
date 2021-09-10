@@ -5,12 +5,12 @@
 
       { "dest": "", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
-      { "dest": "module", "files": [ "**/About/*.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module/dsc-2.0", "files": [ "toc.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
 
       { "dest": "", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-3.0", "version": "dsc-3.0" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
-      { "dest": "module", "files": [ "**/About/*.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-3.0", "version": "dsc-3.0" },
       { "dest": "module/dsc-3.0", "files": [ "toc.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
 
       { "dest": "", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder" },
