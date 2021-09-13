@@ -14,6 +14,8 @@ title: PSDesiredStateConfiguration
 This module contains cmdlets that designed to work with DSC Resources.
 
 ## PSDesiredStateConfiguration Cmdlets
+### [Configuration](Configuration.md)
+{{ Fill in the Description }}
 
 ### [Get-DscResource](Get-DscResource.md)
 Gets the DSC resources present on the computer.
