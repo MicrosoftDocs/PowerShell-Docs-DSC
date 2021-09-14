@@ -162,4 +162,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
 
 [Invoke-DscResource](/powershell/module/PSDesiredStateConfiguration/Invoke-DscResource)
-

@@ -1,14 +1,16 @@
 ---
 external help file: PSDesiredStateConfiguration-help.xml
+Locale: en-US
 Module Name: PSDesiredStateConfiguration
+ms.date: 07/23/2020
 online version: http://go.microsoft.com/fwlink/?LinkId=403985
 schema: 2.0.0
+title: Get-DscResource
 ---
-
 # Get-DscResource
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Gets Desired State Configuration (DSC) resources present on the computer.
 
 ## SYNTAX
 
@@ -17,24 +19,80 @@ Get-DscResource [[-Name] <String[]>] [[-Module] <Object>] [-Syntax] [<CommonPara
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Get-DscResource` cmdlet retrieves the PowerShell DSC resources present on the computer. This
+cmdlet discovers only the resources installed in the PSModulePath. It shows the details about
+built-in and custom providers, which are created by the user. This cmdlet also shows details about
+composite resources, which are other configurations that are packaged as module or created at run
+time in the session.
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Get all resources on the local computer
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Get-DscResource
 ```
 
-{{ Add example description here }}
+This command gets all the resources on the local computer.
+
+### Example 2: Get a resource by specifying the name
+
+```powershell
+Get-DscResource -Name "WindowsFeature"
+```
+
+This command gets the WindowsFeature resource.
+
+### Example 3: Get all the resources from a module
+
+```powershell
+Get-DscResource -Module "xHyper-V"
+```
+
+This command gets all the resources from the xHyper-V module.
+
+### Example 4: Get a resource by using wildcard characters
+
+```powershell
+Get-DscResource -Name P*,r*
+```
+
+This command gets all resources that match the wildcard pattern specified by the **Name** parameter.
+
+### Example 5: Get a resource syntax
+
+```powershell
+Get-DscResource -Name "WindowsFeature" -Syntax
+```
+
+This command gets the WindowsFeature resource, and shows the syntax for the resource.
+
+### Example 6: Get all the properties for a resource
+
+```powershell
+Get-DscResource -Name "User" | Select-Object -ExpandProperty Properties
+```
+
+This command gets the User resource, and then uses the pipeline operator to return all the
+properties for the User resource.
+
+### Example 7: Get all the resources from a specified module with a specified version
+
+```powershell
+Get-DscResource -Module @{ModuleName='xHyper-V';RequiredVersion='3.0.0.0'}
+```
+
+This command gets all the resources from xHyper-V module with version 3.0.0.0.
 
 ## PARAMETERS
 
 ### -Module
-{{ Fill Module Description }}
+
+Specifies the name or fully qualified name of the module for which to view the DSC resource.
 
 ```yaml
-Type: Object
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
@@ -46,10 +104,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+
+Specifies an array of names of the DSC resource to view.
 
 ```yaml
-Type: String[]
+Type: System.String[]
 Parameter Sets: (All)
 Aliases:
 
@@ -61,10 +120,12 @@ Accept wildcard characters: False
 ```
 
 ### -Syntax
-{{ Fill Syntax Description }}
+
+Indicates that the cmdlet returns the syntax view of the specified DSC resources. The returned
+syntax shows how to use the resources in a PowerShell script.
 
 ```yaml
-Type: SwitchParameter
+Type: System.Management.Automation.SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -76,7 +137,11 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
+-InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -94,5 +159,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[http://go.microsoft.com/fwlink/?LinkId=403985](http://go.microsoft.com/fwlink/?LinkId=403985)
+[PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
 
+[Invoke-DscResource](/powershell/module/PSDesiredStateConfiguration/Invoke-DscResource)

@@ -1,14 +1,17 @@
 ---
 external help file: PSDesiredStateConfiguration-help.xml
+Locale: en-US
 Module Name: PSDesiredStateConfiguration
+ms.date: 08/11/2020
 online version: http://go.microsoft.com/fwlink/?LinkId=403985
 schema: 2.0.0
+title: Invoke-DscResource
 ---
 
 # Invoke-DscResource
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Runs a method of a specified PowerShell Desired State Configuration (DSC) resource.
 
 ## SYNTAX
 
@@ -18,24 +21,59 @@ Invoke-DscResource [-Name] <String> [[-ModuleName] <ModuleSpecification>] [-Meth
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Invoke-DscResource` cmdlet runs a method of a specified PowerShell Desired State Configuration
+(DSC) resource.
+
+This cmdlet invokes a DSC resource directly, without creating a configuration document. Using this
+cmdlet, configuration management products can manage windows or Linux by using DSC resources. This
+cmdlet also enables debugging of resources when the DSC engine is running with debugging enabled.
+
+> [!NOTE]
+> `Invoke-DscResource` is an experimental feature in PowerShell 7. To use the cmdlet, you must
+> enable it using the following command.
+>
+> `Enable-ExperimentalFeature PSDesiredStateConfiguration.InvokeDscResource`
 
 ## EXAMPLES
 
-### Example 1
+### Example 1: Invoke the Set method of a resource by specifying its mandatory properties
+
+This example invokes the **Set** method of a resource named **WindowsProcess** and provides the
+mandatory **Path** and **Arguments** properties to start the specified Windows process.
+
 ```powershell
-PS C:\> {{ Add example code here }}
+Invoke-DscResource -Name WindowsProcess -Method Set -ModuleName PSDesiredStateConfiguration -Property @{
+  Path = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+  Arguments = ''
+}
 ```
 
-{{ Add example description here }}
+### Example 2: Invoke the Test method of a resource for a specified module
+
+This example invokes the **Test** method of a resource named **WindowsProcess**, which is in the
+module named **PSDesiredStateConfiguration**.
+
+```powershell
+$SplatParam = @{
+  Name = 'WindowsProcess'
+  ModuleName = 'PSDesiredStateConfiguration'
+  Property = @{Path = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'; Arguments = ''}
+  Method = Test
+}
+
+Invoke-DscResource @SplatParam
+```
 
 ## PARAMETERS
 
 ### -Method
-{{ Fill Method Description }}
+
+Specifies the method of the resource that this cmdlet invokes. The acceptable values for this
+parameter are: **Get**, **Set**, and **Test**.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 Accepted values: Get, Set, Test
@@ -48,10 +86,11 @@ Accept wildcard characters: False
 ```
 
 ### -ModuleName
-{{ Fill ModuleName Description }}
+
+Specifies the name of the module from which this cmdlet invokes the specified resource.
 
 ```yaml
-Type: ModuleSpecification
+Type: Microsoft.PowerShell.Commands.ModuleSpecification
 Parameter Sets: (All)
 Aliases:
 
@@ -63,10 +102,11 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+
+Specifies the name of the DSC resource to start.
 
 ```yaml
-Type: String
+Type: System.String
 Parameter Sets: (All)
 Aliases:
 
@@ -78,10 +118,11 @@ Accept wildcard characters: False
 ```
 
 ### -Property
-{{ Fill Property Description }}
+
+Specifies the resource property name and its value in a hash table as key and value, respectively.
 
 ```yaml
-Type: Hashtable
+Type: System.Collections.Hashtable
 Parameter Sets: (All)
 Aliases:
 
@@ -93,7 +134,11 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
+-InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -104,6 +149,19 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
+- Previously, Windows PowerShell 5.1 resources ran under System context unless specified with user
+context using the key **PsDscRunAsCredential**. In PowerShell 7.0, Resources run in the user's
+context, and **PsDscRunAsCredential** is no longer supported. Previous configurations using this key
+will throw an exception.
+
+- As of PowerShell 7, `Invoke-DscResource` no longer supports invoking WMI DSC resources. This
+  includes the **File** and **Log** resources in **PSDesiredStateConfiguration**.
+
 ## RELATED LINKS
+
+[Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
+
+[Get-DscResource](Get-DscResource.md)
