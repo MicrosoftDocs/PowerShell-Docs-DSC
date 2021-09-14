@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 08/11/2020
+ms.date: 09/14/2021
 online version: http://go.microsoft.com/fwlink/?LinkId=403985
 schema: 2.0.0
 title: Invoke-DscResource
