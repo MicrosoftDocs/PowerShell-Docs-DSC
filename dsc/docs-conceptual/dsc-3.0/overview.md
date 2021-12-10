@@ -1,6 +1,6 @@
 ---
 description: Overview of the PSDesiredStateConfiguration v3.0.0-beta1 module.
-ms.date: 06/22/2021
+ms.date: 12/10/2021
 title:  PSDesiredStateConfiguration v3.0.0-beta1
 ---
 # PSDesiredStateConfiguration v3.0.0-beta1
