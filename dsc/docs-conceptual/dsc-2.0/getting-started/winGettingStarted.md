@@ -1,8 +1,7 @@
 ---
-ms.date:  08/15/2019
-keywords:  dsc,powershell,configuration,setup
-title:  Get started with Desired State Configuration (DSC) for Windows
 description: This topic explains how to get started using PowerShell Desired State Configuration (DSC) for Windows.
+ms.date: 10/05/2021
+title: Get started with Desired State Configuration (DSC) for Windows
 ---
 
 # Get started with Desired State Configuration (DSC) for Windows
@@ -15,11 +14,13 @@ Windows. For general information about DSC, see
 
 The following versions are supported:
 
+- Windows Server 2022
 - Windows Server 2019
 - Windows Server 2016
 - Windows Server 2012R2
 - Windows Server 2012
 - Windows Server 2008 R2 SP1
+- Windows 11
 - Windows 10
 - Windows 8.1
 - Windows 7
@@ -57,7 +58,7 @@ PowerShellGet cmdlets.
 Install-Module 'PSDscResources' -Verbose
 ```
 
-#### Define a configuration and generate the configuration document:
+#### Define a configuration and generate the configuration document
 
 ```powershell
 Configuration EnvironmentVariable_Path
@@ -89,7 +90,7 @@ EnvironmentVariable_Path -OutputPath:"./EnvironmentVariable_Path"
 > even when you're running a `localhost` configuration. To easily configure your environment
 > correctly, just run `Set-WsManQuickConfig -Force` in an elevated PowerShell Terminal.
 
-Configuration documents (MOF files) can be applied to the machineusing the
+Configuration documents (MOF files) can be applied to the machine using the
 [Start-DscConfiguration](/powershell/module/psdesiredstateconfiguration/start-dscconfiguration)
 cmdlet.
 
