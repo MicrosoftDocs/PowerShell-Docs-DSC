@@ -1,8 +1,7 @@
 ---
-ms.date:  06/12/2017
 description: This document provide best practices to assist engineers that are deploying the DSC Pull Server.
-keywords:  dsc,powershell,configuration,setup
-title:  Pull server best practices
+ms.date: 11/08/2021
+title: Pull server best practices
 ---
 # Pull server best practices
 
@@ -112,8 +111,8 @@ ready to be used in a production environment even while WMF is released in previ
 that have historically been updated by WMF releases (see the WMF Release Notes for further detail):
 
 - Windows PowerShell Windows PowerShell Integrated Scripting
-- Environment (ISE) Windows PowerShell Web Services (Management OData
-- IIS Extension)  Windows PowerShell Desired State Configuration (DSC)
+- Environment (ISE) Windows PowerShell Web Services (Management OData IIS Extension)
+- Windows PowerShell Desired State Configuration (DSC)
 - Windows Remote Management (WinRM) Windows Management Instrumentation (WMI)
 
 ### DSC resource

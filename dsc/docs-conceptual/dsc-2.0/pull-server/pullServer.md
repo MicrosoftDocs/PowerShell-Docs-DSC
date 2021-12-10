@@ -1,8 +1,7 @@
 ---
-ms.date:  01/08/2020
-keywords:  dsc,powershell,configuration,setup
-title:  DSC Pull Service
 description: Local Configuration Manager (LCM) can be centrally managed by a Pull Service solution. When using this approach, the node that is being managed is registered with a service and assigned a configuration in LCM settings.
+ms.date: 11/08/2021
+title: DSC Pull Service
 ---
 
 # Desired State Configuration Pull Service
@@ -88,9 +87,9 @@ example script is provided below.
 
 ### Supported database systems
 
-| WMF 4.0 |       WMF 5.0        |       WMF 5.1        | WMF 5.1 (Windows Server Insider Preview 17090) |
-| ------- | -------------------- | -------------------- | ---------------------------------------------- |
-| MDB     | ESENT (Default), MDB | ESENT (Default), MDB | ESENT (Default), SQL Server, MDB               |
+| WMF 4.0 |       WMF 5.0        |       WMF 5.1        |             WMF 5.1              |
+| ------- | -------------------- | -------------------- | -------------------------------- |
+| MDB     | ESENT (Default), MDB | ESENT (Default), MDB | ESENT (Default), SQL Server, MDB |
 
 Starting in release 17090 of Windows Server, SQL Server is a supported option for the Pull Service
 (Windows Feature *DSC-Service*). This provides a new option for scaling large DSC environments that
@@ -105,7 +104,8 @@ To configure the pull server to use SQL Server, set **SqlProvider** to `$true` a
 [SqlClient Connection Strings](/dotnet/framework/data/adonet/connection-string-syntax#sqlclient-connection-strings).
 For an example of SQL Server configuration with **xDscWebService**, first read
 [Using the xDscWebService resource](#using-the-xdscwebservice-resource) and then review
-[Sample_xDscWebServiceRegistration_UseSQLProvider.ps1 on GitHub](https://github.com/dsccommunity/xPSDesiredStateConfiguration/blob/master/source/Examples/Sample_xDscWebServiceRegistration_UseSQLProvider.ps1).
+[2-xDscWebService_RegistrationUseSQLProvider_Config.ps1](https://github.com/dsccommunity/xPSDesiredStateConfiguration/blob/main/source/Examples/Resources/xDscWebService/2-xDscWebService_RegistrationUseSQLProvider_Config.ps1)
+on GitHub.
 
 ### Using the xDscWebService resource
 

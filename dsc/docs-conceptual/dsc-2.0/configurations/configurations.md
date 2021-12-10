@@ -1,8 +1,7 @@
 ---
-ms.date:  12/12/2018
-keywords:  dsc,powershell,configuration,setup
-title:  DSC Configurations
 description: DSC configurations are PowerShell scripts that define a special type of function.
+ms.date: 10/11/2021
+title: DSC Configurations
 ---
 # DSC Configurations
 
@@ -177,10 +176,10 @@ Once these modules have been placed in `$env:PSModulePath` and are properly reco
 [Get-DscResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource), they still need
 to be loaded within your configuration.
 
-**Import-DscResource** is a dynamic keyword that can only be recognized within a **Configuration**
-block, it is not a cmdlet. **Import-DscResource** supports two parameters:
+`Import-DscResource` is a dynamic keyword that can only be recognized within a **Configuration**
+block, it is not a cmdlet. `Import-DscResource` supports two parameters:
 
-- **ModuleName** is the recommended way of using **Import-DscResource**. It accepts the name of the
+- **ModuleName** is the recommended way of using `Import-DscResource`. It accepts the name of the
   module that contains the resources to be imported (as well as a string array of module names).
 - **Name** is the name of the resource to import. This is not the friendly name returned as "Name"
   by [Get-DscResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource), but the
