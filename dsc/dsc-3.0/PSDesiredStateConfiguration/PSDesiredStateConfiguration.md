@@ -11,7 +11,8 @@ title: PSDesiredStateConfiguration
 # PSDesiredStateConfiguration Module
 
 ## Description
-This module contains cmdlets that designed to work with DSC Resources.
+This module contains cmdlets that designed to work with DSC Resources. PSDesiredStateConfiguration
+v3.0 is the version of DSC that is supported by Azure Guest Configuration.
 
 ## PSDesiredStateConfiguration Cmdlets
 ### [Configuration](Configuration.md)
@@ -25,4 +26,3 @@ Runs a method of a specified PowerShell Desired State Configuration (DSC) resour
 
 ### [New-DSCCheckSum](New-DSCCheckSum.md)
 Creates checksum files for DSC documents and DSC resources.
-
