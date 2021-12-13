@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "dsc/dsc-1.1/docs-conceptual/index.md",
+            "redirect_url": "/powershell/dsc/overview",
+            "redirect_document_id": true
+        },
+        {
             "source_path": "dsc/dsc-2.0/docs-conceptual/index.md",
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": true
