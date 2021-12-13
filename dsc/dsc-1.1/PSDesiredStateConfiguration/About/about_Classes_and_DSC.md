@@ -2,11 +2,10 @@
 description: Describes how you can use classes to develop in PowerShell with Desired State Configuration (DSC).
 Locale: en-US
 ms.date: 01/11/2019
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/about/about_classes_and_dsc?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/about/about_classes_and_dsc?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: about Classes and DSC
 ---
-
 # about_Classes_and_DSC
 
 ## Short description
@@ -538,7 +537,7 @@ A new attribute, **System.Management.Automation.HiddenAttribute**, was added,
 so that C# code can have the same semantics within PowerShell.
 
 For more information, see
-[about_Hidden](../../Microsoft.PowerShell.Core/About/about_hidden.md).
+[about_Hidden[(/powershell/module/microsoft.powershell.core/about/about_hidden).
 
 ### Import-DscResource
 
@@ -828,14 +827,14 @@ function Html ([HTML] $doc) { return $doc }
 
 ## See also
 
-[about_DesiredStateConfiguration](../../Microsoft.PowerShell.Core/About/about_desiredstateconfiguration.md)
+[about_DesiredStateConfiguration](/powershell/module/Microsoft.PowerShell.Core/About/about_desiredstateconfiguration)
 
-[about_Enum](../../Microsoft.PowerShell.Core/About/about_Enum.md)
+[about_Enum](/powershell/module/Microsoft.PowerShell.Core/About/about_Enum)
 
-[about_Hidden](../../Microsoft.PowerShell.Core/About/about_hidden.md)
+[about_Hidden](/powershell/module/Microsoft.PowerShell.Core/About/about_hidden)
 
-[about_Language_Keywords](../../Microsoft.PowerShell.Core/About/about_Language_Keywords.md)
+[about_Language_Keywords](/powershell/module/Microsoft.PowerShell.Core/About/about_Language_Keywords)
 
-[about_Methods](../../Microsoft.PowerShell.Core/About/about_Methods.md)
+[about_Methods](/powershell/module/Microsoft.PowerShell.Core/About/about_Methods)
 
-[Build Custom Windows PowerShell Desired State Configuration Resources](/powershell/scripting/dsc/resources/authoringResource)
+[Build Custom PowerShell Desired State Configuration Resources](/powershell/dsc/resources/authoringResource)

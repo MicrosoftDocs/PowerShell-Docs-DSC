@@ -3,7 +3,7 @@ external help file: Stop-DscConfiguration.cdxml-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 08/19/2019
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/stop-dscconfiguration?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/stop-dscconfiguration?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Stop-DscConfiguration
 ---
@@ -29,7 +29,7 @@ computers this cmdlet applies to by using Common Information Model (CIM) session
 configuration job running, this cmdlet returns a warning message.
 
 `Stop-DscConfiguration` is only available as part of the
-[November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/kb/3000850)
+[November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/topic/november-2014-update-rollup-for-windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-7be5865b-adaa-dbbf-e2d4-1f819e7c9d87)
 from the Microsoft Support library. Before you use this cmdlet, review the information in
 [What's New in Windows PowerShell 5.0](/powershell/scripting/whats-new/What-s-New-in-Windows-PowerShell-50)
 
@@ -170,7 +170,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 
@@ -184,13 +185,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related links
 
-[Get-CimSession](../CimCmdlets/Get-CimSession.md)
+[Get-CimSession](/powershell/module/CimCmdlets/Get-CimSession)
 
 [Get-DscConfiguration](Get-DscConfiguration.md)
 
 [Get-DscConfigurationStatus](Get-DscConfigurationStatus.md)
 
-[New-CimSession](../CimCmdlets/New-CimSession.md)
+[New-CimSession](/powershell/module/CimCmdlets/New-CimSession)
 
 [Restore-DscConfiguration](Restore-DscConfiguration.md)
 

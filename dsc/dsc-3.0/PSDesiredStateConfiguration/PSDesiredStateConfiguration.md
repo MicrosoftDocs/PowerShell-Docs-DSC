@@ -4,7 +4,7 @@ Help Version: 7.2.0.0
 Locale: en-US
 Module Guid: 779e0998-8c72-4567-89b5-49313fc15351
 Module Name: PSDesiredStateConfiguration
-ms.date: 09/14/2021
+ms.date: 12/13/2021
 schema: 2.0.0
 title: PSDesiredStateConfiguration
 ---
@@ -15,8 +15,12 @@ This module contains cmdlets that designed to work with DSC Resources. PSDesired
 v3.0 is the version of DSC that is supported by Azure Guest Configuration.
 
 ## PSDesiredStateConfiguration Cmdlets
+
 ### [Configuration](Configuration.md)
 {{ Fill in the Description }}
+
+### ConvertTo-DscJsonSchema
+{{ Fill in the Synopsis }}
 
 ### [Get-DscResource](Get-DscResource.md)
 Gets the DSC resources present on the computer.

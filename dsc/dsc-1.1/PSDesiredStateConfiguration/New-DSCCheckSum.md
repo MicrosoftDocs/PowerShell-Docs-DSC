@@ -3,7 +3,7 @@ external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 10/04/2021
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/new-dscchecksum?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/new-dscchecksum?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: New-DscChecksum
 ---

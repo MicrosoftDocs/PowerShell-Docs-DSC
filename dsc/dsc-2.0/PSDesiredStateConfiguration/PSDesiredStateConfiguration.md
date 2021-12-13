@@ -15,6 +15,7 @@ This module contains cmdlets that designed to work with DSC Resources. PSDesired
 v2.0 is the version of DSC that ships with PowerShell 7.0.
 
 ## PSDesiredStateConfiguration Cmdlets
+
 ### [Configuration](Configuration.md)
 {{ Fill in the Description }}
 

@@ -3,7 +3,7 @@ external help file: Get-DSCLocalConfigurationManager.cdxml-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 12/12/2019
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/get-dsclocalconfigurationmanager?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/get-dsclocalconfigurationmanager?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Get-DscLocalConfigurationManager
 ---
@@ -69,7 +69,8 @@ PSComputerName
 This command gets LCM settings for the local computer.
 
 For more information on the individual attributes of the output, see the
-[Configuring the Local Configuration Manager](../../docs-conceptual/dsc/managing-nodes/metaconfig.md#basic-settings) documentation.
+[Configuring the Local Configuration Manager](/powershell/dsc/managing-nodes/metaconfig#basic-settings)
+documentation.
 
 ### Example 2: Get LCM settings for a specified computer
 
@@ -175,7 +176,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

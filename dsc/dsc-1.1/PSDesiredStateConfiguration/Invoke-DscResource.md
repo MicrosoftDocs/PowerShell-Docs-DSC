@@ -3,7 +3,7 @@ external help file: Microsoft.Windows.DSC.CoreConfProviders.dll-Help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 10/04/2021
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/invoke-dscresource?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/invoke-dscresource?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Invoke-DscResource
 ---
@@ -16,8 +16,8 @@ Runs a method of a specified DSC resource.
 ## Syntax
 
 ```
-Invoke-DscResource [-Name] <String> [-Method] <String> -ModuleName <ModuleSpecification> -Property <Hashtable>
- [<CommonParameters>]
+Invoke-DscResource [-Name] <String> [-Method] <String> -ModuleName <ModuleSpecification>
+ -Property <Hashtable> [<CommonParameters>]
 ```
 
 ## Description
@@ -127,7 +127,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

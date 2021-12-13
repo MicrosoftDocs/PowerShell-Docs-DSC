@@ -3,7 +3,7 @@ external help file: Microsoft.Windows.DSC.CoreConfProviders.dll-Help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 10/04/2021
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/start-dscconfiguration?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/start-dscconfiguration?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Start-DscConfiguration
 ---
@@ -97,9 +97,9 @@ The first command creates a CIM session by using the `New-CimSession` cmdlet, an
 **CimSession** object in the `$Session` variable. The command prompts you for a password. For more
 information, type `Get-Help NewCimSession`.
 
-The second command applies the configuration settings from `C:\DSC\Configurations\` to the computers
+The second command applies the configuration settings from `C:\DSC\Configurations` to the computers
 identified by the **CimSession** objects stored in the `$Session` variable. In this example, the
-$Session variable contains a CIM session only for the computer named Server01. The command applies
+`$Session` variable contains a CIM session only for the computer named Server01. The command applies
 the configuration. The command creates **Job** objects for each configured computer.
 
 ## Parameters

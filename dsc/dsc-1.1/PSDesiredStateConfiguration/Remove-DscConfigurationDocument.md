@@ -3,7 +3,7 @@ external help file: Remove-DscConfigurationDocument.cdxml-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 10/04/2021
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/remove-dscconfigurationdocument?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/remove-dscconfigurationdocument?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Remove-DscConfigurationDocument
 ---
@@ -27,8 +27,8 @@ Windows PowerShell Desired State Configuration (DSC) configuration store. During
 `Start-DscConfiguration` cmdlet copies a `.mof` file to a folder on the target computer. This cmdlet
 removes that configuration document and does additional cleanup.
 
-This cmdlet is available only as part of the [November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/kb/3000850)
-from the Microsoft Support library.
+This cmdlet is available only as part of the
+[November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/topic/november-2014-update-rollup-for-windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-7be5865b-adaa-dbbf-e2d4-1f819e7c9d87).
 
 ## Examples
 
@@ -60,9 +60,12 @@ the `Receive-Job` cmdlet.
 
 To use this parameter, the local and remote computers must be configured for remoting, and on
 Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell
-with the Run as administrator option. For more information, see [about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
+with the Run as administrator option. For more information, see
+[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
-For more information about Windows PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and [about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
+For more information about Windows PowerShell background jobs, see
+[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs.md) and
+[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -78,8 +81,8 @@ Accept wildcard characters: False
 
 ### -CimSession
 
-Runs the cmdlet in a remote session or on a remote computer.
-Enter a computer name or a session object, such as the output of a `New-CimSession` or `Get-CimSession` cmdlet.
+Runs the cmdlet in a remote session or on a remote computer. Enter a computer name or a session
+object, such as the output of a `New-CimSession` or `Get-CimSession` cmdlet.
 
 ```yaml
 Type: Microsoft.Management.Infrastructure.CimSession[]
@@ -95,8 +98,8 @@ Accept wildcard characters: False
 
 ### -Force
 
-Indicates that this cmdlet stops the running configuration job before it removes the configuration document.
-Forces the command to run without asking for user confirmation.
+Indicates that this cmdlet stops the running configuration job before it removes the configuration
+document. Forces the command to run without asking for user confirmation.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -188,7 +191,8 @@ Accept wildcard characters: False
 
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable,
 -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose,
--WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
+-WarningAction, and -WarningVariable. For more information, see
+[about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## Inputs
 

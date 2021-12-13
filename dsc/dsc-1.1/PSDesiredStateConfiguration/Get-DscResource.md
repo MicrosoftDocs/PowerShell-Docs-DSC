@@ -3,7 +3,7 @@ external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 07/23/2020
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/get-dscresource?view=powershell-5.1&WT.mc_id=ps-gethelp
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/get-dscresource?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Get-DscResource
 ---
