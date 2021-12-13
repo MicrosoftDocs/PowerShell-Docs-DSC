@@ -1,0 +1,68 @@
+{
+  "build": {
+    "content": [
+      { "dest": "breadcrumb", "files": [ "toc.yml" ], "src": "breadcrumb" },
+
+      { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module/dsc-1.1", "files": [ "toc.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+
+      { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-2.0", "version": "dsc-2.0" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-2.0", "version": "dsc-2.0" },
+      { "dest": "module/dsc-2.0", "files": [ "toc.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
+
+      { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-3.0", "version": "dsc-3.0" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-3.0", "version": "dsc-3.0" },
+      { "dest": "module/dsc-3.0", "files": [ "toc.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
+
+      { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder" },
+      { "dest": "module", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder-module" }
+    ],
+    "exportRawModel": true,
+    "exportViewModel": true,
+    "externalReference": [],
+    "globalMetadata": {
+      "author": "sdwheeler",
+      "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
+      "feedback_system": "None",
+      "hideScope": false,
+      "ms.author": "sewhee",
+      "ms.devlang": "powershell",
+      "ms.prod": "powershell",
+      "ms.topic": "reference",
+      "searchScope": [
+        "PowerShell"
+      ],
+      "titleSuffix": "PowerShell",
+      "toc_preview": true,
+      "uhfHeaderId": "MSDocsHeader-Powershell"
+    },
+    "markdownEngineName": "markdig",
+    "overwrite": [],
+    "resource": [
+      {
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**"
+        ],
+        "files": [
+          "**/media/**/*.png",
+          "**/media/**/*.gif",
+          "**/media/**/*.jpeg",
+          "**/media/**/*.jpg",
+          "**/media/**/*.svg"
+        ]
+      }
+    ],
+    "template": [],
+    "versions": {
+      "dsc-1.1": { "dest": "dsc-1.1" },
+      "dsc-2.0": { "dest": "dsc-2.0" },
+      "dsc-3.0": { "dest": "dsc-3.0" }
+    }
+  }
+}
