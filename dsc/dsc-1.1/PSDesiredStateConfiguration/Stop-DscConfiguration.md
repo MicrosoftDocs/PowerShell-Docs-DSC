@@ -57,13 +57,14 @@ stop the configuration job.
 ### -AsJob
 
 Indicates that this cmdlet runs the command as a background job. For more information about
-PowerShell background jobs, see [about_Jobs](../Microsoft.PowerShell.Core/About/about_Jobs.md) and
-[about_Remote_Jobs](../Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
+PowerShell background jobs, see
+[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs.md) and
+[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
 
 To use the **AsJob** parameter, the local and remote computers must be configured for remoting. On
 Windows Vista and later versions of the Windows operating system, you must open PowerShell with the
 **Run as administrator** option. For more information, see
-[about_Remote_Requirements](../Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
+[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
