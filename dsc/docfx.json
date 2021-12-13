@@ -3,6 +3,11 @@
     "content": [
       { "dest": "breadcrumb", "files": [ "toc.yml" ], "src": "breadcrumb" },
 
+      { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module/dsc-1.1", "files": [ "toc.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-2.0", "version": "dsc-2.0" },
@@ -55,6 +60,7 @@
     ],
     "template": [],
     "versions": {
+      "dsc-1.1": { "dest": "dsc-1.1" },
       "dsc-2.0": { "dest": "dsc-2.0" },
       "dsc-3.0": { "dest": "dsc-3.0" }
     }

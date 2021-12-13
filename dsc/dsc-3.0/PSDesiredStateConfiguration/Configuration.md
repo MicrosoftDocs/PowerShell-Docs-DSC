@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Module Name: PSDesiredStateConfiguration
 ms.date: 09/14/2021
-online version: http://go.microsoft.com/fwlink/?LinkId=517195
+online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/configuration?view=dsc-3.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
 ---
 
@@ -149,9 +149,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
-
-[http://go.microsoft.com/fwlink/?LinkId=517195](http://go.microsoft.com/fwlink/?LinkId=517195)
-
