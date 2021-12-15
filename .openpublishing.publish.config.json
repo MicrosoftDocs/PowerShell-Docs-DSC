@@ -47,7 +47,7 @@
         "Conceptual": "Content",
         "ManagedReference": "Content",
         "PowershellCmdlet": "Content",
-        "PowershellModule": "Content",
+        "PowershellModule": "Content"
       },
       "xref_query_tags": [
         "/dotnet",
