@@ -255,7 +255,7 @@ Special thanks to the following individuals:
 
 ## See also
 
-[Windows PowerShell Desired State Configuration Overview](../overview/overview.md)
+[Windows PowerShell Desired State Configuration Overview](../overview.md)
 
 [Enacting configurations](enactingConfigurations.md)
 

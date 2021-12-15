@@ -197,6 +197,6 @@ information, see [Resource location](import-dscresource.md#resource-location).
 
 ## See Also
 
-- [Windows PowerShell Desired State Configuration Overview](../overview/overview.md)
+- [Windows PowerShell Desired State Configuration Overview](../overview.md)
 - [DSC Resources](../resources/resources.md)
 - [Configuring The Local Configuration Manager](../managing-nodes/metaConfig.md)
