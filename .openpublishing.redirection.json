@@ -1,23 +1,28 @@
 {
     "redirections": [
         {
+            "source_path": "dsc/index.md",
+            "redirect_url": "/powershell/dsc/overview",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "dsc/docs-conceptual/index.md",
             "redirect_url": "/powershell/dsc/overview",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "dsc/dsc-1.1/docs-conceptual/index.md",
-            "redirect_url": "/powershell/dsc/overview",
+            "redirect_url": "/powershell/dsc/overview?view=dsc-1.1",
             "redirect_document_id": true
         },
         {
             "source_path": "dsc/dsc-2.0/docs-conceptual/index.md",
-            "redirect_url": "/powershell/dsc/overview",
+            "redirect_url": "/powershell/dsc/overview?view=dsc-2.0",
             "redirect_document_id": true
         },
         {
             "source_path": "dsc/dsc-3.0/docs-conceptual/index.md",
-            "redirect_url": "/powershell/dsc/overview",
+            "redirect_url": "/powershell/dsc/overview?view=dsc-3.0",
             "redirect_document_id": true
         }
     ]
