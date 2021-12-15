@@ -4,14 +4,10 @@ items:
   - name: Overview
     expanded: true
     items:
-      - name: Desired State Configuration Overview for Developers
-        href: overview/overview.md
       - name: Desired State Configuration Overview for Decision Makers
         href: overview/decisionMaker.md
       - name: Desired State Configuration Overview for Engineers
         href: overview/DscForEngineers.md
-      - name: Understanding DSC's role in a CI/CD Pipeline
-        href: overview/authoringAdvanced.md
   - name: Getting started
     items:
       - name: Get started with DSC for Linux
@@ -31,6 +27,8 @@ items:
         href: quickstarts/gpo-quickstart.md
       - name: Create a Website with DSC
         href: quickstarts/website-quickStart.md
+      - name: Understanding DSC's role in a CI/CD Pipeline
+        href: overview/authoringAdvanced.md
   - name: Configurations
     items:
       - name: Concepts

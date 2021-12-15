@@ -227,7 +227,7 @@ about partial configurations, see [DSC Partial configurations](../pull-server/pa
 
 ### Concepts
 
-[Desired State Configuration Overview](../overview/overview.md)
+[Desired State Configuration Overview](../overview.md)
 
 [Getting started with Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
 

@@ -254,4 +254,4 @@ if ($PsDscContext.RunAsUser) {
 ### Concepts
 
 - [Writing a custom DSC resource with MOF](authoringResourceMOF.md)
-- [Get Started with Windows PowerShell Desired State Configuration](../overview/overview.md)
+- [Get Started with Windows PowerShell Desired State Configuration](../overview.md)

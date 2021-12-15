@@ -14,7 +14,7 @@ Configuration. The Configuration will ensure a "HelloWorld.txt" file exists on y
 If you delete the file, DSC will recreate it the next time it updates.
 
 For an overview of what DSC is and how it works, see
-[Desired State Configuration Overview for Developers](../overview/overview.md).
+[Desired State Configuration Overview for Developers](../overview.md).
 
 ## Requirements
 

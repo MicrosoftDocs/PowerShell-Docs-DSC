@@ -9,7 +9,7 @@ description: This topic explains how to get started using PowerShell Desired Sta
 
 This topic explains how to get started using PowerShell Desired State Configuration (DSC) for
 Windows. For general information about DSC, see
-[Get Started with Windows PowerShell Desired State Configuration](../overview/overview.md).
+[Get Started with Windows PowerShell Desired State Configuration](../overview.md).
 
 ## Supported Windows operation system versions
 
