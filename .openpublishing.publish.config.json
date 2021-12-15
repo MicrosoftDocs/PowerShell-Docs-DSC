@@ -13,12 +13,15 @@
   ],
   "dependent_repositories": [
     {
-      "branch": "main",
+      "branch": "master",
       "branch_mapping": {},
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft"
     }
   ],
+  "docs_build_engine": {
+    "name": "docfx_v3"
+  },
   "docsets_to_publish": [
     {
       "base_path": "powershell",
@@ -32,23 +35,29 @@
       },
       "docset_name": "PowerShell-Docs-DSC",
       "locale": "en-us",
+      "monikerPath": [
+        "mapping/monikerMapping.json"
+      ],
       "moniker_ranges": [],
       "monikers": [],
-      "open_to_public_contributors": false,
+      "open_to_public_contributors": true,
       "site_name": "Docs",
       "template_folder": "_themes",
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
         "PowershellCmdlet": "Content",
-        "PowershellModule": "Content",
-        "RestApi": "Content"
-      }
+        "PowershellModule": "Content"
+      },
+      "xref_query_tags": [
+        "/dotnet",
+        "/powershell",
+        "/uwp/api"
+      ]
     }
   ],
-  "monikerPath": [
-    "mapping/monikerMapping.json"
-  ],
+  "git_repository_branch_open_to_public_contributors": "main",
+  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/PowerShell-Docs-DSC",
   "need_generate_pdf_url_template": false,
   "need_preview_pull_request": true,
   "notification_subscribers": [],

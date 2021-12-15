@@ -26,9 +26,12 @@
     "externalReference": [],
     "globalMetadata": {
       "author": "sdwheeler",
+      "apiPlatform": "powershell",
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
-      "feedback_system": "None",
+      "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
+      "feedback_product_url": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+      "feedback_system": "GitHub",
       "hideScope": false,
       "ms.author": "sewhee",
       "ms.devlang": "powershell",
@@ -39,7 +42,7 @@
       ],
       "titleSuffix": "PowerShell",
       "toc_preview": true,
-      "uhfHeaderId": "MSDocsHeader-Powershell"
+      "uhfHeaderId": "MSDocsHeader-Powershell",
     },
     "markdownEngineName": "markdig",
     "overwrite": [],
