@@ -2,6 +2,7 @@ items:
   - name: Desired State Configuration (DSC) 2.0
     href: overview.md
   - name: Overview
+    expanded: true
     items:
       - name: Desired State Configuration Overview for Developers
         href: overview/overview.md
