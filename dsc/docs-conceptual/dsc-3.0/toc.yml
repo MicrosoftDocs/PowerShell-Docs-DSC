@@ -4,7 +4,7 @@ items:
   - name: Getting started
     items:
       - name: Manage configuration using PowerShell DSC
-        href: getting-started/gettingstarted.md
+        href: getting-started/getting-started.md
   - name: Concepts
     items:
       - name: Configurations
