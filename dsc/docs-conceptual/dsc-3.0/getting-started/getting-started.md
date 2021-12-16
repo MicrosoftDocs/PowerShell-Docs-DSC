@@ -67,7 +67,7 @@ Invoke-DscResource @{
 ```
 
 For additional details, view the
-[help page](https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/invoke-dscresource)
+[help page](../../../powershell/module/psdesiredstateconfiguration/invoke-dscresource)
 for the command.
 
 ## The guest configuration feature of Azure Policy
@@ -79,7 +79,7 @@ assign configurations as a machine is deployed, or dynamically to assign
 configurations to a machine based on properties defined by the API.
 
 For more information, see the page
-[Understand the guest configuration feature of Azure Policy](https://docs.microsoft.com/azure/governance/policy/concepts/guest-configuration).
+[Understand the guest configuration feature of Azure Policy](../../../azure/governance/policy/concepts/guest-configuration).
 
 ## DSC resources with third-party tools
 

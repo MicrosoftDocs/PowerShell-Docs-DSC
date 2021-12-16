@@ -42,5 +42,5 @@ Install-Module -Name PSDesiredStateConfiguration -allowprerelease
 
 ## See Also
 
-- [DSC Configurations](../concepts/configurations.md)
-- [DSC Resources](../concepts/resources.md)
+- [DSC Configurations](/concepts/configurations.md)
+- [DSC Resources](/concepts/resources.md)

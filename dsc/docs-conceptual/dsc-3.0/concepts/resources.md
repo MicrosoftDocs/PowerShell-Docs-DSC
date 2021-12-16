@@ -568,7 +568,7 @@ resource. Our manifest looks like this:
 
 After saving the class and manifest files in the folder structure as described earlier, you can
 create a configuration that uses the new resource. For information about how to run a DSC
-configuration, see [Enacting configurations](../pull-server/enactingConfigurations.md). The
+configuration, see [Getting started](../getting-started/getting-started.md). The
 following configuration will check to see whether the file at `/tmp/test.txt` exists and if the contents
 match the string provided by the property 'Content'. If not, the entire file is written.
 
@@ -591,9 +591,8 @@ MyConfig
 > [Note]
 > **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
 
-The **PsDscRunAsCredential** property can be used in [DSC configurations](../configurations/configurations.md)
-resource block to specify that the resource should be run under a specified set of credentials. For
-more information, see [Running DSC with user credentials](../configurations/runAsUser.md).
+The **PsDscRunAsCredential** property can be used in a
+resource block to specify that the resource should be run under a specified set of credentials.
 
 ### Require or disallow PsDscRunAsCredential for your resource
 
