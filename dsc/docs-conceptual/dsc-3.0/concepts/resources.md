@@ -66,9 +66,8 @@ follows.
 
 Notice that the properties are modified by attributes. The meaning of the attributes is as follows:
 
-- `DscProperty(Key)`: The property is required. The property is a key. The values of all
-  properties marked as keys must combine to uniquely identify a resource instance within a
-  configuration.
+- `DscProperty(Key)`: The property is required. The property is a key. The values of all properties
+  marked as keys must combine to uniquely identify a resource instance within a configuration.
 - `DscProperty(Mandatory)`: The property is required.
 - `DscProperty(NotConfigurable)`: The property is read-only. Properties marked with this attribute
   cannot be set by a configuration, but are populated by the `Get()` method when present.
