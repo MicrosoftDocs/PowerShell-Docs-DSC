@@ -1,35 +1,31 @@
 ---
 description: DSC resources provide the building blocks for a DSC configuration. A resource exposes properties that can be configured (schema) and contains the PowerShell script functions.
-ms.date: 12/24/2021
+ms.date: 12/16/2021
 title: DSC Resources
 ---
 
 # DSC Resources
 
-Desired State Configuration (DSC) Resources provide the building blocks for a DSC
-configuration.
+Desired State Configuration (DSC) Resources provide the building blocks for a DSC configuration.
 
-A resource can model something as generic as a file or as specific as an IIS server
-setting. Groups of like resources are combined in to a DSC Module, which organizes
-the required files in to a structure that is portable and includes metadata to
-identify how the resources are intended to be used.
+A resource can model something as generic as a file or as specific as an IIS server setting. Groups
+of like resources are combined into a DSC Module. The module organizes the required files into a
+structure that is portable and includes metadata to identify how the resources are intended to be
+used.
 
-In a DSC version 3 resource, the the schema is defined as properties of a class
-in PowerShell. While the term "class" might seem intimidating at first,
-the implementation for DSC does not require advanced programming knowledge.
+In a DSC version 3, the the schema for a resource is defined as properties of a class in PowerShell.
+While the term "class" might seem intimidating at first, the implementation for DSC does not require
+advanced programming knowledge.
 
-The resource is implemented by `Get()`, `Set()`, and `Test()` methods
-, equivalent to the `Get-TargetResource`,
-`Set-TargetResource`, and `Test-TargetResource` functions in DSC version 2.
-As a best practice, create PowerShell functions in the module first that
-perform all the requirements for the three methods, and keep
-the class section of the module as simple as possible.
+The resource is implemented by `Get()`, `Set()`, and `Test()` methods, equivalent to the
+`Get-TargetResource`, `Set-TargetResource`, and `Test-TargetResource` functions in DSC version 2. As
+a best practice, create PowerShell functions in the module that perform all the requirements
+for the three methods, and keep the class section of the module as simple as possible.
 
 ## Folder structure for a DSC resource
 
-To implement a DSC custom resource, create the following
-folder structure. The class is defined in `MyDscResource.psm1` and the module
-manifest is defined in `MyDscResource.psd1`.
+To implement a custom DSC resource, create the following folder structure. The class is defined in
+`MyDscResource.psm1` and the module manifest is defined in `MyDscResource.psd1`.
 
 ```
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
@@ -40,9 +36,8 @@ $env:ProgramFiles\WindowsPowerShell\Modules (folder)
 
 ## Create a DSCResource() PowerShell class
 
-You use the class keyword to create a PowerShell class. To specify that a class
-is a DSC resource, use the `DscResource()` attribute. The name of the class is
-the name of the DSC resource.
+You use the class keyword to create a PowerShell class. To specify that a class is a DSC resource,
+use the `DscResource()` attribute. The name of the class is the name of the DSC resource.
 
 ```powershell
 [DscResource()]
@@ -60,7 +55,7 @@ follows.
 [string] $path
 
 [DscProperty(Mandatory)]
-[ensure] $ensure
+[Ensure] $ensure
 
 [DscProperty()]
 [string] $content
@@ -71,16 +66,17 @@ follows.
 
 Notice that the properties are modified by attributes. The meaning of the attributes is as follows:
 
-- **DscProperty(Key)**: The property is required. The property is a key. The values of all
+- `DscProperty(Key)`: The property is required. The property is a key. The values of all
   properties marked as keys must combine to uniquely identify a resource instance within a
   configuration.
-- **DscProperty(Mandatory)**: The property is required.
-- **DscProperty(NotConfigurable)**: The property is read-only. Properties marked with this attribute
+- `DscProperty(Mandatory)`: The property is required.
+- `DscProperty(NotConfigurable)`: The property is read-only. Properties marked with this attribute
   cannot be set by a configuration, but are populated by the `Get()` method when present.
-- **DscProperty()**: The property is configurable, but it is not required.
+- `DscProperty()`: The property is configurable, but it is not required.
 
-The `$Path` and `$SourcePath` properties are both strings. The `$CreationTime` is a [DateTime](/dotnet/api/system.datetime)
-property. The `$Ensure` property is an enumeration type, defined as follows.
+The `$Path` and `$SourcePath` properties are both strings. The `$CreationTime` is a
+[DateTime](/dotnet/api/system.datetime) property. The `$Ensure` property is an enumeration type,
+defined as follows.
 
 ```powershell
 enum Ensure
@@ -92,9 +88,8 @@ enum Ensure
 
 ### Embedding classes
 
-If you would like to include a new type with defined properties that you can
-use within your resource, just create a class with property types as described
-above.
+To include a new type with defined properties that you can use within your resource, create a class
+with property types as previously described. For example:
 
 ```powershell
 class Reason {
@@ -108,11 +103,10 @@ class Reason {
 
 ### Public and Private functions
 
-You can create PowerShell functions within the same module file and use them
-inside the methods of your DSC class resource. The functions must be delcared
-as public, however the script blocks within those public functions can call
-functions that are private. The only difference is whether they are listed in
-the `FunctionsToExport` property of the module manifest.
+You can create PowerShell functions within the same module file and use them inside the methods of
+your DSC class resource. The functions must be declared as public, however the script blocks within
+those public functions can call functions that are private. To be declared as public, the function
+must be listed in the `FunctionsToExport` property of the module manifest.
 
 ```powershell
 <#
@@ -121,18 +115,18 @@ the `FunctionsToExport` property of the module manifest.
 
 function Get-File {
     param(
-        [ensure]$ensure,
-        
+        [Ensure]$ensure,
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
 
         [String]$content
     )
-    $fileContent        = [reason]::new()
+    $fileContent        = [Reason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [reason]::new()
+    $filePresent        = [Reason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -140,9 +134,9 @@ function Get-File {
     $fileExists = Test-path $path -ErrorAction SilentlyContinue
 
     if ($true -eq $fileExists) {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file exists at path: $path"
-        
-        $existingFileContent    = Get-Content $path -Raw
+        $filePresent.phrase = "The file was expected to be: $ensure`nThe file exists at path: $path"
+
+        $existingFileContent = Get-Content $path -Raw
         if ([string]::IsNullOrEmpty($existingFileContent)) {
             $existingFileContent = ''
         }
@@ -151,14 +145,14 @@ function Get-File {
             $content = $content | ConvertTo-SpecialChars
         }
 
-        $fileContent.phrase     = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
+        $fileContent.phrase = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
 
         if ($content -eq $existingFileContent) {
             $ensureReturn = 'Present'
         }
     }
     else {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
+        $filePresent.phrase = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
         $path = 'file not found'
     }
 
@@ -172,8 +166,8 @@ function Get-File {
 
 function Set-File {
     param(
-        [ensure]$ensure = "Present",
-        
+        [Ensure]$ensure = "Present",
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -191,8 +185,8 @@ function Set-File {
 
 function Test-File {
     param(
-        [ensure]$ensure = "Present",
-        
+        [Ensure]$ensure = "Present",
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -201,7 +195,7 @@ function Test-File {
     )
     $test = $false
     $get = Get-File @PSBoundParameters
-    
+
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
@@ -238,9 +232,8 @@ function ConvertTo-SpecialChars {
 The `Get()`, `Set()`, and `Test()` methods are analogous to the `Get-TargetResource`,
 `Set-TargetResource`, and `Test-TargetResource` functions in a script resource.
 
-As a best practice, minimize the amount of code within the class implementation. Instead,
-move the majority of your code our to public functions in the module, which can then
-be independently tested.
+As a best practice, minimize the amount of code within the class implementation. Instead, move the
+majority of your code to public functions in the module, which can then be independently tested.
 
 ```powershell
 <#
@@ -278,7 +271,7 @@ be independently tested.
 The complete class file follows.
 
 ```powershell
-enum ensure {
+enum Ensure {
     Absent
     Present
 }
@@ -301,18 +294,18 @@ class Reason {
 
 function Get-File {
     param(
-        [ensure]$ensure,
-        
+        [Ensure]$ensure,
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
 
         [String]$content
     )
-    $fileContent        = [reason]::new()
+    $fileContent        = [Reason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [reason]::new()
+    $filePresent        = [Reason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -320,9 +313,9 @@ function Get-File {
     $fileExists = Test-path $path -ErrorAction SilentlyContinue
 
     if ($true -eq $fileExists) {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file exists at path: $path"
-        
-        $existingFileContent    = Get-Content $path -Raw
+        $filePresent.phrase = "The file was expected to be: $ensure`nThe file exists at path: $path"
+
+        $existingFileContent = Get-Content $path -Raw
         if ([string]::IsNullOrEmpty($existingFileContent)) {
             $existingFileContent = ''
         }
@@ -331,14 +324,14 @@ function Get-File {
             $content = $content | ConvertTo-SpecialChars
         }
 
-        $fileContent.phrase     = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
+        $fileContent.phrase = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
 
         if ($content -eq $existingFileContent) {
             $ensureReturn = 'Present'
         }
     }
     else {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
+        $filePresent.phrase = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
         $path = 'file not found'
     }
 
@@ -352,8 +345,8 @@ function Get-File {
 
 function Set-File {
     param(
-        [ensure]$ensure = "Present",
-        
+        [Ensure]$ensure = "Present",
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -371,8 +364,8 @@ function Set-File {
 
 function Test-File {
     param(
-        [ensure]$ensure = "Present",
-        
+        [Ensure]$ensure = "Present",
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -381,7 +374,7 @@ function Test-File {
     )
     $test = $false
     $get = Get-File @PSBoundParameters
-    
+
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
@@ -419,7 +412,7 @@ function ConvertTo-SpecialChars {
 
 [DscResource()]
 class File {
-    
+
     <#
         This property is the fully qualified path to the file that is
         expected to be present or absent.
@@ -448,7 +441,7 @@ class File {
         calls the resource.  This is appropriate for optional properties.
     #>
     [DscProperty(Mandatory)]
-    [ensure] $ensure
+    [Ensure] $ensure
 
     <#
         This property is optional. When provided, the content of the file
@@ -478,7 +471,7 @@ class File {
         $get = Get-File -ensure $this.ensure -path $this.path -content $this.content
         return $get
     }
-    
+
     <#
         This method is equivalent of the Set-TargetResource script function.
         It sets the resource to the desired state.
@@ -486,7 +479,7 @@ class File {
     [void] Set() {
         $set = Set-File -ensure $this.ensure -path $this.path -content $this.content
     }
-    
+
     <#
         This method is equivalent of the Test-TargetResource script
         function. It should return True or False, showing whether the
@@ -510,57 +503,57 @@ resource. Our manifest looks like this:
 
     # Script module or binary module file associated with this manifest.
     RootModule = 'File.psm1'
-    
+
     # Version number of this module.
     ModuleVersion = '1.0.0'
-    
+
     # ID used to uniquely identify this module
     GUID = 'fad0d04e-65d9-4e87-aa17-39de1d008ee4'
-    
+
     # Author of this module
     Author = 'Microsoft Corporation'
-    
+
     # Company or vendor of this module
     CompanyName = 'Microsoft Corporation'
-    
+
     # Copyright statement for this module
     Copyright = ''
-    
+
     # Description of the functionality provided by this module
     Description = 'Create and set content of a file'
-    
+
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
-    
+
     # Functions to export from this module
     FunctionsToExport = @('Get-File','Set-File','Test-File')
-    
+
     # DSC resources to export from this module
     DscResourcesToExport = @('File')
-    
+
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData = @{
-    
+
         PSData = @{
-    
+
             # Tags applied to this module. These help with module discovery in online galleries.
             # Tags = @(Power Plan, Energy, Battery)
-    
+
             # A URL to the license for this module.
             # LicenseUri = ''
-    
+
             # A URL to the main website for this project.
             # ProjectUri = ''
-    
+
             # A URL to an icon representing this module.
             # IconUri = ''
-    
+
             # ReleaseNotes of this module
             # ReleaseNotes = ''
-    
+
         } # End of PSData hashtable
-    
-    } 
+
+    }
 }
 ```
 
@@ -568,9 +561,9 @@ resource. Our manifest looks like this:
 
 After saving the class and manifest files in the folder structure as described earlier, you can
 create a configuration that uses the new resource. For information about how to run a DSC
-configuration, see [Getting started](../getting-started/getting-started.md). The
-following configuration will check to see whether the file at `/tmp/test.txt` exists and if the contents
-match the string provided by the property 'Content'. If not, the entire file is written.
+configuration, see [Getting started](../getting-started/getting-started.md). The following
+configuration checks to see whether the file `/tmp/test.txt` exists and if the contents match
+the string provided by the property **Content**. If not, the entire file is written.
 
 ```powershell
 Configuration MyConfig
@@ -588,16 +581,16 @@ MyConfig
 
 ## Supporting PsDscRunAsCredential
 
-> [Note]
+> [!NOTE]
 > **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
 
-The **PsDscRunAsCredential** property can be used in a
-resource block to specify that the resource should be run under a specified set of credentials.
+The **PsDscRunAsCredential** property can be used in a resource block to specify that the resource
+should be run under a specified set of credentials.
 
 ### Require or disallow PsDscRunAsCredential for your resource
 
-The `DscResource()` attribute takes an optional parameter **RunAsCredential**. This parameter
-takes one of three values:
+The `DscResource()` attribute takes an optional parameter **RunAsCredential**. This parameter takes
+one of three values:
 
 - `Optional` **PsDscRunAsCredential** is optional for configurations that call this resource. This
   is the default value.
@@ -616,38 +609,37 @@ class FileResource {
 
 ### Declaring multiple class resources in a module
 
-A module can define multiple class based DSC resources. You can create the folder structure in the
-following ways:
+A module can define multiple class-based DSC resources. You can create the folder structure in
+either of the following ways:
 
-1. Define the first resource in the `<ModuleName>.psm1` file and subsequent resources under the
-   **DSCResources** folder.
+- Define the first resource in the `<ModuleName>.psm1` file and subsequent resources under the
+  **DSCResources** folder.
 
-   ```
-   $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-        |- MyDscResource (folder)
-           |- MyDscResource.psm1
-              MyDscResource.psd1
-        |- DSCResources
-           |- SecondResource.psm1
-   ```
+  ```
+  $env:ProgramFiles\WindowsPowerShell\Modules (folder)
+       |- MyDscResource (folder)
+          |- MyDscResource.psm1
+             MyDscResource.psd1
+       |- DSCResources
+          |- SecondResource.psm1
+  ```
 
-1. Define all resources under the **DSCResources** folder.
+- Define all resources under the **DSCResources** folder.
 
-   ```
-   $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-        |- MyDscResource (folder)
-           |- MyDscResource.psm1
-              MyDscResource.psd1
-        |- DSCResources
-           |- FirstResource.psm1
-              SecondResource.psm1
-   ```
+  ```
+  $env:ProgramFiles\WindowsPowerShell\Modules (folder)
+       |- MyDscResource (folder)
+          |- MyDscResource.psm1
+             MyDscResource.psd1
+       |- DSCResources
+          |- FirstResource.psm1
+             SecondResource.psm1
+  ```
 
 > [!NOTE]
-> In the examples above, add any PSM1 files under the **DSCResources** to the **NestedModules** key
-> in your PSD1 file.
+> In these examples, add the `.PSM1` files under the **DSCResources** to the **NestedModules**
+> key in your `.PSD1` file.
 
 ## See Also
 
-- [DSC Configurations](../concepts/configurations.md)
-- [DSC Resources](../concepts/resources.md)
+- [DSC Configurations](configurations.md)

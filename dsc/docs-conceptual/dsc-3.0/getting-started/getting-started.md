@@ -1,19 +1,18 @@
 ---
 description: Learn how to use the Desired State Configuration feature of PowerShell to manage the state of a machine as code.
-ms.date: 12/24/2021
+ms.date: 12/16/2021
 title: Manage configuration using PowerShell DSC
 ---
 
 # Manage configuration using PowerShell DSC
 
-There are three options for managing the state of a machine from PowerShell DSC.
-The solutions are the same for both Linux and Windows operating systems.
+There are three options for managing the state of a machine from PowerShell DSC. The solutions are
+the same for both Linux and Windows operating systems.
 
 ## The `Invoke-DSCResource` command
 
-You can deliver changes to a machine using a script. The `Invoke-DSCResource`
-command can be used to reference a DSC resource and pass through the properties
-that define how to manage the end state.
+You can deliver changes to a machine using a script. The `Invoke-DSCResource` command can be used to
+reference a DSC resource and pass through the properties that define how to manage the end state.
 
 Test if the machine is in the correct state, for an example resource.
 
@@ -67,15 +66,13 @@ Invoke-DscResource @{
 ```
 
 For additional details, view the
-[help page](/powershell/module/psdesiredstateconfiguration/invoke-dscresource.md)
-for the command.
+[Invoke-DscResource](/powershell/module/psdesiredstateconfiguration/invoke-dscresource) help.
 
 ## The guest configuration feature of Azure Policy
 
-For machines hosted in Microsoft Azure, or connected for hybrid
-management, the guest configuration feature of Azure Policy offers the ability
-to audit or apply configurations. The feature can be used stand-alone to
-assign configurations as a machine is deployed, or dynamically to assign
+For machines hosted in Microsoft Azure, or connected for hybrid management, the guest configuration
+feature of Azure Policy offers the ability to audit or apply configurations. The feature can be used
+stand-alone to assign configurations as a machine is deployed, or dynamically to assign
 configurations to a machine based on properties defined by the API.
 
 For more information, see the page
@@ -83,7 +80,8 @@ For more information, see the page
 
 ## DSC resources with third-party tools
 
-PowerShell DSC resources can also be used with most popular configuration management platforms. For additional details, see the documentation for each third-party solution.
+PowerShell DSC resources can also be used with most popular configuration management platforms. For
+additional details, see the documentation for each third-party solution.
 
 ## See Also
 
