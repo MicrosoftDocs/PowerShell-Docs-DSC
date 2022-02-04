@@ -18,7 +18,7 @@ modified with attributes to specify the property type.. The resource is implemen
 `Set()`, and `Test()` methods (equivalent to the `Get-TargetResource`, `Set-TargetResource`,
 and `Test-TargetResource` functions in a script resource.
 
-In this article, we will create a simple resource named **FileResource** that manages a file in a
+In this article, we will create a simple resource named **NewFile** that manages a file in a
 specified path.
 
 For more information about DSC resources, see [Build Custom Windows PowerShell Desired State Configuration Resources](authoringResource.md)
@@ -46,7 +46,7 @@ use the `DscResource()` attribute. The name of the class is the name of the DSC 
 
 ```powershell
 [DscResource()]
-class File {
+class NewFile {
 }
 ```
 
@@ -249,7 +249,7 @@ be independently tested.
     resources. This method returns an instance of this class with the
     updated key properties.
 #>
-[File] Get() {
+[NewFile] Get() {
     $get = Get-File -ensure $this.ensure -path $this.path -content $this.content
     return $get
 }
@@ -418,7 +418,7 @@ function ConvertTo-SpecialChars {
 #>
 
 [DscResource()]
-class File {
+class NewFile {
     
     <#
         This property is the fully qualified path to the file that is
@@ -474,7 +474,7 @@ class File {
         resources. This method returns an instance of this class with the
         updated key properties.
     #>
-    [File] Get() {
+    [NewFile] Get() {
         $get = Get-File -ensure $this.ensure -path $this.path -content $this.content
         return $get
     }
@@ -509,7 +509,7 @@ resource. Our manifest looks like this:
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule = 'File.psm1'
+    RootModule = 'NewFile.psm1'
     
     # Version number of this module.
     ModuleVersion = '1.0.0'
@@ -536,7 +536,7 @@ resource. Our manifest looks like this:
     FunctionsToExport = @('Get-File','Set-File','Test-File')
     
     # DSC resources to export from this module
-    DscResourcesToExport = @('File')
+    DscResourcesToExport = @('NewFile')
     
     # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData = @{
@@ -575,8 +575,8 @@ match the string provided by the property 'Content'. If not, the entire file is 
 ```powershell
 Configuration MyConfig
 {
-    Import-DSCResource -module File
-    File testFile
+    Import-DSCResource -module NewFile
+    NewFile testFile
     {
         Path = "/tmp/test.txt"
         Content = "DSC Rocks!"
@@ -611,7 +611,7 @@ For example, use the following attribute to specify that your custom resource do
 
 ```powershell
 [DscResource(RunAsCredential=NotSupported)]
-class FileResource {
+class NewFile {
 }
 ```
 
