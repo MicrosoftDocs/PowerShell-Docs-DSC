@@ -7,7 +7,7 @@ title:  PSDesiredStateConfiguration v2.0.5
 
 DSC 2.0 is the version of DSC that shipped in PowerShell 7.0.
 
-With the release of PowerShell 7.2, the PSDesiredStateConfiguration module is no longer be included
+With the release of PowerShell 7.2, the PSDesiredStateConfiguration module is no longer included
 in the PowerShell package. Separating DSC into its own module allows us to invest and develop DSC
 independent of PowerShell and reduces the size of the PowerShell package. Users of DSC will enjoy
 the benefit of upgrading DSC without the need to upgrade PowerShell, accelerating time to deployment
