@@ -1,5 +1,5 @@
 ---
-ms.date:  08/15/2019
+ms.date: 02/07/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Get started with Desired State Configuration (DSC) for Windows
 description: This topic explains how to get started using PowerShell Desired State Configuration (DSC) for Windows.
@@ -15,6 +15,7 @@ Windows. For general information about DSC, see
 
 The following versions are supported:
 
+- Windows Server 2022
 - Windows Server 2019
 - Windows Server 2016
 - Windows Server 2012R2

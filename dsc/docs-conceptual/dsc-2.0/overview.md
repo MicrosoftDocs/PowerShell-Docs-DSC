@@ -1,15 +1,15 @@
 ---
-description: Overview of the PSDesiredStateConfiguration v2.0.5 module.
-ms.date: 12/15/2021
-title:  PSDesiredStateConfiguration v2.0.5
+description: Overview of the Desired State Configuration 2.0.
+ms.date: 02/07/2022
+title:  Desired State Configuration 2.0
 ---
-# PSDesiredStateConfiguration v2.0.5
+# Desired State Configuration 2.0
 
 DSC 2.0 is the version of DSC that shipped in PowerShell 7.0.
 
 With the release of PowerShell 7.2, the PSDesiredStateConfiguration module is no longer included
 in the PowerShell package. Separating DSC into its own module allows us to invest and develop DSC
-independent of PowerShell and reduces the size of the PowerShell package. Users of DSC will enjoy
+independent of PowerShell and reduces the size of the PowerShell package. Users of DSC can enjoy
 the benefit of upgrading DSC without the need to upgrade PowerShell, accelerating time to deployment
 of new DSC features. Users that want to continue using DSC v2 can download
 PSDesiredStateConfiguration 2.0.5 from the PowerShell Gallery.
