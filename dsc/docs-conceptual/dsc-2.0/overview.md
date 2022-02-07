@@ -1,6 +1,6 @@
 ---
 description: Overview of the Desired State Configuration 2.0.
-ms.date: 12/22/2021
+ms.date: 02/07/2022
 title:  Desired State Configuration 2.0
 ---
 # Desired State Configuration 2.0
