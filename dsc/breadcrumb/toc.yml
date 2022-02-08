@@ -5,14 +5,8 @@ items:
     items:
       - name: PowerShell
         tocHref: /powershell/
-        topicHref: /powershell/index
+        topicHref: /powershell
         items:
           - name: PowerShell DSC
             tocHref: /powershell/dsc/
-            topicHref: /powershell/dsc/overview
-          - name: PowerShell DSC
-            tocHref: /powershell/dsc/module/dsc-2.0
-            topicHref: /powershell/dsc/overview
-          - name: PowerShell DSC
-            tocHref: /powershell/dsc/module/dsc-3.0
             topicHref: /powershell/dsc/overview
