@@ -617,7 +617,7 @@ class NewFile {
 
 ### Declaring multiple class resources in a module
 
-A module can define multiple class based DSC resources. You just need to declare all classes in
+A module can define multiple class-based DSC resources. You just need to declare all classes in
 the same `.psm1` file and include each name in the `.psd1` manifest.
 
    ```
