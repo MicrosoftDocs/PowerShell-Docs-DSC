@@ -617,36 +617,16 @@ class NewFile {
 
 ### Declaring multiple class resources in a module
 
-A module can define multiple class based DSC resources. You can create the folder structure in the
-following ways:
-
-1. Define the first resource in the `<ModuleName>.psm1` file and subsequent resources under the
-   **DSCResources** folder.
+A module can define multiple class-based DSC resources. You just need to declare all classes in
+the same `.psm1` file and include each name in the `.psd1` manifest.
 
    ```
    $env:ProgramFiles\WindowsPowerShell\Modules (folder)
         |- MyDscResource (folder)
            |- MyDscResource.psm1
               MyDscResource.psd1
-        |- DSCResources
-           |- SecondResource.psm1
    ```
 
-1. Define all resources under the **DSCResources** folder.
-
-   ```
-   $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-        |- MyDscResource (folder)
-           |- MyDscResource.psm1
-              MyDscResource.psd1
-        |- DSCResources
-           |- FirstResource.psm1
-              SecondResource.psm1
-   ```
-
-> [!NOTE]
-> In the examples above, add any PSM1 files under the **DSCResources** to the **NestedModules** key
-> in your PSD1 file.
 
 ### Access the user context
 
