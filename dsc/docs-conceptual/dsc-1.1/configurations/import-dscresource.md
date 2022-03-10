@@ -89,7 +89,7 @@ This usage has the following benefits:
 
 ## Intellisense with Import-DSCResource
 
-When authoring the DSC configuration in ISE, PowerShell provides IntelliSence for resources and
+When authoring the DSC configuration in ISE, PowerShell provides IntelliSense for resources and
 resource properties. Resource definitions under the `$pshome` module path are loaded automatically.
 When you import resources using the `Import-DSCResource` keyword, the specified resource definitions
 are added and Intellisense is expanded to include the imported resource's schema.
