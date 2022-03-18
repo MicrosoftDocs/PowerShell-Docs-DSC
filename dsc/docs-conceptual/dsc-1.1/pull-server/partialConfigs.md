@@ -287,7 +287,7 @@ configurations, combine them, and apply the resulting configuration at regular i
 specified by the **RefreshFrequencyMins** property of the LCM. If you want to force a refresh, you
 can call the
 [Update-DscConfiguration](/powershell/module/PSDesiredStateConfiguration/Update-DscConfiguration)
-cmdlet, to pull the configurations, and then `Start-DSCConfiguration –UseExisting` to apply them.
+cmdlet, to pull the configurations and apply them.
 
 ## Partial configurations in mixed push and pull modes
 
