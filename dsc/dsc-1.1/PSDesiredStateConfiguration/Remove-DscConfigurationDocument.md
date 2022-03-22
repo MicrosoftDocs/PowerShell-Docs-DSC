@@ -2,7 +2,7 @@
 external help file: Remove-DscConfigurationDocument.cdxml-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 10/04/2021
+ms.date: 03/22/2022
 online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/remove-dscconfigurationdocument?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Remove-DscConfigurationDocument
@@ -61,11 +61,11 @@ the `Receive-Job` cmdlet.
 To use this parameter, the local and remote computers must be configured for remoting, and on
 Windows Vista and later versions of the Windows operating system, you must open Windows PowerShell
 with the Run as administrator option. For more information, see
-[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
+[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements).
 
 For more information about Windows PowerShell background jobs, see
-[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs.md) and
-[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
+[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs) and
+[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs).
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter

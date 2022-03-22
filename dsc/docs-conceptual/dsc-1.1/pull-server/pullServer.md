@@ -1,5 +1,5 @@
 ---
-ms.date:  01/08/2020
+ms.date: 03/22/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Pull Service
 description: Local Configuration Manager (LCM) can be centrally managed by a Pull Service solution. When using this approach, the node that is being managed is registered with a service and assigned a configuration in LCM settings.
@@ -105,7 +105,7 @@ To configure the pull server to use SQL Server, set **SqlProvider** to `$true` a
 [SqlClient Connection Strings](/dotnet/framework/data/adonet/connection-string-syntax#sqlclient-connection-strings).
 For an example of SQL Server configuration with **xDscWebService**, first read
 [Using the xDscWebService resource](#using-the-xdscwebservice-resource) and then review
-[Sample_xDscWebServiceRegistration_UseSQLProvider.ps1 on GitHub](https://github.com/dsccommunity/xPSDesiredStateConfiguration/blob/master/source/Examples/Sample_xDscWebServiceRegistration_UseSQLProvider.ps1).
+[2-xDscWebService_RegistrationUseSQLProvider_Config.ps1](https://github.com/dsccommunity/xPSDesiredStateConfiguration/blob/main/source/Examples/Resources/xDscWebService/2-xDscWebService_RegistrationUseSQLProvider_Config.ps1) on GitHub.
 
 ### Using the xDscWebService resource
 

@@ -1,5 +1,5 @@
 ---
-ms.date:  06/12/2017
+ms.date: 03/22/2022
 description: This document provide best practices to assist engineers that are deploying the DSC Pull Server.
 keywords:  dsc,powershell,configuration,setup
 title:  Pull server best practices
@@ -32,7 +32,7 @@ should take only minutes to deploy. Although this document will offer technical 
 can be used in a deployment, the value of this document is as a reference for best practices and
 what to think about before deploying. Readers should have basic familiarity with DSC, and the terms
 used to describe the components that are included in a DSC deployment. For more information, see the
-[Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
+[Windows PowerShell Desired State Configuration Overview](/powershell/dsc/overview)
 topic. As DSC is expected to evolve at cloud cadence, the underlying technology including pull
 server is also expected to evolve and to introduce new capabilities. This document includes a
 version table in the appendix that provides references to previous releases and references to future
