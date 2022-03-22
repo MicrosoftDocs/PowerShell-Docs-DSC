@@ -2,7 +2,7 @@
 external help file: Microsoft.Windows.DSC.CoreConfProviders.dll-Help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 04/29/2020
+ms.date: 03/22/2022
 online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/set-dsclocalconfigurationmanager?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Set-DscLocalConfigurationManager
@@ -229,6 +229,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related links
 
-[Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
+[Windows PowerShell Desired State Configuration Overview](/powershell/dsc/overview)
 
 [Get-DscLocalConfigurationManager](Get-DscLocalConfigurationManager.md)

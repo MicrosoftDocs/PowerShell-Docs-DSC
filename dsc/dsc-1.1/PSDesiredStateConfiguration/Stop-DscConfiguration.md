@@ -2,7 +2,7 @@
 external help file: Stop-DscConfiguration.cdxml-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 08/19/2019
+ms.date: 03/22/2022
 online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/stop-dscconfiguration?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Stop-DscConfiguration
@@ -58,13 +58,13 @@ stop the configuration job.
 
 Indicates that this cmdlet runs the command as a background job. For more information about
 PowerShell background jobs, see
-[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs.md) and
-[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs.md).
+[about_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Jobs) and
+[about_Remote_Jobs](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Jobs).
 
 To use the **AsJob** parameter, the local and remote computers must be configured for remoting. On
 Windows Vista and later versions of the Windows operating system, you must open PowerShell with the
 **Run as administrator** option. For more information, see
-[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements.md).
+[about_Remote_Requirements](/powershell/module/Microsoft.PowerShell.Core/About/about_Remote_Requirements).
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -202,4 +202,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 [Update-DscConfiguration](Update-DscConfiguration.md)
 
-[Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
+[Windows PowerShell Desired State Configuration Overview](/powershell/dsc/overview)

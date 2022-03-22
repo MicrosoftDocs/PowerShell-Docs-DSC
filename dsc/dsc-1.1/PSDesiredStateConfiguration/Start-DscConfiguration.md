@@ -2,7 +2,7 @@
 external help file: Microsoft.Windows.DSC.CoreConfProviders.dll-Help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 10/04/2021
+ms.date: 03/22/2022
 online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/start-dscconfiguration?view=dsc-1.1&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Start-DscConfiguration
@@ -321,7 +321,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## Related links
 
-[Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
+[Windows PowerShell Desired State Configuration Overview](/powershell/dsc/overview)
 
 [Get-DscConfiguration](Get-DscConfiguration.md)
 

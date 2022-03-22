@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 09/14/2021
+ms.date: 03/22/2022
 online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/get-dscresource?view=dsc-2.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Get-DscResource
@@ -159,6 +159,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/overview)
+[PowerShell Desired State Configuration Overview](/powershell/dsc/overview)
 
 [Invoke-DscResource](/powershell/module/PSDesiredStateConfiguration/Invoke-DscResource)

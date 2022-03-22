@@ -1,6 +1,6 @@
 ---
 description: Learn how to use the Desired State Configuration feature of PowerShell to manage the state of a machine as code.
-ms.date: 12/16/2021
+ms.date: 03/22/2022
 title: Manage configuration using PowerShell DSC
 ---
 
@@ -76,7 +76,7 @@ stand-alone to assign configurations as a machine is deployed, or dynamically to
 configurations to a machine based on properties defined by the API.
 
 For more information, see the page
-[Understand the guest configuration feature of Azure Policy](/azure/governance/policy/concepts/guest-configuration.md).
+[Understand the guest configuration feature of Azure Policy](/azure/governance/policy/concepts/guest-configuration).
 
 ## DSC resources with third-party tools
 
