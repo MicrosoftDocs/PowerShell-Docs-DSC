@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PowerShell Product Feedback
+    url: https://github.com/PowerShell/PowerShell/issues/new/choose
+    about: Please open feature requests for current PowerShell here.
+  - name: Where to find help for DSC
+    url: https://dsccommunity.org/help/
+    about: DSC support resources
