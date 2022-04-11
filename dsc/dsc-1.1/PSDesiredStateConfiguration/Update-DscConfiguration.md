@@ -10,10 +10,10 @@ title: Update-DscConfiguration
 
 # Update-DscConfiguration
 
-## Synopsis
+## SYNOPSIS
 Checks the pull server for an updated configuration and applies it.
 
-## Syntax
+## SYNTAX
 
 ### ComputerNameSet (Default)
 
@@ -29,7 +29,7 @@ Update-DscConfiguration [-Wait] [-JobName <String>] [-ThrottleLimit <Int32>] -Ci
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Update-DscConfiguration` cmdlet connects to a pull server, downloads the configuration if it
 differs from what is current on the node, and then applies the configuration to the computer.
@@ -37,7 +37,7 @@ differs from what is current on the node, and then applies the configuration to 
 This cmdlet is available only as part of the
 [November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/kb/3000850).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Update a configuration
 
@@ -65,7 +65,7 @@ The second command updates the computer specified in the **CimSession** stored i
 command specifies the **Wait** parameter. The console does not accept additional commands until the
 current command finishes.
 
-## Parameters
+## PARAMETERS
 
 ### -CimSession
 
@@ -219,13 +219,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

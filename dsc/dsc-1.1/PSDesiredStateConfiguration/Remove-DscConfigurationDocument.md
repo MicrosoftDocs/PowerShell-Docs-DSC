@@ -10,17 +10,17 @@ title: Remove-DscConfigurationDocument
 
 # Remove-DscConfigurationDocument
 
-## Synopsis
+## SYNOPSIS
 Removes a configuration document from the DSC configuration store.
 
-## Syntax
+## SYNTAX
 
 ```
 Remove-DscConfigurationDocument -Stage <Stage> [-Force] [-CimSession <CimSession[]>] [-ThrottleLimit <Int32>]
  [-AsJob] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Remove-DscConfigurationDocument` cmdlet removes a configuration document (`.mof` file) from the
 Windows PowerShell Desired State Configuration (DSC) configuration store. During configuration, the
@@ -30,7 +30,7 @@ removes that configuration document and does additional cleanup.
 This cmdlet is available only as part of the
 [November 2014 update rollup for Windows RT 8.1, Windows 8.1, and Windows Server 2012 R2](https://support.microsoft.com/topic/november-2014-update-rollup-for-windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-7be5865b-adaa-dbbf-e2d4-1f819e7c9d87).
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Remove the current configuration document
 
@@ -46,7 +46,7 @@ information, type `Get-Help New-CimSession`.
 The second command removes the current configuration document for the computer specified in the
 **CimSession** stored in $Session.
 
-## Parameters
+## PARAMETERS
 
 ### -AsJob
 
@@ -194,17 +194,17 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
 ### None
 
-## Outputs
+## OUTPUTS
 
 ### None
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

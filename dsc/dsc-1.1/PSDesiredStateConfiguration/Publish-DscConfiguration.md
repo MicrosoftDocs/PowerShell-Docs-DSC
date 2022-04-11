@@ -10,10 +10,10 @@ title: Publish-DscConfiguration
 
 # Publish-DscConfiguration
 
-## Synopsis
+## SYNOPSIS
 Publishes a DSC configuration to a set of computers.
 
-## Syntax
+## SYNTAX
 
 ### ComputerNameSet (Default)
 
@@ -29,7 +29,7 @@ Publish-DscConfiguration [-Path] <String> [-Force] [-ThrottleLimit <Int32>] -Cim
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Publish-DscConfiguration` cmdlet publishes a Windows PowerShell Desired State Configuration
 (DSC) configuration document on set of computers. This cmdlet does not apply the configuration.
@@ -41,7 +41,7 @@ This cmdlet is especially useful when fragments of multiple configuration docume
 When multiple configuration documents fragments are delivered, they overwrite the older
 configuration document fragments.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Publish a configuration to a remote computer
 
@@ -52,7 +52,7 @@ Publish-DscConfiguration -Path '$home\WebServer' -ComputerName "ContosoWebServer
 This command publishes a configuration to a remote computer. The user who runs the cmdlet should be
 administrator on the remote computer.
 
-## Parameters
+## PARAMETERS
 
 ### -CimSession
 
@@ -198,13 +198,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

@@ -10,17 +10,17 @@ title: Invoke-DscResource
 
 # Invoke-DscResource
 
-## Synopsis
+## SYNOPSIS
 Runs a method of a specified DSC resource.
 
-## Syntax
+## SYNTAX
 
 ```
 Invoke-DscResource [-Name] <String> [-Method] <String> -ModuleName <ModuleSpecification>
  -Property <Hashtable> [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Invoke-DscResource` cmdlet runs a method of a specified Windows PowerShell Desired State
 Configuration (DSC) resource. Before you run this cmdlet, set the refresh mode of the Local
@@ -30,7 +30,7 @@ This cmdlet invokes a DSC resource directly, without creating a configuration do
 cmdlet, configuration management products can manage windows by using DSC resources. This cmdlet
 also enables debugging of resources when the DSC engine or LCM is running with debugging enabled.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Invoke the Set method of a resource by specifying its mandatory properties
 
@@ -50,7 +50,7 @@ Invoke-DscResource -Name WindowsProcess -Method Test -Property @{Path = 'C:\Wind
 This command invokes the **Test** method of a resource named WindowsProcess, which is in the module
 named PSDesiredStateConfiguration.
 
-## Parameters
+## PARAMETERS
 
 ### -Method
 
@@ -130,15 +130,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
 ### Microsoft.Management.Infrastructure.CimInstance, System.Boolean
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 
