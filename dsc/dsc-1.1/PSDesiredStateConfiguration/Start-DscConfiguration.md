@@ -10,10 +10,10 @@ title: Start-DscConfiguration
 
 # Start-DscConfiguration
 
-## Synopsis
+## SYNOPSIS
 Applies configuration to nodes.
 
-## Syntax
+## SYNTAX
 
 ### ComputerNameAndPathSet (Default)
 
@@ -44,7 +44,7 @@ Start-DscConfiguration [-Wait] [-Force] -CimSession <CimSession[]> [-ThrottleLim
  [-JobName <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Start-DscConfiguration` cmdlet applies configuration to nodes. When used with the
 **UseExisting** parameter, the existing configuration on the target computer is applied. Specify
@@ -58,7 +58,7 @@ parameter.
 Specify the **Verbose** parameter to see details of what the cmdlet does when it applies
 configuration settings.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Apply configuration settings
 
@@ -102,7 +102,7 @@ identified by the **CimSession** objects stored in the `$Session` variable. In t
 `$Session` variable contains a CIM session only for the computer named Server01. The command applies
 the configuration. The command creates **Job** objects for each configured computer.
 
-## Parameters
+## PARAMETERS
 
 ### -CimSession
 
@@ -313,13 +313,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/dsc/overview)
 

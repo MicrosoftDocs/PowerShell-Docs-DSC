@@ -10,23 +10,23 @@ title: Enable-DscDebug
 
 # Enable-DscDebug
 
-## Synopsis
+## SYNOPSIS
 Starts debugging of all DSC resources.
 
-## Syntax
+## SYNTAX
 
 ```
 Enable-DscDebug [-BreakAll] [-CimSession <CimSession[]>] [-ThrottleLimit <Int32>] [-AsJob] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Enable-DscDebug` cmdlet enables Windows PowerShell Desired State Configuration (DSC) resource
 debugging by the DSC engine, which is also known as the Local Configuration Manager (LCM). By
 default, all resource instances break into the debugger.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Start debugging
 
@@ -45,7 +45,7 @@ Enable-DscDebug -BreakAll -CimSession DeploymentServer
 
 This command indicates to the DSC engine of the remote computer to start resource debugging.
 
-## Parameters
+## PARAMETERS
 
 ### -AsJob
 
@@ -157,13 +157,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

@@ -10,10 +10,10 @@ title: Test-DscConfiguration
 
 # Test-DscConfiguration
 
-## Synopsis
+## SYNOPSIS
 Tests whether the actual configuration on the nodes matches the desired configuration.
 
-## Syntax
+## SYNTAX
 
 ### ComputerNameSet (Default)
 
@@ -57,7 +57,7 @@ Test-DscConfiguration [-ThrottleLimit <Int32>] -CimSession <CimSession[]> [-AsJo
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Test-DscConfiguration` cmdlet tests whether the actual configuration on the nodes matches the
 desired configuration. Specify which computers for which you want to test configurations by using
@@ -67,7 +67,7 @@ the cmdlet tests configuration of the local computer.
 If the desired and actual configurations match, the cmdlet returns a string value of 'True'.
 Otherwise, it returns a string value of 'False'.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Test configuration for the local computer
 
@@ -124,7 +124,7 @@ Test-DscConfiguration -ReferenceConfiguration "C:\Dsc\Configurations\WebServer.m
 This command tests a configuration defined in a file against a set of computers specified by the
 **ComputerName** parameter.
 
-## Parameters
+## PARAMETERS
 
 ### -AsJob
 
@@ -291,13 +291,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

@@ -10,17 +10,17 @@ title: Get-DscConfigurationStatus
 
 # Get-DscConfigurationStatus
 
-## Synopsis
+## SYNOPSIS
 Retrieves data about completed configuration runs.
 
-## Syntax
+## SYNTAX
 
 ```
 Get-DscConfigurationStatus [-All] [-CimSession <CimSession[]>] [-ThrottleLimit <Int32>] [-AsJob]
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Get-DscConfigurationStatus` cmdlet retrieves detailed information about completed configuration
 runs on the system. By default, it returns the information about the last configuration run. This
@@ -28,7 +28,7 @@ cmdlet is useful for finding historical information about configuration runs, su
 configurations were run, the status of the runs, the number of resources in the configurations, and
 which resources succeeded or failed.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Get information on the last configuration run
 
@@ -57,7 +57,7 @@ This command gets the configuration run details of the remote computer named Ser
 WSMan transport to connect to the remote computer and requires that the connecting user be an
 administrator on the remote computer.
 
-## Parameters
+## PARAMETERS
 
 ### -All
 
@@ -138,13 +138,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 

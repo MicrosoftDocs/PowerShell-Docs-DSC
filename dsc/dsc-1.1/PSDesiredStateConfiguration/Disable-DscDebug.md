@@ -10,23 +10,23 @@ title: Disable-DscDebug
 
 # Disable-DscDebug
 
-## Synopsis
+## SYNOPSIS
 Stops debugging of DSC resources.
 
-## Syntax
+## SYNTAX
 
 ```
 Disable-DscDebug [-CimSession <CimSession[]>] [-ThrottleLimit <Int32>] [-AsJob] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
-## Description
+## DESCRIPTION
 
 The `Disable-DscDebug` cmdlet requests that the Windows PowerShell Desired State Configuration (DSC)
 engine stop debugging of DSC resources. This cmdlet has no effect if the DSC engine is not currently
 in debugging mode.
 
-## Examples
+## EXAMPLES
 
 ### Example 1: Stop resource debugging
 
@@ -46,7 +46,7 @@ if((Get-DscLocalConfigurationManager).DebugMode -like '*Break*'){Disable-DscDebu
 This command checks the DSC engine state, and stops resource debugging only if it is already in
 debugging mode
 
-## Parameters
+## PARAMETERS
 
 ### -AsJob
 
@@ -142,13 +142,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 -WarningAction, and -WarningVariable. For more information, see
 [about_CommonParameters](https://go.microsoft.com/fwlink/?LinkID=113216).
 
-## Inputs
+## INPUTS
 
-## Outputs
+## OUTPUTS
 
-## Notes
+## NOTES
 
-## Related links
+## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
 
