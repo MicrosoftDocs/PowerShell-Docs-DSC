@@ -1,6 +1,6 @@
 ---
 description: DSC configurations are PowerShell scripts that define a special type of function.
-ms.date: 12/16/2021
+ms.date: 05/23/2022
 title: DSC Configurations
 ---
 # Configurations
@@ -33,11 +33,17 @@ A configuration script consists of the following parts:
   **WindowsFeature** resource.
 
 Within a **Configuration** block, you can do anything that you normally could in a PowerShell
-function. For example, in the previous example, if you didn't want to hard code the name of the
+function. In the previous example, if you didn't want to hard code the name of the
 Windows feature in the configuration, you could add a parameter.
 
 In this example, you specify the name of the feature by passing it as the **WindowsFeature**
-parameter when you compile the configuration. The name defaults to "RSAT".
+parameter when you compile the configuration. The name defaults to `RSAT`.
+
+> [!NOTE]
+> The **WindowsFeature** DSC Resource is only available on Windows Server computers. For computers
+> with a client OS, like Windows 11, you need to use **WindowsOptionalFeature** instead. For more
+> information, see
+> [the "WindowsOptionalFeature" section of the PSDscResources documentation](https://github.com/PowerShell/PSDscResources#windowsoptionalfeature).
 
 ```powershell
 Configuration MyDscConfiguration
