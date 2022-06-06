@@ -1,5 +1,5 @@
 ---
-ms.date:  12/12/2018
+ms.date: 05/23/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Configurations
 description: DSC configurations are PowerShell scripts that define a special type of function.
@@ -35,20 +35,26 @@ A configuration script consists of the following parts:
 
 - The **Configuration** block. This is the outermost script block. You define it by using the
   **Configuration** keyword and providing a name. In this case, the name of the configuration is
-  "MyDscConfiguration".
+  `MyDscConfiguration`.
 - One or more **Node** blocks. These define the nodes (computers or VMs) that you are configuring.
-  In the above configuration, there is one **Node** block that targets a computer named "TEST-PC1".
-  The Node block can accept multiple computer names.
+  In the above configuration, there is one **Node** block that targets a computer named `TEST-PC1`.
+  The **Node** block can accept multiple computer names.
 - One or more resource blocks. This is where the configuration sets the properties for the resources
   that it is configuring. In this case, there are two resource blocks, each of which call the
-  "WindowsFeature" resource.
+  **WindowsFeature** resource.
+
+> [!NOTE]
+> The **WindowsFeature** DSC Resource is only available on Windows Server computers. For computers
+> with a client OS, like Windows 11, you need to use **WindowsOptionalFeature** instead. For more
+> information, see
+> [the "WindowsOptionalFeature" section of the PSDscResources documentation](https://github.com/PowerShell/PSDscResources#windowsoptionalfeature).
 
 Within a **Configuration** block, you can do anything that you normally could in a PowerShell
-function. For example, in the previous example, if you didn't want to hard code the name of the
-target computer in the configuration, you could add a parameter for the node name:
+function. In the previous example, if you didn't want to hard code the name of the target computer
+in the configuration, you could add a parameter for the node name.
 
 In this example, you specify the name of the node by passing it as the **ComputerName** parameter
-when you compile the configuration. The name defaults to "localhost".
+when you compile the configuration. The name defaults to `localhost`.
 
 ```powershell
 Configuration MyDscConfiguration
@@ -85,8 +91,8 @@ block.
 MyDscConfiguration -ComputerName "localhost", "Server01"
 ```
 
-When specifying a list of computers to the **Node** block, from within a Configuration, you need to
-use array-notation.
+When specifying a list of computers to the **Node** block, from within a **Configuration**, you need
+to use array-notation.
 
 ```powershell
 Configuration MyDscConfiguration
