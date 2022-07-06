@@ -27,3 +27,50 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 > [!IMPORTANT]
 > Be sure to include the parameter MaximumVersion or you could install version 3 (or higher) of
 > PSDesireStateConfiguration that contains significant differences.
+
+## Use Case for DSC 2.0
+
+DSC 2.0 is supported for use with [Azure guest configuration][guest-config]. Other scenarios, such
+as directly calling DSC Resources with `Invoke-DscResource` may be functional but are not the
+primary intended use of this version.
+
+If you are not using Azure guest configuration, you should use DSC 1.1.
+
+DSC 3.0 is available in public beta and should only be used with Azure guest configuration (which
+supports it) or for non-production environments to test migrating away from DSC 1.1.
+
+## Changes from DSC 1.1
+
+There are several major changes in DSC 2.0.
+
+The only way to use DSC Resources in 2.0 is with the `Invoke-DscResource` cmdlet and Azure guest
+configuration.
+
+The following cmdlets have been removed:
+
+- `Disable-DscDebug`
+- `Enable-DscDebug`
+- `Get-DscConfiguration`
+- `Get-DscConfigurationStatus`
+- `Get-DscLocalConfigurationManager`
+- `Publish-DscConfiguration`
+- `Remove-DscConfigurationDocument`
+- `Restore-DscConfiguration`
+- `Set-DscLocalConfigurationManager`
+- `Start-DscConfiguration`
+- `Stop-DscConfiguration`
+- `Test-DscConfiguration`
+- `Update-DscConfiguration`
+
+The following features have been removed:
+
+- The pull server
+- The local configuration manager (LCM)
+
+The following features are not supported:
+
+- Multi-node configurations
+- Cross-node dependencies (the **WaitFor\*** DSC Resources)
+- Rebooting behavior for DSC Resources
+
+[guest-config]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/guest-configuration
