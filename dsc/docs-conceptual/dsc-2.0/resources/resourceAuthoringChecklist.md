@@ -141,18 +141,6 @@ issues in this area won't appear when calling `Start-DscConfiguration`.
 Make sure you test the `Get/Set/Test-TargetResource` functions implemented in your resource by
 calling them directly and verifying that they work as expected.
 
-## Verify End to End using Start-DscConfiguration
-
-Testing `Get/Set/Test-TargetResource` functions by calling them directly is important, but not all
-issues will be discovered this way. You should focus significant part of your testing on using
-`Start-DscConfiguration` or the pull server. In fact, this is how users will use the resource, so
-don't underestimate the significance of this type of tests. Possible types of issues:
-
-- Credential/Session may behave differently because the DSC agent runs as a service. Be sure to test
-  any features here end to end.
-- Errors output by `Start-DscConfiguration` may be different than those displayed when calling the
-  `Set-TargetResource` function directly.
-
 ## Test compatibility on all DSC supported platforms
 
 Resource should work on all DSC supported platforms (Windows Server 2008 R2 and newer). Install the

@@ -123,9 +123,9 @@ ModuleVersion = "1.0";
 };
 ```
 
-When applied, the [Local Configuration Manager](../managing-nodes/metaConfig.md) (LCM) will read the
-value "Spooler" from the `.mof` file, and pass it to the **Name** parameter of the **Get**,
-**Test**, and **Set** methods for the "MyService" instance of the **Service** resource.
+When applied, the Local Configuration Manager (LCM) will read the value "Spooler" from the `.mof`
+file, and pass it to the **Name** parameter of the **Get**, **Test**, and **Set** methods for the
+"MyService" instance of the **Service** resource.
 
 ## Get
 
@@ -269,5 +269,3 @@ VERBOSE: Time taken for configuration job to complete is 1.379 seconds
 ## See also
 
 - [Azure Automation DSC Overview](/azure/automation/automation-dsc-overview)
-- [Setting up an SMB pull server](../pull-server/pullServerSMB.md)
-- [Configuring a pull client](../pull-server/pullClientConfigID.md)
