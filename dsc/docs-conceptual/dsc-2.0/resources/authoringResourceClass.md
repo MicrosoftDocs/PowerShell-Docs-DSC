@@ -567,10 +567,9 @@ resource. Our manifest looks like this:
 ## Test the resource
 
 After saving the class and manifest files in the folder structure as described earlier, you can
-create a configuration that uses the new resource. For information about how to run a DSC
-configuration, see [Enacting configurations](../pull-server/enactingConfigurations.md). The
-following configuration will check to see whether the file at `/tmp/test.txt` exists and if the contents
-match the string provided by the property 'Content'. If not, the entire file is written.
+create a configuration that uses the new resource. The following configuration checks to see
+whether the file at `/tmp/test.txt` exists and if the contents match the string provided by the
+property 'Content'. If not, the entire file is written.
 
 ```powershell
 Configuration MyConfig
