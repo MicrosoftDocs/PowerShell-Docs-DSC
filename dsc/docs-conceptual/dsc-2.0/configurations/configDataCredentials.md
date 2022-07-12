@@ -236,16 +236,7 @@ ModuleVersion = "1.0";
   parameter.
   - Encrypting the MOF with a certificate protects the MOF file at rest before it has been applied
     to a node.
-- In **Pull** mode, you can configure Windows pull server to use HTTPS to encrypt traffic using the
-  protocol specified in Internet Information Server. For more information, see the articles
-  [Setting up a DSC pull client](../pull-server/pullclient.md) and
-  [Securing MOF files with Certificates](../pull-server/secureMOF.md).
-  - In the
-    [Azure Automation State Configuration](/azure/automation/automation-dsc-overview)
-    service, Pull traffic is always encrypted.
-- On the Node, MOF files are encrypted at rest Beginning in PowerShell 5.0.
-  - In PowerShell 4.0 MOF files are unencrypted at rest unless they are encrypted with a certificate
-    when they pushed or pulled to the Node.
+- On the Node, MOF files are encrypted at rest.
 
 **Microsoft advises to avoid plain text passwords due to the significant security risk.**
 

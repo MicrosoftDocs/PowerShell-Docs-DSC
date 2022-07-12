@@ -716,23 +716,6 @@ onlyProperty                            PSComputerName
 14                                      localhost
 ```
 
-## DSC returns "unexpected response code InternalServerError" when registering with Windows Pull Server
-
-When applying a metaconfiguration to a server to register it with an instance of Windows Pull Server,
-you might encounter the following error.
-
-```
-Registration of the Dsc Agent with the server https://<serverfqdn>:8080/PSDSCPullServer.svc failed. The underlying error is: The attempt to register Dsc Agent with AgentId <ID> with the server
-https://<serverfqdn>:8080/PSDSCPullServer.svc/Nodes(AgentId='<ID>') returned unexpected response code InternalServerError. .
-    + CategoryInfo          : InvalidResult: (root/Microsoft/...gurationManager:String) [], CimException
-    + FullyQualifiedErrorId : RegisterDscAgentUnsuccessful,Microsoft.PowerShell.DesiredStateConfiguration.Commands.RegisterDscAgentCommand
-    + PSComputerName        : <computername>
-```
-
-This can occur when the certificate used on the server to encrypt traffic has a common name (CN)
-that is different than the DNS name used by the node to resolve the URL. Update the Windows Pull
-Server instance to use a certificate with a corrected name.
-
 ## Error when running Sysprep after applying a DSC Configuration
 
 When attempting to run Sysprep to generalize a Windows Server after applying a DSC configuration,

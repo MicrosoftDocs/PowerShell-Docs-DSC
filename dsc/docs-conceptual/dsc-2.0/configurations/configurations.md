@@ -139,8 +139,7 @@ When you call the configuration, it:
 
 > [!NOTE]
 > The MOF file contains all of the configuration information for the target node. Because of this,
-> it's important to keep it secure. For more information, see
-> [Securing the MOF file](../pull-server/secureMOF.md).
+> it's important to keep it secure.
 
 Compiling the first configuration above results in the following folder structure:
 
@@ -205,4 +204,3 @@ information, see [Resource location](import-dscresource.md#resource-location).
 
 - [Windows PowerShell Desired State Configuration Overview](../overview.md)
 - [DSC Resources](../resources/resources.md)
-- [Configuring The Local Configuration Manager](../managing-nodes/metaConfig.md)
