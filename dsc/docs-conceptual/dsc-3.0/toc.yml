@@ -1,14 +1,15 @@
 items:
-  - name: Overview
+  - name: Desired State Configuration (DSC) 3.0 Preview
     href: overview.md
   - name: Getting started
+    expanded: true
     items:
       - name: Manage configuration using PowerShell DSC
         href: getting-started/getting-started.md
   - name: Concepts
+    expanded: true
     items:
       - name: Configurations
         href: concepts/configurations.md
       - name: Resources
-        href: concepts/resources.md
- 
+        href: concepts/resources.md 
