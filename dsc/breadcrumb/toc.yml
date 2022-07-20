@@ -1,12 +1,12 @@
 items:
-  - name: Docs
-    tocHref: /
-    topicHref: /
+- name: Docs
+  tocHref: /
+  topicHref: /
+  items:
+  - name: PowerShell
+    tocHref: /powershell/
+    topicHref: /powershell/
     items:
-      - name: PowerShell
-        tocHref: /powershell/
-        topicHref: /powershell
-        items:
-          - name: PowerShell DSC
-            tocHref: /powershell/dsc/
-            topicHref: /powershell/dsc/overview
+    - name: Desired State Configuration
+      tocHref: /powershell/dsc/
+      topicHref: /powershell/dsc/overview
