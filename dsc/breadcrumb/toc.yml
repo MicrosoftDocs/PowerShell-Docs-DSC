@@ -5,7 +5,7 @@ items:
   items:
   - name: PowerShell
     tocHref: /powershell/
-    topicHref: /powershell/
+    topicHref: /powershell/index
     items:
     - name: Desired State Configuration
       tocHref: /powershell/dsc/
