@@ -66,7 +66,7 @@ configuration settings.
 Start-DscConfiguration -Path "C:\DSC\Configurations\"
 ```
 
-This command applies the configuration settings from `C:\DSC\Configurations\` to the every computer
+This command applies the configuration settings from `C:\DSC\Configurations\` to every computer
 that has settings in that folder. The command returns **Job** objects for each target node deployed
 to.
 

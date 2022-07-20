@@ -5,13 +5,14 @@
 name: Commenting
 on:
   schedule:
-    - cron: 0/5 * * * *
+    - cron: 0/10 * * * *
 permissions:
   contents: read
   pull-requests: write
 jobs:
   Expectations:
     name: Share Expectations on Community PRs
+    if: github.repository_owner == 'MicrosoftDocs'
     runs-on: windows-latest
     defaults:
       run:
