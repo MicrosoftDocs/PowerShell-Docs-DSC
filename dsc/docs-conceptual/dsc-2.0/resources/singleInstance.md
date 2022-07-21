@@ -18,32 +18,21 @@ configuration. For example, in a previous implementation of the
 resource multiple times, setting the time zone to a different setting in each resource block:
 
 ```powershell
-Configuration SetTimeZone
-{
-    Param
-    (
+Configuration SetTimeZone {
+    Param (
         [String[]]$NodeName = $env:COMPUTERNAME
-
     )
 
     Import-DSCResource -ModuleName xTimeZone
 
-
-    Node $NodeName
-    {
-         xTimeZone TimeZoneExample
-         {
-
+    Node $NodeName {
+         xTimeZone TimeZoneExample {
             TimeZone = 'Eastern Standard Time'
          }
 
-         xTimeZone TimeZoneExample2
-         {
-
+         xTimeZone TimeZoneExample2 {
             TimeZone = 'Pacific Standard Time'
-
          }
-
     }
 }
 ```
@@ -218,19 +207,10 @@ the time zone twice (by using two different **xTimeZone** blocks with different 
 values), attempting to compile the configuration will cause an error:
 
 ```Output
-Test-ConflictingResources : A conflict was detected between resources '[xTimeZone]TimeZoneExample (::15::10::xTimeZone)' and
-'[xTimeZone]TimeZoneExample2 (::22::10::xTimeZone)' in node 'CONTOSO-CLIENT'. Resources have identical key properties but there are differences in the
-following non-key properties: 'TimeZone'. Values 'Eastern Standard Time' don't match values 'Pacific Standard Time'. Please update these property
-values so that they are identical in both cases.
-At line:271 char:9
-+         Test-ConflictingResources $keywordName $canonicalizedValue $k ...
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [Write-Error], InvalidOperationException
-    + FullyQualifiedErrorId : ConflictingDuplicateResource,Test-ConflictingResources
-Errors occurred while processing configuration 'SetTimeZone'.
-At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\PSDesiredStateConfiguration\PSDesiredStateConfiguration.psm1:3705 char:5
-+     throw $ErrorRecord
-+     ~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (SetTimeZone:String) [], InvalidOperationException
-    + FullyQualifiedErrorId : FailToProcessConfiguration
+Write-Error:
+Line |
+ 289 |          Test-ConflictingResources $keywordName $canonicalizedValue $k …
+     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | A conflict was detected between resources '[xTimeZone]TimeZoneExample (C:\code\dsc\DscExample.ps1::9::10::xTimeZone)' and '[xTimeZone]TimeZoneExample2 (C:\code\dsc\DscExample.ps1::14::10::xTimeZone)' in node 'DESKTOP-KFLGVVP'. Resources have identical key properties but there are differences in the following non-key properties: 'TimeZone'. Values 'Eastern Standard Time' don't match values 'Pacific Standard Time'. Please update these property values so that they are identical in both cases.
+InvalidOperation: Errors occurred while processing configuration 'SetTimeZone'.
 ```
