@@ -27,8 +27,7 @@
     "globalMetadata": {
       "author": "sdwheeler",
       "apiPlatform": "powershell",
-      "breadcrumb_path": 
-       {
+      "breadcrumb_path": {
         "powershell/dsc/**/*.md": "/powershell/dsc/breadcrumb/toc.json",
         "powershell/module/psdesiredstateconfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
       },
