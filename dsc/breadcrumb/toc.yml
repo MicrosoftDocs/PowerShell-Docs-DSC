@@ -7,10 +7,10 @@ items:
         tocHref: /powershell/
         topicHref: /powershell
         items:
-          - name: PowerShell Desired State Configuration
+          - name: DSC
             tocHref: /powershell/dsc/
             topicHref: /powershell/dsc/overview
             items:
               - name: PSDesiredStateConfiguration
                 tocHref: /powershell/module/psdesiredstateconfiguration/
-                topicHref: /powershell/module/psdesiredstateconfiguration/psdesiredstateconfiguration
+                topicHref: /powershell/dsc/overview
