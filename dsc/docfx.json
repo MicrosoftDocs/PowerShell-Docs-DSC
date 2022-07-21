@@ -27,10 +27,6 @@
     "globalMetadata": {
       "author": "sdwheeler",
       "apiPlatform": "powershell",
-      "breadcrumb_path": [
-        "powershell/dsc/**/*.md": "/powershell/dsc/breadcrumb/toc.json",
-        "powershell/module/psdesiredstateconfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
-      ],
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "feedback_product_url": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
@@ -46,6 +42,12 @@
       "titleSuffix": "PowerShell",
       "toc_preview": true,
       "uhfHeaderId": "MSDocsHeader-Powershell",
+    },
+    "fileMetadata": {
+      "breadcrumb_path": {
+        "powershell/dsc/**/*.md": "/powershell/dsc/breadcrumb/toc.json",
+        "powershell/module/psdesiredstateconfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
+      },
     },
     "markdownEngineName": "markdig",
     "overwrite": [],
