@@ -45,8 +45,10 @@
     },
     "fileMetadata": {
       "breadcrumb_path": {
-        "powershell/dsc/*.md": "/powershell/dsc/breadcrumb/toc.json",
-        "powershell/module/psdesiredstateconfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
+        "docs-conceptual/**/**/*.md": "/powershell/dsc/breadcrumb/toc.json",
+        "dsc-3.0/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json",
+        "dsc-2.0/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json",
+        "dsc-1.1/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
       },
     },
     "markdownEngineName": "markdig",
