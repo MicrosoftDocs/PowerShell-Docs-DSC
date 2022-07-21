@@ -1,14 +1,16 @@
 items:
-- name: Docs
-  tocHref: /
-  topicHref: /
-  items:
-  
-  - name: PowerShell Desired State Configuration
-    tocHref: /powershell/dsc/
-    topicHref: /powershell/dsc/overview
+  - name: Docs
+    tocHref: /
+    topicHref: /
     items:
-
-    - name: PSDesiredStateConfiguration
-      tocHref: /powershell/module/psdesiredstateconfiguration/
-      topicHref: /powershell/module/psdesiredstateconfiguration/psdesiredstateconfiguration
+      - name: PowerShell
+        tocHref: /powershell/
+        topicHref: /powershell
+        items:
+          - name: PowerShell Desired State Configuration
+            tocHref: /powershell/dsc/
+            topicHref: /powershell/dsc/overview
+            items:
+              - name: PSDesiredStateConfiguration
+                tocHref: /powershell/module/psdesiredstateconfiguration/
+                topicHref: /powershell/module/psdesiredstateconfiguration/psdesiredstateconfiguration

@@ -1,7 +1,7 @@
 {
   "build": {
     "content": [
-      { "dest": "breadcrumb", "files": [ "toc.yml" ], "src": "breadcrumb" },
+      { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ]},
 
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
@@ -27,6 +27,7 @@
     "globalMetadata": {
       "author": "sdwheeler",
       "apiPlatform": "powershell",
+      "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "feedback_product_url": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
@@ -42,14 +43,6 @@
       "titleSuffix": "PowerShell",
       "toc_preview": true,
       "uhfHeaderId": "MSDocsHeader-Powershell",
-    },
-    "fileMetadata": {
-      "breadcrumb_path": {
-        "docs-conceptual/**/**/*.md": "/powershell/dsc/breadcrumb/toc.json",
-        "dsc-3.0/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json",
-        "dsc-2.0/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json",
-        "dsc-1.1/PSDesiredStateConfiguration/*.md": "/powershell/dsc/breadcrumb/toc.json"
-      },
     },
     "markdownEngineName": "markdig",
     "overwrite": [],
