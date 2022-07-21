@@ -4,16 +4,11 @@ items:
   topicHref: /
   items:
   
-  - name: PowerShell
-    tocHref: /powershell/
-    topicHref: /powershell/index
+  - name: PowerShell Desired State Configuration
+    tocHref: /powershell/dsc/
+    topicHref: /powershell/dsc/overview
     items:
-    
-    - name: Desired State Configuration
-      tocHref: /powershell/dsc/
-      topicHref: /powershell/dsc/overview
-      items:
-      
-      - name: PSDesiredStateConfiguration
-        tocHref: /powershell/module/psdesiredstateconfiguration/
-        topicHref: /powershell/module/psdesiredstateconfiguration/psdesiredstateconfiguration
+
+    - name: PSDesiredStateConfiguration
+      tocHref: /powershell/module/psdesiredstateconfiguration/
+      topicHref: /powershell/module/psdesiredstateconfiguration/psdesiredstateconfiguration
