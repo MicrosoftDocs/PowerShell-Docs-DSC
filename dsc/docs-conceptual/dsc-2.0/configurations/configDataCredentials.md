@@ -6,7 +6,7 @@ description: DSC allows you to provide credentials so that configuration setting
 ---
 # Credentials Options in Configuration Data
 
-> Applies To: Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 ## Plain Text Passwords and Domain Users
 
@@ -26,25 +26,15 @@ these error and warning messages use the DSC configuration data keywords:
 
 ## Handling Credentials in DSC
 
-DSC configuration resources run as `Local System` by default. However, some resources need a
-credential, for example when the `Package` resource needs to install software under a specific user
+DSC resources run in the user context they are invoked in. However, some resources need a
+credential, for example when the `Package` resource needs to install software under another user
 account.
 
-Earlier resources used a hard-coded `Credential` property name to handle this. WMF 5.0 added an
-automatic `PsDscRunAsCredential` property for all resources. For information about using
-`PsDscRunAsCredential`, see [Running DSC with user credentials](runAsUser.md). Newer resources and
-custom resources can use this automatic property instead of creating their own property for
-credentials.
-
-> [!NOTE]
-> The design of some resources are to use multiple credentials for a specific reason, and they will
-> have their own credential properties.
-
-To find the available credential properties on a resource use either
-`Get-DscResource -Name ResourceName -Syntax` or the Intellisense in the ISE (`CTRL+SPACE`).
+To find the available credential properties on a resource use `Get-DscResource` with the **Syntax**
+parameter.
 
 ```powershell
-Get-DscResource -Name Group -Syntax
+Get-DscResource -Name Group -Module PSDscResources -Syntax
 ```
 
 ```Output
@@ -62,19 +52,20 @@ Group [String] #ResourceName
 }
 ```
 
-This example uses a [Group](../resources/resources.md) resource from the
-`PSDesiredStateConfiguration` built-in DSC resource module. It can create local groups and add or
-remove members. It accepts both the `Credential` property and the automatic `PsDscRunAsCredential`
-property. However, the resource only uses the `Credential` property.
+This example uses a [Group](../resources/resources.md) resource from the **PSDscResources** module.
+It can create local groups and add or remove members. It accepts both the **Credential** property
+and the automatic **PsDscRunAsCredential** property. However, the resource only uses the
+**Credential** property.
 
-For more information about the `PsDscRunAsCredential` property, see
-[Running DSC with user credentials](runAsUser.md).
+> [!NOTE]
+> Even though `Get-DscResource` reports that the **PSDscRunAsCredential** property is available on
+> resources, it is not usable in DSC 2.0 and later.
 
 ## Example: The Group resource Credential property
 
-DSC runs under `Local System`, so it already has permissions to change local users and groups. If
-the member added is a local account, then no credential is necessary. If the `Group` resource adds a
-domain account to the local group, then a credential is necessary.
+DSC runs under the invoking user's context, which may have permissions to change local users and
+groups. If the invoking account has the permissions to perform an action, then no credential is
+necessary. If they do not, then a credential is necessary.
 
 Anonymous queries to Active Directory are not allowed. The `Credential` property of the `Group`
 resource is the domain account used to query Active Directory. For most purposes this could be a
@@ -82,7 +73,7 @@ generic user account, because by default users can *read* most of the objects in
 
 ## Example Configuration
 
-The following example code uses DSC to populate a local group with a domain user:
+The following example code defines a Configuration to populate a local group with a domain user:
 
 ```powershell
 Configuration DomainCredentialExample
@@ -91,7 +82,7 @@ Configuration DomainCredentialExample
     (
         [PSCredential] $DomainCredential
     )
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDscResources
 
     node localhost
     {
@@ -111,30 +102,15 @@ DomainCredentialExample -DomainCredential $cred
 This code generates both an error and warning message:
 
 ```
-ConvertTo-MOFInstance : System.InvalidOperationException error processing property 'Credential' OF
-TYPE 'Group': Converting and storing encrypted passwords as plain text is not recommended.
-For more information on securing credentials in MOF file, please refer to MSDN blog:
-https://go.microsoft.com/fwlink/?LinkId=393729
-
-At line:11 char:9
+Write-Error:
+Line |
+ 340 |      $aliasId = ConvertTo-MOFInstance $keywordName $canonicalizedValue
+     |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | System.InvalidOperationException error processing property 'Credential' OF TYPE 'Group': Converting and storing encrypted passwords as plain text is not recommended. For more information on securing credentials in MOF file, please refer to MSDN blog: http://go.microsoft.com/fwlink/?LinkId=393729
+At C:\code\dsc\Test.ps1:11 char:9
 +   Group
-At line:341 char:16
-+     $aliasId = ConvertTo-MOFInstance $keywordName $canonicalizedValue
-+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (:) [Write-Error], InvalidOperationException
-    + FullyQualifiedErrorId : FailToProcessProperty,ConvertTo-MOFInstance
-WARNING: It is not recommended to use domain credential for node 'localhost'. In order to suppress
-the warning, you can add a property named 'PSDscAllowDomainUser' with a value of $true to your DSC
-configuration data for node 'localhost'.
-
-Compilation errors occurred while processing configuration
-'DomainCredentialExample'. Please review the errors reported in error stream and modify your
-configuration code appropriately.
-At C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\PSDesiredStateConfiguration\PSDesiredStateConfiguration.psm1:3917 char:5
-+     throw $ErrorRecord
-+     ~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : InvalidOperation: (DomainCredentialExample:String) [], InvalidOperationException
-    + FullyQualifiedErrorId : FailToProcessConfiguration
+WARNING: It is not recommended to use domain credential for node 'localhost'. In order to suppress the warning, you can add a property named 'PSDscAllowDomainUser' with a value of $true to your DSC configuration data for node 'localhost'.
+InvalidOperation: Errors occurred while processing configuration 'DomainCredentialExample'.
 ```
 
 This example has two issues:
@@ -161,7 +137,7 @@ $username = "contoso\Administrator"
 
 Configuration DomainCredentialExample
 {
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDscResources
 
     node localhost
     {
@@ -197,15 +173,15 @@ Administrator account.
 ```
 /*
 @TargetNode='localhost'
-@GeneratedBy=Administrator
-@GenerationDate=01/31/2019 06:43:13
-@GenerationHost=Server01
+@GeneratedBy=mlombardi
+@GenerationDate=07/21/2022 15:24:14
+@GenerationHost=DESKTOP-KFLGVVP
 */
 
 instance of MSFT_Credential as $MSFT_Credential1ref
 {
 Password = "ThisIsAPlaintextPassword";
- UserName = "Administrator";
+ UserName = "contoso\\Administrator";
 
 };
 
@@ -215,12 +191,11 @@ ResourceID = "[Group]DomainUserToLocalGroup";
  MembersToInclude = {
     "contoso\\alice"
 };
+ ModuleVersion = "2.12.0.0";
  Credential = $MSFT_Credential1ref;
- SourceInfo = "::11::9::Group";
  GroupName = "ApplicationAdmins";
- ModuleName = "PSDesiredStateConfiguration";
-
-ModuleVersion = "1.0";
+ SourceInfo = "C:\\code\\dsc\\Test.ps1::11::9::Group";
+ ModuleName = "PSDscResources";
 
  ConfigurationName = "DomainCredentialExample";
 
@@ -229,27 +204,26 @@ ModuleVersion = "1.0";
 
 ### Credentials in transit and at rest
 
-- The **PSDscAllowPlainTextPassword** flag allows the compilation of MOF files that contain
-  passwords in clear text. Take precautions when storing MOF files containing clear text passwords.
-- When the MOF file is delivered to a Node in **Push** mode, WinRM encrypts the communication to
-  protect the clear text password unless you override the default with the **AllowUnencrypted**
-  parameter.
-  - Encrypting the MOF with a certificate protects the MOF file at rest before it has been applied
-    to a node.
-- On the Node, MOF files are encrypted at rest.
+The **PSDscAllowPlainTextPassword** flag allows the compilation of MOF files that contain passwords
+in clear text. Take precautions when storing MOF files containing clear text passwords.
+
+<!--
+    When reworking this for guest configuration, need to clarify and understand how secrets interact
+    with guest configuration, especially in MOFs.
+-->
 
 **Microsoft advises to avoid plain text passwords due to the significant security risk.**
 
 ## Domain Credentials
 
-Running the example configuration script again (with or without encryption), still generates the
+Running the example configuration script again still generates the
 warning that using a domain account for a credential is not recommended. Using a local account
 eliminates potential exposure of domain credentials that could be used on other servers.
 
 **When using credentials with DSC resources, prefer a local account over a domain account when possible.**
 
-If there is a '\\' or '\@' in the `Username` property of the credential, then DSC will treat it as a
-domain account. There is an exception for "localhost", "127.0.0.1", and "::1" in the domain portion
+If there is a `\` or `@` in the **Username** property of the credential, then DSC will treat it as a
+domain account. There is an exception for `localhost`, `127.0.0.1`, and `::1` in the domain portion
 of the user name.
 
 ## PSDscAllowDomainUser
@@ -265,7 +239,7 @@ $username = "contoso\Administrator"
 
 Configuration DomainCredentialExample
 {
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDscResources
 
     node localhost
     {

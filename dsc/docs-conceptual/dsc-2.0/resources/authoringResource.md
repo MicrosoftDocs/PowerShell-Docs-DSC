@@ -7,7 +7,7 @@ description:  This article provides an overview of developing resources and link
 
 # Build Custom Windows PowerShell Desired State Configuration Resources
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 Windows PowerShell Desired State Configuration (DSC) has built-in resources that you can use to
 configure your environment. This article provides an overview of developing resources and links to
@@ -23,7 +23,5 @@ version 5, the schema and implementation can both be defined in a class. The fol
 describe in more detail how to create DSC resources.
 
 - [Writing a custom DSC resource with MOF](authoringResourceMOF.md)
-- [Implementing a DSC resource in C#](authoringResourceMofCS.md)
 - [Writing a custom DSC resource with PowerShell classes](authoringResourceClass.md)
 - [Composite resources: Using a DSC configuration as a resource](authoringResourceComposite.md)
-- [Using the Resource Designer tool](authoringResourceMofDesigner.md)

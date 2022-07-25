@@ -7,7 +7,7 @@ description: This article describes how to create and use a composite resource.
 
 # Composite resources: Using a DSC configuration as a resource
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 In real-world situations, configurations can become long and complex, calling many different
 resources and setting a vast number of properties. To help address this complexity, you can use a
@@ -226,26 +226,6 @@ Configuration MultipleVms
             VMState = "Running"
         }
     }
-}
-```
-
-## Supporting PsDscRunAsCredential
-
-> [!NOTE]
-> **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
-
-The **PsDscRunAsCredential** property can be used in [DSC configurations](../configurations/configurations.md)
-resource block to specify that the resource should be run under a specified set of credentials. For
-more information, see [Running DSC with user credentials](../configurations/runAsUser.md).
-
-To access the user context from within a custom resource, you can use the automatic variable `$PsDscContext`.
-
-For example, the following code would write the user context under which the resource is running to
-the verbose output stream:
-
-```powershell
-if ($PsDscContext.RunAsUser) {
-    Write-Verbose "User: $PsDscContext.RunAsUser";
 }
 ```
 

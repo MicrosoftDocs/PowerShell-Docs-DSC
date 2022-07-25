@@ -2,41 +2,13 @@
 ms.date:  12/12/2018
 keywords:  dsc,powershell,resource,gallery,setup
 title:  Install Additional DSC Resources
-description: This article lists the DSC resources that are included in the PSDesiredStateConfiguration module. It also covers how to find and install resources from the PowerShell Gallery.
+description: This article covers how to find and install DSC resources from the PowerShell Gallery.
 ---
 
 # Install Additional DSC Resources
 
-PowerShell includes several Out-of-the-box resources for Desired State Configuration (DSC). The
-**PSDesiredStateConfiguration** module contains all of the OOB DSC resources available on your
-specific instance of PowerShell.
-
-This is a list of the OOB resources included in PowerShell 4.0 and a description of the resource's
-capabilities.
-
-> [!NOTE]
-> This is an incomplete list, as the number of OOB resources has grown with each version of
-> PowerShell.
-
-|      Resource      |                                                                                       Description                                                                                        |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **File**           | Controls the state of files and directories. Copies files from a **Source** to a **Destination** and updates them when the **Source** changes by comparing dates, checksums, and hashes. |
-| **Archive**        | Unpacks archives and a specified location. Validates the archives with a specified **Checksum**.                                                                                         |
-| **Environment**    | Manages environment variables.                                                                                                                                                           |
-| **Group**          | Manages local groups and controls group membership.                                                                                                                                      |
-| **Log**            | Writes messages to the `Microsoft-Windows-Desired State Configuration/Analytic` event log.                                                                                               |
-| **Package**        | Installs or uninstalls packages using **Arguments**, **LogPath**, **ReturnCode**, other settings.                                                                                        |
-| **Registry**       | Manages registry keys and values.                                                                                                                                                        |
-| **Script**         | Allows you to design your own [get-test-set](../resources/get-test-set.md) script blocks.                                                                                                |
-| **Service**        | Configures Windows services.                                                                                                                                                             |
-| **User**           | Manages local users and attributes.                                                                                                                                                      |
-| **WindowsFeature** | Manages roles and features.                                                                                                                                                              |
-| **WindowsProcess** | Configures Windows processes.                                                                                                                                                            |
-
-The OOB resources allow a good starting point for common operations. If the OOB resources do not
-meet your needs, you can write your own [Custom Resource](../resources/authoringResource.md). Before
-you write a custom resource to solve your problem, you should look through the vast number of DSC
-resources that have already been created by both Microsoft and the PowerShell community.
+Before you write a custom resource to solve your problem, you should look through the vast number of
+DSC resources that have already been created by both Microsoft and the PowerShell community.
 
 You can find DSC resources in both the [PowerShell Gallery](https://www.powershellgallery.com/) and
 [GitHub](https://github.com/). You can also install DSC resources directly from the PowerShell
@@ -80,39 +52,17 @@ wildcards.
 
 > [!IMPORTANT]
 > Currently there is a bug in the `Find-DSCResource` cmdlet that prevents using wildcards in both
-> the `-Name` and `-Filter` parameters. The second example below shows a workaround using
+> the `-Name` and `-Filter` parameters. The example below shows a workaround using
 > `Where-Object`.
 
-```
-PS> Find-DSCResource -Name *Time*
-
-Name                                Version    ModuleName                          Repository
-----                                -------    ----------                          ----------
-Carbon_EnvironmentVariable          2.6.0      Carbon                              PSGallery
-Carbon_FirewallRule                 2.6.0      Carbon                              PSGallery
-Carbon_Group                        2.6.0      Carbon                              PSGallery
-Carbon_IniFile                      2.6.0      Carbon                              PSGallery
-Carbon_Permission                   2.6.0      Carbon                              PSGallery
-Carbon_Privilege                    2.6.0      Carbon                              PSGallery
-Carbon_ScheduledTask                2.6.0      Carbon                              PSGallery
-Carbon_Service                      2.6.0      Carbon                              PSGallery
-TimeZone                            6.0.0.0    ComputerManagementDsc               PSGallery
-xTimeZone                           1.8.0.0    xTimeZone                           PSGallery
-xSqlServerDefaultDir                1.0.0      mlSqlServerDSC                      PSGallery
-xSqlServerMoveDatabaseFiles         1.0.0      mlSqlServerDSC                      PSGallery
-xSqlServerSQLDataRoot               1.0.0      mlSqlServerDSC                      PSGallery
-xSqlServerStartupParam              1.0.0      mlSqlServerDSC                      PSGallery
-```
-
-You can also use `Where-Object` to find DSC resources with more granular filtering. This approach
-will be slower than using built in filtering parameters.
+You can use `Where-Object` to find DSC resources with granular filtering.
 
 ```
 PS> Find-DSCResource | Where-Object {$_.Name -like "Time*"}
 
 Name                                Version    ModuleName                          Repository
 ----                                -------    ----------                          ----------
-TimeZone                            6.0.0.0    ComputerManagementDsc               PSGallery
+TimeZone                            8.5.0      ComputerManagementDsc               PSGallery
 ```
 
 For more information on filtering, see
@@ -145,7 +95,7 @@ Press 'y' to continue installing the module. After install, you can verify that 
 installed using [Get-DSCResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource).
 
 ```
-PS> Get-DSCResource -Name TimeZone -Syntax
+PS> Get-DSCResource -Name TimeZone -Module ComputerManagementDsc -Syntax
 
 TimeZone [String] #ResourceName
 {
@@ -156,21 +106,30 @@ TimeZone [String] #ResourceName
 }
 ```
 
-You can also view other resources in your newly installed module, by specifying the `-ModuleName`
-parameter.
+You can also view other resources in your newly installed module, by specifying only the
+**ModuleName** parameter.
 
 ```
 PS> Get-DSCResource -Module ComputerManagementDSC
 
-ImplementedAs   Name                      ModuleName                     Version    Properties
--------------   ----                      ----------                     -------    ----------
-PowerShell      Computer                  ComputerManagementDsc          6.0.0.0    {Name, Credential, DependsOn, ...
-PowerShell      OfflineDomainJoin         ComputerManagementDsc          6.0.0.0    {IsSingleInstance, RequestFile...
-PowerShell      PowerPlan                 ComputerManagementDsc          6.0.0.0    {IsSingleInstance, Name, Depen...
-PowerShell      PowerShellExecutionPolicy ComputerManagementDsc          6.0.0.0    {ExecutionPolicy, ExecutionPol...
-PowerShell      ScheduledTask             ComputerManagementDsc          6.0.0.0    {TaskName, ActionArguments, Ac...
-PowerShell      TimeZone                  ComputerManagementDsc          6.0.0.0    {IsSingleInstance, TimeZone, D...
-PowerShell      VirtualMemory             ComputerManagementDsc          6.0.0.0    {Drive, Type, DependsOn, Initi...
+ImplementedAs Name                            Properties
+------------- ----                            ----------
+   PowerShell Computer                        {Name, Credential, DependsOn, Description…}
+   PowerShell IEEnhancedSecurityConfiguration {Enabled, Role, DependsOn, PsDscRunAsCredential…}
+   PowerShell OfflineDomainJoin               {IsSingleInstance, RequestFile, DependsOn, PsDscRun…
+   PowerShell PendingReboot                   {Name, DependsOn, PsDscRunAsCredential, SkipCcmClie…
+   PowerShell PowerPlan                       {IsSingleInstance, Name, DependsOn, PsDscRunAsCrede…
+   PowerShell PowerShellExecutionPolicy       {ExecutionPolicy, ExecutionPolicyScope, DependsOn, …
+   PowerShell RemoteDesktopAdmin              {IsSingleInstance, DependsOn, Ensure, PsDscRunAsCre…
+   PowerShell ScheduledTask                   {TaskName, ActionArguments, ActionExecutable, Actio…
+   PowerShell SmbServerConfiguration          {IsSingleInstance, AnnounceComment, AnnounceServer,…
+   PowerShell SmbShare                        {Name, Path, CachingMode, ChangeAccess…}
+   PowerShell SystemLocale                    {IsSingleInstance, SystemLocale, DependsOn, PsDscRu…
+   PowerShell TimeZone                        {IsSingleInstance, TimeZone, DependsOn, PsDscRunAsC…
+   PowerShell UserAccountControl              {IsSingleInstance, ConsentPromptBehaviorAdmin, Cons…
+   PowerShell VirtualMemory                   {Drive, Type, DependsOn, InitialSize…}
+   PowerShell WindowsCapability               {Name, DependsOn, Ensure, LogLevel…}
+   PowerShell WindowsEventLog                 {LogName, CategoryResourceFile, DependsOn, IsEnable…
 ```
 
 ## See also

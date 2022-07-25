@@ -8,17 +8,17 @@ description: DSC Configurations can be parameterized to allow more dynamic confi
 # Add Parameters to a Configuration
 
 Like Functions, [Configurations](configurations.md) can be parameterized to allow more dynamic
-configurations based on user input. The steps are similar to those described in
+behavior based on user input. The steps are similar to those described in
 [Functions with Parameters](/powershell/module/microsoft.powershell.core/about/about_functions).
 
-This example starts with a basic Configuration that configures the "Spooler" service to be
-"Running".
+This example starts with a basic `Configuration` that configures the **Spooler** service to be
+`Running`.
 
 ```powershell
 Configuration TestConfig
 {
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -Module PSDscResources
 
     Node localhost
     {
@@ -33,17 +33,17 @@ Configuration TestConfig
 
 ## Built-in Configuration parameters
 
-Unlike a Function though, the
+Unlike a Function, the
 [CmdletBinding](/powershell/module/microsoft.powershell.core/about/about_functions_cmdletbindingattribute)
 attribute adds no functionality. In addition to
 [Common Parameters](/powershell/module/microsoft.powershell.core/about/about_commonparameters),
-Configurations can also use the following built in parameters, without requiring you to define them.
+Configurations can also use the following built-in parameters, without requiring you to define them.
 
 |        Parameter        |                                         Description                                          |
 | ----------------------- | -------------------------------------------------------------------------------------------- |
 | `-InstanceName`         | Used in defining [Composite Configurations](compositeconfigs.md)                             |
 | `-DependsOn`            | Used in defining [Composite Configurations](compositeconfigs.md)                             |
-| `-PSDSCRunAsCredential` | Used in defining [Composite Configurations](compositeconfigs.md)                             |
+| `-PSDSCRunAsCredential` | Deprecated. This parameter is no longer supported.                                           |
 | `-ConfigurationData`    | Used to pass in structured [Configuration Data](configData.md) for use in the Configuration. |
 | `-OutputPath`           | Used to specify where your "\<computername\>.mof" file will be compiled                      |
 
@@ -65,9 +65,9 @@ Configuration TestConfig
 
 ### Add a ComputerName parameter
 
-The first parameter you might add is a `-Computername` parameter so you can dynamically compile a
-".mof" file for any `-Computername` you pass to your configuration. Like Functions, you can also
-define a default value, in case the user does not pass in a value for `-ComputerName`
+The first parameter you might add is a **ComputerName** parameter so you can dynamically compile a
+`.mof` file for any **ComputerName** you pass to your Configuration. Like functions, you can also
+define a default value, in case the user does not pass in a value for **ComputerName**
 
 ```powershell
 param
@@ -77,7 +77,7 @@ param
 )
 ```
 
-Within your configuration, you can then specify your `-ComputerName` parameter when defining your
+Within your configuration, you can then specify the **ComputerName** parameter when defining your
 Node block.
 
 ```powershell
@@ -112,7 +112,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -Module PSDscResources
 
     Node $ComputerName
     {
@@ -150,7 +150,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -Module PSDscResources
 
     Node $ComputerName
     {
@@ -237,7 +237,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -Module PSDscResources
 
     Node $ComputerName
     {
@@ -252,7 +252,7 @@ Configuration TestConfig
 
 ## See also
 
-- [Write help for DSC configurations](configHelp.md)
+- [Write help for DSC Configurations](configHelp.md)
 - [Dynamic Configurations](flow-control-in-configurations.md)
 - [Use Configuration Data in your Configurations](configData.md)
-- [Separate configuration and environment data](separatingEnvData.md)
+- [Separate Configuration and environment data](separatingEnvData.md)
