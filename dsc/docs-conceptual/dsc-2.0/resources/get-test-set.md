@@ -130,141 +130,157 @@ file, and pass it to the **Name** parameter of the **Get**, **Test**, and **Set*
 ## Get
 
 The **Get** method of a resource, retrieves the state of the resource as it is configured on the
-target Node. This state is returned as a
+machine. This state is returned as a
 [hashtable](/powershell/module/microsoft.powershell.core/about/about_hash_tables). The keys of the
 **hashtable** will be the configurable values, or parameters, the resource accepts.
 
-The **Get** method maps directly to the
-[Get-DSCConfiguration](/powershell/module/psdesiredstateconfiguration/get-dscconfiguration) cmdlet.
-When you call `Get-DSCConfiguration`, the LCM runs the **Get** method of each resource in the
-currently applied configuration. The LCM uses the key values stored in the `.mof` file as parameters
-to each corresponding resource instance.
+This is sample output from calling `Invoke-DscResource` with the **Get** method for a **Service**
+resource that configures the "Spooler" service.
 
-This is sample output from a **Service** resource that configures the "Spooler" service.
-
-```output
-ConfigurationName    : Test
-DependsOn            :
-ModuleName           : PsDesiredStateConfiguration
-ModuleVersion        : 1.1
-PsDscRunAsCredential :
-ResourceId           : [Service]Spooler
-SourceInfo           :
-BuiltInAccount       : LocalSystem
-Credential           :
-Dependencies         : {RPCSS, http}
-Description          : This service spools print jobs and handles interaction with the printer.  If you turn off
-                       this service, you won't be able to print or see your printers.
-DisplayName          : Print Spooler
-Ensure               :
-Name                 : Spooler
-Path                 : C:\WINDOWS\System32\spoolsv.exe
-StartupType          : Automatic
-State                : Running
-Status               :
-PSComputerName       :
-CimClassName         : MSFT_ServiceResource
+```powershell
+$DscGetParameters = @{
+    Name       = 'Service'
+    ModuleName = 'PSDscResources'
+    Method     = 'Get'
+    Property   = @{
+        Name = 'Spooler'
+    }
+}
+Invoke-DscResource @DscGetParameters
 ```
 
-The output shows the current value properties configurable by the **Service** resource.
+```output
+Name                           Value
+----                           -----
+State                          Running
+Path                           C:\Windows\System32\spoolsv.exe
+StartupType                    Automatic
+Name                           Spooler
+BuiltInAccount                 LocalSystem
+DisplayName                    Print Spooler
+Dependencies                   {RPCSS, http}
+DesktopInteract                True
+Ensure                         Present
+Description                    This service spools print jobs and handles interaction with the printer.  If you turn of…
+```
 
-```syntax
-Service [String] #ResourceName
-{
-    Name = [string]
-    [BuiltInAccount = [string]{ LocalService | LocalSystem | NetworkService }]
-    [Credential = [PSCredential]]
-    [Dependencies = [string[]]]
-    [DependsOn = [string[]]]
-    [Description = [string]]
-    [DisplayName = [string]]
-    [Ensure = [string]{ Absent | Present }]
-    [Path = [string]]
-    [PsDscRunAsCredential = [PSCredential]]
-    [StartupType = [string]{ Automatic | Disabled | Manual }]
-    [State = [string]{ Running | Stopped }]
-}
+You can inspect a DSC resource to see what properties it can manage with the `Get-DscResource`
+cmdlet.
+
+```powershell
+Get-DscResource -Name Service -Module PSDscResources -OutVariable Resource
+$Resource.Properties
+```
+
+```Output
+ImplementationDetail : ScriptBased
+ResourceType         : MSFT_ServiceResource
+Name                 : Service
+FriendlyName         : Service
+Module               : PSDscResources
+ModuleName           : PSDscResources
+Version              : 2.12.0.0
+Path                 : C:\Program Files\PowerShell\Modules\PSDscResources\2.12.0.0\DscResources\MSFT_ServiceResource\MSFT_ServiceResource.psm1
+ParentPath           : C:\Program Files\PowerShell\Modules\PSDscResources\2.12.0.0\DscResources\MSFT_ServiceResource
+ImplementedAs        : PowerShell
+CompanyName          : Microsoft Corporation
+Properties           : {Name, BuiltInAccount, Credential, Dependencies…}
+
+Name                 PropertyType   IsMandatory Values
+----                 ------------   ----------- ------
+Name                 [string]              True {}
+BuiltInAccount       [string]             False {LocalService, LocalSystem, NetworkService}
+Credential           [PSCredential]       False {}
+Dependencies         [string[]]           False {}
+DependsOn            [string[]]           False {}
+Description          [string]             False {}
+DesktopInteract      [bool]               False {}
+DisplayName          [string]             False {}
+Ensure               [string]             False {Absent, Present}
+Path                 [string]             False {}
+PsDscRunAsCredential [PSCredential]       False {}
+StartupTimeout       [UInt32]             False {}
+StartupType          [string]             False {Automatic, Disabled, Manual}
+State                [string]             False {Ignore, Running, Stopped}
+TerminateTimeout     [UInt32]             False {}
 ```
 
 ## Test
 
 The **Test** method of a resource determines if the target node is currently compliant with the
 resource's _desired state_. The **Test** method returns `$true` or `$false` only to indicate whether
-the Node is compliant. When you call
-[Test-DSCConfiguration](/powershell/module/psdesiredstateconfiguration/Test-DSCConfiguration), the
-LCM calls the **Test** method of each resource in the currently applied configuration. The LCM uses
-the key values stored in the ".mof" file as parameters to each corresponding resource instance.
+the Node is compliant.
 
-If the result of any individual resource's **Test** is `$false`, `Test-DSCConfiguration` returns
-`$false` indicating that the Node is not compliant. If all resource's **Test** methods return
-`$true`, `Test-DSCConfiguration` returns `$true` to indicate that the Node is compliant.
+This is sample output from calling `Invoke-DscResource` with the **Test** method for a **Service**
+resource that configures the "Spooler" service and expects the service to be `Stopped`.
 
 ```powershell
-Test-DSCConfiguration
+$DscTestParameters = @{
+    Name       = 'Service'
+    ModuleName = 'PSDscResources'
+    Method     = 'Test'
+    Property   = @{
+        Name  = 'Spooler'
+        State = 'Stopped'
+    }
+}
+Invoke-DscResource @DscTestParameters
 ```
 
-```output
-True
+```Output
+InDesiredState
+--------------
+         False
 ```
 
-Beginning in PowerShell 5.0, the **Detailed** parameter was added. Specifying **Detailed** causes
-`Test-DSCConfiguration` to return an object containing collections of results for compliant, and
-non-compliant resources.
-
-```powershell
-Test-DSCConfiguration -Detailed
-```
-
-```output
-PSComputerName  ResourcesInDesiredState        ResourcesNotInDesiredState     InDesiredState
---------------  -----------------------        --------------------------     --------------
-localhost       {[Service]Spooler}                                            True
-```
-
-For more information, see
-[Test-DSCConfiguration](/powershell/module/psdesiredstateconfiguration/Test-DSCConfiguration).
+> [!IMPORTANT]
+> Notice that instead of returning a **Boolean** value directly, it returned an object with the
+> **InDesiredState** property. While the DSC resource's **Test** method returns a **Boolean**,
+> `Invoke-DscResource -Method Test` always returns an **InvokeDscResourceTestResult** object.
 
 ## Set
 
-The **Set** method of a resource attempts to force the Node to become compliant with the resource's
-*desired state*. The **Set** method is meant to be **idempotent**, which means that **Set** could be
-run multiple times and always get the same result without errors. When you run
-[Start-DSCConfiguration](/powershell/module/psdesiredstateconfiguration/Start-DSCConfiguration), the
-LCM cycles through each resource in the currently applied configuration. The LCM retrieves key
-values for the current resource instance from the ".mof" file and uses them as parameters for the
-**Test** method. If the **Test** method returns `$true`, the Node is compliant with the current
-resource, and the **Set** method is skipped. If the **Test** returns `$false`, the Node is
-non-compliant. The LCM passes the resource instance's key values as parameters to the resource's
-**Set** method, restoring the Node to compliance.
+The **Set** method of a resource attempts to force the machine to become compliant with the
+resource's _desired state_. The **Set** method is meant to be _idempotent_, which means that **Set**
+could be run multiple times and always get the same result without errors.
 
-By specifying the **Verbose** and **Wait** parameters, you can watch the progress of the
-`Start-DSCConfiguration` cmdlet. In this example, the Node is already compliant. The `Verbose`
-output indicates that the **Set** method was skipped.
+However, resource may not be idempotent. To reduce the chances of errors and side effects, you
+should always call `Invoke-DscResource` with the **Test** method first. Then, if the command and
+only call it with the **Set** method if **Test** returns `$false`.
 
+This is sample output from calling `Invoke-DscResource` with the **Set** method for a **Service**
+resource that configures the "Spooler" service and enforces the service to be `Stopped`.
+
+```powershell
+$DscParameters = @{
+    Name = 'Service'
+    ModuleName = 'PSDscResources'
+    Property = @{
+        Name = 'Spooler'
+        State = 'Stopped'
+    }
+}
+
+Invoke-DscResource -Method Test @DscParameters -OutVariable TestResult
+
+if (!$TestResult.InDesiredState) {
+    Invoke-DscResource -Method Set @DscParameters
+}
 ```
-PS> Start-DSCConfiguration -Verbose -Wait -UseExisting
 
-VERBOSE: Perform operation 'Invoke CimMethod' with following parameters, ''methodName' =
-ApplyConfiguration,'className' = MSFT_DSCLocalConfigurationManager,'namespaceName' =
-root/Microsoft/Windows/DesiredStateConfiguration'.
-VERBOSE: An LCM method call arrived from computer SERVER01 with user sid
-S-1-5-21-124525095-708259637-1543119021-1282804.
-VERBOSE: [SERVER01]:                            [] Starting consistency engine.
-VERBOSE: [SERVER01]:                            [] Checking consistency for current configuration.
-VERBOSE: [SERVER01]:                            [DSCEngine] Importing the module
-C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\PSDesiredStateConfiguration\DscResources\MSFT_ServiceResource\MSFT
-_ServiceResource.psm1 in force mode.
-VERBOSE: [SERVER01]: LCM:  [ Start  Resource ]  [[Service]Spooler]
-VERBOSE: [SERVER01]: LCM:  [ Start  Test     ]  [[Service]Spooler]
-VERBOSE: [SERVER01]:                            [[Service]Spooler] Importing the module MSFT_ServiceResource in
-force mode.
-VERBOSE: [SERVER01]: LCM:  [ End    Test     ]  [[Service]Spooler]  in 0.2540 seconds.
-VERBOSE: [SERVER01]: LCM:  [ Skip   Set      ]  [[Service]Spooler]
-VERBOSE: [SERVER01]: LCM:  [ End    Resource ]  [[Service]Spooler]
-VERBOSE: [SERVER01]:                            [] Consistency check completed.
-VERBOSE: Operation 'Invoke CimMethod' complete.
-VERBOSE: Time taken for configuration job to complete is 1.379 seconds
+```Output
+InDesiredState
+--------------
+         False
+
+RebootRequired
+--------------
+         False
 ```
+
+When you use `Invoke-DscResource` with the **Set** method, it returns an
+**InvokeDscResourceSetResult** object with the **RebootRequired** property. In this example, no
+reboot is required.
 
 ## See also
 

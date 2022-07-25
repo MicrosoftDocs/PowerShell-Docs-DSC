@@ -7,10 +7,10 @@ description: This article shows how to install and import specific versions of r
 
 # Import a specific version of an installed resource
 
-> Applies To: Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
-In PowerShell 5.0, separate versions of DSC resources can be installed on a computer side by side. A
-resource module can store separate versions of a resource in version named folders.
+Separate versions of DSC resources can be installed on a computer side by side. A resource module
+can store separate versions of a resource in version named folders.
 
 ## Installing separate resource versions side by side
 
@@ -24,8 +24,8 @@ an **xCluster** resource. Calling **Install-Module** without specifying the vers
 the most recent version of the module.
 
 ```powershell
-PS> Install-Module xFailOverCluster
-PS> Get-DscResource xCluster
+Install-Module xFailOverCluster
+Get-DscResource xCluster
 ```
 
 ```Output
@@ -38,13 +38,13 @@ To install a specific version of a module, specify a **RequiredVersion** of 1.1.
 the specified version side by side with the installed version.
 
 ```powershell
-PS> Install-Module xFailOverCluster -RequiredVersion 1.1
+Install-Module xFailOverCluster -RequiredVersion 1.1
 ```
 
 Now, you see both version of the module listed when you use `Get-DSCResource`.
 
 ```powershell
-PS> Get-DscResource xCluster
+Get-DscResource xCluster
 ```
 
 ```Output
@@ -80,31 +80,6 @@ configuration VersionTest
      }
 }
 ```
-
-The ModuleVersion parameter of Import-DscResource is not available in PowerShell 4.0. In PowerShell
-4.0, you can specify a module version by passing a module specification object to the ModuleName
-parameter of Import-DscResource. A module specification object is a hash table that contains
-ModuleName and RequiredVersion keys. For example:
-
-```powershell
-configuration VersionTest
-{
-    Import-DscResource -ModuleName (@{ModuleName='xFailOverCluster'; RequiredVersion='1.1'} )
-
-    Node 'localhost'
-    {
-       xCluster ClusterTest
-       {
-            Name                          = 'TestCluster'
-            StaticIPAddress               = '10.0.0.3'
-            DomainAdministratorCredential = Get-Credential
-        }
-     }
-}
-```
-
-This will also work in PowerShell 5.0, but it is recommended that you use the **ModuleVersion**
-parameter.
 
 ## See also
 

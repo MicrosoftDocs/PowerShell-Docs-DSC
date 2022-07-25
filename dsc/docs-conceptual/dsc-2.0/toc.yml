@@ -6,7 +6,7 @@ items:
       - name: Get started with Azure Policy's Guest Configuration
         href: /azure/governance/policy/concepts/guest-configuration
       - name: Get started with invoking DSC Resources
-        href: getting-started/invoking-dsc-resources
+        href: getting-started/invoking-dsc-resources.md
   - name: Configurations
     items:
       - name: Concepts
@@ -25,8 +25,6 @@ items:
                 href: configurations/install-additional-dsc-resources.md
               - name: Import a specific version of an installed resource
                 href: configurations/sxsResource.md
-              - name: Use Credentials with DSC Resources
-                href: configurations/runAsUser.md
           - name: Writing Dynamic Configurations
             items:
               - name: Add Parameters to a Configuration

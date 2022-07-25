@@ -7,55 +7,53 @@ description: DSC allows you to create composite configurations by nesting a conf
 
 # Nesting DSC configurations
 
-A nested configuration (also called composite configuration) is a configuration that's called
+A nested Configuration (also called composite configuration) is a configuration that's called
 within another configuration as if it were a resource. Both configurations must be defined in the
 same file.
 
-Let's look at a simple example:
+Let's look at a minimal example:
 
 ```powershell
-Configuration FileConfig
+Configuration RegistryStringValue
 {
     param (
         [Parameter(Mandatory = $true)]
-        [String] $CopyFrom,
+        [String] $Name,
 
         [Parameter(Mandatory = $true)]
-        [String] $CopyTo
+        [String] $Value
     )
 
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDscResources
 
-    File FileTest
+    Registry RegistryTest
     {
-        SourcePath = $CopyFrom
-        DestinationPath = $CopyTo
-        Ensure = 'Present'
+        Key       = 'HKEY_CURRENT_USER\DscTest'
+        ValueName = $Name
+        Ensure    = 'Present'
+        ValueData = $Value
+        ValueType = 'String'
     }
 }
 
-Configuration NestedFileConfig
+Configuration NestedRegistryStringValue
 {
     Node localhost
     {
-        FileConfig NestedConfig
+        RegistryStringValue NestedConfig
         {
-            CopyFrom = 'C:\Test\TestFile.txt'
-            CopyTo = 'C:\Test2'
+            Name  = 'Foo'
+            Value = 'Bar'
         }
     }
 }
 ```
 
-In this example, `FileConfig` takes two mandatory parameters, **CopyFrom** and **CopyTo**, which are
-used as the values for the **SourcePath** and **DestinationPath** properties in the `File` resource
-block. The `NestedConfig` configuration calls `FileConfig` as if it were a resource. The properties
-in the `NestedConfig` resource block (**CopyFrom** and **CopyTo**) are the parameters of the
-`FileConfig` configuration.
+In this example, `RegistryStringValue` takes two mandatory parameters, **Name** and **Value**, which
+are used as the values for the **ValueName** and **ValueData** properties in the `Registry` resource
+block. The `NestedRegistryStringValue` configuration calls `RegistryStringValue` as if it were a
+resource. The properties in the `NestedConfig` resource block (**Name** and **Value**) are the
+parameters of the `RegistryStringValue` configuration.
 
-DSC doesn't currently support nesting configurations within nested configurations. You can only
-nest a configuration one layer deep.
-
-## See Also
-
-- [Composite resources--Using a DSC configuration as a resource](../resources/authoringResourceComposite.md)
+DSC doesn't support nesting configurations within nested configurations. You can only nest a
+configuration one layer deep.

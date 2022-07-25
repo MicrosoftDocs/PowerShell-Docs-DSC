@@ -7,7 +7,7 @@ description: This topic describes the structure of the ConfigurationData hashtab
 
 # Using configuration data in DSC
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 By using the built-in DSC **ConfigurationData** parameter, you can define data that can be used
 within a configuration. This allows you to create a single configuration that can be used for
