@@ -1,51 +1,42 @@
 ---
-ms.date: 07/23/2020
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Resources
-description: DSC resources provide the building blocks for a DSC configuration. A resource exposes properties that can be configured (schema) and contains the PowerShell script functions used by the LCM to apply the configuration.
+description: >
+  DSC resources provide a standardized interface for managing the configuration of a system.
 ---
 
 # DSC Resources
 
-> Applies to PowerShell 7.0
+> Applies to PowerShell 7.2
 
 ## Overview
 
-Desired State Configuration (DSC) Resources provide the building blocks for a DSC configuration. A
-resource exposes properties that can be configured (schema) and contains the PowerShell code that `Invoke-DscResource` calls to "make it so".
+Desired State Configuration (DSC) Resources provide a standardized interface for managing the
+configuration of a system. A resource defines properties you can configure and contains the
+PowerShell code that `Invoke-DscResource` calls to "make it so".
 
 A resource can model something as generic as a file or as specific as an IIS server setting. Groups
-of like resources are combined in to a DSC Module, which organizes all the required files in to a
-structure that is portable and includes metadata to identify how the resources are intended to be
-used.
+of like resources are combined into modules. Module provide a portable, versioned package for
+resources and include metadata and documentation about them.
 
-Each resource has a schema that determines the syntax needed to use the resource in a
-[Configuration](../configurations/configurations.md) or with `Invoke-DscResource`. A resource's
-schema can be defined in the following ways:
+Every resource has a schema that determines the syntax needed to use the resource with
+`Invoke-DscResource` or in a [Configuration][1]. A resource's schema is defined in the following
+ways:
 
-- `Schema.Mof` file: Most resources define their _schema_ in a `schema.mof` file, using
-  [Managed Object Format](/windows/desktop/wmisdk/managed-object-format--mof-).
-- `<Resource Name>.psm1` file: Class based DSC resources define their _schema_ in the class
-  definition. Syntax items are denoted as Class properties. For more information, see
-  [about_Classes](/powershell/module/psdesiredstateconfiguration/about/about_classes_and_dsc).
+- `<Resource Name>.psm1` file: Class-based DSC resources define their schema in the class
+  definition. Syntax items are denoted as class properties. For more information, see
+  [about_Classes][2].
+- `Schema.Mof` file: Other resources define their schema in a `schema.mof` file, using
+  [Managed Object Format][3].
 
-To retrieve the syntax for a DSC resource, use the
-[Get-DSCResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource) cmdlet with the
-**Syntax** parameter. This usage is similar to using
-[Get-Command](/powershell/module/microsoft.powershell.core/get-command) with the **Syntax**
-parameter to get cmdlet syntax. The output you see will show the template used for a resource block
-for the resource you specify.
+To retrieve the syntax for a DSC resource, use the [Get-DSCResource][4] cmdlet with the **Syntax**
+parameter. This usage is similar to using [Get-Command][5] with the **Syntax** parameter to get
+cmdlet syntax. The output shows the template used for a resource block in a Configuration.
 
 ```powershell
 Get-DscResource -Syntax Service
 ```
-
-The output you see should be similar to the output below, though this resource's syntax could change
-in the future. Like cmdlet syntax, the _keys_ seen in square brackets, are optional. The types
-specify the type of data each key expects.
-
-> [!NOTE]
-> The **Ensure** key is optional because it defaults to "Present".
 
 ```output
 Service [String] #ResourceName
@@ -68,68 +59,39 @@ Service [String] #ResourceName
 }
 ```
 
-Inside a Configuration, a **Service** resource block might look like this to **Ensure** that the
-Spooler service is running.
+Like cmdlet syntax, the _keys_ in square brackets are optional. The types specify the type of data
+each key expects.
 
-> [!NOTE]
-> Before using a resource in a Configuration, you must import it using
-> [Import-DSCResource](../configurations/import-dscresource.md).
+To ensure that the `Spooler` service is running:
 
 ```powershell
-Configuration TestConfig
-{
-    # It is best practice to always directly import resources, even if the
-    # resource is a built-in resource.
-    Import-DSCResource -Name Service
-    Node localhost
-    {
-        # The name of this resource block, can be anything you choose, as l
-        # ong as it is of type [String] as indicated by the schema.
-        Service "Spooler:Running"
-        {
-            Name = "Spooler"
-            State = "Running"
-        }
+$SharedDscParameters = @{
+    Name = 'Service'
+    ModuleName = 'PSDscResources'
+    Property = @{
+        Name  = 'Spooler'
+        State = 'Running'
     }
+}
+$TestResult = Invoke-DscResource -Method Test @SharedDscParameters
+if ($TestResult.InDesiredState) {
+    Write-Host -ForegroundColor Cyan -Object 'Already in desired state.'
+} else {
+    Write-Host -ForegroundColor Magenta -Object 'Enforcing desired state.'
+    Invoke-DscResource -Method Set @SharedDscParameters
 }
 ```
 
-Configurations can contain multiple instances of the same resource type. Each instance must be
-uniquely named. In the following example, a second **Service** resource block is added to configure
-the "DHCP" service.
+The `$SharedDscParameters` variable is a hash table containing the parameters used when calling the
+**Test** and **Set** methods of the resource with `Invoke-DscResource`. The first call to
+`Invoke-DscResource` uses the **Test** method to check whether the `Spooler` service is running and
+stores the result in the `$TestResult` variable.
 
-```powershell
-Configuration TestConfig
-{
-    # It is best practice to always directly import resources, even if the
-    # resource is a built-in resource.
-    Import-DSCResource -Name Service
-    Node localhost
-    {
-        # The name of this resource block, can be anything you choose, as
-        # long as it is of type [String] as indicated by the schema.
-        Service "Spooler:Running"
-        {
-            Name = "Spooler"
-            State = "Running"
-        }
-
-        # To configure a second service resource block, add another Service
-        # resource block and use a unique name.
-        Service "DHCP:Running"
-        {
-            Name = "DHCP"
-            State = "Running"
-        }
-    }
-}
-```
-
-> [!NOTE]
-> Beginning in PowerShell 5.0, IntelliSense was added for DSC. This feature allows you to use
-> <kbd>TAB</kbd> and <kbd>Ctr</kbd>+<kbd>Space</kbd> to auto-complete key names.
-
-![Resource IntelliSense using Tab Completion](media/resources/resource-tabcompletion.png)
+The next step depends on whether the service is already in the desired state. It's best practice to
+always check desired state before enforcing and to only call the set method when required. In the
+example, the script writes a message to the console about whether the resource is in the desired
+state. Then, if the service is not running, it calls `Invoke-DscResource` with the **Set** method to
+enforce the desired state.
 
 <!--
     Potentially we should say these are not meant to be used. It's unclear how (if at all) they will
@@ -186,3 +148,11 @@ resources have been archived under **Reference**.
 - [Linux User Resource](../reference/resources/linux/lnxUserResource.md)
 
 -->
+
+<!-- Reference Links -->
+
+[1]: ../configurations/configurations.md
+[2]: /powershell/module/psdesiredstateconfiguration/about/about_classes_and_dsc
+[3]: /windows/desktop/wmisdk/managed-object-format--mof-
+[4]: /powershell/module/PSDesiredStateConfiguration/Get-DscResource
+[5]: /powershell/module/microsoft.powershell.core/get-command
