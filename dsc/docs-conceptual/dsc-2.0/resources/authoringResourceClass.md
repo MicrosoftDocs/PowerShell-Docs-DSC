@@ -6,7 +6,7 @@ description: This article shows how to create a simple resource that manages a f
 
 # Writing a custom DSC resource with PowerShell classes
 
-> Applies To: Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 With the introduction of PowerShell classes in Windows PowerShell 5.0, you can now define a DSC
 resource by creating a class. The class defines both the schema and the implementation of the
@@ -583,35 +583,6 @@ Configuration MyConfig
     }
 }
 MyConfig
-```
-
-## Supporting PsDscRunAsCredential
-
-> [Note]
-> **PsDscRunAsCredential** is supported in PowerShell 5.0 and later.
-
-The **PsDscRunAsCredential** property can be used in [DSC configurations](../configurations/configurations.md)
-resource block to specify that the resource should be run under a specified set of credentials. For
-more information, see [Running DSC with user credentials](../configurations/runAsUser.md).
-
-### Require or disallow PsDscRunAsCredential for your resource
-
-The `DscResource()` attribute takes an optional parameter **RunAsCredential**. This parameter
-takes one of three values:
-
-- `Optional` **PsDscRunAsCredential** is optional for configurations that call this resource. This
-  is the default value.
-- `Mandatory` **PsDscRunAsCredential** must be used for any configuration that calls this resource.
-- `NotSupported` Configurations that call this resource cannot use **PsDscRunAsCredential**.
-- `Default` Same as `Optional`.
-
-For example, use the following attribute to specify that your custom resource does not support using
-**PsDscRunAsCredential**:
-
-```powershell
-[DscResource(RunAsCredential=NotSupported)]
-class NewFile {
-}
 ```
 
 ### Declaring multiple class resources in a module

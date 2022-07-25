@@ -7,7 +7,7 @@ description: It can be useful to separate the data used in a DSC configuration f
 
 # Separating configuration and environment data
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 It can be useful to separate the data used in a DSC configuration from the configuration itself by
 using configuration data. By doing this, you can use a single configuration for multiple
@@ -25,9 +25,9 @@ compile that configuration.
 For a detailed description of the **ConfigurationData** hashtable, see
 [Using configuration data](configData.md).
 
-## A simple example
+## A basic example
 
-Let's look at a very simple example to see how this works. We'll create a single configuration that
+Let's look at a basic example to see how this works. We'll create a single configuration that
 ensures that **IIS** is present on some nodes, and that **Hyper-V** is present on others:
 
 ```powershell
@@ -35,12 +35,11 @@ Configuration MyDscConfiguration {
 
   Node $AllNodes.Where{$_.Role -eq "WebServer"}.NodeName
     {
-  WindowsFeature IISInstall {
-    Ensure = 'Present'
-    Name   = 'Web-Server'
-  }
-
- }
+      WindowsFeature IISInstall {
+        Ensure = 'Present'
+        Name   = 'Web-Server'
+      }
+    }
     Node $AllNodes.Where{$_.Role -eq "VMHost"}.NodeName
     {
         WindowsFeature HyperVInstall {
@@ -155,7 +154,7 @@ Let's define the configuration in a file named `MyWebApp.ps1`:
 ```powershell
 Configuration MyWebApp
 {
-    Import-DscResource -Module PSDesiredStateConfiguration
+    Import-DscResource -Module PSDscResources
     Import-DscResource -Module xSqlPs
     Import-DscResource -Module xWebAdministration
 
@@ -245,7 +244,7 @@ MyWebApp -ConfigurationData DevProdEnvData.psd1
 When you run this configuration, three MOF files are created (one for each named entry in the
 **AllNodes** array):
 
-```
+```Output
     Directory: C:\DscTests\MyWebApp
 
 
@@ -277,52 +276,52 @@ You access additional keys by using the special variable **$ConfigurationData**.
 ```powershell
 $MyData =
 @{
-    AllNodes =
-    @(
-        @{
-            NodeName           = "*"
-            LogPath            = "C:\Logs"
-        },
+    AllNodes =
+    @(
+        @{
+            NodeName           = "*"
+            LogPath            = "C:\Logs"
+        },
 
-        @{
-            NodeName = "VM-1"
-            SiteContents = "C:\Site1"
-            SiteName = "Website1"
-        },
+        @{
+            NodeName = "VM-1"
+            SiteContents = "C:\Site1"
+            SiteName = "Website1"
+        },
 
 
-        @{
-            NodeName = "VM-2"
-            SiteContents = "C:\Site2"
-            SiteName = "Website2"
-        }
-    );
+        @{
+            NodeName = "VM-2"
+            SiteContents = "C:\Site2"
+            SiteName = "Website2"
+        }
+    );
 
-    NonNodeData =
-    @{
-        ConfigFileContents = (Get-Content C:\Template\Config.xml)
-     }
+    NonNodeData =
+    @{
+        ConfigFileContents = (Get-Content C:\Template\Config.xml)
+     }
 }
 
 configuration WebsiteConfig
 {
-    Import-DscResource -ModuleName xWebAdministration -Name MSFT_xWebsite
+    Import-DscResource -ModuleName xWebAdministration -Name MSFT_xWebsite
 
-    node $AllNodes.NodeName
-    {
-        xWebsite Site
-        {
-            Name         = $Node.SiteName
-            PhysicalPath = $Node.SiteContents
-            Ensure       = "Present"
-        }
+    node $AllNodes.NodeName
+    {
+        xWebsite Site
+        {
+            Name         = $Node.SiteName
+            PhysicalPath = $Node.SiteContents
+            Ensure       = "Present"
+        }
 
-        File ConfigFile
-        {
-            DestinationPath = $Node.SiteContents + "\\config.xml"
-            Contents = $ConfigurationData.NonNodeData.ConfigFileContents
-        }
-    }
+        File ConfigFile
+        {
+            DestinationPath = $Node.SiteContents + "\\config.xml"
+            Contents = $ConfigurationData.NonNodeData.ConfigFileContents
+        }
+    }
 }
 ```
 

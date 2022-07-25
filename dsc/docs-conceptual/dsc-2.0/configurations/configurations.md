@@ -6,7 +6,7 @@ description: DSC configurations are PowerShell scripts that define a special typ
 ---
 # DSC Configurations
 
-> Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.0
 
 DSC configurations are PowerShell scripts that define a special type of function. To define a
 configuration, you use the PowerShell keyword **Configuration**.
@@ -148,7 +148,7 @@ Compiling the first configuration above results in the following folder structur
 MyDscConfiguration
 ```
 
-```
+```Output
     Directory: C:\users\default\Documents\DSC Configurations\MyDscConfiguration
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
@@ -163,7 +163,7 @@ time. Here's how that would look:
 MyDscConfiguration -ComputerName 'MyTestNode'
 ```
 
-```
+```Output
     Directory: C:\users\default\Documents\DSC Configurations\MyDscConfiguration
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
@@ -173,12 +173,11 @@ Mode                LastWriteTime         Length Name
 ## Using new resources in Your configuration
 
 If you ran the previous examples, you might have noticed that you were warned that you were using a
-resource without explicitly importing it. Today, DSC ships with 12 resources as part of the
-PSDesiredStateConfiguration module.
+resource without explicitly importing it.
 
 The cmdlet, [Get-DscResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource), can
-be used to determine what resources are installed on the system and available for use by the LCM.
-Once these modules have been placed in `$env:PSModulePath` and are properly recognized by
+be used to determine what resources are installed on the system and available for use. Even when
+their modules have been placed in `$env:PSModulePath` and are properly recognized by
 [Get-DscResource](/powershell/module/PSDesiredStateConfiguration/Get-DscResource), they still need
 to be loaded within your configuration.
 
@@ -195,12 +194,7 @@ block, it is not a cmdlet. **Import-DscResource** supports two parameters:
 For more information on using `Import-DSCResource`, see
 [Using Import-DSCResource](import-dscresource.md)
 
-## PowerShell v4 and v5 differences
-
-There are differences in where DSC resources need to be stored in PowerShell 4.0. For more
-information, see [Resource location](import-dscresource.md#resource-location).
-
 ## See Also
 
-- [Windows PowerShell Desired State Configuration Overview](../overview.md)
+- [PowerShell Desired State Configuration Overview](../overview.md)
 - [DSC Resources](../resources/resources.md)

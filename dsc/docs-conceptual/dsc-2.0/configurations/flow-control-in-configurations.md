@@ -30,7 +30,7 @@ compile time to generate a `.mof` file that maintains its current state.
 Configuration ServiceState
 {
     # It is best practice to explicitly import any resources used in your Configurations.
-    Import-DSCResource -Name Service -Module PSDesiredStateConfiguration
+    Import-DSCResource -Name Service -Module PSDscResources
     Node localhost
     {
         Service Spooler
@@ -50,7 +50,7 @@ machine using a `foreach` loop.
 Configuration ServiceState
 {
     # It is best practice to explicitly import any resources used in your Configurations.
-    Import-DSCResource -Name Service -Module PSDesiredStateConfiguration
+    Import-DSCResource -Name Service -Module PSDscResources
     Node localhost
     {
         foreach ($service in $(Get-Service))
@@ -73,7 +73,7 @@ statement.
 Configuration ServiceState
 {
     # It is best practice to explicitly import any resources used in your Configurations.
-    Import-DSCResource -Name Service -Module PSDesiredStateConfiguration
+    Import-DSCResource -Name Service -Module PSDscResources
 
     foreach ($computer in @('Server01', 'Server02', 'Server03'))
     {
@@ -96,10 +96,6 @@ Configuration ServiceState
 > The dynamic resource blocks in the above examples reference the current machine. In this instance,
 > that would be the machine you are authoring the `Configuration` on, not the target Node.
 
-<!---
-Mention Get-DSCConfigurationFromSystem
--->
-
 ## Summary
 
 In summary, you can use any PowerShell language feature within a `Configuration`.
@@ -110,7 +106,7 @@ This includes things like:
 - Hashtables
 - String manipulation
 - Remoting
-- WMI and CIM
+- CIM
 - ActiveDirectory objects
 - and more...
 

@@ -40,20 +40,20 @@ Import-DscResource -ModuleName xActiveDirectory
 ```powershell
 Configuration MSDSCConfiguration
 {
-    # Search for and imports Service, File, and Registry from the module PSDesiredStateConfiguration.
-    Import-DSCResource -ModuleName PSDesiredStateConfiguration -Name Service, File, Registry
+    # Search for and imports Service, File, and Registry from the module xPSDesiredStateConfiguration.
+    Import-DSCResource -ModuleName xPSDesiredStateConfiguration -Name Service, File, Registry
 
     # Search for and import Resource1 from the module that defines it.
-    # If only –Name parameter is used then resources can belong to different PowerShell modules as well.
+    # If only -Name parameter is used then resources can belong to different PowerShell modules as well.
     # TimeZone resource is from the ComputerManagementDSC module which is not installed by default.
     # As a best practice, list each requirement on a different line if possible.  This makes reviewing
     # multiple changes in source control a bit easier.
     Import-DSCResource -Name File
     Import-DSCResource -Name TimeZone
 
-    # Search for and import all DSC resources inside the module PSDesiredStateConfiguration.
-    # When specifying the modulename parameter, it is a requirement to list each on a new line.
-    Import-DSCResource -ModuleName PSDesiredStateConfiguration
+    # Search for and import all DSC resources inside the Module xPSDesiredStateConfiguration.
+    # When specifying the ModuleName parameter, it is a requirement to list each on a new line.
+    Import-DSCResource -ModuleName xPSDesiredStateConfiguration
     # In PowerShell 5.0 and later, you can specify a ModuleVersion parameter
     Import-DSCResource -ModuleName ComputerManagementDsc -ModuleVersion 6.0.0.0
 ...
@@ -74,7 +74,7 @@ Things to consider when using only the Name parameter:
 - It will load the first resource found with the given name. In the case where there is more than
   one resource with same name installed, it could load the wrong resource.
 
-The recommended usage is to specify `–ModuleName` with the `-Name` parameter, as described below.
+The recommended usage is to specify **ModuleName** with the **Name** parameter, as described below.
 
 This usage has the following benefits:
 
@@ -82,23 +82,19 @@ This usage has the following benefits:
 - It explicitly defines the module defining the resource, ensuring the correct resource is loaded.
 
 > [!NOTE]
-> In PowerShell 5.0, DSC resources can have multiple versions, and versions can be installed on a
-> computer side-by-side. This is implemented by having multiple versions of a resource module that
-> are contained in the same module folder. For more information, see
+> DSC resources can have multiple versions, and versions can be installed on a computer
+> side-by-side. This is implemented by having multiple versions of a resource module that are
+> contained in the same module folder. For more information, see
 > [Using resources with multiple versions](sxsresource.md).
 
 ## Intellisense with Import-DSCResource
 
-When authoring the DSC configuration in ISE, PowerShell provides IntelliSense for resources and
+When authoring the DSC configuration in VS Code, PowerShell provides IntelliSense for resources and
 resource properties. Resource definitions under the `$pshome` module path are loaded automatically.
 When you import resources using the `Import-DSCResource` keyword, the specified resource definitions
 are added and Intellisense is expanded to include the imported resource's schema.
 
 ![Intellisense in the ISE for a DSC Resource](media/import-dscresource/resource-intellisense.png)
-
-> [!NOTE]
-> Beginning in PowerShell 5.0, tab completion was added to the ISE for DSC resources and their
-> properties. For more information, see [Resources](../resources/resources.md).
 
 When compiling the Configuration, PowerShell uses the imported resource definitions to validate all
 resource blocks in the configuration. Each resource block is validated, using the resource's schema
@@ -108,16 +104,14 @@ definition, for the following rules.
 - The data types for each property are correct.
 - Keys properties are specified.
 - No read-only property is used.
-- Validation on value maps types.
+- Validation on value maps to valid types.
 
 Consider the following configuration:
 
 ```powershell
 Configuration SchemaValidationInCorrectEnumValue
 {
-    # It is best practice to explicitly import all resources used in your Configuration.
-    # This includes resources that are imported automatically, like WindowsFeature.
-    Import-DSCResource -Name WindowsFeature
+    Import-DSCResource -Name WindowsFeature -Module PSDscResources
     Node localhost
     {
         WindowsFeature ROLE1
@@ -132,13 +126,19 @@ Configuration SchemaValidationInCorrectEnumValue
 Compiling this Configuration results in an error.
 
 ```Output
-PSDesiredStateConfiguration\WindowsFeature: At least one of the values 'Invalid' is not supported or
-valid for property 'Ensure' on class 'WindowsFeature'. Please specify only supported values:
-Present, Absent.
+Write-Error: C:\code\dsc\Sample.ps1:6
+Line |
+   6 |          WindowsFeature ROLE1
+     |          ~~~~~~~~~~~~~~
+     | At least one of the values 'Invalid' is not supported or valid for property
+     | 'Ensure' on class 'WindowsFeature'. Please specify only supported values:
+     | Present, Absent.
+
+InvalidOperation: Errors occurred while processing configuration 'SchemaValidationInCorrectEnumValue'.
 ```
 
 Intellisense and schema validation allow you to catch more errors during parse and compilation time,
-avoiding complications at run time.
+avoiding future complications.
 
 > [!NOTE]
 > Each DSC resource can have a name, and a **FriendlyName** defined by the resource's schema. Below
@@ -151,40 +151,6 @@ avoiding complications at run time.
 >
 > When using this resource in a Configuration, you can specify **MSFT_ServiceResource** or
 > **Service**.
-
-## PowerShell v4 and v5 differences
-
-There are multiple differences you see when authoring Configurations in PowerShell 4.0 vs.
-PowerShell 5.0 and later. This section will highlight the differences that you see relevant to this
-article.
-
-### Multiple Resource Versions
-
-Installing and using multiple versions of resources side by side was not supported in PowerShell
-4.0. If you notice issues importing resources into your Configuration, ensure that you only have one
-version of the resource installed.
-
-In the image below, two versions of the **xPSDesiredStateConfiguration** module are installed.
-
-![Multiple Resource Versions installed in folder](media/import-dscresource/multiple-resource-versions-broken.png)
-
-Copy the contents of your desired module version to the top level of the module directory.
-
-![Copy the desired version to the top level module directory](media/import-dscresource/multiple-resource-versions-fixed.png)
-
-### Resource location
-
-When authoring and compiling Configurations, your resources can be stored in any directory specified
-by your
-[PSModulePath](/powershell/scripting/developer/module/modifying-the-psmodulepath-installation-path).
-In PowerShell 4.0, the LCM requires all DSC resource modules to be stored under "Program
-Files\WindowsPowerShell\Modules" or `$pshome\Modules`. Beginning in PowerShell 5.0, this requirement
-was removed, and resource modules can be stored in any directory specified by `PSModulePath`.
-
-### ModuleVersion added
-
-Beginning in PowerShell 5.0, the `-ModuleVersion` parameter allows you to specify which version of a
-module to use within your configuration.
 
 ## See also
 
