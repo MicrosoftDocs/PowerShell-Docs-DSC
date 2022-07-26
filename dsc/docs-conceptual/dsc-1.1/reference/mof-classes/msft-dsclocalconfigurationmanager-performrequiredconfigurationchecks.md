@@ -6,7 +6,7 @@ description: PerformRequiredConfigurationChecks method
 ---
 # PerformRequiredConfigurationChecks method
 
-Starts a consistency check by using the Task Scheduler.
+Starts a consistency check.
 
 ## Syntax
 
