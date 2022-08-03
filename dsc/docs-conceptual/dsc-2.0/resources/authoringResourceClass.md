@@ -1,38 +1,35 @@
 ---
-ms.date: 06/22/2021
+ms.date: 08/01/2022
 title:  Writing a custom DSC resource with PowerShell classes
-description: This article shows how to create a simple resource that manages a file in a specified path.
+description: >
+  This article shows how to create a simple resource that manages a file in a specified path.
 ---
 
 # Writing a custom DSC resource with PowerShell classes
 
-> Applies To: PowerShell 7.0
+> Applies To: PowerShell 7.2
 
-With the introduction of PowerShell classes in Windows PowerShell 5.0, you can now define a DSC
-resource by creating a class. The class defines both the schema and the implementation of the
-resource, so there is no need to create a separate MOF file. The folder structure for a class-based
-resource is also simpler, because a **DSCResources** folder is not necessary.
+You can define a DSC resource by creating a PowerShell class. In a class-based DSC resource, the
+schema is defined as properties of the class which can be modified with attributes to specify the
+property type. The resource is implemented by **Get**, **Set**, and **Test** methods (equivalent to
+the `Get-TargetResource`, `Set-TargetResource`, and `Test-TargetResource` functions in a script
+resource).
 
-In a class-based DSC resource, the schema is defined as properties of the class which can be
-modified with attributes to specify the property type.. The resource is implemented by `Get()`,
-`Set()`, and `Test()` methods (equivalent to the `Get-TargetResource`, `Set-TargetResource`,
-and `Test-TargetResource` functions in a script resource.
+In this article, we will create a simple resource named `NewFile` that manages a file in a specified
+path.
 
-In this article, we will create a simple resource named **NewFile** that manages a file in a
-specified path.
+For more information about DSC resources, see
+[Build Custom Windows PowerShell Desired State Configuration Resources][1]
 
-For more information about DSC resources, see [Build Custom Windows PowerShell Desired State Configuration Resources](authoringResource.md)
-
-> [!Note]
+> [!NOTE]
 > Generic collections are not supported in class-based resources.
 
 ## Folder structure for a class resource
 
-To implement a DSC custom resource with a PowerShell class, create the following folder structure.
-The class is defined in `MyDscResource.psm1` and the module manifest is defined in
-`MyDscResource.psd1`.
+To implement a DSC resource with a PowerShell class, create the following folder structure. The
+class is defined in `MyDscResource.psm1` and the module manifest is defined in `MyDscResource.psd1`.
 
-```
+```text
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
     |- MyDscResource (folder)
         MyDscResource.psm1
@@ -41,7 +38,7 @@ $env:ProgramFiles\WindowsPowerShell\Modules (folder)
 
 ## Create the class
 
-You use the class keyword to create a PowerShell class. To specify that a class is a DSC resource,
+You use the `class` keyword to create a PowerShell class. To specify that a class is a DSC resource,
 use the `DscResource()` attribute. The name of the class is the name of the DSC resource.
 
 ```powershell
@@ -76,15 +73,14 @@ Notice that the properties are modified by attributes. The meaning of the attrib
   configuration.
 - **DscProperty(Mandatory)**: The property is required.
 - **DscProperty(NotConfigurable)**: The property is read-only. Properties marked with this attribute
-  cannot be set by a configuration, but are populated by the `Get()` method when present.
+  cannot be set by a configuration, but are populated by the **Get** method.
 - **DscProperty()**: The property is configurable, but it is not required.
 
-The `$Path` and `$SourcePath` properties are both strings. The `$CreationTime` is a [DateTime](/dotnet/api/system.datetime)
-property. The `$Ensure` property is an enumeration type, defined as follows.
+The **Path** and **SourcePath** properties are both strings. The **CreationTime** is a
+[DateTime][2] property. The **Ensure** property is an enumeration type, defined as follows.
 
 ```powershell
-enum Ensure
-{
+enum Ensure {
     Absent
     Present
 }
@@ -92,9 +88,8 @@ enum Ensure
 
 ### Embedding classes
 
-If you would like to include a new type with defined properties that you can
-use within your resource, just create a class with property types as described
-above.
+If you would like to include a new type with defined properties that you can use within your
+resource, create a class with property types as described above.
 
 ```powershell
 class Reason {
@@ -108,11 +103,10 @@ class Reason {
 
 ### Public and Private functions
 
-You can create PowerShell functions within the same module file and use them
-inside the methods of your DSC class resource. The functions must be delcared
-as public, however the script blocks within those public functions can call
-functions that are private. The only difference is whether they are listed in
-the `FunctionsToExport` property of the module manifest.
+You can create PowerShell functions within the same module file and use them inside the methods of
+your DSC class resource. The functions must be exported as module members in the module manifest's
+**FunctionsToExport** setting. The script blocks within those functions may call unexported
+functions.
 
 ```powershell
 <#
@@ -129,6 +123,7 @@ function Get-File {
 
         [String]$content
     )
+
     $fileContent        = [reason]::new()
     $fileContent.code   = 'file:file:content'
 
@@ -137,35 +132,43 @@ function Get-File {
 
     $ensureReturn = 'Absent'
 
-    $fileExists = Test-path $path -ErrorAction SilentlyContinue
+    $fileExists = Test-Path -Path $path -ErrorAction SilentlyContinue
 
-    if ($true -eq $fileExists) {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file exists at path: $path"
+    if ($fileExists) {
+        $filePresent.phrase     = @(
+            "The file was expected to be: $ensure"
+            "The file exists at path: $path"
+        ) -join "`n"
         
         $existingFileContent    = Get-Content $path -Raw
         if ([string]::IsNullOrEmpty($existingFileContent)) {
             $existingFileContent = ''
         }
 
-        if ($false -eq ([string]::IsNullOrEmpty($content))) {
+        if (![string]::IsNullOrEmpty($content)) {
             $content = $content | ConvertTo-SpecialChars
         }
 
-        $fileContent.phrase     = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
+        $fileContent.phrase = @(
+            "The file was expected to contain: $content"
+            "The file contained: $existingFileContent"
+        ) -join "`n"
 
         if ($content -eq $existingFileContent) {
             $ensureReturn = 'Present'
         }
-    }
-    else {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
+    } else {
+        $filePresent.phrase = @(
+            "The file was expected to be: $ensure"
+            "The file does not exist at path: $path"
+        ) -join "`n"
         $path = 'file not found'
     }
 
-    return @{
-        ensure  = $ensureReturn
-        path    = $path
-        content = $existingFileContent
+    @{
+        Ensure  = $ensureReturn
+        Path    = $path
+        Content = $existingFileContent
         Reasons = @($filePresent,$fileContent)
     }
 }
@@ -180,7 +183,9 @@ function Set-File {
 
         [String]$content
     )
+
     Remove-Item $path -Force -ErrorAction SilentlyContinue
+
     if ($ensure -eq "Present") {
         New-Item $path -ItemType File -Force
         if ([ValidateNotNullOrEmpty()]$content) {
@@ -199,13 +204,15 @@ function Test-File {
 
         [String]$content
     )
+
     $test = $false
     $get = Get-File @PSBoundParameters
     
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
-    return $test
+
+    $test
 }
 
 <#
@@ -218,29 +225,31 @@ function ConvertTo-SpecialChars {
         [ValidateNotNullOrEmpty()]
         [string]$string
     )
+
     $specialChars = @{
-        '`n' = "`n"
+        '`n'  = "`n"
         '\\n' = "`n"
-        '`r' = "`r"
+        '`r'  = "`r"
         '\\r' = "`r"
-        '`t' = "`t"
+        '`t'  = "`t"
         '\\t' = "`t"
     }
+
     foreach ($char in $specialChars.Keys) {
         $string = $string -replace ($char,$specialChars[$char])
     }
-    return $string
+
+    $string
 }
 ```
 
 ### Implementing the methods
 
-The `Get()`, `Set()`, and `Test()` methods are analogous to the `Get-TargetResource`,
+The **Get**, **Set**, and **Test** methods are analogous to the `Get-TargetResource`,
 `Set-TargetResource`, and `Test-TargetResource` functions in a script resource.
 
-As a best practice, minimize the amount of code within the class implementation. Instead,
-move the majority of your code our to public functions in the module, which can then
-be independently tested.
+It is best practice to minimize the amount of code within the class implementation. Instead, move
+the majority of your code into exported module functions, which you can test independantly.
 
 ```powershell
 <#
@@ -309,6 +318,7 @@ function Get-File {
 
         [String]$content
     )
+
     $fileContent        = [reason]::new()
     $fileContent.code   = 'file:file:content'
 
@@ -317,32 +327,41 @@ function Get-File {
 
     $ensureReturn = 'Absent'
 
-    $fileExists = Test-path $path -ErrorAction SilentlyContinue
+    $fileExists = Test-Path -Path $path -ErrorAction SilentlyContinue
 
-    if ($true -eq $fileExists) {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file exists at path: $path"
+    if ($fileExists) {
+        $filePresent.phrase     = @(
+            "The file was expected to be: $ensure"
+            "The file exists at path: $path"
+        ) -join "`n"
         
         $existingFileContent    = Get-Content $path -Raw
+
         if ([string]::IsNullOrEmpty($existingFileContent)) {
             $existingFileContent = ''
         }
 
-        if ($false -eq ([string]::IsNullOrEmpty($content))) {
+        if (![string]::IsNullOrEmpty($content)) {
             $content = $content | ConvertTo-SpecialChars
         }
 
-        $fileContent.phrase     = "The file was expected to contain: $content`nThe file contained: $existingFileContent"
+        $fileContent.phrase     = @(
+            "The file was expected to contain: $content"
+            "The file contained: $existingFileContent"
+        ) -join "`n"
 
         if ($content -eq $existingFileContent) {
             $ensureReturn = 'Present'
         }
-    }
-    else {
-        $filePresent.phrase     = "The file was expected to be: $ensure`nThe file does not exist at path: $path"
+    } else {
+        $filePresent.phrase     = @(
+            "The file was expected to be: $ensure"
+            "The file does not exist at path: $path"
+        ) -join "`n"
         $path = 'file not found'
     }
 
-    return @{
+    @{
         ensure  = $ensureReturn
         path    = $path
         content = $existingFileContent
@@ -360,7 +379,9 @@ function Set-File {
 
         [String]$content
     )
+
     Remove-Item $path -Force -ErrorAction SilentlyContinue
+
     if ($ensure -eq "Present") {
         New-Item $path -ItemType File -Force
         if ([ValidateNotNullOrEmpty()]$content) {
@@ -379,12 +400,14 @@ function Test-File {
 
         [String]$content
     )
+
     $test = $false
     $get = Get-File @PSBoundParameters
     
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
+
     return $test
 }
 
@@ -399,11 +422,11 @@ function ConvertTo-SpecialChars {
         [string]$string
     )
     $specialChars = @{
-        '`n' = "`n"
+        '`n'  = "`n"
         '\\n' = "`n"
-        '`r' = "`r"
+        '`r'  = "`r"
         '\\r' = "`r"
-        '`t' = "`t"
+        '`t'  = "`t"
         '\\t' = "`t"
     }
     foreach ($char in $specialChars.Keys) {
@@ -501,9 +524,8 @@ class NewFile {
 
 ## Create a manifest
 
-To make a class-based resource available to the DSC engine, you must include a
-`DscResourcesToExport` statement in the manifest file that instructs the module to export the
-resource. Our manifest looks like this:
+To make a class-based resource available, you must include a `DscResourcesToExport` statement in the
+manifest file that instructs the module to export the resource. Our manifest looks like this:
 
 ```powershell
 @{
@@ -572,16 +594,15 @@ whether the file at `/tmp/test.txt` exists and if the contents match the string 
 property 'Content'. If not, the entire file is written.
 
 ```powershell
-Configuration MyConfig
-{
+configuration MyConfig {
     Import-DSCResource -module NewFile
-    NewFile testFile
-    {
+    NewFile testFile {
         Path = "/tmp/test.txt"
         Content = "DSC Rocks!"
         Ensure = "Present"
     }
 }
+
 MyConfig
 ```
 
@@ -590,28 +611,18 @@ MyConfig
 A module can define multiple class-based DSC resources. You just need to declare all classes in
 the same `.psm1` file and include each name in the `.psd1` manifest.
 
-   ```
-   $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-        |- MyDscResource (folder)
-           |- MyDscResource.psm1
-              MyDscResource.psd1
-   ```
-
-
-### Access the user context
-
-To access the user context from within a custom resource, you can use the automatic variable
-`$global:PsDscContext`.
-
-For example the following code would write the user context under which the resource is running to
-the verbose output stream:
-
-```powershell
-if (PsDscContext.RunAsUser) {
-    Write-Verbose "User: $global:PsDscContext.RunAsUser";
-}
+```text
+$env:ProgramFiles\PowerShell\Modules (folder)
+    |- MyDscResource (folder)
+        |- MyDscResource.psm1
+            MyDscResource.psd1
 ```
 
 ## See Also
 
-[Build Custom Windows PowerShell Desired State Configuration Resources](authoringResource.md)
+- [Build Custom Windows PowerShell Desired State Configuration Resources][1]
+
+<!-- Reference Links -->
+
+[1]: authoringResource.md
+[2]: /dotnet/api/system.datetime

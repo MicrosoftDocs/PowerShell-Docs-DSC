@@ -1,8 +1,10 @@
 ---
-ms.date: 07/08/2020
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Writing a single-instance DSC resource (best practice)
-description: This article describes a best practice for defining a DSC resource that allows only a single instance in a configuration.
+description: >
+  This article describes a best practice for defining a DSC resource that allows only a single
+  instance in a configuration.
 ---
 
 # Writing a single-instance DSC resource (best practice)
@@ -13,12 +15,12 @@ description: This article describes a best practice for defining a DSC resource 
 > change in the future.
 
 There are situations where you don't want to allow a resource to be used multiple times in a
-configuration. For example, in a previous implementation of the
-[xTimeZone](https://github.com/PowerShell/xTimeZone) resource, a configuration could call the
-resource multiple times, setting the time zone to a different setting in each resource block:
+configuration. For example, in a previous implementation of the [xTimeZone][1] resource, a
+configuration could call the resource multiple times, setting the time zone to a different setting
+in each resource block:
 
 ```powershell
-Configuration SetTimeZone {
+configuration SetTimeZone {
     Param (
         [String[]]$NodeName = $env:COMPUTERNAME
     )
@@ -37,18 +39,17 @@ Configuration SetTimeZone {
 }
 ```
 
-This is because of the way DSC resource keys work. A resource must have at least one key property. A
-resource instance is considered unique if the combination of the values of all of its key properties
-is unique. In its previous implementation, the [xTimeZone](https://github.com/PowerShell/xTimeZone)
-resource had only one property--**TimeZone**, which was required to be a key. Because of this, a
-configuration such as the one above would compile and run without warning. Each of the **xTimeZone**
-resource blocks is considered unique. This would cause the configuration to be repeatedly applied to
-the node, cycling the timezone back and forth.
+This is because of the way DSC resource keys work. A resource must have at least one **Key**
+property. A resource instance is considered unique if the combination of the values of all of its
+**Key** properties is unique. In its previous implementation, the [xTimeZone][1] resource had only
+one property--**TimeZone**, which was a **Key**. Because of this, a configuration such as the one
+above compiled and ran without warning. Each of the **xTimeZone** resource blocks is considered
+unique. This caused the configuration to repeatedly apply to the node, cycling the timezone back and
+forth.
 
-To ensure that a configuration could set the time zone for a target node only once, the resource was
-updated to add a second property, **IsSingleInstance**, that became the key property. The
-**IsSingleInstance** was limited to a single value, "Yes" by using a **ValueMap**. The old MOF
-schema for the resource was:
+To ensure that a Configuration could set the time zone for a target node only once, the resource was
+updated to add a second property, **IsSingleInstance**, that became the **Key** property. The
+**IsSingleInstance** was limited to a single value, `Yes`. The old MOF schema for the resource was:
 
 ```powershell
 [ClassVersion("1.0.0.0"), FriendlyName("xTimeZone")]
@@ -69,8 +70,7 @@ class xTimeZone : OMI_BaseResource
 };
 ```
 
-The resource script was also updated to use the new parameter. Here how the resource script was
-changed:
+The resource script was updated to use the new parameter. Here's how the resource script changed:
 
 ```powershell
 function Get-TargetResource
@@ -204,7 +204,7 @@ Export-ModuleMember -Function *-TargetResource
 
 Notice that the **TimeZone** property is no longer a key. Now, if a configuration attempts to set
 the time zone twice (by using two different **xTimeZone** blocks with different **TimeZone**
-values), attempting to compile the configuration will cause an error:
+values), attempting to compile the configuration causes an error:
 
 ```Output
 Write-Error:
@@ -214,3 +214,7 @@ Line |
      | A conflict was detected between resources '[xTimeZone]TimeZoneExample (C:\code\dsc\DscExample.ps1::9::10::xTimeZone)' and '[xTimeZone]TimeZoneExample2 (C:\code\dsc\DscExample.ps1::14::10::xTimeZone)' in node 'DESKTOP-KFLGVVP'. Resources have identical key properties but there are differences in the following non-key properties: 'TimeZone'. Values 'Eastern Standard Time' don't match values 'Pacific Standard Time'. Please update these property values so that they are identical in both cases.
 InvalidOperation: Errors occurred while processing configuration 'SetTimeZone'.
 ```
+
+<!-- Reference Links -->
+
+[1]: https://github.com/PowerShell/xTimeZone

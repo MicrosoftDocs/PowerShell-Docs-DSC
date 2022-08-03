@@ -1,8 +1,9 @@
 ---
-ms.date:  06/12/2017
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Debugging DSC resources
-description: This article shows you how to enable debugging for DSC configurations.
+description: >
+  This article shows you how to debugging for DSC resources directly and with Invoke-DscResource.
 ---
 
 # Debugging DSC resources
@@ -29,5 +30,10 @@ There are two contexts for debugging DSC resources. Debugging the behavior of DS
 
 ## See Also
 
-- [Writing a custom DSC resource with MOF](../resources/authoringResourceMOF.md)
-- [Writing a custom DSC resource with PowerShell classes](../resources/authoringResourceClass.md)
+- [Writing a custom DSC resource with MOF][1]
+- [Writing a custom DSC resource with PowerShell classes][2]
+
+<!-- Reference Links -->
+
+[1]: ../resources/authoringResourceMOF.md
+[2]: ../resources/authoringResourceClass.md
