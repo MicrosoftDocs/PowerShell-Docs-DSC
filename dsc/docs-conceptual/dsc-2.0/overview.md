@@ -1,24 +1,22 @@
 ---
-description: Overview of the Desired State Configuration 2.0.
-ms.date: 02/07/2022
+ms.date: 08/01/2022
 title:  Desired State Configuration 2.0
+description: >
+  Overview of Desired State Configuration 2.0
 ---
 # Desired State Configuration 2.0
 
-DSC 2.0 is the version of DSC that shipped in PowerShell 7.0.
-
-With the release of PowerShell 7.2, the PSDesiredStateConfiguration module is no longer included
+With the release of PowerShell 7.2, the **PSDesiredStateConfiguration** module is no longer included
 in the PowerShell package. Separating DSC into its own module allows us to invest and develop DSC
 independent of PowerShell and reduces the size of the PowerShell package. Users of DSC can enjoy
 the benefit of upgrading DSC without the need to upgrade PowerShell, accelerating time to deployment
 of new DSC features. Users that want to continue using DSC v2 can download
-PSDesiredStateConfiguration 2.0.5 from the PowerShell Gallery.
+**PSDesiredStateConfiguration** 2.0.5 from the PowerShell Gallery.
 
 Users working with non-Windows environments can expect cross-platform features in DSC v3. For more
-information about the future of DSC, see the
-[PowerShell Team blog](https://devblogs.microsoft.com/powershell/powershell-team-2021-investments/#dsc-for-powershell-7).
+information about the future of DSC, see the [PowerShell Team blog][1].
 
-To install PSDesiredStateConfiguration 2.0.5 from the PowerShell Gallery:
+To install **PSDesiredStateConfiguration** 2.0.5 from the PowerShell Gallery:
 
 ```powershell
 Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumVersion 2.99
@@ -30,9 +28,9 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 
 ## Use Case for DSC 2.0
 
-DSC 2.0 is supported for use with [Azure guest configuration][guest-config]. Other scenarios, such
-as directly calling DSC Resources with `Invoke-DscResource` may be functional but are not the
-primary intended use of this version.
+DSC 2.0 is supported for use with [Azure guest configuration][2]. Other scenarios, such as directly
+calling DSC Resources with `Invoke-DscResource` may be functional but are not the primary intended
+use of this version.
 
 If you are not using Azure guest configuration, you should use DSC 1.1.
 
@@ -73,4 +71,7 @@ The following features are not supported:
 - Cross-node dependencies (the **WaitFor\*** DSC Resources)
 - Rebooting behavior for DSC Resources
 
-[guest-config]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/guest-configuration
+<!-- Reference Links -->
+
+[1]: https://devblogs.microsoft.com/powershell/powershell-team-2021-investments/#dsc-for-powershell-7
+[2]: /azure/governance/policy/concepts/guest-configuration

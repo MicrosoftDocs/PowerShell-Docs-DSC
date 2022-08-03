@@ -1,21 +1,24 @@
 ---
-ms.date:  06/12/2017
+ms.date: 07/25/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Nesting configurations
-description: DSC allows you to create composite configurations by nesting a configuration inside of another configuration.
+title:  Nesting Configurations
+description: >
+  DSC allows you to create composite configurations by nesting a configuration inside of another
+  configuration.
 ---
 
-# Nesting DSC configurations
+# Nesting DSC Configurations
 
-A nested Configuration (also called composite configuration) is a configuration that's called
-within another configuration as if it were a resource. Both configurations must be defined in the
+> Applies To: PowerShell 7.2
+
+A composite Configuration (also called nested configuration) is a Configuration that's called
+within another configuration as if it were a resource. Both Configurations must be defined in the
 same file.
 
 Let's look at a minimal example:
 
 ```powershell
-Configuration RegistryStringValue
-{
+configuration RegistryStringValue {
     param (
         [Parameter(Mandatory = $true)]
         [String] $Name,
@@ -24,10 +27,10 @@ Configuration RegistryStringValue
         [String] $Value
     )
 
-    Import-DscResource -ModuleName PSDscResources
+    # It's best practice to explicitly import required resources and modules.
+    Import-DSCResource -Module PSDscResources
 
-    Registry RegistryTest
-    {
+    Registry RegistryTest {
         Key       = 'HKEY_CURRENT_USER\DscTest'
         ValueName = $Name
         Ensure    = 'Present'
@@ -36,12 +39,9 @@ Configuration RegistryStringValue
     }
 }
 
-Configuration NestedRegistryStringValue
-{
-    Node localhost
-    {
-        RegistryStringValue NestedConfig
-        {
+configuration NestedRegistryStringValue {
+    Node localhost {
+        RegistryStringValue NestedConfig {
             Name  = 'Foo'
             Value = 'Bar'
         }

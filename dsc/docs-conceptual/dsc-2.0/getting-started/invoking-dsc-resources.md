@@ -1,5 +1,5 @@
 ---
-ms.date: 07/06/2022
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Get started with invoking DSC Resources
 description: >
@@ -12,9 +12,10 @@ description: >
 This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
 `Invoke-DscResource` cmdlet.
 
-Starting with version 2, DSC does not support applying configuration documents directly or run in
-Windows PowerShell. Instead, you must use the [Invoke-DscResource][cmdlet-Invoke-DscResource] cmdlet
-to call the methods of a DSC resource to inspect or enforce the state of a resources on a computer.
+Starting with version 2, DSC does not support applying configuration documents directly or running
+in Windows PowerShell. Instead, you must use the [Invoke-DscResource][1]
+cmdlet in PowerShell 7.2 or later to call the methods of a DSC resource to inspect or enforce the
+state of a resources on a computer.
 
 ## Installing DSC
 
@@ -30,8 +31,8 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 
 ## Install a module containing DSC resources
 
-DSC v2 does not include any DSC resources. You can install modules with DSC
-resources from external sources, such as the [PowerShell Gallery][psgallery].
+DSC v2 does not include any DSC resources. You can install modules with DSC resources from external
+sources, such as the [PowerShell Gallery][2].
 
 You can search for DSC resources with the `Find-DscResource` cmdlet. To see the list of modules with
 DSC resources, use the following command:
@@ -41,7 +42,7 @@ Find-DscResource -Repository PSGallery | Select-Object -Property ModuleName, Ver
 ```
 
 For more information on searching for DSC resources in a PowerShell repository, see
-[Find-DscResource][cmdlet-Find-DscResource].
+[Find-DscResource][3].
 
 To install the latest version of the PSDscResources module, use the following command:
 
@@ -110,15 +111,15 @@ Invoke-DscResource -Name Environment -Module PSDscResources -Method Get -Propert
 
 ## See Also
 
-- [Writing a custom DSC resource with MOF][writing-resource-mof]
-- [Writing a custom DSC resource with PowerShell classes][writing-resource-class]
-- [Debugging DSC resources][degugging-dsc]
+- [Writing a custom DSC resource with MOF][3]
+- [Writing a custom DSC resource with PowerShell classes][4]
+- [Debugging DSC resources][5]
 
 <!-- Reference Links -->
 
-[cmdlet-Find-DscResource]:/powershell/module/powershellget/find-dscresource
-[cmdlet-Invoke-DscResource]: /powershell/module/PSDesiredStateConfiguration/Invoke-DscResource
-[degugging-dsc]: ../troubleshooting/debugResource.md
-[psgallery]: https://www.powershellgallery.com/
-[writing-resource-class]: ../resources/authoringResourceClass.md
-[writing-resource-mof]: ../resources/authoringResourceMOF.md
+[1]: /powershell/module/PSDesiredStateConfiguration/Invoke-DscResource
+[2]: https://www.powershellgallery.com/
+[3]:/powershell/module/powershellget/find-dscresource
+[4]: ../resources/authoringResourceMOF.md
+[5]: ../resources/authoringResourceClass.md
+[6]: ../troubleshooting/debugResource.md

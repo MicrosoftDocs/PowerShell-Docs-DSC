@@ -1,13 +1,14 @@
 ---
-ms.date: 07/08/2020
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
-title: Composite resources - Using a DSC configuration as a resource
-description: This article describes how to create and use a composite resource.
+title: Composite resources - Using a DSC Configuration as a resource
+description: >
+  This article describes how to create and use a composite resource.
 ---
 
 # Composite resources: Using a DSC configuration as a resource
 
-> Applies To: PowerShell 7.0
+> Applies To: PowerShell 7.2
 
 In real-world situations, configurations can become long and complex, calling many different
 resources and setting a vast number of properties. To help address this complexity, you can use a
@@ -16,7 +17,7 @@ configurations. This is called a composite resource. A composite resource is a D
 that takes parameters. The parameters of the configuration act as the properties of the resource.
 The configuration is saved as a file with a `.schema.psm1` extension. It takes the place of both the
 MOF schema, and the resource script in a typical DSC resource. For more information about DSC
-resources, see [Windows PowerShell Desired State Configuration Resources](resources.md).
+resources, see [Windows PowerShell Desired State Configuration Resources][1].
 
 ## Creating the composite resource
 
@@ -25,10 +26,8 @@ virtual machines. Instead of specifying the values to be set in configuration bl
 configuration takes in parameters that are then used in the configuration blocks.
 
 ```powershell
-Configuration xVirtualMachine
-{
-    param
-    (
+configuration xVirtualMachine {
+    param(
         # Name of VMs
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -66,79 +65,75 @@ Configuration xVirtualMachine
     )
 
     # Import the module that defines custom resources
-    Import-DscResource -Module xComputerManagement,xHyper-V
+    Import-DscResource -Module xComputerManagement, xHyper-V
 
     # Install the Hyper-V role
-    WindowsFeature HyperV
-    {
-        Ensure = "Present"
-        Name = "Hyper-V"
+    WindowsFeature HyperV {
+        Ensure = 'Present'
+        Name   = 'Hyper-V'
     }
 
     # Create the virtual switch
-    xVMSwitch $SwitchName
-    {
-        Ensure = "Present"
-        Name = $SwitchName
-        Type = $SwitchType
-        DependsOn = "[WindowsFeature]HyperV"
+    xVMSwitch $SwitchName {
+        Ensure    = 'Present'
+        Name      = $SwitchName
+        Type      = $SwitchType
+        DependsOn = '[WindowsFeature]HyperV'
     }
 
     # Check for Parent VHD file
-    File ParentVHDFile
-    {
-        Ensure = "Present"
+    File ParentVHDFile {
+        Ensure          = 'Present'
         DestinationPath = $VHDParentPath
-        Type = "File"
-        DependsOn = "[WindowsFeature]HyperV"
+        Type            = 'File'
+        DependsOn       = '[WindowsFeature]HyperV'
     }
 
     # Check the destination VHD folder
-    File VHDFolder
-    {
-        Ensure = "Present"
+    File VHDFolder {
+        Ensure          = 'Present'
         DestinationPath = $VHDPath
-        Type = "Directory"
-        DependsOn = "[File]ParentVHDFile"
+        Type            = 'Directory'
+        DependsOn       = '[File]ParentVHDFile'
     }
 
     # Create VM specific diff VHD
-    foreach ($Name in $VMName)
-    {
-        xVHD "VHD$Name"
-        {
-            Ensure = "Present"
-            Name = $Name
-            Path = $VHDPath
+    foreach ($Name in $VMName) {
+        xVHD "VHD$Name" {
+            Ensure     = 'Present'
+            Name       = $Name
+            Path       = $VHDPath
             ParentPath = $VHDParentPath
-            DependsOn = @("[WindowsFeature]HyperV",
-                          "[File]VHDFolder")
+            DependsOn  = @(
+                '[WindowsFeature]HyperV'
+                '[File]VHDFolder'
+            )
         }
     }
 
     # Create VM using the above VHD
-    foreach($Name in $VMName)
-    {
-        xVMHyperV "VMachine$Name"
-        {
-            Ensure = "Present"
-            Name = $Name
-            VhDPath = (Join-Path -Path $VHDPath -ChildPath $Name)
-            SwitchName = $SwitchName
+    foreach($Name in $VMName) {
+        xVMHyperV "VMachine$Name" {
+            Ensure        = 'Present'
+            Name          = $Name
+            VhdPath       = (Join-Path -Path $VHDPath -ChildPath $Name)
+            SwitchName    = $SwitchName
             StartupMemory = $VMStartupMemory
-            State = $VMState
-            MACAddress = $MACAddress
-            WaitForIP = $true
-            DependsOn = @("[WindowsFeature]HyperV",
-                          "[xVHD]VHD$Name")
+            State         = $VMState
+            MACAddress    = $MACAddress
+            WaitForIP     = $true
+            DependsOn     = @(
+                "[WindowsFeature]HyperV"
+                "[xVHD]VHD$Name"
+            )
         }
     }
 }
 ```
 
 > [!NOTE]
-> DSC doesn't currently support placing composite resources or nested configurations within a
-> composite resource.
+> DSC doesn't support placing composite resources or nested configurations within a composite
+> resource.
 
 ### Saving the configuration as a composite resource
 
@@ -157,7 +152,7 @@ RootModule = 'xVirtualMachine.schema.psm1'
 
 When you are done, the folder structure should be as follows.
 
-```
+```text
 $env: psmodulepath
     |- MyDscResources
         |- MyDscResources.psd1
@@ -168,38 +163,33 @@ $env: psmodulepath
 ```
 
 The resource is now discoverable by using the `Get-DscResource` cmdlet, and its properties are
-discoverable by either that cmdlet or by using <kbd>Ctrl</kbd>+<kbd>Space</kbd> autocomplete in the
-Windows PowerShell ISE.
+discoverable by either that cmdlet or by using <kbd>Ctrl</kbd>+<kbd>Space</kbd> autocomplete in VS
+Code.
 
 ## Using the composite resource
 
 Next we create a configuration that calls the composite resource. This configuration calls the
-xVirtualMachine composite resource to create a virtual machine, and then calls the **xComputer**
+`xVirtualMachine` composite resource to create a virtual machine, and then calls the `xComputer`
 resource to rename it.
 
 ```powershell
-configuration RenameVM
-{
+configuration RenameVM {
     Import-DscResource -Module xVirtualMachine
-    Node localhost
-    {
-        xVirtualMachine VM
-        {
-            VMName = "Test"
-            SwitchName = "Internal"
-            SwitchType = "Internal"
-            VhdParentPath = "C:\Demo\VHD\RTM.vhd"
-            VHDPath = "C:\Demo\VHD"
+    Node localhost {
+        xVirtualMachine VM {
+            VMName          = "Test"
+            SwitchName      = "Internal"
+            SwitchType      = "Internal"
+            VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
+            VHDPath         = "C:\Demo\VHD"
             VMStartupMemory = 1024MB
-            VMState = "Running"
+            VMState         = "Running"
         }
     }
 
-    Node "192.168.10.1"
-    {
-        xComputer Name
-        {
-            Name = "SQL01"
+    Node "192.168.10.1" {
+        xComputer Name {
+            Name       = "SQL01"
             DomainName = "fourthcoffee.com"
         }
     }
@@ -207,31 +197,36 @@ configuration RenameVM
 ```
 
 You can also use this resource to create multiple VMs by passing in an array of VM names to the
-xVirtualMachine resource.
+`xVirtualMachine` resource.
 
 ```PowerShell
-Configuration MultipleVms
-{
+configuration MultipleVms {
     Import-DscResource -Module xVirtualMachine
-    Node localhost
-    {
-        xVirtualMachine VMs
-        {
-            VMName = "IIS01", "SQL01", "SQL02"
-            SwitchName = "Internal"
-            SwitchType = "Internal"
-            VhdParentPath = "C:\Demo\VHD\RTM.vhd"
-            VHDPath = "C:\Demo\VHD"
+    Node localhost {
+        xVirtualMachine VMs {
+            VMName          = @(
+                "IIS01"
+                "SQL01"
+                "SQL02"
+            )
+            SwitchName      = "Internal"
+            SwitchType      = "Internal"
+            VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
+            VHDPath         = "C:\Demo\VHD"
             VMStartupMemory = 1024MB
-            VMState = "Running"
+            VMState         = "Running"
         }
     }
 }
 ```
 
-## See Also
+### See also
 
-### Concepts
+- [Writing a custom DSC resource with MOF][2]
+- [Get Started with Windows PowerShell Desired State Configuration][3]
 
-- [Writing a custom DSC resource with MOF](authoringResourceMOF.md)
-- [Get Started with Windows PowerShell Desired State Configuration](../overview.md)
+<!-- Reference Links -->
+
+[1]: resources.md
+[2]: authoringResourceMOF.md
+[3]: ../overview.md

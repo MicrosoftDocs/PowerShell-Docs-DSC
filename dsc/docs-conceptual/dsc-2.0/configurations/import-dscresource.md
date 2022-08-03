@@ -1,35 +1,38 @@
 ---
-ms.date: 07/24/2021
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Using Import-DSCResource
-description: Import-DSCResource is a dynamic keyword that can only be used inside a Configuration script block. It is used to import the resource modules needed in your Configuration.
+description: >
+  Import-DSCResource is a dynamic keyword that can only be used inside a Configuration script block.
+  It is used to import the resource modules needed in your Configuration.
 ---
 
 # Using Import-DSCResource
 
-`Import-DSCResource` is a dynamic keyword, which can only be used inside a Configuration script
+`Import-DSCResource` is a dynamic keyword, which can only be used inside a `configuration` script
 block to import any resources needed in your Configuration. Resources under `$PSHOME` are imported
-automatically, but it is still considered best practice to explicitly import all resources used in
-your [Configuration](Configurations.md).
+automatically, but it is best practice to explicitly import all resources used in your
+[Configuration][1].
 
 The syntax for `Import-DSCResource` is shown below. When specifying modules by name, it is a
 requirement to list each on a new line.
 
 ```syntax
-Import-DscResource [-Name <ResourceName(s)>] [-ModuleName <ModuleName>] [-ModuleVersion <ModuleVersion>]
+Import-DscResource [-Name <ResourceName(s)>]
+ [-ModuleName <ModuleName>]
+ [-ModuleVersion <ModuleVersion>]
 ```
 
 Parameters
 
-- `-Name` - The DSC resource name(s) that you must import. If the module name is specified, the
-  command searches for these DSC resources within this module; otherwise the command searches the
+- **Name** - The DSC resource name(s) that you must import. If the module name is specified, the
+  command searches for these DSC resources within that module; otherwise the command searches the
   DSC resources in all DSC resource paths. Wildcards are supported.
-- `-ModuleName` - The module name, or module specification. If you specify resources to import from
+- **ModuleName** - The module name or module specification. If you specify resources to import from
   a module, the command will try to import only those resources. If you specify the module only, the
   command imports all the DSC resources in the module.
-- `-ModuleVersion` - Beginning in PowerShell 5.0, you can specify which version of a module a
-  configuration should use. For more information, see
-  [Import a specific version of an installed resource](sxsresource.md).
+- **ModuleVersion** - You can specify which version of a module a configuration should use. For more
+  information, see [Import a specific version of an installed resource][2].
 
 ```powershell
 Import-DscResource -ModuleName xActiveDirectory
@@ -38,8 +41,7 @@ Import-DscResource -ModuleName xActiveDirectory
 ## Example: Use Import-DSCResource within a configuration
 
 ```powershell
-Configuration MSDSCConfiguration
-{
+configuration MSDSCConfiguration {
     # Search for and imports Service, File, and Registry from the module xPSDesiredStateConfiguration.
     Import-DSCResource -ModuleName xPSDesiredStateConfiguration -Name Service, File, Registry
 
@@ -60,64 +62,61 @@ Configuration MSDSCConfiguration
 ```
 
 > [!NOTE]
-> Specifying multiple values for Resource names and modules names in same command are not supported.
-> It can have non-deterministic behavior about which resource to load from which module in case same
-> resource exists in multiple modules. Below command will result in error during compilation.
+> Specifying multiple values for resource names and modules names in same command is not supported.
+> It can have non-deterministic behavior about which resource to load from which module if the same
+> resource exists in multiple modules. The command below returns an in error during compilation.
 >
 > ```powershell
 > Import-DscResource -Name UserConfigProvider*,TestLogger1 -ModuleName UserConfigProv,PsModuleForTestLogger
 > ```
 
-Things to consider when using only the Name parameter:
+Things to consider when using only the **Name** parameter:
 
 - It is a resource-intensive operation depending on the number of modules installed on machine.
-- It will load the first resource found with the given name. In the case where there is more than
-  one resource with same name installed, it could load the wrong resource.
+- It loads the first resource found with the given name. If there is more than one resource with
+  same name installed, it could load the wrong resource.
 
 The recommended usage is to specify **ModuleName** with the **Name** parameter, as described below.
 
 This usage has the following benefits:
 
 - It reduces the performance impact by limiting the search scope for the specified resource.
-- It explicitly defines the module defining the resource, ensuring the correct resource is loaded.
+- It explicitly defines the module providing the resource, ensuring the correct resource is loaded.
 
 > [!NOTE]
 > DSC resources can have multiple versions, and versions can be installed on a computer
 > side-by-side. This is implemented by having multiple versions of a resource module that are
 > contained in the same module folder. For more information, see
-> [Using resources with multiple versions](sxsresource.md).
+> [Using resources with multiple versions][2].
 
-## Intellisense with Import-DSCResource
+## IntelliSense with Import-DSCResource
 
 When authoring the DSC configuration in VS Code, PowerShell provides IntelliSense for resources and
-resource properties. Resource definitions under the `$pshome` module path are loaded automatically.
+resource properties. Resource definitions under the `$PSHOME` module path are loaded automatically.
 When you import resources using the `Import-DSCResource` keyword, the specified resource definitions
-are added and Intellisense is expanded to include the imported resource's schema.
+are added and IntelliSense is expanded to include the imported resources' schemas.
 
-![Intellisense in the ISE for a DSC Resource](media/import-dscresource/resource-intellisense.png)
+![IntelliSense in VS Code for a DSC Resource][3]
 
 When compiling the Configuration, PowerShell uses the imported resource definitions to validate all
-resource blocks in the configuration. Each resource block is validated, using the resource's schema
-definition, for the following rules.
+resource blocks in the Configuration. Each resource block is validated by the resource's schema
+definition, for the following rules:
 
-- Only properties defined in schema are used.
+- Only properties defined in schema are specified.
 - The data types for each property are correct.
 - Keys properties are specified.
-- No read-only property is used.
-- Validation on value maps to valid types.
+- No read-only property is specified.
 
 Consider the following configuration:
 
 ```powershell
-Configuration SchemaValidationInCorrectEnumValue
-{
+configuration SchemaValidationInCorrectEnumValue {
     Import-DSCResource -Name WindowsFeature -Module PSDscResources
-    Node localhost
-    {
-        WindowsFeature ROLE1
-        {
-            Name = "Telnet-Client"
-            Ensure = "Invalid"
+
+    Node localhost {
+        WindowsFeature ROLE1 {
+            Name   = 'Telnet-Client'
+            Ensure = 'Invalid'
         }
     }
 }
@@ -137,11 +136,11 @@ Line |
 InvalidOperation: Errors occurred while processing configuration 'SchemaValidationInCorrectEnumValue'.
 ```
 
-Intellisense and schema validation allow you to catch more errors during parse and compilation time,
+IntelliSense and schema validation allow you to catch more errors during parse and compilation time,
 avoiding future complications.
 
 > [!NOTE]
-> Each DSC resource can have a name, and a **FriendlyName** defined by the resource's schema. Below
+> Each DSC resource can have a name and a **FriendlyName** defined by the resource's schema. Below
 > are the first two lines of "MSFT_ServiceResource.shema.mof".
 >
 > ```syntax
@@ -154,4 +153,11 @@ avoiding future complications.
 
 ## See also
 
-- [Resources](../resources/resources.md)
+- [Resources][4]
+
+<!-- Reference Links -->
+
+[1]: Configurations.md
+[2]: sxsresource.md
+[3]: media/import-dscresource/resource-intellisense.png
+[4]: ../resources/resources.md
