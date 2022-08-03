@@ -1,20 +1,21 @@
 ---
-ms.date: 07/08/2020
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Get-Test-Set
-description: This article illustrates how to implement the Get, Test, and Set methods in a DSC Configuration.
+description: >
+  This article illustrates how to implement the Get, Test, and Set methods in a DSC Configuration.
 ---
 
 # Get-Test-Set
 
->Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
+> Applies To: PowerShell 7.2
 
-PowerShell Desired State Configuration is constructed around a **Get**, **Test**, and **Set**
-process. DSC [resources](resources.md) each contains methods to complete each of these operations.
-In a [Configuration](../configurations/configurations.md), you define resource blocks to fill in
-keys that become parameters for a resource's **Get**, **Test**, and **Set** methods.
+DSC is constructed around a **Get**, **Test**, and **Set** process. DSC [resources][1] each
+contains methods to complete each of these operations. In a [Configuration][2], you define
+resource blocks to fill in keys that become parameters for a resource's **Get**, **Test**, and
+**Set** methods.
 
-This is the syntax for a **Service** resource block. The **Service** resource configures Windows
+This is the syntax for a `Service` resource block. The `Service` resource configures Windows
 services.
 
 ```syntax
@@ -35,15 +36,14 @@ Service [String] #ResourceName
 }
 ```
 
-The **Get**, **Test**, and **Set** methods of the **Service** resource will have parameter blocks
-that accept these values.
+The **Get**, **Test**, and **Set** methods of the `Service` resource have parameter blocks that
+accept these values.
 
 ```powershell
-param
-(
+param(
     [parameter(Mandatory = $true)]
-    [ValidateNotNullOrEmpty()]
     [System.String]
+    [ValidateNotNullOrEmpty()]
     $Name,
 
     [System.String]
@@ -88,17 +88,19 @@ param
 > The language and method used to define the resource determines how the **Get**, **Test**, and
 > **Set** methods will be defined.
 
-Because the **Service** resource only has one required key (`Name`), a **Service** block resource
+Because the `Service` resource only has one required key (**Name**), invoking the `Service` resource
 could be as simple as this:
 
 ```powershell
-Configuration TestConfig
-{
-    Import-DSCResource -Name Service
-    Node localhost
-    {
-        Service "MyService"
-        {
+Invoke-DscResource -Name Service -Module PSDscResources -Property @{
+    Name = 'Spooler'
+}
+
+```powershell
+configuration TestConfig {
+    Import-DSCResource -Name Service -Module PSDscResources
+    Node localhost {
+        Service "MyService" {
             Name = "Spooler"
         }
     }
@@ -106,9 +108,9 @@ Configuration TestConfig
 ```
 
 When you compile the Configuration above, the values you specify for a key are stored in the `.mof`
-file that is generated. For more information, see [MOF](/windows/desktop/wmisdk/managed-object-format--mof-).
+file that is generated. For more information, see [MOF][3].
 
-```
+```text
 instance of MSFT_ServiceResource as $MSFT_ServiceResource1ref
 {
 SourceInfo = "::5::1::Service";
@@ -123,19 +125,14 @@ ModuleVersion = "1.0";
 };
 ```
 
-When applied, the Local Configuration Manager (LCM) will read the value "Spooler" from the `.mof`
-file, and pass it to the **Name** parameter of the **Get**, **Test**, and **Set** methods for the
-"MyService" instance of the **Service** resource.
-
 ## Get
 
 The **Get** method of a resource, retrieves the state of the resource as it is configured on the
-machine. This state is returned as a
-[hashtable](/powershell/module/microsoft.powershell.core/about/about_hash_tables). The keys of the
-**hashtable** will be the configurable values, or parameters, the resource accepts.
+machine. This state is returned as a [hashtable][4]. The keys of the **hashtable** are the
+resource's properties.
 
-This is sample output from calling `Invoke-DscResource` with the **Get** method for a **Service**
-resource that configures the "Spooler" service.
+This is sample output from calling `Invoke-DscResource` with the **Get** method for the `Service`
+resource that configures the `Spooler` service.
 
 ```powershell
 $DscGetParameters = @{
@@ -211,8 +208,8 @@ The **Test** method of a resource determines if the target node is currently com
 resource's _desired state_. The **Test** method returns `$true` or `$false` only to indicate whether
 the Node is compliant.
 
-This is sample output from calling `Invoke-DscResource` with the **Test** method for a **Service**
-resource that configures the "Spooler" service and expects the service to be `Stopped`.
+This is sample output from calling `Invoke-DscResource` with the **Test** method for a `Service`
+resource that configures the `Spooler` service and expects the service to be `Stopped`.
 
 ```powershell
 $DscTestParameters = @{
@@ -235,7 +232,7 @@ InDesiredState
 
 > [!IMPORTANT]
 > Notice that instead of returning a **Boolean** value directly, it returned an object with the
-> **InDesiredState** property. While the DSC resource's **Test** method returns a **Boolean**,
+> **InDesiredState** property. While the resource's **Test** method returns a **Boolean**,
 > `Invoke-DscResource -Method Test` always returns an **InvokeDscResourceTestResult** object.
 
 ## Set
@@ -253,10 +250,10 @@ resource that configures the "Spooler" service and enforces the service to be `S
 
 ```powershell
 $DscParameters = @{
-    Name = 'Service'
+    Name       = 'Service'
     ModuleName = 'PSDscResources'
-    Property = @{
-        Name = 'Spooler'
+    Property   = @{
+        Name  = 'Spooler'
         State = 'Stopped'
     }
 }
@@ -284,4 +281,12 @@ reboot is required.
 
 ## See also
 
-- [Azure Automation DSC Overview](/azure/automation/automation-dsc-overview)
+- [Azure Automation DSC Overview][5]
+
+<!-- Reference Links -->
+
+[1]: resources.md
+[2]: ../configurations/configurations.md
+[3]: /windows/desktop/wmisdk/managed-object-format--mof-
+[4]: /powershell/module/microsoft.powershell.core/about/about_hash_tables
+[5]: /azure/automation/automation-dsc-overview

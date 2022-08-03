@@ -1,30 +1,31 @@
 ---
-ms.date: 07/08/2020
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Writing a custom DSC resource with MOF
-description: This article defines the schema for a DSC custom resource in a MOF file and implements the resource in a PowerShell script file.
+description: >
+  This article defines the schema for a DSC custom resource in a MOF file and implements the
+  resource in a PowerShell script file.
 ---
 
 # Writing a custom DSC resource with MOF
 
-> Applies To: PowerShell 7.0
+> Applies To: PowerShell 7.2
 
-In this article, we will define the schema for a Windows PowerShell Desired State Configuration
-(DSC) custom resource in a MOF file, and implement the resource in a Windows PowerShell script file.
-This custom resource is for creating and maintaining a web site.
+In this article, we will define the schema for a PowerShell Desired State Configuration (DSC) custom
+resource in a MOF file, and implement the resource in a Windows PowerShell script file. This custom
+resource is for creating and maintaining a web site.
 
 ## Creating the MOF schema
 
-The schema defines the properties of your resource that can be configured by a DSC configuration
-script.
+The schema defines the properties of your resource that a user can configure.
 
 ### Folder structure for a MOF resource
 
-To implement a DSC custom resource with a MOF schema, create the following folder structure. The MOF
-schema is defined in the file `Demo_IISWebsite.schema.mof`, and the resource script is defined in
-`Demo_IISWebsite.psm1`. Optionally, you can create a module manifest (psd1) file.
+To implement a DSC resource with a MOF schema, create the following folder structure. The MOF schema
+is defined in the file `Demo_IISWebsite.schema.mof`, and the resource script is defined in
+`Demo_IISWebsite.psm1`. Optionally, you can create a module manifest (`.psd1`) file.
 
-```
+```text
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
     |- MyDscResources (folder)
         |- DSCResources (folder)
@@ -35,15 +36,15 @@ $env:ProgramFiles\WindowsPowerShell\Modules (folder)
 ```
 
 > [!NOTE]
-> It is necessary to create a folder named DSCResources under the top-level folder, and that the
-> folder for each resource must have the same name as the resource.
+> You must create a folder named `DSCResources` under the top-level folder. The folder for each
+> resource must have the same name as the resource.
 
 ### The contents of the MOF file
 
-Following is an example MOF file that can be used for a custom website resource. To follow this
-example, save this schema to a file, and call the file `Demo_IISWebsite.schema.mof`.
+Following is an example MOF file that can be used for a website resource. To follow this example,
+save this schema to a file called `Demo_IISWebsite.schema.mof`.
 
-```
+```mof
 [ClassVersion("1.0.0"), FriendlyName("Website")]
 class Demo_IISWebsite : OMI_BaseResource
 {
@@ -60,24 +61,22 @@ class Demo_IISWebsite : OMI_BaseResource
 
 Note the following about the previous code:
 
-- `FriendlyName` defines the name you can use to refer to this custom resource in DSC configuration
-  scripts. In this example, `Website` is equivalent to the friendly name `Archive` for the built-in
-  Archive resource.
-- The class you define for your custom resource must derive from `OMI_BaseResource`.
+- **FriendlyName** defines the name you can use to refer to this resource. In this example, the
+  **FriendlyName** is `Website`.
+- Your resource's class must derive from `OMI_BaseResource`.
 - The type qualifier, `[Key]`, on a property indicates that this property will uniquely identify the
   resource instance. At least one `[Key]` property is required.
-- The `[Required]` qualifier indicates that the property is required (a value must be specified in
-  any configuration script that uses this resource).
-- The `[write]` qualifier indicates that this property is optional when using the custom resource in
-  a configuration script. The `[read]` qualifier indicates that a property cannot be set by a
+- The `[Required]` qualifier indicates that the property must be specified with a valid value when
+  invoked or used in a Configuration.
+- The `[write]` qualifier indicates that this property is optional.
+- The `[read]` qualifier indicates that a property cannot be set by a
   configuration, and is for reporting purposes only.
-- `Values` restricts the values that can be assigned to the property to the list of values defined
-  in `ValueMap`. For more information, see
-  [ValueMap and Value Qualifiers](/windows/desktop/WmiSdk/value-map).
-- Including a property called `Ensure` with values `Present` and `Absent` in your resource is
-  recommended as a way to maintain a consistent style with built-in DSC resources.
-- Name the schema file for your custom resource as follows: `classname.schema.mof`, where
-  `classname` is the identifier that follows the `class` keyword in your schema definition.
+- **Values** restricts the values that can be assigned to the property to the list of values defined
+  in the **ValueMap**. For more information, see [ValueMap and Value Qualifiers][1].
+- Including a property called **Ensure** with values `Present` and `Absent` in your resource is
+  recommended for resources that a user can add to and remove from a node.
+- Name the schema file for your resource as follows: `<classname>.schema.mof`, where `<classname>`
+  is the identifier that follows the `class` keyword in your schema definition.
 
 ### Writing the resource script
 
@@ -89,24 +88,22 @@ as the "resource properties." Store these three functions in a file called `<Res
 the following example, the functions are stored in a file called `Demo_IISWebsite.psm1`.
 
 > [!NOTE]
-> When you run the same configuration script on your resource more than once, you should receive no
-> errors and the resource should remain in the same state as running the script once. To accomplish
-> this, ensure that your `Get-TargetResource` and `Test-TargetResource` functions leave the
-> resource unchanged, and that invoking the `Set-TargetResource` function more than once in a
+> When you invoke your resource with the same properties more than once, you should receive no
+> errors and the resource should remain in the same state as invoking the resource once. To
+> accomplish this, ensure that your `Get-TargetResource` and `Test-TargetResource` functions leave
+> the resource unchanged, and that invoking the `Set-TargetResource` function more than once in a
 > sequence with the same parameter values is always equivalent to invoking it once.
 
-In the `Get-TargetResource` function implementation, use the key resource property values that are
-provided as parameters to check the status of the specified resource instance. This function must
-return a hash table that lists all the resource properties as keys and the actual values of these
-properties as the corresponding values. The following code provides an example.
+In the `Get-TargetResource` function implementation, use the **Key** resource property values that
+are provided as parameters to check the status of the specified resource instance. This function
+must return a hash table that lists all the resource properties as keys and the actual values of
+these properties as the corresponding values. The following code provides an example.
 
 ```powershell
 # DSC uses the Get-TargetResource function to fetch the status of the resource instance
 # specified in the parameters for the target machine
-function Get-TargetResource
-{
-    param
-    (
+function Get-TargetResource {
+    param(
         [ValidateSet("Present", "Absent")]
         [string]$Ensure = "Present",
 
@@ -139,14 +136,14 @@ function Get-TargetResource
         # Add all Website properties to the hash table
         # This simple example assumes that $Website is not null
         $getTargetResourceResult = @{
-            Name = $Website.Name
-            Ensure = $ensureResult
-            PhysicalPath = $Website.physicalPath
-            State = $Website.state
-            ID = $Website.id
+            Name            = $Website.Name
+            Ensure          = $ensureResult
+            PhysicalPath    = $Website.physicalPath
+            State           = $Website.state
+            ID              = $Website.id
             ApplicationPool = $Website.applicationPool
-            Protocol = $Website.bindings.Collection.protocol
-            Binding = $Website.bindings.Collection.bindingInformation
+            Protocol        = $Website.bindings.Collection.protocol
+            Binding         = $Website.bindings.Collection.bindingInformation
         }
 
         $getTargetResourceResult
@@ -164,11 +161,9 @@ The following example illustrates this.
 
 ```powershell
 # The Set-TargetResource function is used to create, delete or configure a website on the target machine.
-function Set-TargetResource
-{
+function Set-TargetResource {
     [CmdletBinding(SupportsShouldProcess=$true)]
-    param
-    (
+    param(
         [ValidateSet("Present", "Absent")]
         [string]$Ensure = "Present",
 
@@ -210,12 +205,10 @@ return `$true`.
 The following code implements the `Test-TargetResource` function.
 
 ```powershell
-function Test-TargetResource
-{
+function Test-TargetResource {
     [CmdletBinding()]
     [OutputType([System.Boolean])]
-    param
-    (
+    param(
         [ValidateSet("Present","Absent")]
         [System.String]
         $Ensure,
@@ -243,7 +236,16 @@ function Test-TargetResource
     )
 
     # Get the current state
-    $currentState = Get-TargetResource -Ensure $Ensure -Name $Name -PhysicalPath $PhysicalPath -State $State -ApplicationPool $ApplicationPool -BindingInfo $BindingInfo -Protocol $Protocol
+    $getParameters = @{
+        Ensure          = $Ensure 
+        Name            = $Name 
+        PhysicalPath    = $PhysicalPath 
+        State           = $State 
+        ApplicationPool = $ApplicationPool 
+        BindingInfo     = $BindingInfo 
+        Protocol        = $Protocol
+    }
+    $currentState = Get-TargetResource @getParameters
 
     # Write-Verbose "Use this cmdlet to deliver information about command processing."
 
@@ -261,25 +263,17 @@ function Test-TargetResource
 > For easier debugging, use the `Write-Verbose` cmdlet in your implementation of the previous
 > three functions. This cmdlet writes text to the verbose message stream. By default, the verbose
 > message stream is not displayed, but you can display it by changing the value of the
-> **$VerbosePreference** variable or by using the **Verbose** parameter in the DSC cmdlets = new.
+> **$VerbosePreference** variable or by using the **Verbose** parameter with `Invoke-DscResource`.
 
 ### Creating the module manifest
 
 Finally, use the `New-ModuleManifest` cmdlet to define a `<ResourceName>.psd1` file for your
-custom resource module. When you invoke this cmdlet, reference the script module (.psm1) file
+custom resource module. When you invoke this cmdlet, reference the script module (`.psm1`) file
 described in the previous section. Include `Get-TargetResource`, `Set-TargetResource`, and
 `Test-TargetResource` in the list of functions to export. Following is an example manifest file.
 
 ```powershell
-# Module manifest for module 'Demo.IIS.Website'
-#
-# Generated on: 1/10/2013
-#
-
 @{
-
-# Script module or binary module file associated with this manifest.
-# RootModule = ''
 
 # Version number of this module.
 ModuleVersion = '1.0'
@@ -297,36 +291,35 @@ CompanyName = 'Contoso'
 Copyright = 'Contoso. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'This Module is used to support the creation and configuration of IIS Websites through Get, Set and Test API on the DSC managed nodes.'
+Description = 'Create and configure IIS websites with DSC.'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '4.0'
-
-# Minimum version of the common language runtime (CLR) required by this module
-CLRVersion = '4.0'
+PowerShellVersion = '7.2'
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @("WebAdministration")
+RequiredModules = @(
+    'WebAdministration'
+)
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @("Demo_IISWebsite.psm1")
+NestedModules = @(
+    'Demo_IISWebsite.psm1'
+)
 
 # Functions to export from this module
-FunctionsToExport = @("Get-TargetResource", "Set-TargetResource", "Test-TargetResource")
+FunctionsToExport = @(
+    'Get-TargetResource'
+    'Set-TargetResource'
+    'Test-TargetResource'
+)
 
-# Cmdlets to export from this module
-#CmdletsToExport = '*'
-
-# HelpInfo URI of this module
-# HelpInfoURI = ''
 }
 ```
 
 ## Rebooting the Node
 
 If the actions taken in your `Set-TargetResource` function require a reboot, you can use a global
-flag to tell the caller to reboot the Node. This reboot occurs directly after the `Set-TargetResource`
-function completes.
+flag to tell the caller to reboot the Node.
 
 Inside your `Set-TargetResource` function, add the following line of code.
 
@@ -334,3 +327,7 @@ Inside your `Set-TargetResource` function, add the following line of code.
 # Include this line if the resource requires a system reboot.
 $global:DSCMachineStatus = 1
 ```
+
+<!-- Reference Links -->
+
+[1]: /windows/desktop/WmiSdk/value-map

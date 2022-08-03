@@ -1,22 +1,23 @@
 ---
-ms.date:  12/12/2018
+ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Writing help for DSC configurations
-description: You can use comment-based help in DSC configurations. Users can access the help by calling the Configuration with `-?` parameter or by using the Get-Help cmdlet.
+title:  Writing help for DSC Configurations
+description: >
+  You can use comment-based help in DSC configurations. Users can access the help by calling the
+  Configuration with `-?` parameter or by using the Get-Help cmdlet.
 ---
 
 # Writing help for DSC configurations
 
-> Applies To: PowerShell 7.0
+> Applies To: PowerShell 7.2
 
-You can use comment-based help in DSC configurations. Users can access the help by calling the
-**Configuration** with `-?`, or by using the
-[Get-Help](/powershell/module/Microsoft.PowerShell.Core/Get-Help) cmdlet. Place your Comment-based
-help directly above the `Configuration` keyword. You can place parameter help in-line with your
+You can use comment-based help with Configurations. Access the help by calling the
+Configuration with `-?`, or by using the
+[Get-Help][1] cmdlet. Place your comment-based
+help directly above the `configuration` keyword. You can place parameter help in-line with your
 comment block, directly above the parameter declaration, or both as in the example below.
 
-For more information about PowerShell comment-based help, see
-[about_Comment_Based_Help](/powershell/module/microsoft.powershell.core/about/about_comment_based_help).
+For more information about comment-based help, see [about_Comment_Based_Help][2].
 
 > [!NOTE]
 > PowerShell development environments, like VS Code, also have snippets to
@@ -24,7 +25,7 @@ For more information about PowerShell comment-based help, see
 
 The following example shows a script that contains a configuration and comment-based help for it.
 This example shows a Configuration with parameters. To learn more about using parameters in your
-Configurations, see [Add Parameters to your Configurations](add-parameters-to-a-configuration.md).
+Configurations, see [Add Parameters to your Configurations][3].
 
 ```powershell
 <#
@@ -64,17 +65,14 @@ HelpSample -FilePath "C:\output.txt"
 
 This example will be labeled "EXAMPLE 2" when help is displayed to the user.
 #>
-configuration HelpSample1
-{
-    param
-    (
+configuration HelpSample1 {
+    param (
         [string]$ComputerName = 'localhost',
         # Provide a PARAMETER section for each parameter that your script or function accepts.
         [string]$FilePath = 'C:\Destination.txt'
     )
 
-    Node $ComputerName
-    {
+    Node $ComputerName {
         File HelloWorld
         {
             Contents="Hello World"
@@ -86,8 +84,8 @@ configuration HelpSample1
 
 ## Viewing configuration help
 
-To view the help for a configuration, use the `Get-Help` cmdlet with the name of the function, or
-type the name of the function followed by `-?`. The following is the output of the previous
+To view the help for a Configuration, use the `Get-Help` cmdlet with the name of the Configuration,
+or type the name of the Configuration followed by `-?`. The following is the output of the previous
 Configuration passed to `Get-Help`.
 
 ```powershell
@@ -169,6 +167,14 @@ REMARKS
 
 ## See Also
 
-- [DSC Configurations](configurations.md)
-- [Write and compile a Configuration](write-compile-configuration.md)
-- [Add parameters to a Configuration](add-parameters-to-a-configuration.md)
+- [DSC Configurations][4]
+- [Write and compile a Configuration][5]
+- [Add parameters to a Configuration][3]
+
+<!-- Reference Links -->
+
+[1]: /powershell/module/Microsoft.PowerShell.Core/Get-Help
+[2]: /powershell/module/microsoft.powershell.core/about/about_comment_based_help
+[3]: add-parameters-to-a-configuration.md
+[4]: configurations.md
+[5]: write-compile-configuration.md
