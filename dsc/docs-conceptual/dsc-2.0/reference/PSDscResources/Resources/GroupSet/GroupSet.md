@@ -13,7 +13,7 @@ Manage multiple Group resources with common settings.
 
 ## Syntax
 
-```text
+```Syntax
 GroupSet [String] #ResourceName
 {
     [DependsOn = [String[]]]
@@ -42,7 +42,7 @@ None.
 Specify the names of one or more groups as an array of strings. The resource applies the same
 configuration to every group in this property.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -52,7 +52,7 @@ Type: System.String
 
 Specify the credential for an account with permission to resolve non-local group members if needed.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -62,7 +62,7 @@ Default Value: None
 Specify whether the groups should exist. To create or modify the groups, set this property to
 `Present`. To remove the groups, set this property to `Absent`. The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -81,7 +81,7 @@ member as one of the following:
 - Distinguished name: `CN=<username>,DC=...`
 - Username: `<username>`
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```
@@ -97,7 +97,7 @@ member as one of the following:
 - Distinguished name: `CN=<username>,DC=...`
 - Username: `<username>`
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```

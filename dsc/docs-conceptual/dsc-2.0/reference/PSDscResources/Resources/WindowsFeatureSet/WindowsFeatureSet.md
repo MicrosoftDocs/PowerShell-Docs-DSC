@@ -13,7 +13,7 @@ Manage multiple Windows roles or features with common settings.
 
 ## Syntax
 
-```text
+```Syntax
 WindowsFeatureSet [String] #ResourceName
 {
     [DependsOn = [String[]]]
@@ -52,7 +52,7 @@ The values for this property should be the same as the **Name** property of each
 not their **DisplayName** property. To list the available roles and features for a computer, use the
 `Get-WindowsFeature` cmdlet.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -62,7 +62,7 @@ Type: System.String
 
 Specify the credential for an account to add or remove the roles or features as.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -75,7 +75,7 @@ feature if it's installed.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -92,7 +92,7 @@ is set to `Absent`.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Behavior: Write
 Default Value: false
@@ -102,7 +102,7 @@ Default Value: false
 
 Specify the path to a file to log the installation or uninstallation of the features or roles.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -113,7 +113,7 @@ Default Value: None
 
 The display names of the retrieved roles or features.
 
-```yaml
+```
 Type: System.String
 Behavior: Read
 ```

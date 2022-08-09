@@ -13,7 +13,7 @@ Manage an environment variable for a machine or process.
 
 ## Syntax
 
-```text
+```Syntax
 Environment [String] #ResourceName
 {
     Name = [string]
@@ -42,7 +42,7 @@ None.
 
 Specify the name of the environment variable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -55,7 +55,7 @@ the environment variable if it exists. Specify this property as `Present` to cre
 variable if it doesn't exist and enforce the **Value** property if it's set. The default value is
 `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -81,7 +81,7 @@ behavior for the environment variable:
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -95,7 +95,7 @@ Specify one or more target to configure the environment variable in. Valid value
 
 By default, the environment variable is configured in both the `Process` and `Machine` targets.
 
-```yaml
+```
 Type: System.String[]
 Accepted Values:
   - Process
@@ -117,7 +117,7 @@ modifies the **Ensure** behavior for the environment variable:
 
 The default value is an empty string.
 
-```yaml
+```
 Type: System.String
 Default Value: ''
 ```

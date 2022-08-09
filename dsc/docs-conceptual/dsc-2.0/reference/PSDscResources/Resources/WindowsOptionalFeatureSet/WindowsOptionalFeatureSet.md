@@ -13,7 +13,7 @@ Manage multiple Windows optional features with common settings.
 
 ## Syntax
 
-```text
+```Syntax
 WindowsOptionalFeatureSet [String] #ResourceName
 {
     [DependsOn = [String[]]]
@@ -50,7 +50,7 @@ Each value for this property should be the same as the **FeatureName** property 
 optional feature. To list the available optional features for a computer, use the
 `Get-WindowsOptionalFeature` cmdlet.
 
-```yaml
+```
 Type: System.String[]
 ```
 
@@ -64,7 +64,7 @@ features.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -82,7 +82,7 @@ Specify the maximum output level to show in the DISM logs as a string. Valid log
 
 The default value is `ErrorsAndWarningAndInformation`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - ErrorsOnly
@@ -97,7 +97,7 @@ Specify the path to a file to log the enabling or disabling of the Windows optio
 
 If not set, the resource writes the log to `%WINDIR%\Logs\Dism\dism.log`.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -109,7 +109,7 @@ Windows optional features. Set this property to `$true` to prevent DISM from con
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -121,7 +121,7 @@ when disabling them. Set this property to `$true` to remove all associated files
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```

@@ -13,7 +13,7 @@ Manage a local group.
 
 ## Syntax
 
-```text
+```Syntax
 Group [String] #ResourceName
 {
     GroupName = [string]
@@ -39,11 +39,11 @@ None.
 
 ## Key properties
 
-### [String] GroupName
+### GroupName
 
 Specify the name of the group.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -53,7 +53,7 @@ Type: System.String
 
 Specify the credential for an account with permission to resolve non-local group members if needed.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -62,7 +62,7 @@ Default Value: None
 
 Specify the group's description.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -72,7 +72,7 @@ Default Value: None
 Specify whether the group should exist. To create or modify a group, set this property to `Present`.
 To remove a group, set this property to `Absent`. The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -93,7 +93,7 @@ the resource sets the group's member list to this value. Format each member as o
 Don't use this property with the **MembersToExclude** or **MembersToInclude** properties. If you
 do, the resource throws an exception.
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```
@@ -111,7 +111,7 @@ as one of the following:
 
 Don't use this property with the **Members** property. If you do, the resource throws an exception.
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```
@@ -129,7 +129,7 @@ member as one of the following:
 
 Don't use this property with the **Members** property. If you do, the resource throws an exception.
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```

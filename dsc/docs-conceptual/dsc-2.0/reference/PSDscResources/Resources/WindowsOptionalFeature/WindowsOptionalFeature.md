@@ -13,7 +13,7 @@ Enable or disable a Windows optional feature.
 
 ## Syntax
 
-```text
+```Syntax
 WindowsOptionalFeature [String] #ResourceName
 {
     Name = [string]
@@ -49,7 +49,7 @@ This value for this property should be the same as the **FeatureName** property 
 optional feature. To list the available optional features for a computer, use the
 `Get-WindowsOptionalFeature` cmdlet.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -63,7 +63,7 @@ Windows optional feature if its enabled.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -81,7 +81,7 @@ Specify the maximum output level to show in the DISM log as a string. Valid log 
 
 The default value is `ErrorsAndWarningAndInformation`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - ErrorsOnly
@@ -96,7 +96,7 @@ Specify the path to a file to log the enabling or disabling of the Windows optio
 
 If not set, the resource writes the log to `%WINDIR%\Logs\Dism\dism.log`.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -108,7 +108,7 @@ Windows optional feature. Set this property to `$true` to prevent DISM from cont
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -120,7 +120,7 @@ when disabling it. Set this property to `$true` to remove all associated files.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -131,23 +131,23 @@ Default Value: false
 
 The Windows optional feature's custom properties as an array of strings.
 
-```yaml
+```
 Type: System.String[]
 ```
 
-### [String] Description
+### Description
 
 The Windows optional feature's description as a string.
 
-```yaml
+```
 Type: System.String
 ```
 
-### [String] DisplayName
+### DisplayName
 
 The Windows optional feature's display name as a string.
 
-```yaml
+```
 Type: System.String
 ```
 

@@ -13,7 +13,7 @@ Expand or remove the contents of an archive (`.zip`) file.
 
 ## Syntax
 
-```text
+```Syntax
 Archive [String] #ResourceName
 {
     Destination = [string]
@@ -45,7 +45,7 @@ system.
 
 Specify the path to the folder the expanded content should be written to or removed from.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -53,7 +53,7 @@ Type: System.String
 
 Specify the path to the archive file.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -80,7 +80,7 @@ The specified method determines how the resource validates the expanded content 
 - With `SHA-1`, `SHA-256`, or `SHA-512`, the resource uses the specified SHA method to check the
   hash of each expanded file against the hash of that file in the archive.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - ModifiedDate
@@ -96,7 +96,7 @@ Default Value: ModifiedDate
 Specify the credential of a user account with permissions to access the specified **Path** and
 **Destination** if needed.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -107,7 +107,7 @@ Specify whether the expanded content of the archive file should exist. To expand
 specify this property as `Present`. To remove the expanded content of the archive, specify this
 property as `Absent`. The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -121,7 +121,7 @@ Specify whether to overwrite existing content in the **Destination**. When **For
 the resource errors if an item at the destination needs to be overwritten. The default value is
 `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -138,7 +138,7 @@ When **Validate** is `$true` and the file at the destination does not match the 
 - If **Ensure** is `Present` and **Force** is `$true`, the resource overwrites the file.
 - If **Ensure** is `Absent`, the resource doesn't remove the file.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```

@@ -13,7 +13,7 @@ Manage multiple services with common settings.
 
 ## Syntax
 
-```text
+```Syntax
 ServiceSet [String] #ResourceName
 {
     [DependsOn = [String[]]]
@@ -53,7 +53,7 @@ Specify the names of the services as an array of strings.
 This may be different from the service's display name. To retrieve a list of all services with their
 names and current states, use the `Get-Service` cmdlet.
 
-```yaml
+```
 Type: System.String[]
 Behavior: Key
 ```
@@ -67,7 +67,7 @@ service's executable in order to start the service.
 
 Don't specify this property with the **Credential** property.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - LocalService
@@ -84,7 +84,7 @@ the "Log on as a Service" right.
 
 Don't specify this property with the **BuiltInAccount** property.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -96,7 +96,7 @@ Specify whether the services should exist. To add or update a service, set this 
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -117,7 +117,7 @@ Specify how the services should behave on system start-up. The value must be one
 
 If the service does not exist, the default value is `Automatic`.
 
-```yaml
+```
 Type: System.String
 Behavior: Write
 Accepted Values:
@@ -137,7 +137,7 @@ Specify whether the services should run. The value must be one of the following:
 
 The default value is `Running`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Running

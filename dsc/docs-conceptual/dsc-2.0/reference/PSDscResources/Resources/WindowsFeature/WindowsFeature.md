@@ -13,7 +13,7 @@ Install or uninstall a Windows role or feature.
 
 ## Syntax
 
-```text
+```Syntax
 WindowsFeature [String] #ResourceName
 {
     Name = [string]
@@ -49,7 +49,7 @@ This value for this property should be the same as the **Name** property of the 
 the **DisplayName** property. To list the available roles and features for a computer, use the
 `Get-WindowsFeature` cmdlet.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -59,7 +59,7 @@ Type: System.String
 
 Specify the credential for an account to add or remove the role or feature as.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -72,7 +72,7 @@ feature if it's installed.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -88,7 +88,7 @@ this property's setting, the resource removes all subfeatures if **Ensure** is s
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Behavior: Write
 Default Value: false
@@ -98,7 +98,7 @@ Default Value: false
 
 Specify the path to a file to log the installation or uninstallation of the feature or role.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -109,7 +109,7 @@ Default Value: None
 
 The display name of the retrieved role or feature.
 
-```yaml
+```
 Type: System.String
 ```
 

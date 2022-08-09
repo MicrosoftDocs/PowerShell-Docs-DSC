@@ -13,7 +13,7 @@ Run PowerShell script blocks.
 
 ## Syntax
 
-```text
+```Syntax
 Script [String] #ResourceName
 {
     GetScript = [string]
@@ -57,7 +57,7 @@ runs when the **Get** method for this resource is invoked.
 
 This scriptblock should return a hash table containing one key named `Result` with a string value.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -69,7 +69,7 @@ block runs when the **Set** method for this resource is invoked.
 This script block should not output any objects. This script block should be written idempotently,
 so that invoking the **Set** method twice leaves the target in the same state as invoking it once.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -81,7 +81,7 @@ This script block runs when the **Test** mothod for this resource is invoked.
 This script block should return `$true` if the resource is in the desired state and `$false` if it
 isn't in the desired state.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -91,7 +91,7 @@ Type: System.String
 
 Specify the credential of an account to run the scriptblocks under if needed.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -102,7 +102,7 @@ Default Value: None
 
 The result from the **GetScript** script block.
 
-```yaml
+```
 Type: System.String
 ```
 

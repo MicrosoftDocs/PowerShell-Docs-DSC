@@ -13,7 +13,7 @@ Start or stop a Windows process.
 
 ## Syntax
 
-```text
+```Syntax
 WindowsProcess [String] #ResourceName
 {
     Arguments = [string]
@@ -44,7 +44,7 @@ None.
 Specify the full list of arguments to pass to the process when starting it as a string. Set this
 property to an empty string (`''`) if the process doesn't require any arguments.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -54,7 +54,7 @@ Specify the path to process's executable file. If the file is accessible through
 environment variable, you may set this property to the executable file's name. Otherwise, set this
 property to the full path to the file. Relative paths aren't supported.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -68,7 +68,7 @@ If this property is set to a local system account, you can't set the **StandardO
 **StandardInputPath**, or **WorkingDirectory** properties. If you do, the resource throws an invalid
 argument exception.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -80,7 +80,7 @@ if it isn't running. Set this property to `Absent` to stop the process if it's r
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -96,7 +96,7 @@ paths aren't supported. If the file exists, it's overwritten.
 Don't set this property when setting the **Ensure** property to `Absent`. If you do, the resource
 throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -109,7 +109,7 @@ aren't supported.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -122,7 +122,7 @@ paths aren't supported. If the file exists, it's overwritten.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -135,7 +135,7 @@ supported.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -146,7 +146,7 @@ Default Value: None
 
 The number of handles opened by the process.
 
-```yaml
+```
 Type: System.Int32
 Behavior: Read
 ```
@@ -155,7 +155,7 @@ Behavior: Read
 
 The amount of nonpaged memory, in bytes, allocated for the process.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```
@@ -164,7 +164,7 @@ Behavior: Read
 
 The amount of paged memory, in bytes, allocated for the process.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```
@@ -173,7 +173,7 @@ Behavior: Read
 
 The number of instances of the given process that are currently running.
 
-```yaml
+```
 Type: System.Int32
 Behavior: Read
 ```
@@ -182,7 +182,7 @@ Behavior: Read
 
 The unique identifier of the process.
 
-```yaml
+```
 Type: System.Int32
 Behavior: Read
 ```
@@ -191,7 +191,7 @@ Behavior: Read
 
 The amount of virtual memory, in bytes, allocated for the process.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```

@@ -13,7 +13,7 @@ Manage a Windows service.
 
 ## Syntax
 
-```text
+```Syntax
 Service [String] #ResourceName
 {
     Name = [string]
@@ -52,7 +52,7 @@ Specify the service name as a string.
 > Sometimes this value is different from the display name. You can get a list of the services and
 > their current state with the `Get-Service` cmdlet.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -65,7 +65,7 @@ executable specified by **Path** in order to start the service.
 
 Don't specify this property with the **Credential** property.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - LocalService
@@ -82,7 +82,7 @@ this account the "Log on as a Service" right.
 
 Don't specify this property with the **BuiltInAccount** property.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -91,7 +91,7 @@ Default Value: None
 
 Specify the names of services that this service requires to be running as an array of strings.
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```
@@ -101,7 +101,7 @@ Default Value: None
 Specify the description of the service as a string. The service description appears in
 **Computer Management, Services**.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -113,7 +113,7 @@ must be `$false` if **BuiltInAccount** is not specified as `LocalSystem`.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -122,7 +122,7 @@ Default Value: false
 
 Specify the human-friendly display name of the service as a string.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -134,7 +134,7 @@ Specify whether the service should exist. To add or update a service, set this p
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -147,7 +147,7 @@ Default Value: Present
 Specify the path to the service's executable file as a string. This property is required if the
 service does not exist.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -158,7 +158,7 @@ Specify the time to wait for the service to start in milliseconds.
 
 The default value is `30000`.
 
-```yaml
+```
 Type: System.UInt32
 Default Value: 30000
 ```
@@ -176,7 +176,7 @@ Specify how the service should behave on system start-up. The value must be one 
 
 If the service does not exist, the default value is `Automatic`.
 
-```yaml
+```
 Type: System.String
 Behavior: Write
 Accepted Values:
@@ -196,7 +196,7 @@ Specify whether the service should run. The value must be one of the following:
 
 The default value is `Running`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Running
@@ -209,7 +209,7 @@ Default Value: Running
 
 Specify the time to wait for the service to stop in milliseconds. The default value is `30000`.
 
-```yaml
+```
 Type: System.UInt32
 Default Value: 30000
 ```

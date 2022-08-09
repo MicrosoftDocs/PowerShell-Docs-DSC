@@ -13,7 +13,7 @@ Manage a registry key or value.
 
 ## Syntax
 
-```text
+```Syntax
 Registry [String] #ResourceName
 {
     Key = [string]
@@ -46,7 +46,7 @@ None.
 Specify the path to the registry key as a string. This path must include the registry hive or drive,
 such as `HKEY_LOCAL_MACHINE` or `HKLM:`.
 
-```yaml
+```
 Type: System.String
 Behavior: Key
 ```
@@ -58,7 +58,7 @@ property as an empty string without specifying the **ValueType** or **ValueData*
 modify or remove the default value of a registry key, specify this property as an empty string with
 the **ValueType** or **ValueData** property.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -70,7 +70,7 @@ Specify whether the registry key or value should exist. To add or modify a regis
 value, set this property to `Present`. To remove a registry key or value, set this property to
 `Absent`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -83,7 +83,7 @@ Default Value: Present
 Specify whether to overwrite the registry key value if it already has a value or to delete a
 registry key that has subkeys. The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -94,7 +94,7 @@ Specify whether the specified registry key data is provided in a hexadecimal for
 property only when **ValueType** is `DWord` or `QWord`. If **ValueType** is not `DWord` or `Qword`,
 the resource ignores this property. The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -105,7 +105,7 @@ Specify the registry key value as a string or, if **ValueType** is `MultiString`
 strings. If **ValueType** is not `MultiString` and this property's value is mulitple strings, the
 resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String[]
 Default Value: None
 ```
@@ -114,7 +114,7 @@ Default Value: None
 
 Specify the type for the specified registry key value's data.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Binary

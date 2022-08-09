@@ -13,7 +13,7 @@ Manage a local user.
 
 ## Syntax
 
-```text
+```Syntax
 User [String] #ResourceName
 {
     UserName = [string]
@@ -47,7 +47,7 @@ None
 
 Specify the account name as a string.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -57,7 +57,7 @@ Type: System.String
 
 Specify a discription for the account as a string.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -69,7 +69,7 @@ enabled. Set it to `$false` to enable the account if it's disabled.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -81,7 +81,7 @@ Set this property to `Absent` to remove the account.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Behavior: Write
 Accepted Values:
@@ -94,7 +94,7 @@ Default Value: Present
 
 Specify the full name of the account as a string.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -104,7 +104,7 @@ Default Value: None
 Specify a credential with the password to use for this account. The **UserName** of the credential
 object is not used, only the **Password**.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -117,7 +117,7 @@ password.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```
@@ -130,7 +130,7 @@ the user to change their password.
 
 The default value is `$true`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: true
 ```
@@ -143,7 +143,7 @@ security settings.
 
 The default value is `$false`.
 
-```yaml
+```
 Type: System.Boolean
 Default Value: false
 ```

@@ -13,7 +13,7 @@ Install or uninstall an MSI package.
 
 ## Syntax
 
-```text
+```Syntax
 MsiPackage [String] #ResourceName
 {
     Path = [string]
@@ -49,7 +49,7 @@ None.
 
 Specify the identifying number used to find the package as a string. This value is usually a GUID.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -65,7 +65,7 @@ This property is only used with the resource's **Set** method. If the value is a
 resource downloads the package to a local cache before installing or uninstalling. If the value is a
 UNC path, the resource mounts the UNC drive before installing or uninstalling.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -84,7 +84,7 @@ string. The following arguments are always passed:
 
 The value of this property is appended after the default arguments.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -93,7 +93,7 @@ Default Value: None
 
 Specify the credential of an account with permission to mount a UNC path if needed.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Behavior: Write
 Default Value: None
@@ -105,7 +105,7 @@ Specifies whether to install or uninstall the package. To install the package, s
 as `Present`. To uninstall the package, specify this property as `Absent`. The default value is
 `Present`.
 
-```yaml
+```
 Type: System.String
 Behavior: Write
 Accepted Values:
@@ -120,7 +120,7 @@ Specify the expected hash value of the MSI file as a string. If specified, the r
 package against this value before installing or uninstalling the package. If the values do not
 match, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -129,7 +129,7 @@ Default Value: None
 
 Specify the algorithm used to generate the value for **FileHash**. The default value is `SHA256`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - MD5
@@ -146,7 +146,7 @@ Default Value: SHA256
 Specify the path a file for logging the output from MSI execution as a string. By default, the
 output is not logged.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -156,7 +156,7 @@ Default Value: None
 Specify the credential of an alternate account to run the installation or uninstallation of the
 package as.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -167,7 +167,7 @@ Specify a PowerShell scriptblock to validate SSL certificates when **Path** is a
 scriptblock does not return `$true`, the resource's **Set** method throws an invalid operation
 exception and doesn't download the package.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -179,7 +179,7 @@ signature. If specified, the resource checks the package against this value befo
 uninstalling the package. If the values do not match, the resource's **Set** method throws an
 invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -191,7 +191,7 @@ file's digital signature. If specified, the resource checks the package against 
 installing or uninstalling the package. If the values do not match, the resource's **Set** method
 throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -203,7 +203,7 @@ Default Value: None
 The date that the MSI package was installed on or serviced on, whichever is later. This property is
 not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -211,7 +211,7 @@ Type: System.String
 
 The path to the MSI package. This property is not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -219,7 +219,7 @@ Type: System.String
 
 The display name of the MSI package. This property is not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -227,7 +227,7 @@ Type: System.String
 
 The description of the MSI package. This property is not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -235,7 +235,7 @@ Type: System.String
 
 The publisher of the MSI package. This property is not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 
@@ -243,7 +243,7 @@ Type: System.String
 
 The size of the MSI package in MB. This property is not configurable.
 
-```yaml
+```
 Type: System.UInt32
 ```
 
@@ -251,7 +251,7 @@ Type: System.UInt32
 
 The version number of the MSI package. This property is not configurable.
 
-```yaml
+```
 Type: System.String
 ```
 

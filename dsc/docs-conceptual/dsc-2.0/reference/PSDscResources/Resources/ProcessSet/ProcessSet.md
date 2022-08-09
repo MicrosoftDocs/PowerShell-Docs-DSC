@@ -13,7 +13,7 @@ Manage multiple Windows processes with common settings.
 
 ## Syntax
 
-```text
+```Syntax
 ProcessSet [String] #ResourceName
 {
     [DependsOn = [String[]]]
@@ -46,7 +46,7 @@ Specify the paths to the processes' executable files. If a file is accessible th
 environment variable, you may specify the file's name. Otherwise, specify the full path to the file.
 Relative paths aren't supported.
 
-```yaml
+```
 Type: System.String[]
 Behavior: Key
 ```
@@ -61,7 +61,7 @@ If this property is set to a local system account, you can't set the **StandardO
 **StandardInputPath**, or **WorkingDirectory** properties. If you do, the resource throws an invalid
 argument exception.
 
-```yaml
+```
 Type: System.Management.Automation.PSCredential
 Default Value: None
 ```
@@ -74,7 +74,7 @@ running.
 
 The default value is `Present`.
 
-```yaml
+```
 Type: System.String
 Accepted Values:
   - Absent
@@ -90,7 +90,7 @@ paths aren't supported. If the file exists, it's overwritten.
 Don't set this property when setting the **Ensure** property to `Absent`. If you do, the resource
 throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -103,7 +103,7 @@ paths aren't supported.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -116,7 +116,7 @@ Relative paths aren't supported. If the file exists, it's overwritten.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -129,7 +129,7 @@ supported.
 Don't set this property when setting the **Ensure** property to `Absent` or the **Credential**
 property to a local system account. If you do, the resource throws an invalid argument exception.
 
-```yaml
+```
 Type: System.String
 Default Value: None
 ```
@@ -140,7 +140,7 @@ Default Value: None
 
 The number of handles opened by the processes.
 
-```yaml
+```
 Type: System.SInt32
 Behavior: Read
 ```
@@ -149,7 +149,7 @@ Behavior: Read
 
 The amount of nonpaged memory, in bytes, allocated for the processes.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```
@@ -158,7 +158,7 @@ Behavior: Read
 
 The amount of paged memory, in bytes, allocated for the processes.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```
@@ -167,7 +167,7 @@ Behavior: Read
 
 The number of instances of the given processes that are currently running.
 
-```yaml
+```
 Type: System.SInt32
 Behavior: Read
 ```
@@ -176,7 +176,7 @@ Behavior: Read
 
 The unique identifier of the processes.
 
-```yaml
+```
 Type: System.SInt32
 Behavior: Read
 ```
@@ -185,7 +185,7 @@ Behavior: Read
 
 The amount of virtual memory, in bytes, allocated for the processes.
 
-```yaml
+```
 Type: System.UInt64
 Behavior: Read
 ```
