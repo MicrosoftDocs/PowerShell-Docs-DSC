@@ -75,3 +75,7 @@ items:
         href: troubleshooting/troubleshooting.md
       - name: Debug DSC resources
         href: troubleshooting/debugResource.md
+  - name: Resource module reference
+    items:
+      - name: PSDscResources
+        href: reference/PSDscResources/toc.yml
