@@ -1,6 +1,8 @@
 items:
   - name: Desired State Configuration (DSC) 2.0
     href: overview.md
+  - name: Terminology
+    href: terminology.md
   - name: Getting Started
     items:
       - name: Get started with Azure Policy's Guest Configuration
