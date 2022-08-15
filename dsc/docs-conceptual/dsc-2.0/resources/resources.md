@@ -3,7 +3,7 @@ ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Resources
 description: >
-  DSC resources provide a standardized interface for managing the configuration of a system.
+  DSC Resources provide a standardized interface for managing the settings of a system.
 ---
 
 # DSC Resources
@@ -12,27 +12,27 @@ description: >
 
 ## Overview
 
-Desired State Configuration (DSC) Resources provide a standardized interface for managing the
-configuration of a system. A resource defines properties you can configure and contains the
-PowerShell code that `Invoke-DscResource` calls to "make it so".
+DSC Resources provide a standardized interface for managing the settings of a system. A DSC Resource
+defines properties you can manage and contains the PowerShell code that `Invoke-DscResource` calls
+to "make it so."
 
-A resource can model something as generic as a file or as specific as an IIS server setting. Groups
-of like resources are combined into modules. Module provide a portable, versioned package for
-resources and include metadata and documentation about them.
+A DSC Resource can model something as generic as a file or as specific as an IIS server setting.
+Groups of related DSC Resources are combined into PowerShell modules. Modules provide a portable,
+versioned package for DSC Resources and include metadata and documentation about them.
 
-Every resource has a schema that determines the syntax needed to use the resource with
-`Invoke-DscResource` or in a [Configuration][1]. A resource's schema is defined in the following
+Every DSC Resource has a schema that determines the syntax needed to use the DSC Resource with
+`Invoke-DscResource` or in a [Configuration][1]. A DSC Resource's schema is defined in the following
 ways:
 
-- `<Resource Name>.psm1` file: Class-based DSC resources define their schema in the class
+- `<Resource Name>.psm1` file: Class-based DSC Resources define their schema in the class
   definition. Syntax items are denoted as class properties. For more information, see
   [about_Classes][2].
-- `Schema.Mof` file: Other resources define their schema in a `schema.mof` file, using
+- `Schema.Mof` file: MOF-based DSC Resources define their schema in a `schema.mof` file, using
   [Managed Object Format][3].
 
-To retrieve the syntax for a DSC resource, use the [Get-DSCResource][4] cmdlet with the **Syntax**
-parameter. This usage is similar to using [Get-Command][5] with the **Syntax** parameter to get
-cmdlet syntax. The output shows the template used for a resource block in a Configuration.
+To retrieve the syntax for a DSC Resource, use the [Get-DSCResource][4] cmdlet with the **Syntax**
+parameter. This is like using [Get-Command][5] with the **Syntax** parameter to get cmdlet syntax.
+The output shows the template used for a DSC Resource block in a DSC Configuration.
 
 ```powershell
 Get-DscResource -Syntax Service
@@ -59,8 +59,8 @@ Service [String] #ResourceName
 }
 ```
 
-Like cmdlet syntax, the _keys_ in square brackets are optional. The types specify the type of data
-each key expects.
+Like cmdlet syntax, the _keys_ in square brackets are optional. The types specify the data type each
+key expects.
 
 To ensure that the `Spooler` service is running:
 
@@ -84,14 +84,14 @@ if ($TestResult.InDesiredState) {
 
 The `$SharedDscParameters` variable is a hash table containing the parameters used when calling the
 **Test** and **Set** methods of the resource with `Invoke-DscResource`. The first call to
-`Invoke-DscResource` uses the **Test** method to check whether the `Spooler` service is running and
+`Invoke-DscResource` uses the **Test** method to verify whether the `Spooler` service is running and
 stores the result in the `$TestResult` variable.
 
 The next step depends on whether the service is already in the desired state. It's best practice to
-always check desired state before enforcing and to only call the set method when required. In the
-example, the script writes a message to the console about whether the resource is in the desired
-state. Then, if the service is not running, it calls `Invoke-DscResource` with the **Set** method to
-enforce the desired state.
+always verify desired state before enforcing and to only call the **Set** method when required. In
+the example, the script writes a message to the console about whether the DSC Resource is in the
+desired state. Then, if the service isn't running, it calls `Invoke-DscResource` with the **Set**
+method to enforce the desired state.
 
 <!--
     Potentially we should say these are not meant to be used. It's unclear how (if at all) they will

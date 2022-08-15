@@ -6,7 +6,7 @@ description: >
   Use the PSDscResources Registry resource to add or modify a registry key value.
 ---
 
-# Add or modify a registry key value
+# Add or update a registry key value
 
 ## Description
 

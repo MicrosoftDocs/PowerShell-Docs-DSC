@@ -14,8 +14,8 @@ This example shows how you can use the `Archive` resource to ensure no contents 
 expanded to a specific directory.
 
 With **Ensure** set to `Absent`, the **Path** set to `C:\ExampleArchivePath\Archive.zip`. and the
-**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource will remove the
-contents of `Archive.zip` from the `Destination` folder if they exist.
+**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource removes the contents of
+`Archive.zip` from the `Destination` folder if they exist.
 
 With **Validate** set to `$true` and **Checksum** set to `SHA-256`, the resource compares the SHA256
 checksum of every that exists in both the `Destination` folder and `Archive.zip`. If the checksum

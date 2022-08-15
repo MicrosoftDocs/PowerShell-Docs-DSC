@@ -1,27 +1,27 @@
 ---
 ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Writing a single-instance DSC resource (best practice)
+title:  Writing a single-instance DSC Resource
 description: >
-  This article describes a best practice for defining a DSC resource that allows only a single
-  instance in a configuration.
+  This article describes a best practice for defining a DSC Resource that allows only a single
+  instance in a DSC Configuration.
 ---
 
-# Writing a single-instance DSC resource (best practice)
+# Writing a single-instance DSC Resource
 
 > [!NOTE]
 > This article describes a best practice for defining a DSC resource that allows only a single
-> instance in a configuration. Currently, there is no built-in DSC feature to do this. That might
-> change in the future.
+> instance in a DSC Configuration. There is no built-in DSC feature to do this. That might change in
+> the future.
 
-There are situations where you don't want to allow a resource to be used multiple times in a
-configuration. For example, in a previous implementation of the [xTimeZone][1] resource, a
-configuration could call the resource multiple times, setting the time zone to a different setting
-in each resource block:
+There are situations where you don't want to allow a DSC Resource to be used multiple times in a
+DSC Configuration. For example, in a previous implementation of the [xTimeZone][1] DSC Resource, a
+DSC Configuration could call the DSC Resource multiple times, setting the timezone to a different
+setting in each DSC Resource block:
 
 ```powershell
-configuration SetTimeZone {
-    Param (
+Configuration SetTimeZone {
+    param (
         [String[]]$NodeName = $env:COMPUTERNAME
     )
 
@@ -39,17 +39,19 @@ configuration SetTimeZone {
 }
 ```
 
-This is because of the way DSC resource keys work. A resource must have at least one **Key**
-property. A resource instance is considered unique if the combination of the values of all of its
-**Key** properties is unique. In its previous implementation, the [xTimeZone][1] resource had only
-one property--**TimeZone**, which was a **Key**. Because of this, a configuration such as the one
-above compiled and ran without warning. Each of the **xTimeZone** resource blocks is considered
-unique. This caused the configuration to repeatedly apply to the node, cycling the timezone back and
-forth.
+This is because of how DSC Resource **Key** properties work. A DSC Resource must have at least one
+**Key** property. A DSC Resource instance is considered unique if the combination of all its **Key**
+properties' values is unique.
 
-To ensure that a Configuration could set the time zone for a target node only once, the resource was
-updated to add a second property, **IsSingleInstance**, that became the **Key** property. The
-**IsSingleInstance** was limited to a single value, `Yes`. The old MOF schema for the resource was:
+In its previous implementation, the [xTimeZone][1] DSC Resource had only one property--**TimeZone**,
+which was a **Key**. Because of this, the example DSC Configuration compiled and ran without
+warning. Each of the `xTimeZone` DSC Resource blocks was considered unique. This caused the DSC
+Configuration to repeatedly apply to the system, cycling the timezone back and forth.
+
+To ensure that a DSC Configuration could set the timezone for a system only once, the DSC Resource
+was updated to add a second property, **IsSingleInstance**, that became the **Key** property. The
+**IsSingleInstance** was limited to a single value, `Yes`. The old MOF schema for the DSC Resource
+was:
 
 ```powershell
 [ClassVersion("1.0.0.0"), FriendlyName("xTimeZone")]
@@ -59,7 +61,7 @@ class xTimeZone : OMI_BaseResource
 };
 ```
 
-The updated MOF schema for the resource is:
+The updated MOF schema for the DSC Resource is:
 
 ```powershell
 [ClassVersion("1.0.0.0"), FriendlyName("xTimeZone")]
@@ -70,7 +72,7 @@ class xTimeZone : OMI_BaseResource
 };
 ```
 
-The resource script was updated to use the new parameter. Here's how the resource script changed:
+The DSC Resource's implementation was updated to use the new parameter. Here's how it changed:
 
 ```powershell
 function Get-TargetResource
@@ -202,9 +204,9 @@ Function Set-TimeZone {
 Export-ModuleMember -Function *-TargetResource
 ```
 
-Notice that the **TimeZone** property is no longer a key. Now, if a configuration attempts to set
-the time zone twice (by using two different **xTimeZone** blocks with different **TimeZone**
-values), attempting to compile the configuration causes an error:
+Notice that the **TimeZone** property is no longer a **Key** property. Now, if a DSC Configuration
+attempts to set the timezone twice (with two different `xTimeZone` blocks with different
+**TimeZone** values), attempting to compile the DSC Configuration causes an error:
 
 ```Output
 Write-Error:

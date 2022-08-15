@@ -10,7 +10,7 @@ description: >
 
 > Applies To: PowerShell 7.2
 
-In real-world situations, configurations can become long and complex, calling many different
+In real-world situations, configurations can become long and complex, calling several different
 resources and setting a vast number of properties. To help address this complexity, you can use a
 Windows PowerShell Desired State Configuration (DSC) configuration as a resource for other
 configurations. This is called a composite resource. A composite resource is a DSC configuration
@@ -21,7 +21,7 @@ resources, see [Windows PowerShell Desired State Configuration Resources][1].
 
 ## Creating the composite resource
 
-In our example, we create a configuration that invokes a number of existing resources to configure
+In our example, we create a configuration that invokes several existing resources to configure
 virtual machines. Instead of specifying the values to be set in configuration blocks, the
 configuration takes in parameters that are then used in the configuration blocks.
 
@@ -162,8 +162,8 @@ $env: psmodulepath
                 |- xVirtualMachine.schema.psm1
 ```
 
-The resource is now discoverable by using the `Get-DscResource` cmdlet, and its properties are
-discoverable by either that cmdlet or by using <kbd>Ctrl</kbd>+<kbd>Space</kbd> autocomplete in VS
+The resource is now discoverable with the `Get-DscResource` cmdlet, and its properties are
+discoverable by either that cmdlet or with <kbd>Ctrl</kbd>+<kbd>Space</kbd> autocomplete in VS
 Code.
 
 ## Using the composite resource
@@ -222,11 +222,11 @@ configuration MultipleVms {
 
 ### See also
 
-- [Writing a custom DSC resource with MOF][2]
-- [Get Started with Windows PowerShell Desired State Configuration][3]
+- [Authoring a MOF-based DSC Resource][2]
+- [Authoring a class-based DSC Resource][3]
 
 <!-- Reference Links -->
 
 [1]: resources.md
 [2]: authoringResourceMOF.md
-[3]: ../overview.md
+[3]: authoringResourceClass.md

@@ -1,18 +1,18 @@
 ---
 ms.date: 08/01/2022
 keywords:  dsc,powershell,resource,gallery,setup
-title:  Install additional DSC resources
+title:  Install additional DSC Resources
 description: >
-  This article covers how to find and install DSC resources from the PowerShell Gallery.
+  This article covers how to find and install DSC Resources from the PowerShell Gallery.
 ---
 
 # Install Additional DSC Resources
 
-Before you write a custom resource to solve your problem, you should look through the DSC resources
+Before you write a DSC Resource to solve your problem, you should look through the DSC Resources
 that have already been created by both Microsoft and the PowerShell community.
 
-You can find DSC resources on both the [PowerShell Gallery][1] and [GitHub][2]. You can also install
-DSC resources directly from the PowerShell console using [PowerShellGet][3].
+You can find DSC Resources on both the [PowerShell Gallery][1] and [GitHub][2]. You can also install
+DSC Resources directly from the PowerShell console using [PowerShellGet][3].
 
 ## Installing PowerShellGet
 
@@ -21,10 +21,10 @@ guide: [Installing PowerShellGet][4].
 
 ## Finding DSC resources using PowerShellGet
 
-Once **PowerShellGet** is installed on your system, you can find and install DSC resources hosted in
+Once **PowerShellGet** is installed on your system, you can find and install DSC Resources hosted in
 the [PowerShell Gallery][1].
 
-First, use the [Find-DSCResource][5] cmdlet to find DSC resources. When you run `Find-DSCResource`
+First, use the [Find-DSCResource][5] cmdlet to find DSC Resources. When you run `Find-DSCResource`
 for the first time, you may see the following prompt to install the NuGet provider.
 
 ```powershell
@@ -41,21 +41,21 @@ the NuGet provider by running 'Install-PackageProvider -Name NuGet -MinimumVersi
 [Y] Yes  [N] No  [?] Help (default is "Y"):
 ```
 
-After pressing <kbd>y</kbd>, the NuGet provider is installed and you see a list of DSC resources
+After pressing <kbd>y</kbd>, the NuGet provider is installed and you see a list of DSC Resources
 that you can install from the PowerShell Gallery.
 
 > [!NOTE]
-> List is not shown because it is very large.
+> The list isn't shown here because it's hundreds of items long.
 
-You can also specify the `-Name` parameter using wildcards, or `-Filter` parameter without wildcards
-to narrow down your search. This example attempts to find a "TimeZone" DSC resource using the
+You can also specify the **Name** parameter using wildcards, or the **Filter** parameter without
+wildcards to narrow your search. This example attempts to find a `TimeZone` DSC Resource using
 wildcards.
 
 > [!IMPORTANT]
-> Currently there is a bug in the `Find-DSCResource` cmdlet that prevents using wildcards in both
-> the **Name** and **Filter** parameters. The example below shows a workaround using `Where-Object`.
+> There is a bug in the `Find-DSCResource` cmdlet that prevents using wildcards in both the **Name**
+> and **Filter** parameters. The example below shows a workaround using `Where-Object`.
 
-You can use `Where-Object` to find DSC resources with granular filtering.
+You can use `Where-Object` to find DSC Resources with granular filtering.
 
 ```powershell
 Find-DSCResource | Where-Object Name -Like 'Time*'
@@ -71,15 +71,15 @@ For more information on filtering, see [Where-Object][6].
 
 ## Installing DSC Resources using PowerShellGet
 
-To install a DSC resource, use the [Install-Module][7] cmdlet, specifying the name of the module
-shown under **Module** name in your search results.
+To install a DSC Resource, use the [Install-Module][7] cmdlet, specifying the name of the module
+shown under the **Module** property in your search results.
 
-The `TimeZone` resource exists in the **ComputerManagementDSC** module, so that is the module this
-example installs.
+The `TimeZone` DSC Resource exists in the **ComputerManagementDSC** module, so that's the module
+this example installs.
 
 > [!NOTE]
-> If you have not trusted the PowerShell gallery, you see the warning below asking for confirmation,
-> and instructing you how to avoid subsequent prompts on installs.
+> If you haven't trusted the PowerShell gallery, you see the warning below asking for confirmation,
+> and instructing you how to avoid future prompts on installs.
 
 ```powershell
 Install-Module -Name ComputerManagementDSC
@@ -94,7 +94,7 @@ install the modules from 'PSGallery'?
 ```
 
 Press <kbd>y</kbd> to continue installing the module. After install, you can verify that your new
-resource is installed using [Get-DSCResource][8].
+DSC Resource is installed using [Get-DSCResource][8].
 
 ```powershell
 Get-DSCResource -Name TimeZone -Module ComputerManagementDsc -Syntax
@@ -110,7 +110,8 @@ TimeZone [String] #ResourceName
 }
 ```
 
-Specify the **ModuleName** parameter alone to view other resources in your newly installed module.
+Specify the **ModuleName** parameter alone to view other DSC Resources in your newly installed
+module.
 
 ```powershell
 Get-DSCResource -Module ComputerManagementDSC

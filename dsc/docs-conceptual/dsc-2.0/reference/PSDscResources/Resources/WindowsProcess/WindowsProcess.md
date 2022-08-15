@@ -171,7 +171,7 @@ Behavior: Read
 
 ### ProcessCount
 
-The number of instances of the given process that are currently running.
+The number of instances of the given process that are running.
 
 ```
 Type: System.Int32

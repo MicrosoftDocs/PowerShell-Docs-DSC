@@ -17,7 +17,7 @@ You are prompted for a credential if you don't pass one explicitly with the **Cr
 parameter. The **Credential** property of the resource is set to this value.
 
 With **Ensure** set to `Present`, **Path** set to `C:\Windows\System32\gpresult.exe`, and
-**Arguments** set to `/h C:\gp2.htm`, the resource will start `gpresult.exe` with the specified
+**Arguments** set to `/h C:\gp2.htm`, the resource starts `gpresult.exe` with the specified
 arguments if it isn't running. Because the **Credential** property is set, the resource starts the
 process as that account.
 

@@ -15,8 +15,8 @@ This example shows how you can use the `Archive` resource to ensure a `.zip` fil
 specific directory and the expanded contents match the contents in the `.zip` file.
 
 With **Ensure** set to `Present`, the **Path** set to `C:\ExampleArchivePath\Archive.zip`, and the
-**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource will expand the
-contents of `Archive.zip` to the `Destination` folder if they're not already there.
+**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource expands the contents of
+`Archive.zip` to the `Destination` folder if they're not already there.
 
 With **Validate** set to `$true` and **Checksum** set to `SHA-256`, the resource compares the SHA256
 checksum of every expanded file against the relevant file in `Archive.zip`. If the checksum for any
