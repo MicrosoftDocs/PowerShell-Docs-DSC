@@ -1,12 +1,12 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,resource,gallery,setup
-title:  Install additional DSC Resources
+title:  Installing DSC Resources
 description: >
   This article covers how to find and install DSC Resources from the PowerShell Gallery.
 ---
 
-# Install Additional DSC Resources
+# Installing DSC Resources
 
 Before you write a DSC Resource to solve your problem, you should look through the DSC Resources
 that have already been created by both Microsoft and the PowerShell community.
@@ -140,7 +140,7 @@ ImplementedAs Name                            Properties
 
 ## See also
 
-- [What are Resources?][9]
+- [DSC Resources][9]
 
 <!-- Reference Links -->
 
@@ -152,4 +152,4 @@ ImplementedAs Name                            Properties
 [6]: /powershell/module/microsoft.powershell.core/where-object
 [7]: /powershell/module/PowershellGet/Install-Module
 [8]: /powershell/module/PSDesiredStateConfiguration/Get-DscResource
-[9]: ../resources/resources.md
+[9]: ../concepts/resources.md

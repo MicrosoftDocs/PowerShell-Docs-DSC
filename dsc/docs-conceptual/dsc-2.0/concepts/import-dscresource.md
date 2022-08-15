@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Using Import-DSCResource
 description: >
@@ -157,6 +157,6 @@ avoiding future complications.
 
 <!-- Reference Links -->
 
-[1]: Configurations.md
+[1]: configurations.md
 [3]: media/import-dscresource/resource-intellisense.png
-[4]: ../resources/resources.md
+[4]: resources.md

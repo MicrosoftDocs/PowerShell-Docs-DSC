@@ -1,5 +1,5 @@
 ---
-ms.date: 08/09/2022
+ms.date: 08/15/2022
 title:  Terminology
 description: >
   A list of terms and concepts for PowerShell Desired State Configuration (DSC).
