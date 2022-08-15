@@ -1,20 +1,24 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,service,setup
-title:  Write and compile a Configuration
+title:  Write and compile a DSC Configuration
 description: >
   This exercise walks through creating and compiling a DSC Configuration from start to finish. In
   the following example, you will learn how to write and compile a minimal Configuration
 ---
-# Write and compile a Configuration
+# Write and compile a DSC Configuration
 
 > Applies To: PowerShell 7.2
 
-This exercise walks through creating and compiling a Desired State Configuration (DSC) Configuration
-from start to finish. In the following example, you'll learn how to write and compile a minimal DSC
-Configuration to ensure a `DscTest` registry key exists on your local machine.
+This exercise walks through creating and compiling a DSC Configuration from start to finish. In the
+following example, you'll learn how to write and compile a minimal DSC Configuration to ensure a
+`DscTest` registry key exists on your local machine.
 
 For an overview of what DSC is and how it works, see [Desired State Configuration 2.0][1].
+
+> [!IMPORTANT]
+> Starting in DSC 2.0, there is no supported way to use DSC Configurations directly. They're only
+> supported for use with [Azure Policy's machine configuration feature][2].
 
 ## Requirements
 
@@ -22,7 +26,7 @@ To run this example, you need a Windows computer running PowerShell 7.2 or later
 
 ## Write the configuration
 
-A DSC [Configuration][2] is a kind of PowerShell code that defines how you want to configure a
+A [DSC Configuration][3] is a kind of PowerShell code that defines how you want to configure a
 system.
 
 In the VS Code, or another PowerShell editor, type the following:
@@ -63,14 +67,14 @@ Save the file as `DscExample.ps1`.
 
 Defining a DSC Configuration is like defining a function.
 
-This DSC Configuration calls one [DSC Resource][3], the `Registry` DSC Resource. Resources do the
+This DSC Configuration calls one [DSC Resource][4], the `Registry` DSC Resource. Resources do the
 work of ensuring that the system is in the state defined by the DSC Configuration.
 
 ## Compile the configuration
 
 Calling the DSC Configuration compiles a `.mof` file. To run the configuration, you need to
 _dot source_ your `DscExample.ps1` script into the current scope. For more information, see
-[about_Scripts][4].
+[about_Scripts][5].
 
 <!-- markdownlint-disable MD038 -->
 _Dot source_ your `DscExample.ps1` script by typing in the path where you stored it, after the `. `
@@ -95,14 +99,15 @@ Mode                 LastWriteTime         Length Name
 
 ## Next steps
 
-- Find out more about DSC Configurations at [DSC Configurations][2].
-- Find out more about DSC Resources at [DSC resources][3].
-- Find DSC Resources in the [PowerShell Gallery][5].
+- Find out more about DSC Configurations at [DSC Configurations][3].
+- Find out more about DSC Resources at [DSC resources][4].
+- Find DSC Resources in the [PowerShell Gallery][6].
 
 <!-- Reference Links -->
 
-[1]: ../overview.md
-[2]: configurations.md
-[3]: ../resources/resources.md
-[4]: /powershell/module/microsoft.powershell.core/about/about_scripts#script-scope-and-dot-sourcing
-[5]: https://www.powershellgallery.com/
+[1]: ../../overview.md
+[2]:  /azure/governance/machine-configuration/overview
+[3]: ../../concepts/configurations.md
+[4]: ../../concepts/resources.md
+[5]: /powershell/module/microsoft.powershell.core/about/about_scripts#script-scope-and-dot-sourcing
+[6]: https://www.powershellgallery.com/

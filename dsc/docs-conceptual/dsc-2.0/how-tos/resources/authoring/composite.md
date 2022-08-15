@@ -1,23 +1,26 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
-title: Composite resources - Using a DSC Configuration as a resource
+title: Authoring a composite DSC Resource
 description: >
-  This article describes how to create and use a composite resource.
+  This article describes how to develop a DSC Resource composed of other DSC Resources
 ---
 
-# Composite resources: Using a DSC configuration as a resource
+# Authoring a composite DSC Resource
 
 > Applies To: PowerShell 7.2
 
-In real-world situations, configurations can become long and complex, calling several different
-resources and setting a vast number of properties. To help address this complexity, you can use a
-Windows PowerShell Desired State Configuration (DSC) configuration as a resource for other
-configurations. This is called a composite resource. A composite resource is a DSC configuration
-that takes parameters. The parameters of the configuration act as the properties of the resource.
-The configuration is saved as a file with a `.schema.psm1` extension. It takes the place of both the
-MOF schema, and the resource script in a typical DSC resource. For more information about DSC
-resources, see [Windows PowerShell Desired State Configuration Resources][1].
+In real-world situations, DSC Configurations can become long and complex, calling several different
+DSC Resources and setting dozens of properties. To help address this complexity, you can use a DSC
+Configuration as a DSC Resource for other DSC Configurations. This is called a composite DSC
+Resource. A composite DSC Resource is a DSC Configuration that takes parameters. The parameters of
+the DSC Configuration act as the properties of the DSC Resource. The DSC Configuration is saved as a
+file with a `.schema.psm1` extension. For more information about DSC Resources, see
+[DSC Resources][1].
+
+> [!IMPORTANT]
+> Composite DSC Resources don't work with `Invoke-DscResource`. In DSC 2.0 and later, they're only
+> supported for use with [Azure Policy's machine configuration feature][2].
 
 ## Creating the composite resource
 
@@ -26,7 +29,7 @@ virtual machines. Instead of specifying the values to be set in configuration bl
 configuration takes in parameters that are then used in the configuration blocks.
 
 ```powershell
-configuration xVirtualMachine {
+Configuration xVirtualMachine {
     param(
         # Name of VMs
         [Parameter(Mandatory)]
@@ -132,14 +135,14 @@ configuration xVirtualMachine {
 ```
 
 > [!NOTE]
-> DSC doesn't support placing composite resources or nested configurations within a composite
-> resource.
+> DSC doesn't support placing composite DSC Resource blocks within a composite DSC Resource
+> definition.
 
-### Saving the configuration as a composite resource
+### Saving the DSC Configuration as a composite DSC Resource
 
-To use the parameterized configuration as a DSC resource, save it in a directory structure like that
-of any other MOF-based resource, and name it with a `.schema.psm1` extension. For this example,
-we'll name the file `xVirtualMachine.schema.psm1`. You also need to create a manifest named
+To use the parameterized DSC Configuration as a DSC Resource, save it in a directory structure like
+that of a [MOF-based DSC Resource][3], and name it with a `.schema.psm1` extension. For this
+example, we'll name the file `xVirtualMachine.schema.psm1`. You also need to create a manifest named
 `xVirtualMachine.psd1` that contains the following line.
 
 ```powershell
@@ -147,7 +150,7 @@ RootModule = 'xVirtualMachine.schema.psm1'
 ```
 
 > [!NOTE]
-> This is in addition to `MyDscResources.psd1`, the module manifest for all resources under the
+> This is separate from `MyDscResources.psd1`, the module manifest for all DSC Resources under the
 > `MyDscResources` folder.
 
 When you are done, the folder structure should be as follows.
@@ -162,71 +165,63 @@ $env: psmodulepath
                 |- xVirtualMachine.schema.psm1
 ```
 
-The resource is now discoverable with the `Get-DscResource` cmdlet, and its properties are
+The DSC Resource is now discoverable with the `Get-DscResource` cmdlet, and its properties are
 discoverable by either that cmdlet or with <kbd>Ctrl</kbd>+<kbd>Space</kbd> autocomplete in VS
 Code.
 
 ## Using the composite resource
 
-Next we create a configuration that calls the composite resource. This configuration calls the
-`xVirtualMachine` composite resource to create a virtual machine, and then calls the `xComputer`
-resource to rename it.
+Next we create a DSC Configuration that calls the composite DSC Resource. This DSC Configuration
+calls the `xVirtualMachine` composite DSC Resource to create a virtual machine.
 
 ```powershell
-configuration RenameVM {
+Configuration CreateVM {
     Import-DscResource -Module xVirtualMachine
-    Node localhost {
-        xVirtualMachine VM {
-            VMName          = "Test"
-            SwitchName      = "Internal"
-            SwitchType      = "Internal"
-            VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
-            VHDPath         = "C:\Demo\VHD"
-            VMStartupMemory = 1024MB
-            VMState         = "Running"
-        }
-    }
 
-    Node "192.168.10.1" {
-        xComputer Name {
-            Name       = "SQL01"
-            DomainName = "fourthcoffee.com"
-        }
+    xVirtualMachine VM {
+        VMName          = "Test"
+        SwitchName      = "Internal"
+        SwitchType      = "Internal"
+        VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
+        VHDPath         = "C:\Demo\VHD"
+        VMStartupMemory = 1024MB
+        VMState         = "Running"
     }
 }
 ```
 
-You can also use this resource to create multiple VMs by passing in an array of VM names to the
-`xVirtualMachine` resource.
+You can also use this composite DSC Resource to create multiple VMs by passing in an array of VM
+names for the **VMName** property of the composite DSC Resource.
 
 ```PowerShell
-configuration MultipleVms {
+Configuration MultipleVms {
     Import-DscResource -Module xVirtualMachine
-    Node localhost {
-        xVirtualMachine VMs {
-            VMName          = @(
-                "IIS01"
-                "SQL01"
-                "SQL02"
-            )
-            SwitchName      = "Internal"
-            SwitchType      = "Internal"
-            VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
-            VHDPath         = "C:\Demo\VHD"
-            VMStartupMemory = 1024MB
-            VMState         = "Running"
-        }
+
+    xVirtualMachine VMs {
+        VMName          = @(
+            "IIS01"
+            "SQL01"
+            "SQL02"
+        )
+        SwitchName      = "Internal"
+        SwitchType      = "Internal"
+        VhdParentPath   = "C:\Demo\VHD\RTM.vhd"
+        VHDPath         = "C:\Demo\VHD"
+        VMStartupMemory = 1024MB
+        VMState         = "Running"
     }
 }
 ```
 
 ### See also
 
-- [Authoring a MOF-based DSC Resource][2]
-- [Authoring a class-based DSC Resource][3]
+- [Authoring a MOF-based DSC Resource][4]
+- [Authoring a class-based DSC Resource][5]
 
 <!-- Reference Links -->
 
-[1]: resources.md
-[2]: authoringResourceMOF.md
-[3]: authoringResourceClass.md
+[1]: ../../../concepts/resources.md
+[2]: /azure/governance/machine-configuration/overview
+[3]: mof-based.md#create-the-required-folder-structure
+[4]: mof-based.md
+[5]: class-based.md

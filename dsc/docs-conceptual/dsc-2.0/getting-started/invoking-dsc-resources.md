@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Get started with invoking DSC Resources
 description: >
@@ -101,25 +101,13 @@ Invoke-DscResource -Name Environment -Module PSDscResources -Method Get -Propert
 }
 ```
 
-<!-- Commented out for now: this section implies that it (and the companion authoring doc) should
-     be removed and a note added to the overview that composite resources aren't supported.
-
-> [!NOTE]
-> Directly calling composite resource methods is not supported. Instead, call the methods of the
-> underlying resources that make up the composite resource.
--->
-
 ## See Also
 
-- [Writing a custom DSC resource with MOF][3]
-- [Writing a custom DSC resource with PowerShell classes][4]
-- [Debugging DSC resources][5]
+- [Installing DSC Resources][4]
 
 <!-- Reference Links -->
 
 [1]: /powershell/module/PSDesiredStateConfiguration/Invoke-DscResource
 [2]: https://www.powershellgallery.com/
-[3]:/powershell/module/powershellget/find-dscresource
-[4]: ../resources/authoringResourceMOF.md
-[5]: ../resources/authoringResourceClass.md
-[6]: ../troubleshooting/debugResource.md
+[3]: /powershell/module/powershellget/find-dscresource
+[4]: ../how-tos/installing-dsc-resources.md

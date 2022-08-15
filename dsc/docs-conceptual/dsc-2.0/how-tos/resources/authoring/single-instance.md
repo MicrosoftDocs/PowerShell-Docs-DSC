@@ -1,13 +1,13 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Writing a single-instance DSC Resource
+title:  Authoring a single-instance DSC Resource
 description: >
   This article describes a best practice for defining a DSC Resource that allows only a single
   instance in a DSC Configuration.
 ---
 
-# Writing a single-instance DSC Resource
+# Authoring a single-instance DSC Resource
 
 > [!NOTE]
 > This article describes a best practice for defining a DSC resource that allows only a single

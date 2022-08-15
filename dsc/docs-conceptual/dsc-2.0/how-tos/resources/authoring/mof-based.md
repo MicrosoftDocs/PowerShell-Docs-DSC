@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Authoring a MOF-based DSC Resource
 description: >
@@ -13,6 +13,10 @@ description: >
 
 This article shows how you can create a MOF-based DSC Resource by writing a schema and developing
 a script module  to manage an IIS website.
+
+> [!IMPORTANT]
+> Starting in DSC 3.0, MOF-based DSC Resources aren't supported. If you're writing a new DSC
+> Resource and want it to work with future versions, write a [class-based DSC Resource][1] instead.
 
 ## Creating the MOF schema
 
@@ -71,7 +75,7 @@ Note the following about the previous code:
 - The `[read]` qualifier indicates that a property can't be set by the DSC Resource, and is for
   reporting purposes only.
 - **Values** restricts the values that can be assigned to the property to the list of values defined
-  in the **ValueMap**. For more information, see [ValueMap and Value Qualifiers][1].
+  in the **ValueMap**. For more information, see [ValueMap and Value Qualifiers][2].
 - Including a property called **Ensure** with the values `Present` and `Absent` in your DSC Resource
   is recommended for DSC Resources that a user can add and remove from a system.
 - Name the schema file for your DSC Resource as follows: `<classname>.schema.mof`, where
@@ -347,4 +351,5 @@ $global:DSCMachineStatus = 1
 
 <!-- Reference Links -->
 
-[1]: /windows/desktop/WmiSdk/value-map
+[1]: class-based.md
+[2]: /windows/desktop/WmiSdk/value-map

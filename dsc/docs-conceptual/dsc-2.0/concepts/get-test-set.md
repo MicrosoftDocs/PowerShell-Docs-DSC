@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Get-Test-Set
 description: >
@@ -174,7 +174,7 @@ reboot is required.
 <!-- Reference Links -->
 
 [1]: resources.md
-[2]: ../configurations/configurations.md
+[2]: configurations.md
 [3]: /windows/desktop/wmisdk/managed-object-format--mof-
 [4]: /powershell/module/microsoft.powershell.core/about/about_hash_tables
 [5]: /azure/automation/automation-dsc-overview

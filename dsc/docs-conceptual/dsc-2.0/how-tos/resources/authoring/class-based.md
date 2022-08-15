@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 title:  Authoring a class-based DSC Resource
 description: >
   This article shows how to create a DSC Resource that manages a file in a specified path with
@@ -596,7 +596,7 @@ whether the file at `/tmp/test.txt` exists and if the contents match the string 
 property **Content**. If not, the entire file is written.
 
 ```powershell
-configuration MyConfig {
+Configuration MyConfig {
     Import-DSCResource -module NewFile
     NewFile testFile {
         Path = "/tmp/test.txt"
@@ -626,5 +626,5 @@ $env:ProgramFiles\PowerShell\Modules (folder)
 
 <!-- Reference Links -->
 
-[1]: resources.md
+[1]: ../../../concepts/resources.md
 [2]: /dotnet/api/system.datetime

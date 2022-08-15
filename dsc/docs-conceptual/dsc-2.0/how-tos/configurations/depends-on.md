@@ -1,22 +1,22 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Resource dependencies using DependsOn
+title: Managing dependencies in DSC Configurations
 description: >
   As your DSC Configuration grows larger and more complex, you can use the `DependsOn` meta-property
   to change the applied order of your DSC Resources by specifying that one DSC Resource depends on
   another DSC Resource.
 ---
 
-# Resource dependencies using DependsOn
+# Managing dependencies in DSC Configurations
 
-When you write [DSC Configurations][1], you add [Resource blocks][2] to configure aspects of a
-system. As you continue to add DSC Resource blocks, your DSC Configurations can grow large and
-cumbersome to manage. One such challenge is the applied order of your DSC Resource blocks. By
-default, DSC Resources are applied in the order they're defined within the `Configuration` block. As
-your DSC Configuration grows larger and more complex, you can use the **DependsOn** meta-property to
-change the applied order of your DSC Resources by specifying that one DSC Resource depends on
-another DSC Resource.
+When you write [DSC Configurations][1] for [Azure Policy's machine configuration feature][2], you
+add [Resource blocks][3] to configure aspects of a system. As you continue to add DSC Resource
+blocks, your DSC Configurations can grow large and cumbersome to manage. One such challenge is the
+applied order of your DSC Resource blocks. By default, DSC Resources are applied in the order
+they're defined within the `Configuration` block. As your DSC Configuration grows larger and more
+complex, you can use the **DependsOn** meta-property to change the applied order of your DSC
+Resources by specifying that one DSC Resource depends on another DSC Resource.
 
 The **DependsOn** meta-property can be used in any DSC Resource block. It's defined with the same
 key/value mechanism as other DSC Resource properties. The **DependsOn** meta-property expects an
@@ -63,13 +63,8 @@ Configuration ConfigureFirewall {
 ConfigureFirewall -OutputPath C:\Temp\
 ```
 
-<!--
-    TODO: This can't be tested with DSC, it requires machine configuration; should we have an example
-    here? Is it enough to just document what this is and how it works? Should we have a graph of the
-    dependency relations? Can we get an actual example of this as it relates to machine configuration?
--->
-
 <!-- Reference Links -->
 
-[1]: configurations.md
-[2]: ../resources/resources.md
+[1]: ../../concepts/configurations.md
+[2]: /azure/governance/machine-configuration/overview
+[3]: ../../concepts/resources.md

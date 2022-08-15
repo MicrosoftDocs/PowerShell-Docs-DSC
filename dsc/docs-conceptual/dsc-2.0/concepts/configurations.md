@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Configurations
 description: >
@@ -85,8 +85,7 @@ block. It's not a cmdlet. `Import-DscResource` supports two parameters:
   **Name** property of `Get-DscResource`'s return object, but the class name used when defining the
   resource schema (the **ResourceType** property of the object returned by `Get-DscResource`).
 
-For more information on using `Import-DSCResource`, see
-[Using Import-DSCResource][3]
+For more information on using `Import-DSCResource`, see [Using Import-DSCResource][3]
 
 ## See Also
 
@@ -99,4 +98,4 @@ For more information on using `Import-DSCResource`, see
 [2]: /powershell/module/PSDesiredStateConfiguration/Get-DscResource
 [3]: import-dscresource.md
 [4]: ../overview.md
-[5]: ../resources/resources.md
+[5]: resources.md

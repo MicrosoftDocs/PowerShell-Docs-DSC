@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 title:  Desired State Configuration 2.0
 description: >
   Overview of Desired State Configuration 2.0
@@ -75,7 +75,8 @@ The following features aren't supported:
 - Using credentials in DSC Configuration blocks
 - Using the **ConfigurationData** parameter with a DSC Configuration
 - Using the `Node` keyword in a DSC Configuration
-- Using nested DSC Configurations (composite DSC Configurations)
+- Using composite DSC Configurations (DSC Configurations that nest another DSC Configuration inside
+  them)
 
 <!-- Reference Links -->
 

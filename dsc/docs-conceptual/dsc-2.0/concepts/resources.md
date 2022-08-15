@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Resources
 description: >
@@ -151,7 +151,7 @@ resources have been archived under **Reference**.
 
 <!-- Reference Links -->
 
-[1]: ../configurations/configurations.md
+[1]: configurations.md
 [2]: /powershell/module/psdesiredstateconfiguration/about/about_classes_and_dsc
 [3]: /windows/desktop/wmisdk/managed-object-format--mof-
 [4]: /powershell/module/PSDesiredStateConfiguration/Get-DscResource

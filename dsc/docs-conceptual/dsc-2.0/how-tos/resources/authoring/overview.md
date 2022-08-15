@@ -1,5 +1,5 @@
 ---
-ms.date: 08/01/2022
+ms.date: 08/15/2022
 keywords:  dsc,powershell,configuration,setup
 title:  Authoring DSC Resources
 description: >
@@ -23,12 +23,18 @@ settings) for the DSC Resource. A DSC Resource schema can be defined in a MOF fi
 implementation in a script module or the schema and implementation can both be defined in a
 PowerShell class. The following articles describe in more detail how to create DSC Resources.
 
-- [Authoring a MOF-based DSC Resource][1]
-- [Authoring a class-based DSC Resource][2]
-- [Composite Resources: Using a DSC configuration as a Resource][3]
+- [Authoring a class-based DSC Resource][1]
+- [Authoring a single-instance DSC Resource][2]
+- [Authoring a MOF-based DSC Resource][3]
+- [Authoring a composite DSC Resource][4]
+
+Review the [DSC Resource authoring checklist][5] to ensure you're developing reliable high-quality
+DSC Resources you and others can rely on.
 
 <!-- Reference Links -->
 
-[1]: authoringResourceMOF.md
-[2]: authoringResourceClass.md
-[3]: authoringResourceComposite.md
+[1]: class-based.md
+[2]: single-instance.md
+[3]: mof-based.md
+[4]: composite.md
+[5]: checklist.md
