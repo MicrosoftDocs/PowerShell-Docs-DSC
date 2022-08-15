@@ -239,7 +239,7 @@ The `Get()`, `Set()`, and `Test()` methods are analogous to the `Get-TargetResou
 `Set-TargetResource`, and `Test-TargetResource` functions in a script resource.
 
 As a best practice, minimize the amount of code within the class implementation. Instead,
-move the majority of your code our to public functions in the module, which can then
+move the majority of your code out to public functions in the module, which can then
 be independently tested.
 
 ```powershell
