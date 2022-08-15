@@ -17,13 +17,13 @@ Windows Feature is:
 - Whether it's installed with its subfeatures
 - Whether it's installed as a specific account
 
-All of the values provided for the resource are user-provided, not hard-coded. The parameters map
-to the resource's properties, changing its behavior.
+All the resource's values are user-provided, not hard-coded. The parameters map to the resource's
+properties, changing its behavior.
 
 ### Name
 
 If you don't specify the **Name** parameter, the resource's **Name** property is set to
-`Telnet-Client`. This the Windows feature the resource will install or uninstall.
+`Telnet-Client`. This the Windows feature the resource installs or uninstalls.
 
 ### Ensure
 
@@ -36,7 +36,7 @@ installed.
 ### IncludeAllSubFeature
 
 If you don't specify the **IncludeAllSubFeature** parameter, the resource's **IncludeAllSubFeature**
-property is set to `$false` and the resource does not install the Windows feature's subfeatures if
+property is set to `$false` and the resource doesn't install the Windows feature's subfeatures if
 **Ensure** is set to `Present`.
 
 If **Ensure** is set to `Absent`, the resource always uninstalls the subfeatures for any Windows

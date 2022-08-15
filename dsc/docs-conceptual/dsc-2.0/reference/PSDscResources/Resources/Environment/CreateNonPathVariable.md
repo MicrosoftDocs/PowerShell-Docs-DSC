@@ -14,7 +14,7 @@ This example shows how you can use the `Environment` resource to ensure a non-pa
 variable exists with a specific value.
 
 With **Ensure** set to `Present`, **Name** set to `TestEnvironmentVariable`, and **Value** set to
-`TestValue`, the resource will add an environment variable called `TestEnvironmentVariable` with the
+`TestValue`, the resource adds an environment variable called `TestEnvironmentVariable` with the
 value `TestValue` if it doesn't exist.
 
 With **Path** set to `$false`, if `TestEnvironmentVariable` exists with any value other than

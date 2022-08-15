@@ -14,10 +14,10 @@ This example shows how you can use the `Archive` resource to ensure a `.zip` fil
 specific directory.
 
 With **Ensure** set to `Present`, the **Path** set to `C:\ExampleArchivePath\Archive.zip`, and the
-**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource will expand the
-contents of `Archive.zip` to the `Destination` folder if they're not already there.
+**Destination** set to `C:\ExampleDestinationPath\Destination`, the resource expands the contents of
+`Archive.zip` to the `Destination` folder if they're not already there.
 
-Without the **Validate** or **Checksum** properties set, the resource does not validate the expanded
+Without the **Validate** or **Checksum** properties set, the resource doesn't verify the expanded
 contents with the files in `Archive.zip`, only that they exist. The expanded content in the
 `Destination` folder may not match the contents in `Archive.zip`.
 

@@ -59,7 +59,7 @@ Type: System.String
 
 Specify the path to the MSI package as a string. This property's value can be the path to an MSI
 file on the local machine, the path to an MSI package on a UNC drive, or a web URI where the MSI
-package can be downloaded from. If this property's value is not a web URI, it must end with `.msi`.
+package can be downloaded from. If this property's value isn't a web URI, it must end with `.msi`.
 
 This property is only used with the resource's **Set** method. If the value is a web URI, the
 resource downloads the package to a local cache before installing or uninstalling. If the value is a
@@ -117,8 +117,8 @@ Default Value: Present
 ### FileHash
 
 Specify the expected hash value of the MSI file as a string. If specified, the resource checks the
-package against this value before installing or uninstalling the package. If the values do not
-match, the resource throws an invalid argument exception.
+package against this value before installing or uninstalling the package. If the values don't match,
+the resource throws an invalid argument exception.
 
 ```
 Type: System.String
@@ -144,7 +144,7 @@ Default Value: SHA256
 ### LogPath
 
 Specify the path a file for logging the output from MSI execution as a string. By default, the
-output is not logged.
+output isn't logged.
 
 ```
 Type: System.String
@@ -164,7 +164,7 @@ Default Value: None
 ### ServerCertificateValidationCallback
 
 Specify a PowerShell scriptblock to validate SSL certificates when **Path** is an HTTPS URI. If the
-scriptblock does not return `$true`, the resource's **Set** method throws an invalid operation
+scriptblock doesn't return `$true`, the resource's **Set** method throws an invalid operation
 exception and doesn't download the package.
 
 ```
@@ -176,8 +176,8 @@ Default Value: None
 
 Specify the subject as a string that should match the signer certificate of the MSI file's digital
 signature. If specified, the resource checks the package against this value before installing or
-uninstalling the package. If the values do not match, the resource's **Set** method throws an
-invalid argument exception.
+uninstalling the package. If the values don't match, the resource's **Set** method throws an invalid
+argument exception.
 
 ```
 Type: System.String
@@ -188,7 +188,7 @@ Default Value: None
 
 Specify the certificate thumbprint as a string that should match the signer certificate of the MSI
 file's digital signature. If specified, the resource checks the package against this value before
-installing or uninstalling the package. If the values do not match, the resource's **Set** method
+installing or uninstalling the package. If the values don't match, the resource's **Set** method
 throws an invalid argument exception.
 
 ```
@@ -209,7 +209,7 @@ Type: System.String
 
 ### InstallSource
 
-The path to the MSI package. This property is not configurable.
+The path to the MSI package.
 
 ```
 Type: System.String
@@ -217,7 +217,7 @@ Type: System.String
 
 ### Name
 
-The display name of the MSI package. This property is not configurable.
+The display name of the MSI package.
 
 ```
 Type: System.String
@@ -225,7 +225,7 @@ Type: System.String
 
 ### PackageDescription
 
-The description of the MSI package. This property is not configurable.
+The description of the MSI package.
 
 ```
 Type: System.String
@@ -233,7 +233,7 @@ Type: System.String
 
 ### Publisher
 
-The publisher of the MSI package. This property is not configurable.
+The publisher of the MSI package.
 
 ```
 Type: System.String
@@ -241,7 +241,7 @@ Type: System.String
 
 ### Size
 
-The size of the MSI package in MB. This property is not configurable.
+The size of the MSI package in MB.
 
 ```
 Type: System.UInt32
@@ -249,7 +249,7 @@ Type: System.UInt32
 
 ### Version
 
-The version number of the MSI package. This property is not configurable.
+The version number of the MSI package.
 
 ```
 Type: System.String

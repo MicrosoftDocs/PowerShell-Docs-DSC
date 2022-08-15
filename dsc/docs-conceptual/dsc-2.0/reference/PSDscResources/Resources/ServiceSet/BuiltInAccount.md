@@ -12,11 +12,11 @@ description: >
 ## Description
 
 This example shows how you can use the `ServiceSet` composite resource to ensure multiple services
-exist and will run under the `LocalService` built-in account.
+exist and run under the `LocalService` built-in account.
 
 With **Ensure** set to `Present`, **BuiltInAccount** set to `LocalService`, and **Name** set tthe
 array of `Dhcp` and `SstpSvc`, the resource configures the `Dhcp` and `SstpSvc` services to run
-under the `LocalService` account if they are configured to run under any other account.
+under the `LocalService` account if they're configured to run under any other account.
 
 With **State** set to `Ignore`, the resource doesn't start or stop the services.
 
@@ -26,13 +26,13 @@ doesn't exist, use the [Service resource][1].
 
 ## With Invoke-DscResource
 
-The `Invoke-DscResource` cmdlet does not support invoking composite resources. Instead, use the
+The `Invoke-DscResource` cmdlet doesn't support invoking composite resources. Instead, use the
 [Service resource][1].
 
 ## With a Configuration
 
 This snippet shows how you can define a `Configuration` with a `ServiceSet` resource block to ensure
-that the `Dhcp` and `SstpSvc` services will run under the `LocalService` built-in account.
+that the `Dhcp` and `SstpSvc` services run under the `LocalService` built-in account.
 
 :::code source="BuiltInAccount.Config.ps1":::
 

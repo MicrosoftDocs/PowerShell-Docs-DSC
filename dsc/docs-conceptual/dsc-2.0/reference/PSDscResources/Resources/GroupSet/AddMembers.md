@@ -23,7 +23,7 @@ already members.
 
 ## With Invoke-DscResource
 
-The `Invoke-DscResource` cmdlet does not support invoking composite resources. Instead, use the
+The `Invoke-DscResource` cmdlet doesn't support invoking composite resources. Instead, use the
 [Group resource][1].
 
 ## With a Configuration

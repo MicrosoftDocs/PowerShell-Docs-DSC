@@ -13,12 +13,13 @@ description: >
 This example shows how you can use the `Service` resource to ensure a service exists with the
 correct startup type.
 
-With **Ensure** set to `Present`, **Name** set to `Service1`, and **Path** not set, the resource throws an exception if the service doesn't exist.
+With **Ensure** set to `Present`, **Name** set to `Service1`, and **Path** not set, the resource
+throws an exception if the service doesn't exist.
 
 With **StartupType** set to `Manual`, the resource sets the startup type to `Manual` if the
 `Service1` service exists and has any other startup type.
 
-With **State** set to `Ignore`, the resource does not start or stop the `Service1` service.
+With **State** set to `Ignore`, the resource doesn't start or stop the `Service1` service.
 
 ## With Invoke-DscResource
 

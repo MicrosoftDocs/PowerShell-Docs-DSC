@@ -55,7 +55,7 @@ Behavior: Key
 
 Specify the name of the registry value as a string. To add or remove a registry key, specify this
 property as an empty string without specifying the **ValueType** or **ValueData** property. To
-modify or remove the default value of a registry key, specify this property as an empty string with
+update or remove the default value of a registry key, specify this property as an empty string with
 the **ValueType** or **ValueData** property.
 
 ```
@@ -66,9 +66,8 @@ Type: System.String
 
 ### Ensure
 
-Specify whether the registry key or value should exist. To add or modify a registry key or
-value, set this property to `Present`. To remove a registry key or value, set this property to
-`Absent`.
+Specify whether the registry key or value should exist. To add or update a registry key or value,
+set this property to `Present`. To remove a registry key or value, set this property to `Absent`.
 
 ```
 Type: System.String
@@ -91,7 +90,7 @@ Default Value: false
 ### Hex
 
 Specify whether the specified registry key data is provided in a hexadecimal format. Specify this
-property only when **ValueType** is `DWord` or `QWord`. If **ValueType** is not `DWord` or `Qword`,
+property only when **ValueType** is `DWord` or `QWord`. If **ValueType** isn't `DWord` or `Qword`,
 the resource ignores this property. The default value is `$false`.
 
 ```
@@ -102,7 +101,7 @@ Default Value: false
 ### ValueData
 
 Specify the registry key value as a string or, if **ValueType** is `MultiString`, an array of
-strings. If **ValueType** is not `MultiString` and this property's value is mulitple strings, the
+strings. If **ValueType** isn't `MultiString` and this property's value is mulitple strings, the
 resource throws an invalid argument exception.
 
 ```
@@ -129,7 +128,7 @@ Default Value: String
 ## Examples
 
 - [Add a registry key][1]
-- [Add or modify a registry key value][2]
+- [Add or update a registry key value][2]
 - [Remove a registry key value][3]
 - [Remove a registry key][4]
 

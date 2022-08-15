@@ -59,7 +59,7 @@ Default Value: None
 
 ### Ensure
 
-Specify whether the groups should exist. To create or modify the groups, set this property to
+Specify whether the groups should exist. To add or update the groups, set this property to
 `Present`. To remove the groups, set this property to `Absent`. The default value is `Present`.
 
 ```

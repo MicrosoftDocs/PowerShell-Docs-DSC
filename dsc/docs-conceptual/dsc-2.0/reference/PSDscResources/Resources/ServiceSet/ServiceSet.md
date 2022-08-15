@@ -30,8 +30,8 @@ ServiceSet [String] #ResourceName
 ## Description
 
 `ServiceSet` is a composite resource that makes it simpler to manage multiple services at once with
-shared but limited configurations. This resource can only modify or delete existing services. It
-cannot create services. For more control over the configuration of your services, see the
+shared but limited configurations. This resource can only update or remove existing services. It
+can't create services. For more control over the configuration of your services, see the
 [Service resource][1].
 
 > [!IMPORTANT]
@@ -63,7 +63,7 @@ Behavior: Key
 ### BuiltInAccount
 
 Specify the name of the machine account to run the service as. The account must have access to each
-service's executable in order to start the service.
+service's executable to start the service.
 
 Don't specify this property with the **Credential** property.
 
@@ -79,8 +79,8 @@ Default Value: Null
 ### Credential
 
 Specify the credential for an account to run the services as. The account must have access to each
-service's executable in order to start that service. The resource automatically grants this account
-the "Log on as a Service" right.
+service's executable to start that service. The resource automatically grants this account the "Log
+on as a Service" right.
 
 Don't specify this property with the **BuiltInAccount** property.
 
@@ -111,11 +111,11 @@ Specify how the services should behave on system start-up. The value must be one
 - `Automatic` - The service is started by the operating system at system start-up. If an
   automatically started service depends on a manually started service, the manually started service
   is also started automatically at system start-up.
-- `Disabled` - The service is disabled and cannot be started by a user or application.
+- `Disabled` - The service is disabled and can't be started by a user or application.
 - `Manual` - The service is started only manually, by a user, using the Service Control Manager, or
   by an application.
 
-If the service does not exist, the default value is `Automatic`.
+If the service doesn't exist, the default value is `Automatic`.
 
 ```
 Type: System.String
@@ -131,9 +131,9 @@ Default Value: None
 
 Specify whether the services should run. The value must be one of the following:
 
-- `Running` - The resource will start the service if it's not already started.
-- `Stopped` - The resource will stop the service if it's running.
-- `Ignore` - The resource will not start or stop the service.
+- `Running` - The resource starts the service if it's not already started.
+- `Stopped` - The resource stops the service if it's running.
+- `Ignore` - The resource doesn't start or stop the service.
 
 The default value is `Running`.
 

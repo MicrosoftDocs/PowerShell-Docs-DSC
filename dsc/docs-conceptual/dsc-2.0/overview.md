@@ -23,26 +23,26 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 ```
 
 > [!IMPORTANT]
-> Be sure to include the parameter MaximumVersion or you could install version 3 (or higher) of
-> PSDesireStateConfiguration that contains significant differences.
+> Be sure to include the parameter **MaximumVersion** or you could install version 3 (or higher) of
+> **PSDesireStateConfiguration** that contains significant differences.
 
 ## Use Case for DSC 2.0
 
-DSC 2.0 is supported for use with [Azure guest configuration][2]. Other scenarios, such as directly
-calling DSC Resources with `Invoke-DscResource` may be functional but are not the primary intended
-use of this version.
+DSC 2.0 is supported for use with [Azure Policy's machine configuration][2]. Other scenarios, such
+as directly calling DSC Resources with `Invoke-DscResource`, may be functional but aren't the
+primary intended use of this version.
 
-If you are not using Azure guest configuration, you should use DSC 1.1.
+If you aren't using Azure Policy's machine configuration feature, you should use DSC 1.1.
 
-DSC 3.0 is available in public beta and should only be used with Azure guest configuration (which
+DSC 3.0 is available in public beta and should only be used with Azure machine configuration (which
 supports it) or for non-production environments to test migrating away from DSC 1.1.
 
 ## Changes from DSC 1.1
 
 There are several major changes in DSC 2.0.
 
-The only way to use DSC Resources in 2.0 is with the `Invoke-DscResource` cmdlet and Azure guest
-configuration.
+The only way to use DSC Resources in 2.0 is with the `Invoke-DscResource` cmdlet and Azure Policy's
+machine configuration feature.
 
 The following cmdlets have been removed:
 
@@ -65,13 +65,19 @@ The following features have been removed:
 - The pull server
 - The local configuration manager (LCM)
 
-The following features are not supported:
+The following features aren't supported:
 
-- Multi-node configurations
-- Cross-node dependencies (the **WaitFor\*** DSC Resources)
+- Multi-system DSC Configurations
+- Cross-system dependencies (the `WaitFor*` DSC Resources)
 - Rebooting behavior for DSC Resources
+- Adding parameters to DSC Configuration blocks
+- Using flow control statements in DSC Configuration blocks
+- Using credentials in DSC Configuration blocks
+- Using the **ConfigurationData** parameter with a DSC Configuration
+- Using the `Node` keyword in a DSC Configuration
+- Using nested DSC Configurations (composite DSC Configurations)
 
 <!-- Reference Links -->
 
 [1]: https://devblogs.microsoft.com/powershell/powershell-team-2021-investments/#dsc-for-powershell-7
-[2]: /azure/governance/policy/concepts/guest-configuration
+[2]: /azure/governance/machine-configuration/overview

@@ -73,7 +73,7 @@ Default Value: Present
 
 ### LogLevel
 
-Specify the maximum output level to show in the DISM log as a string. Valid log levels include:
+Specify the output information to show in the DISM log as a string. Valid options include:
 
 - `ErrorsOnly` - The resource only logs errors.
 - `ErrorsAndWarning` - The resource logs errors and warnings.
