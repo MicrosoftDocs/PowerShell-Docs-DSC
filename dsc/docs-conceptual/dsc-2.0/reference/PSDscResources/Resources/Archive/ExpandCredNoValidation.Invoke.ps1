@@ -1,0 +1,40 @@
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)]
+    [System.Management.Automation.PSCredential]
+    [System.Management.Automation.Credential()]
+    $Credential
+)
+
+begin {
+    $SharedParameters = @{
+        Name       = 'Archive'
+        ModuleName = 'PSDscResource'
+        Properties = @{
+            Path        = 'C:\ExampleArchivePath\Archive.zip'
+            Destination = 'C:\ExampleDestinationPath\Destination'
+            Credential  = $Credential
+            Ensure      = 'Present'
+        }
+    }
+
+    $NonGetProperties = @(
+        'Ensure'
+    )
+}
+
+process {
+    $TestResult = Invoke-DscResource -Method Test @SharedParameters
+
+    if ($TestResult.InDesiredState) {
+        $QueryParameters = $SharedParameters.Clone()
+
+        foreach ($Property in $NonGetProperties) {
+            $QueryParameters.Properties.Remove($Property)
+        }
+
+        Invoke-DscResource -Method Get @QueryParameters
+    } else {
+        Invoke-DscResource -Method Set @SharedParameters
+    }
+}
