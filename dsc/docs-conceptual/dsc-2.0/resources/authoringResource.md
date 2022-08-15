@@ -1,31 +1,31 @@
 ---
 ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Build custom PowerShell Desired State Configuration resources
+title:  Authoring DSC Resources
 description: >
-  This article provides an overview of developing resources and links to articles with specific
+  This article provides an overview of developing DSC Resources and links to articles with specific
   information and examples.
 ---
 
-# Build Custom PowerShell Desired State Configuration resources
+# Authoring DSC Resources
 
 > Applies To: PowerShell 7.2
 
-PowerShell Desired State Configuration (DSC) has built-in resources that you can use to
-configure your environment. This article provides an overview of developing resources and links to
-articles with specific information and examples.
+PowerShell Desired State Configuration (DSC) uses DSC Resources as standardized interfaces for
+managing the settings of a system. This article provides an overview of developing DSC Resources and
+links to articles with specific information and examples.
 
-## DSC resource components
+## DSC Resource components
 
-A DSC resource is a PowerShell module. The module contains both the schema (the definition of the
-configurable properties) and the implementation (the code that does the actual work specified by a
-Configuration) for the resource. A DSC resource schema can be defined in a MOF file with the
+A DSC Resource is a PowerShell module. The module contains both the schema (the definition of the
+configurable properties) and the implementation (the code that does the actual work of managing
+settings) for the DSC Resource. A DSC Resource schema can be defined in a MOF file with the
 implementation in a script module or the schema and implementation can both be defined in a
-PowerShell class. The following articles describe in more detail how to create DSC resources.
+PowerShell class. The following articles describe in more detail how to create DSC Resources.
 
-- [Writing a custom DSC resource with MOF][1]
-- [Writing a custom DSC resource with PowerShell classes][2]
-- [Composite resources: Using a DSC configuration as a resource][3]
+- [Authoring a MOF-based DSC Resource][1]
+- [Authoring a class-based DSC Resource][2]
+- [Composite Resources: Using a DSC configuration as a Resource][3]
 
 <!-- Reference Links -->
 

@@ -1,32 +1,32 @@
 ---
 ms.date: 08/01/2022
-title:  Writing a custom DSC resource with PowerShell classes
+title:  Authoring a class-based DSC Resource
 description: >
-  This article shows how to create a simple resource that manages a file in a specified path.
+  This article shows how to create a DSC Resource that manages a file in a specified path with
+  PowerShell classes.
 ---
 
-# Writing a custom DSC resource with PowerShell classes
+# Authoring a class-based DSC Resource
 
 > Applies To: PowerShell 7.2
 
-You can define a DSC resource by creating a PowerShell class. In a class-based DSC resource, the
-schema is defined as properties of the class which can be modified with attributes to specify the
-property type. The resource is implemented by **Get**, **Set**, and **Test** methods (equivalent to
+You can define a DSC Resource by creating a PowerShell class. In a class-based DSC Resource, the
+schema is defined as properties of the class that can be modified with attributes to specify the
+property type. The Resource is implemented with **Get**, **Set**, and **Test** methods (equal to
 the `Get-TargetResource`, `Set-TargetResource`, and `Test-TargetResource` functions in a script
-resource).
+Resource).
 
-In this article, we will create a simple resource named `NewFile` that manages a file in a specified
+In this article, we create a minimal Resource named `NewFile` that manages a file in a specified
 path.
 
-For more information about DSC resources, see
-[Build Custom Windows PowerShell Desired State Configuration Resources][1]
+For more information about DSC Resources, see [DSC Resources][1].
 
 > [!NOTE]
-> Generic collections are not supported in class-based resources.
+> Generic collections aren't supported in class-based Resources.
 
-## Folder structure for a class resource
+## Folder structure for a class Resource
 
-To implement a DSC resource with a PowerShell class, create the following folder structure. The
+To implement a DSC Resource with a PowerShell class, create the following folder structure. The
 class is defined in `MyDscResource.psm1` and the module manifest is defined in `MyDscResource.psd1`.
 
 ```text
@@ -38,8 +38,8 @@ $env:ProgramFiles\WindowsPowerShell\Modules (folder)
 
 ## Create the class
 
-You use the `class` keyword to create a PowerShell class. To specify that a class is a DSC resource,
-use the `DscResource()` attribute. The name of the class is the name of the DSC resource.
+You use the `class` keyword to create a PowerShell class. To specify that a class is a DSC Resource,
+use the `DscResource()` attribute. The name of the class is the name of the DSC Resource.
 
 ```powershell
 [DscResource()]
@@ -49,7 +49,7 @@ class NewFile {
 
 ### Declare properties
 
-The DSC resource schema is defined as properties of the class. We declare three properties as
+The DSC Resource schema is defined as properties of the class. We declare three properties as
 follows.
 
 ```powershell
@@ -69,12 +69,12 @@ follows.
 Notice that the properties are modified by attributes. The meaning of the attributes is as follows:
 
 - **DscProperty(Key)**: The property is required. The property is a key. The values of all
-  properties marked as keys must combine to uniquely identify a resource instance within a
+  properties marked as keys must combine to uniquely identify a Resource instance within a
   configuration.
 - **DscProperty(Mandatory)**: The property is required.
 - **DscProperty(NotConfigurable)**: The property is read-only. Properties marked with this attribute
-  cannot be set by a configuration, but are populated by the **Get** method.
-- **DscProperty()**: The property is configurable, but it is not required.
+  can't be set by a configuration, but are populated by the **Get** method.
+- **DscProperty()**: The property is configurable, but it's not required.
 
 The **Path** and **SourcePath** properties are both strings. The **CreationTime** is a
 [DateTime][2] property. The **Ensure** property is an enumeration type, defined as follows.
@@ -89,7 +89,7 @@ enum Ensure {
 ### Embedding classes
 
 If you would like to include a new type with defined properties that you can use within your
-resource, create a class with property types as described above.
+DSC Resource, create a class with property types as described before.
 
 ```powershell
 class Reason {
@@ -104,7 +104,7 @@ class Reason {
 ### Public and Private functions
 
 You can create PowerShell functions within the same module file and use them inside the methods of
-your DSC class resource. The functions must be exported as module members in the module manifest's
+your DSC Resource's class. The functions must be exported as module members in the module manifest's
 **FunctionsToExport** setting. The script blocks within those functions may call unexported
 functions.
 
@@ -246,16 +246,16 @@ function ConvertTo-SpecialChars {
 ### Implementing the methods
 
 The **Get**, **Set**, and **Test** methods are analogous to the `Get-TargetResource`,
-`Set-TargetResource`, and `Test-TargetResource` functions in a script resource.
+`Set-TargetResource`, and `Test-TargetResource` functions in a script Resource.
 
-It is best practice to minimize the amount of code within the class implementation. Instead, move
-the majority of your code into exported module functions, which you can test independantly.
+It's best practice to limit the amount of code within the class implementation. Move the majority of
+your code into exported module functions, which you can test independantly.
 
 ```powershell
 <#
     This method is equivalent of the Get-TargetResource script function.
     The implementation should use the keys to find appropriate
-    resources. This method returns an instance of this class with the
+    Resources. This method returns an instance of this class with the
     updated key properties.
 #>
 [NewFile] Get() {
@@ -265,7 +265,7 @@ the majority of your code into exported module functions, which you can test ind
 
 <#
     This method is equivalent of the Set-TargetResource script function.
-    It sets the resource to the desired state.
+    It sets the Resource to the desired state.
 #>
 [void] Set() {
     $set = Set-File -ensure $this.ensure -path $this.path -content $this.content
@@ -274,7 +274,7 @@ the majority of your code into exported module functions, which you can test ind
 <#
     This method is equivalent of the Test-TargetResource script
     function. It should return True or False, showing whether the
-    resource is in a desired state.
+    Resource is in a desired state.
 #>
 [bool] Test() {
     $test = Test-File -ensure $this.ensure -path $this.path -content $this.content
@@ -436,8 +436,8 @@ function ConvertTo-SpecialChars {
 }
 
 <#
-    This resource manages the file in a specific path.
-    [DscResource()] indicates the class is a DSC resource
+    This Resource manages the file in a specific path.
+    [DscResource()] indicates the class is a DSC Resource
 #>
 
 [DscResource()]
@@ -448,18 +448,18 @@ class NewFile {
         expected to be present or absent.
 
         The [DscProperty(Key)] attribute indicates the property is a
-        key and its value uniquely identifies a resource instance.
+        key and its value uniquely identifies a Resource instance.
         Defining this attribute also means the property is required
-        and DSC will ensure a value is set before calling the resource.
+        and DSC will ensure a value is set before calling the Resource.
 
-        A DSC resource must define at least one key property.
+        A DSC Resource must define at least one key property.
     #>
     [DscProperty(Key)]
     [string] $path
 
     <#
         This property indicates if the settings should be present or absent
-        on the system. For present, the resource ensures the file pointed
+        on the system. For present, the Resource ensures the file pointed
         to by $Path exists. For absent, it ensures the file point to by
         $Path does not exist.
 
@@ -468,7 +468,7 @@ class NewFile {
 
         If Mandatory is not specified or if it is defined as
         Mandatory=$false, the value is not guaranteed to be set when DSC
-        calls the resource.  This is appropriate for optional properties.
+        calls the Resource.  This is appropriate for optional properties.
     #>
     [DscProperty(Mandatory)]
     [ensure] $ensure
@@ -486,7 +486,7 @@ class NewFile {
         [DscProperty(NotConfigurable)] attribute indicates the property is
         not configurable in DSC configuration.  Properties marked this way
         are populated by the Get() method to report additional details
-        about the resource when it is present.
+        about the Resource when it is present.
     #>
     [DscProperty(NotConfigurable)]
     [Reason[]] $Reasons
@@ -494,7 +494,7 @@ class NewFile {
     <#
         This method is equivalent of the Get-TargetResource script function.
         The implementation should use the keys to find appropriate
-        resources. This method returns an instance of this class with the
+        Resources. This method returns an instance of this class with the
         updated key properties.
     #>
     [NewFile] Get() {
@@ -504,7 +504,7 @@ class NewFile {
     
     <#
         This method is equivalent of the Set-TargetResource script function.
-        It sets the resource to the desired state.
+        It sets the Resource to the desired state.
     #>
     [void] Set() {
         $set = Set-File -ensure $this.ensure -path $this.path -content $this.content
@@ -513,7 +513,7 @@ class NewFile {
     <#
         This method is equivalent of the Test-TargetResource script
         function. It should return True or False, showing whether the
-        resource is in a desired state.
+        Resource is in a desired state.
     #>
     [bool] Test() {
         $test = Test-File -ensure $this.ensure -path $this.path -content $this.content
@@ -524,8 +524,9 @@ class NewFile {
 
 ## Create a manifest
 
-To make a class-based resource available, you must include a `DscResourcesToExport` statement in the
-manifest file that instructs the module to export the resource. Our manifest looks like this:
+To make a class-based DSC Resource available, you must include a `DscResourcesToExport` statement in
+the manifest file that instructs the module to export the DSC Resource. Our manifest looks like
+this:
 
 ```powershell
 @{
@@ -557,10 +558,11 @@ manifest file that instructs the module to export the resource. Our manifest loo
     # Functions to export from this module
     FunctionsToExport = @('Get-File','Set-File','Test-File')
     
-    # DSC resources to export from this module
+    # DSC Resources to export from this module
     DscResourcesToExport = @('NewFile')
     
-    # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+    # Private data to pass to the module specified in RootModule/ModuleToProcess.
+    # This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData = @{
     
         PSData = @{
@@ -586,12 +588,12 @@ manifest file that instructs the module to export the resource. Our manifest loo
 }
 ```
 
-## Test the resource
+## Test the Resource
 
-After saving the class and manifest files in the folder structure as described earlier, you can
-create a configuration that uses the new resource. The following configuration checks to see
+After saving the class and manifest files in the folder structure described earlier, you can create
+a DSC Configuration that uses the new DSC Resource. The following `Configuration` checks to see
 whether the file at `/tmp/test.txt` exists and if the contents match the string provided by the
-property 'Content'. If not, the entire file is written.
+property **Content**. If not, the entire file is written.
 
 ```powershell
 configuration MyConfig {
@@ -606,10 +608,10 @@ configuration MyConfig {
 MyConfig
 ```
 
-### Declaring multiple class resources in a module
+### Declaring multiple class-based DSC Resources in a module
 
-A module can define multiple class-based DSC resources. You just need to declare all classes in
-the same `.psm1` file and include each name in the `.psd1` manifest.
+A module can define multiple class-based DSC Resources. You need to declare all classes in the same
+`.psm1` file and include each name in the `.psd1` manifest.
 
 ```text
 $env:ProgramFiles\PowerShell\Modules (folder)
@@ -620,9 +622,9 @@ $env:ProgramFiles\PowerShell\Modules (folder)
 
 ## See Also
 
-- [Build Custom Windows PowerShell Desired State Configuration Resources][1]
+- [DSC Resources][1]
 
 <!-- Reference Links -->
 
-[1]: authoringResource.md
+[1]: resources.md
 [2]: /dotnet/api/system.datetime

@@ -14,11 +14,11 @@ This example shows how you can use the `Environment` resource to ensure a path e
 variable exists with a specific value.
 
 With **Ensure** set to `Present`, **Name** set to `TestEnvironmentVariable`, and **Value** set to
-`TestValue`, the resource will add an environment variable called `TestEnvironmentVariable` with the
+`TestValue`, the resource adds an environment variable called `TestEnvironmentVariable` with the
 value `TestValue` if it doesn't exist.
 
-With **Path** set to `$true`, if `TestEnvironmentVariable` exists and does not include
-`TestValue`, the resource appends `TestValue` to the current value.
+With **Path** set to `$true`, if `TestEnvironmentVariable` exists and doesn't include `TestValue`,
+the resource appends `TestValue` to the current value.
 
 With **Target** set to an array with both `Process` and `Machine`, the resource creates or sets the
 environment variable in both the process and machine targets.

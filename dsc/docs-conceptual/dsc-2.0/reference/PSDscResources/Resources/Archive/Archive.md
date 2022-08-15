@@ -69,7 +69,7 @@ If you specify **Validate** as `$true`, the default for **Checksum** is `Modifie
 
 > [!NOTE]
 > Using either **Checksum** or **Validate** implies the other. Even though you can specify
-> **Validate** without **Checksum**, it is best practice to specify both together.
+> **Validate** without **Checksum**, it's best practice to specify both together.
 
 The specified method determines how the resource validates the expanded content against the archive:
 
@@ -77,7 +77,7 @@ The specified method determines how the resource validates the expanded content 
   matches the **LastWriteTime** property of that file in the archive.
 - With `CreatedDate`, the resource checks that the **CreationTime** property of each expanded file
   matches the **CreationTime** property of that file in the archive.
-- With `SHA-1`, `SHA-256`, or `SHA-512`, the resource uses the specified SHA method to check the
+- With `SHA-1`, `SHA-256`, or `SHA-512`, the resource uses the specified SHA method to verify the
   hash of each expanded file against the hash of that file in the archive.
 
 ```
@@ -128,10 +128,10 @@ Default Value: false
 
 ### Validate
 
-Specify whether to validate expanded content by the specified checksum method. The default value
+Specify whether to verify expanded content by the specified checksum method. The default value
 is `$false`.
 
-When **Validate** is `$true` and the file at the destination does not match the file in the archive:
+When **Validate** is `$true` and the file at the destination doesn't match the file in the archive:
 
 - If **Ensure** is `Present` and **Force** is `$false`, the resource errors with a message that the
   file at the destination can't be overwritten.

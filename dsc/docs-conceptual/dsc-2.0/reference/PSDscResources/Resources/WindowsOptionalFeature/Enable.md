@@ -20,7 +20,8 @@ parameter, which sets the **Name** property of the resource.
 You must specify the path to a log file with the **LogPath** parameter, which sets the **LogPath**
 property of the resource.
 
-With **Ensure** set to `Present` and the **Name** property set to the user-provided value from the **FeatureName** parameter, the resource enables the specified Windows optional feature if it's
+With **Ensure** set to `Present` and the **Name** property set to the user-provided value from the
+**FeatureName** parameter, the resource enables the specified Windows optional feature if it's
 disabled.
 
 With **LogPath** set to the user-provided value from the **LogPath** parameter, the resource writes

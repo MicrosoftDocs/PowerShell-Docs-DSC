@@ -13,7 +13,7 @@ description: >
 This example shows how you can use the `WindowsProcess` resource to ensure a process is running.
 
 With **Ensure** set to `Present`, **Path** set to `C:\Windows\System32\gpresult.exe`, and
-**Arguments** set to `/h C:\gp2.htm`, the resource will start `gpresult.exe` with the specified
+**Arguments** set to `/h C:\gp2.htm`, the resource starts `gpresult.exe` with the specified
 arguments if it isn't running.
 
 ## With Invoke-DscResource

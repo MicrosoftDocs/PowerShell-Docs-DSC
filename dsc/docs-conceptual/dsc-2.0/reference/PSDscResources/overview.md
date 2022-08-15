@@ -17,13 +17,13 @@ well as community contributions from our experimental [xPSDesiredStateConfigurat
 GitHub. These resources have also recently been updated to meet the DSC Resource Kit
 [High Quality Resource Module (HQRM) guidelines][2].
 
-In-box resources not currently included in this module should not be affected and can still load
-from the in-box **PSDesiredStateConfiguration** module.
+In-box resources not included in this module shouldn't be affected and can still load from the
+in-box **PSDesiredStateConfiguration** module.
 
-Because **PSDscResources** overwrites in-box resources, it is only available for DSC 1.1 and
-PowerShell 5.1 or later. Many of the resource updates provided here are also included in the
-**xPSDesiredStateConfiguration** module which is still compatible earlier versions (though this
-module is not supported and may be removed in the future).
+Because **PSDscResources** overwrites in-box resources, it's only available for DSC 1.1 and
+PowerShell 5.1 or later. Several of the resource updates provided here are also included in the
+**xPSDesiredStateConfiguration** module, which is still compatible earlier versions (though this
+module isn't supported and may be removed in the future).
 
 To update your in-box resources to the newest versions provided by **PSDscResources**, first install
 **PSDscResources** from the [PowerShell Gallery][3]:

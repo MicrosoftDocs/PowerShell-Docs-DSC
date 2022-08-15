@@ -45,7 +45,7 @@ None
 
 ### UserName
 
-Specify the account name as a string.
+Specify the account's name as a string.
 
 ```
 Type: System.String
@@ -102,7 +102,7 @@ Default Value: None
 ### Password
 
 Specify a credential with the password to use for this account. The **UserName** of the credential
-object is not used, only the **Password**.
+object isn't used, only the **Password**.
 
 ```
 Type: System.Management.Automation.PSCredential

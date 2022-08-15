@@ -12,10 +12,10 @@ description: >
 This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
 `Invoke-DscResource` cmdlet.
 
-Starting with version 2, DSC does not support applying configuration documents directly or running
-in Windows PowerShell. Instead, you must use the [Invoke-DscResource][1]
-cmdlet in PowerShell 7.2 or later to call the methods of a DSC resource to inspect or enforce the
-state of a resources on a computer.
+Starting with version 2, DSC doesn't support applying configuration documents directly or running in
+Windows PowerShell. Instead, you must use the [Invoke-DscResource][1] cmdlet in PowerShell 7.2 or
+later to call the methods of a DSC resource to inspect or enforce the state of a resources on a
+computer.
 
 ## Installing DSC
 
@@ -31,7 +31,7 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 
 ## Install a module containing DSC resources
 
-DSC v2 does not include any DSC resources. You can install modules with DSC resources from external
+DSC v2 doesn't include any DSC resources. You can install modules with DSC resources from external
 sources, such as the [PowerShell Gallery][2].
 
 You can search for DSC resources with the `Find-DscResource` cmdlet. To see the list of modules with
@@ -52,7 +52,7 @@ Install-Module 'PSDscResources' -Repository PSGallery
 
 ## Invoking DSC resources
 
-When calling the `Invoke-DscResource`, you specify which method or function to call using the
+When calling the `Invoke-DscResource`, you specify the method or function to call using the
 **Method** parameter. Specify the properties of the resource as a hashtable value for the
 **Property** parameter.
 
@@ -88,8 +88,8 @@ Invoke-DscResource -Name Environment -Module PSDscResources -Method Set -Propert
 ```
 
 > [!CAUTION]
-> Calling `Invoke-DscResource` with `Set` does not verify whether the resource is already in the
-> desired state. To ensure you are not unnecessarily enforcing state, always use the `Test` method.
+> Calling `Invoke-DscResource` with `Set` doesn't verify whether the resource is already in the
+> desired state. To ensure you aren't needlessly enforcing state, always use the `Test` method.
 
 ### Get the configuration of an environment variable
 
@@ -102,7 +102,7 @@ Invoke-DscResource -Name Environment -Module PSDscResources -Method Get -Propert
 ```
 
 <!-- Commented out for now: this section implies that it (and the companion authoring doc) should
-     be removed and a note added to the overview that composite resources are not supported.
+     be removed and a note added to the overview that composite resources aren't supported.
 
 > [!NOTE]
 > Directly calling composite resource methods is not supported. Instead, call the methods of the

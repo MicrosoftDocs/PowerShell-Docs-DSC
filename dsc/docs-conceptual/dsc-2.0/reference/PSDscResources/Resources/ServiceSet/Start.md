@@ -22,7 +22,7 @@ doesn't exist, use the [Service resource][1].
 
 ## With Invoke-DscResource
 
-The `Invoke-DscResource` cmdlet does not support invoking composite resources. Instead, use the
+The `Invoke-DscResource` cmdlet doesn't support invoking composite resources. Instead, use the
 [Service resource][1].
 
 ## With a Configuration

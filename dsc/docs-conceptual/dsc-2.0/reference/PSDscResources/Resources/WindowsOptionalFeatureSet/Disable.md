@@ -15,14 +15,14 @@ multiple Windows optional features are disabled.
 
 With **Ensure** set to `Present` and the **Name** property set to the array of
 `MicrosoftWindowsPowerShellV2` and `Internet-Explorer-Optional-amd64`, the resource disables those
-Windows optional features if they are enabled.
+Windows optional features if they're enabled.
 
 With **LogPath** set to `C:\LogPath\Log.txt`, the resource writes the logs for disabling the
 features to that file instead of `%WINDIR%\Logs\Dism\dism.log`.
 
 ## With Invoke-DscResource
 
-The `Invoke-DscResource` cmdlet does not support invoking composite resources. Instead, use the
+The `Invoke-DscResource` cmdlet doesn't support invoking composite resources. Instead, use the
 [WindowsOptionalFeature resource][1].
 
 ## With a Configuration

@@ -19,7 +19,7 @@ arguments if they're not already running.
 
 ## With Invoke-DscResource
 
-The `Invoke-DscResource` cmdlet does not support invoking composite resources. Instead, use the
+The `Invoke-DscResource` cmdlet doesn't support invoking composite resources. Instead, use the
 [WindowsProcess resource][1].
 
 ## With a Configuration

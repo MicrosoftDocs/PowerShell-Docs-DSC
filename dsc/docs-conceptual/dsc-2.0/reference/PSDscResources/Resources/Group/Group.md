@@ -69,8 +69,8 @@ Default Value: None
 
 ### Ensure
 
-Specify whether the group should exist. To create or modify a group, set this property to `Present`.
-To remove a group, set this property to `Absent`. The default value is `Present`.
+Specify whether the group should exist. To add or update a group, set this property to `Present`. To
+remove a group, set this property to `Absent`. The default value is `Present`.
 
 ```
 Type: System.String

@@ -1,24 +1,34 @@
 ---
 ms.date: 08/01/2022
 keywords:  dsc,powershell,configuration,setup
-title:  Resource authoring checklist
+title:  DSC Resource authoring checklist
 description: >
   This article contains a checklist of best practices that should be used when authoring a new DSC
   Resource.
 ---
-# Resource authoring checklist
+# DSC Resource authoring checklist
 
 This checklist is a list of best practices when authoring a new DSC Resource.
 
-## Resource module contains .psd1 file and schema.mof for every MOF resource
+## Module contains a manifest
 
-Check that your resource has correct structure and contains all required files. Every resource
-module should contain a `.psd1` file and every MOF resource should have `schema.mof` file. MOF
-resources that do not contain schema will not be listed by `Get-DscResource` and users will not be
-able to use IntelliSense for them when authoring Configurations in VS Code.
+Your module containing DSC Resources should have a module manifest (`.psd1`) file. The manifest's
+**DscResourcesToExport** setting should list the name of every DSC Resource.
 
-The directory structure for the `xRemoteFile` resource, which is part of the
-[xPSDesiredStateConfiguration][1] resource module, looks like this:
+Any class-based DSC Resources you don't include in the **DscResourcesToExport** setting won't be
+discoverable with the `Get-DscResource` cmdlet, can't be used with the `Invoke-DscResource` cmdlet,
+and DSC Configuration authors won't get IntelliSense for those DSC Resources when authoring a DSC
+Configuration in VS Code.
+
+## Every MOF-based DSC Resource has a schema file
+
+Check that your DSC Resource has the correct structure and contains all required files. Every
+MOF-based DSC Resource should have a `schema.mof` file. MOF-based DSC Resourcess that don't have a
+schema file won't be listed by `Get-DscResource` and DSC Configuration authors won't get
+IntelliSense for those DSC Resources when authoring a DSC Configuration in VS Code.
+
+The directory structure for the `xRemoteFile` DSC Resource, which is part of the
+[xPSDesiredStateConfiguration][1] module, looks like this:
 
 ```text
 xPSDesiredStateConfiguration
@@ -35,17 +45,18 @@ xPSDesiredStateConfiguration
     xPSDesiredStateConfiguration.psd1
 ```
 
-## Resource loads without errors
+## DSC Resource loads without errors
 
-Resources should load without errors. To verify, run `Import-Module <resource_module> -Force` and
-confirm that the command raises no errors.
+DSC Resources should load without errors. To verify, run `Import-Module <resource_module> -Force`
+and confirm that the command raises no errors.
 
-## Resource is idempotent
+## DSC Resource is idempotent
 
-Resources should be idempotent. A resource is idempotent when you can invoke the **Set** method of a
-DSC resource multiple times with the same properties and always achieve the same result.
+DSC Resources should be idempotent. A DSC Resource is idempotent when you can invoke the **Set**
+method of a DSC Resource multiple times with the same properties and always achieve the same result.
 
-For example, with these parameter hashes defining a configuration of the `Registry` resource:
+For example, with this parameter hash defining the desired state of a registry key value with the
+`Registry` DSC Resource from the **PSDscResources** module:
 
 ```powershell
 $DscParameters = @{
@@ -60,103 +71,113 @@ $DscParameters = @{
         ValueType = 'String'
     }
 }
-$QueryParameters = @{
-    Name       = 'Registry'
-    ModuleName = 'PSDscResources'
-    Property   = @{
-        Key       = 'HKEY_CURRENT_USER\DscExample'
-        ValueName = 'Test'
-    }
-}
 ```
 
-The first time you call `Invoke-DscResource -Method Set`, the `DscExample` registry key should
-appear in the `HKEY_CURRENT_USER` hive. Subsequent invocations should not change the state of the
-machine.
+The first time you call `Invoke-DscResource -Method Set @DscParameters`, the `DscExample` registry
+key should appear in the `HKEY_CURRENT_USER` hive with the **Test** value set to `Example`. Future
+invocations shouldn't change the state of the system.
 
-To ensure a resource is idempotent, you can repeatedly call `Set-TargetResource` (for a MOF
-resource) or the **Set** method (for a class-based resource) when testing the resource directly. You
-can also call `Invoke-DscResource` multiple times when doing end to end testing. The result should
-be the same after every run.
+To ensure a resource is idempotent, you can test the resource directly or with `Invoke-DscResource`.
+
+To test a MOF-based DSC Resource directly:
+
+1. Run the DSC Resource's `Set-TargetResource` function.
+1. Inspect the system state to verify that it's in the desired state without unwanted settings.
+1. Run the DSC Resource's `Set-TargetResource function again. It shouldn't raise any errors.
+1. Repeat steps 2-3 until you're satisfied that calling `Set-TargetResource` only sets the desired
+   state as expected and without any errors.
+
+To test a class-based DSC Resource directly:
+
+1. Create a new instance of the DSC Resource's class and save it to a variable as an object.
+1. Set each property's value to the desired state on the object.
+1. Call the **Set** method on the object.
+1. Inspect the system state to verify that it's in the desired state without unwanted settings.
+1. Call the **Set** method on the object again. It shouldn't raise any errors.
+1. Repeat steps 4-5 until you're satisfied that calling the **Set** method only sets the desired
+   state as expected and without any errors.
+
+To test a DSC Resource with `Invoke-DscResource`:
+
+1. Run `Invoke-DscResource` with the **Set** method.
+1. Inspect the system state to verify that it's in the desired state without unwanted settings.
+1. Run `Invoke-DscResource` with the **Set** method.
+1. Repeat steps 2-3 until you're satisfied that calling `Invoke-DscResource` with the **Set** method
+   only sets the desired state as expected and without any errors.
 
 ## Test user modification scenario
 
-Resources should behave predictably even when users change the state of a node manually outside of
-DSC. Here are steps you should take to verify your resource's functionality when a user modifies the
-node:
+DSC Resources should behave predictably even when users change the state of a system manually
+outside of DSC. Here are steps you should take to verify your DSC Resource's behavior when a user
+modifies the system:
 
-1. Start with the resource not in the desired state.
+1. Start with the system not in the desired state.
 1. Run `Invoke-DscResource -Method Set` with your resource
-1. Verify `Invoke-DscResource -Method Test` returns True
-1. Modify the configured item to be out of the desired state
-1. Verify `Invoke-DscResource -Method Test` returns false
+1. Verify `Invoke-DscResource -Method Test` returns `$true`
+1. Set the configured item to be out of the desired state
+1. Verify `Invoke-DscResource -Method Test` returns `$false`
 
-Here's a more concrete example using `Registry` resource:
+Here's a more concrete example using the `Registry` DSC Resource:
 
 1. Start with registry key not in the desired state.
 1. Run `Invoke-DscResource -Method Test` with the desired state properties and ensure the result's
-   **InDesiredState** property is false.
+   **InDesiredState** property is `$false`.
 1. Run `Invoke-DscResource -Method Get` with the required properties and ensure the reported state
-   does not match the desired state properties.
-1. Run `Invoke-DscResource -Method Set` with the desired state properties and ensure it does not
+   doesn't match the desired state properties.
+1. Run `Invoke-DscResource -Method Set` with the desired state properties and ensure it doesn't
    error.
 1. Run `Invoke-DscResource -Method Test` again and ensure the result's **InDesiredState** property
    is now true.
 1. Run `Invoke-DscResource -Method Get` again and ensure the reported state matches the desired
    state properties.
-1. Modify the value of the key so that it is not in the desired state.
-1. Run `Invoke-DscResource -Method Get` again verify the modified state.
+1. Set the value of the key so that it's not in the desired state.
+1. Run `Invoke-DscResource -Method Get` again to verify the modified state.
 1. Run `Invoke-DscResource -Method Test` again and verify it returns false.
 
-`Invoke-DscResource` with the **Get** method should return details of the current state of the
-resource. Make sure to test it by calling `Invoke-DscResource` with the **Get** method after you set
-the configuration and verifying that the output correctly reflects the current state of the machine.
-It's important to test this separately, since any issues in this area won't appear when calling
-`Invoke-DscResource` with the **Set** method.
+## Call DSC Resource functions and methods directly
 
-## Call resource functions and methods directly
-
-Make sure you test the `*-TargetResource` functions (for MOF resources) and the **Get**, **Set**,
-and **Test** methods (for class-based resources) by calling them directly and verifying that they
-work as expected.
+Make sure you test the `*-TargetResource` functions (for MOF-base DSC Resources) and the **Get**,
+**Set**, and **Test** methods (for class-based DSC Resources) by calling them directly and verifying
+that they work as expected.
 
 ## Test compatibility on every supported platform
 
-Resources should work on platform DSC is supported on. If your resource does not work on some of
-these platforms by design, return a specific error message. Make sure your resource checks whether
-cmdlets you are calling are present on particular machine.
+DSC Resources should work on any platform DSC is supported on. If your DSC Resource doesn't work on
+some of these platforms by design, return a specific error message. Make sure your DSC Resource
+checks whether cmdlets you are calling are present on particular machine.
 
 > [!NOTE]
-> One common test gap is verifying the resource only on server versions of Windows. Many resources
-> are also designed to work on client SKUs. Make sure you test functionality for client SKUs or
-> error if they are not supported by your resource.
+> One common test gap is verifying the DSC Resource only on server versions of Windows. Often, DSC
+> Resources are also designed to work on client SKUs. Make sure you test behavior for client SKUs or
+> error if they're not supported by your DSC Resource.
 
-## Get-DSCResource lists the resource
+## Get-DSCResource lists the DSC Resource
 
-When your module is installed, `Get-DscResource` should include your resource in the cmdlet output.
+When your module is installed, `Get-DscResource` should include your DSC Resource in the cmdlet
+output.
 
-## Resource module contains examples
+## Module contains examples
 
-Create quality examples to help users understand how to use your resource. This is crucial, as many
-users treat sample code as documentation.
+Create quality examples to help users understand how to use your DSC Resources. This is crucial, as
+users often treat sample code as documentation.
 
 First, determine what examples to include with your module. You should at least cover the most
-important use cases for your resource.
+important use cases for your DSC Resources.
 
-If your module contains several resources that need to work together for an end-to-end scenario,
+If your module contains several DSC Resources that need to work together for an end-to-end scenario,
 write the basic end-to-end example first.
 
 Write your initial examples as basic and short as possible. Show how to get started with your
-resources in small manageable chunks, such as creating a new VHD. Write later examples to build on
+DSC Resources in small manageable chunks, such as creating a new VHD. Write later examples to build on
 earlier ones (such as creating a VM from a VHD), and show advanced functionality (like creating a VM
 with dynamic memory).
 
 For every example:
 
-- Write a short description explaining its purpose and how to use the parameters.
-- Verify every example runs without unintentional errors or warnings and enforces configuration.
+- Write a short description explaining its purpose and how to use any parameters.
+- Verify every example runs without unintentional errors or warnings and enforces the desired state.
 
-## Error messages are easy to understand and help users solve problems
+## Error messages are understandable and help users solve problems
 
 Good error messages should:
 
@@ -167,12 +188,13 @@ Good error messages should:
 - Be polite: Don't blame user or make them feel bad.
 
 Make sure you verify errors in end-to-end scenarios because they may differ from those returned when
-running resource functions directly.
+running the functions (for MOF-based DSC Resources) or methods (for class-based DSC Resources)
+directly.
 
-## Resource implementation does not contain hardcoded paths
+## DSC Resource implementation doesn't contain hardcoded paths
 
-Ensure there are no hardcoded paths in the resource implementation, particularly if they assume
-language (en-us). Use system environment variables when possible.
+Ensure there are no hardcoded paths in any DSC Resource implementation, especially if they assume a
+language, like `en-US`. Use system environment variables when possible.
 
 For example, instead of:
 
@@ -188,32 +210,32 @@ $tempPath = Join-Path $env:temp "MyResource"
 $programFilesPath = ${env:ProgramFiles(x86)}
 ```
 
-## Resource implementation does not contain user information
+## DSC Resource implementation doesn't contain user information
 
-Resources should never include personally identifiable information in the code. Make sure there are
-no email names, account information, or names of people in the code.
+DSC Resources should never include personally identifiable information in the code. Make sure there
+are no email names, account information, or names of people in the code.
 
-## Resource was tested with valid/invalid credentials
+## Tested with valid and invalid credentials
 
-If your resource takes a credential as parameter:
+If your DSC Resource takes a credential as parameter:
 
-- Verify the resource behaves as expected when the account does not have access.
-- Verify the resource works with a credential specified for Get, Set and Test.
-- If your resource accesses shares, test all the variants you need to support, such as:
+- Verify the DSC Resource behaves as expected when the account doesn't have access.
+- Verify the DSC Resource works with a credential specified for **Get**, **Set** and **Test**.
+- If your DSC Resource accesses shares, test all the variants you need to support, such as:
   - Standard windows shares
   - DFS shares
   - SAMBA shares (if you want to support Linux)
 
-## Resource does not require interactive input
+## DSC Resource doesn't require interactive input
 
-Resource functions and methods should never prompt for input. Instead, all required values should be
-properties of the resource. For example, instead of prompting the user with `Get-Credential`, add a
-**Credential** property to the resource.
+DSC Resources should never prompt for input. Instead, all required values should be properties of
+the DSC Resource. For example, instead of prompting the user with `Get-Credential`, add a
+**Credential** property to your DSC Resource.
 
-## Resource functionality was thoroughly tested
+## Test thoroughly
 
-This checklist contains items which are important to be tested and/or are often missed. You should
-also write functional and end-to-end test cases for your resource to ensure expected behaviors. Make
+This checklist contains items that are important to be tested and are often missed. You should also
+write functional and end-to-end test cases for your DSC Resource to ensure expected behaviors. Make
 sure to use negative test cases and test for invalid input.
 
 <!-- Reference Links -->

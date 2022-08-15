@@ -10,158 +10,11 @@ description: >
 
 > Applies To: PowerShell 7.2
 
-DSC is constructed around a **Get**, **Test**, and **Set** process. DSC [resources][1] each
-contains methods to complete each of these operations. In a [Configuration][2], you define
-resource blocks to fill in keys that become parameters for a resource's **Get**, **Test**, and
-**Set** methods.
+DSC is constructed around a **Get**, **Test**, and **Set** process. [DSC Resources][1] are
+implemented to complete each of these operations. In a [DSC Configuration][2], you define DSC Resource
+blocks to fill in properties that define the desired state for that DSC Resource.
 
-This is the syntax for a `Service` resource block. The `Service` resource configures Windows
-services.
-
-```syntax
-Service [String] #ResourceName
-{
-    Name = [string]
-    [BuiltInAccount = [string]{ LocalService | LocalSystem | NetworkService }]
-    [Credential = [PSCredential]]
-    [Dependencies = [string[]]]
-    [DependsOn = [string[]]]
-    [Description = [string]]
-    [DisplayName = [string]]
-    [Ensure = [string]{ Absent | Present }]
-    [Path = [string]]
-    [PsDscRunAsCredential = [PSCredential]]
-    [StartupType = [string]{ Automatic | Disabled | Manual }]
-    [State = [string]{ Running | Stopped }]
-}
-```
-
-The **Get**, **Test**, and **Set** methods of the `Service` resource have parameter blocks that
-accept these values.
-
-```powershell
-param(
-    [parameter(Mandatory = $true)]
-    [System.String]
-    [ValidateNotNullOrEmpty()]
-    $Name,
-
-    [System.String]
-    [ValidateSet("Automatic", "Manual", "Disabled")]
-    $StartupType,
-
-    [System.String]
-    [ValidateSet("LocalSystem", "LocalService", "NetworkService")]
-    $BuiltInAccount,
-
-    [System.Management.Automation.PSCredential]
-    [ValidateNotNull()]
-    $Credential,
-
-    [System.String]
-    [ValidateSet("Running", "Stopped")]
-    $State="Running",
-
-    [System.String]
-    [ValidateNotNullOrEmpty()]
-    $DisplayName,
-
-    [System.String]
-    [ValidateNotNullOrEmpty()]
-    $Description,
-
-    [System.String]
-    [ValidateNotNullOrEmpty()]
-    $Path,
-
-    [System.String[]]
-    [ValidateNotNullOrEmpty()]
-    $Dependencies,
-
-    [System.String]
-    [ValidateSet("Present", "Absent")]
-    $Ensure="Present"
-)
-```
-
-> [!NOTE]
-> The language and method used to define the resource determines how the **Get**, **Test**, and
-> **Set** methods will be defined.
-
-Because the `Service` resource only has one required key (**Name**), invoking the `Service` resource
-could be as simple as this:
-
-```powershell
-Invoke-DscResource -Name Service -Module PSDscResources -Property @{
-    Name = 'Spooler'
-}
-
-```powershell
-configuration TestConfig {
-    Import-DSCResource -Name Service -Module PSDscResources
-    Node localhost {
-        Service "MyService" {
-            Name = "Spooler"
-        }
-    }
-}
-```
-
-When you compile the Configuration above, the values you specify for a key are stored in the `.mof`
-file that is generated. For more information, see [MOF][3].
-
-```text
-instance of MSFT_ServiceResource as $MSFT_ServiceResource1ref
-{
-SourceInfo = "::5::1::Service";
- ModuleName = "PsDesiredStateConfiguration";
- ResourceID = "[Service]MyService";
- Name = "Spooler";
-
-ModuleVersion = "1.0";
-
- ConfigurationName = "Test";
-
-};
-```
-
-## Get
-
-The **Get** method of a resource, retrieves the state of the resource as it is configured on the
-machine. This state is returned as a [hashtable][4]. The keys of the **hashtable** are the
-resource's properties.
-
-This is sample output from calling `Invoke-DscResource` with the **Get** method for the `Service`
-resource that configures the `Spooler` service.
-
-```powershell
-$DscGetParameters = @{
-    Name       = 'Service'
-    ModuleName = 'PSDscResources'
-    Method     = 'Get'
-    Property   = @{
-        Name = 'Spooler'
-    }
-}
-Invoke-DscResource @DscGetParameters
-```
-
-```output
-Name                           Value
-----                           -----
-State                          Running
-Path                           C:\Windows\System32\spoolsv.exe
-StartupType                    Automatic
-Name                           Spooler
-BuiltInAccount                 LocalSystem
-DisplayName                    Print Spooler
-Dependencies                   {RPCSS, http}
-DesktopInteract                True
-Ensure                         Present
-Description                    This service spools print jobs and handles interaction with the printer.  If you turn of…
-```
-
-You can inspect a DSC resource to see what properties it can manage with the `Get-DscResource`
+You can inspect a DSC Resource to see the properties it can manage with the `Get-DscResource`
 cmdlet.
 
 ```powershell
@@ -202,14 +55,49 @@ State                [string]             False {Ignore, Running, Stopped}
 TerminateTimeout     [UInt32]             False {}
 ```
 
+## Get
+
+The **Get** method of a DSC Resource retrieves the current state of that DSC Resource on the system.
+This state is returned as a [hashtable][4]. The keys of the **hashtable** are the resource's
+properties.
+
+This is sample output from calling `Invoke-DscResource` with the **Get** method for the `Service`
+DSC Resource to inspect the `Spooler` service's current state.
+
+```powershell
+$DscGetParameters = @{
+    Name       = 'Service'
+    ModuleName = 'PSDscResources'
+    Method     = 'Get'
+    Property   = @{
+        Name = 'Spooler'
+    }
+}
+Invoke-DscResource @DscGetParameters
+```
+
+```output
+Name                           Value
+----                           -----
+State                          Running
+Path                           C:\Windows\System32\spoolsv.exe
+StartupType                    Automatic
+Name                           Spooler
+BuiltInAccount                 LocalSystem
+DisplayName                    Print Spooler
+Dependencies                   {RPCSS, http}
+DesktopInteract                True
+Ensure                         Present
+Description                    This service spools print jobs and handles interaction with the printer.  If you turn of…
+```
+
 ## Test
 
-The **Test** method of a resource determines if the target node is currently compliant with the
-resource's _desired state_. The **Test** method returns `$true` or `$false` only to indicate whether
-the Node is compliant.
+The **Test** method of a DSC Resource determines if the system's current state matches the desired
+state. The **Test** method returns `$true` or `$false` to note whether the system is compliant.
 
-This is sample output from calling `Invoke-DscResource` with the **Test** method for a `Service`
-resource that configures the `Spooler` service and expects the service to be `Stopped`.
+This is sample output from calling `Invoke-DscResource` with the **Test** method for the `Service`
+DSC Resource to check whether the `Spooler` service is stopped.
 
 ```powershell
 $DscTestParameters = @{
@@ -232,21 +120,21 @@ InDesiredState
 
 > [!IMPORTANT]
 > Notice that instead of returning a **Boolean** value directly, it returned an object with the
-> **InDesiredState** property. While the resource's **Test** method returns a **Boolean**,
-> `Invoke-DscResource -Method Test` always returns an **InvokeDscResourceTestResult** object.
+> **InDesiredState** property. While a DSC Resource's **Test** method or `Test-TargetResource`
+> function returns a **Boolean**, `Invoke-DscResource -Method Test` always returns an
+> **InvokeDscResourceTestResult** object.
 
 ## Set
 
-The **Set** method of a resource attempts to force the machine to become compliant with the
-resource's _desired state_. The **Set** method is meant to be _idempotent_, which means that **Set**
-could be run multiple times and always get the same result without errors.
+The **Set** method of a DSC Resource attempts to force the system to enforce the desired state.
 
-However, resource may not be idempotent. To reduce the chances of errors and side effects, you
-should always call `Invoke-DscResource` with the **Test** method first. Then, if the command and
-only call it with the **Set** method if **Test** returns `$false`.
+The **Set** method should be _idempotent_, which means that you can use it multiple times and always
+get the same result without errors. However, a DSC Resource may not be idempotent. To reduce the
+chances of errors and side effects, always use `Invoke-DscResource` with the **Test** method first.
+Then, only use `Invoke-DscResource` with the **Set** method if **Test** returned `$false`.
 
-This is sample output from calling `Invoke-DscResource` with the **Set** method for a **Service**
-resource that configures the "Spooler" service and enforces the service to be `Stopped`.
+This is sample output from using `Invoke-DscResource` with the **Set** method for the `Service` DSC
+Resource to ensure the `Spooler` service is stopped.
 
 ```powershell
 $DscParameters = @{
