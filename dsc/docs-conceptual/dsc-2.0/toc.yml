@@ -1,3 +1,48 @@
 items:
-  - name: Desired State Configuration (DSC) 2.0
-    href: overview.md
+    - name: Desired State Configuration (DSC) 2.0
+      href: overview.md
+    - name: Getting Started
+      items:
+        - name: Understand the machine configuration feature of Azure Policy
+          href: /azure/governance/machine-configuration/overview
+        - name: Get started with invoking DSC Resources
+          href: getting-started/invoking-dsc-resources.md
+    - name: Concepts
+      items:
+        - name: Terminology
+          href: concepts/terminology.md
+        - name: DSC Resources
+          href: concepts/resources.md
+        - name: Get, Test, and Set
+          href: concepts/get-test-set.md
+        - name: DSC Configurations
+          href: concepts/configurations.md
+        - name: Import-DSCResource
+          href: concepts/import-dscresource.md
+    - name: How-to guides
+      items:
+        - name: Installing DSC Resources
+          href: how-tos/installing-dsc-resources.md
+        - name: Authoring DSC Resources
+          items:
+            - name: Overview
+              href: how-tos/resources/authoring/overview.md
+            - name: Authoring a class-based DSC Resource
+              href: how-tos/resources/authoring/class-based.md
+            - name: Authoring a single-instance DSC Resource
+              href: how-tos/resources/authoring/single-instance.md
+            - name: Authoring a MOF-based DSC Resource
+              href: how-tos/resources/authoring/mof-based.md
+            - name: Authoring a composite DSC Resource
+              href: how-tos/resources/authoring/composite.md
+            - name: DSC Resource authoring checklist
+              href: how-tos/resources/authoring/checklist.md
+        - name: Write and Compile a DSC Configuration
+          href: how-tos/configurations/write-and-compile.md
+        - name: Managing dependencies in DSC Configurations
+          href: how-tos/configurations/depends-on.md
+    - name: Resource module reference
+      items:
+        - name: PSDscResources
+          href: reference/PSDscResources/toc.yml
+  

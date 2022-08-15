@@ -1,0 +1,151 @@
+items:
+  - name: Overview
+    href: overview.md
+  - name: Archive
+    items:
+      - name: Archive
+        href: Resources/Archive/Archive.md
+      - name: Expand an archive with SHA-256 file validation and file overwrite allowed
+        href: Resources/Archive/ExpandChecksumForce.md
+      - name: Expand an archive under a credential without file validation
+        href: Resources/Archive/ExpandCredNoValidation.md
+      - name: Expand an archive with default file validation and file overwrite allowed
+        href: Resources/Archive/ExpandDefaultValidationForce.md
+      - name: Expand an archive without file validation
+        href: Resources/Archive/ExpandNoValidation.md
+      - name: Remove an archive with SHA-256 file validation
+        href: Resources/Archive/RemoveChecksum.md
+      - name: Remove an archive without file validation
+        href: Resources/Archive/RemoveNoValidation.md
+  - name: Environment
+    items:
+      - name: Environment
+        href: Resources/Environment/Environment.md
+      - name: Create a non-path environment variable
+        href: Resources/Environment/CreateNonPathVariable.md
+      - name: Create or update a path environment variable
+        href: Resources/Environment/CreatePathVariable.md
+      - name: Remove an environment variable
+        href: Resources/Environment/RemoveVariable.md
+  - name: Group
+    items:
+      - name: Group
+        href: Resources/Group/Group.md
+      - name: Remove members of a group
+        href: Resources/Group/RemoveMembers.md
+      - name: Set members of a group
+        href: Resources/Group/SetMembers.md
+  - name: GroupSet
+    items:
+      - name: GroupSet
+        href: Resources/GroupSet/GroupSet.md
+      - name: Add members to multiple groups
+        href: Resources/GroupSet/AddMembers.md
+  - name: MsiPackage
+    items:
+      - name: MsiPackage
+        href: Resources/MsiPackage/MsiPackage.md
+      - name: Install the MSI file with the given ID at the given Path
+        href: Resources/MsiPackage/InstallFromFile.md
+      - name: Install the MSI file with the given ID at the given HTTPS URL
+        href: Resources/MsiPackage/InstallFromHttps.md
+      - name: Uninstall the MSI file with the given ID at the given path
+        href: Resources/MsiPackage/UninstallFromFile.md
+      - name: Uninstall the MSI file with the given ID at the given HTTPS URL
+        href: Resources/MsiPackage/UninstallFromHttps.md
+  - name: Registry
+    items:
+      - name: Registry
+        href: Resources/Registry/Registry.md
+      - name: Add a registry key
+        href: Resources/Registry/AddKey.md
+      - name: Add or modify a registry key value
+        href: Resources/Registry/AddOrModifyValue.md
+      - name: Remove a registry key
+        href: Resources/Registry/RemoveKey.md
+      - name: Remove a registry key value
+        href: Resources/Registry/RemoveValue.md
+  - name: Script
+    items:
+      - name: Script
+        href: Resources/Script/Script.md
+      - name: Create a file with content
+        href: Resources/Script/Example.md
+  - name: Service
+    items:
+      - name: Service
+        href: Resources/Service/Service.md
+      - name: Create a service
+        href: Resources/Service/Create.md
+      - name: Delete a service
+        href: Resources/Service/Delete.md
+      - name: Update a service's StartupType
+        href: Resources/Service/UpdateStartupType.md
+  - name: ServiceSet
+    items:
+      - name: ServiceSet
+        href: Resources/ServiceSet/ServiceSet.md
+      - name: Set multiple services to run under the built-in account LocalService
+        href: Resources/ServiceSet/BuiltInAccount.md
+      - name: Ensure that multiple services are running
+        href: Resources/ServiceSet/Start.md
+  - name: User
+    items:
+      - name: User
+        href: Resources/User/User.md
+      - name: Create a new user
+        href: Resources/User/Create.md
+  - name: WindowsFeature
+    items:
+      - name: WindowsFeature
+        href: Resources/WindowsFeature/WindowsFeature.md
+      - name: Install or uninstall a Windows feature
+        href: Resources/WindowsFeature/Example.md
+  - name: WindowsFeatureSet
+    items:
+      - name: WindowsFeatureSet
+        href: Resources/WindowsFeatureSet/WindowsFeatureSet.md
+      - name: Install multiple Windows features
+        href: Resources/WindowsFeatureSet/Install.md
+      - name: Uninstall multiple Windows features
+        href: Resources/WindowsFeatureSet/Uninstall.md
+  - name: WindowsOptionalFeature
+    items:
+      - name: WindowsOptionalFeature
+        href: Resources/WindowsOptionalFeature/WindowsOptionalFeature.md
+      - name: Enable the specified Windows optional feature and output logs to the specified path
+        href: Resources/WindowsOptionalFeature/Enable.md
+  - name: WindowsOptionalFeatureSet
+    items:
+      - name: WindowsOptionalFeatureSet
+        href: Resources/WindowsOptionalFeatureSet/WindowsOptionalFeatureSet.md
+      - name: Disable multiple features
+        href: Resources/WindowsOptionalFeatureSet/Disable.md
+      - name: Enable multiple features
+        href: Resources/WindowsOptionalFeatureSet/Enable.md
+  - name: WindowsPackageCab
+    items:
+      - name: WindowsPackageCab
+        href: Resources/WindowsPackageCab/WindowsPackageCab.md
+      - name: Install a cab file with the given name from the given path
+        href: Resources/WindowsPackageCab/Install.md
+  - name: WindowsProcess
+    items:
+      - name: WindowsProcess
+        href: Resources/WindowsProcess/WindowsProcess.md
+      - name: Start a process
+        href: Resources/WindowsProcess/Start.md
+      - name: Start a process under a user
+        href: Resources/WindowsProcess/StartUnderUser.md
+      - name: Stop a process
+        href: Resources/WindowsProcess/Stop.md
+      - name: Stop a process under a user
+        href: Resources/WindowsProcess/StopUnderUser.md
+  - name: ProcessSet
+    items:
+      - name: ProcessSet
+        href: Resources/ProcessSet/ProcessSet.md
+      - name: Start multiple processes
+        href: Resources/ProcessSet/Start.md
+      - name: Stop multiple processes
+        href: Resources/ProcessSet/Stop.md
