@@ -158,7 +158,7 @@ items:
   - name: Tutorials
     items:
       - name: Build a CI/CD pipeline with DSC, Pester, and Visual Studio Team Services
-        href: https://docs.microsoft.com/azure/devops/pipelines/release/dsc-cicd
+        href: /azure/devops/pipelines/release/dsc-cicd
       - name: Configure a virtual machine at initial boot-up by using DSC
         href: tutorials/bootstrapDsc.md
       - name: Configure the DSCAutomationHostEnabled registry key
@@ -245,6 +245,8 @@ items:
             href: reference/resources/packagemanagement/PackageManagementDscResource.md
           - name: PackageManagementSourceDsc Resource
             href: reference/resources/packagemanagement/PackageManagementSourceDscResource.md
+      - name: PSDscResources module
+        href: /powershell/dsc/reference/psdscresources/overview?view=dsc-2.0&preserve-view=true
       - name: MSFT_DSCLocalConfigurationManager class
         items:
           - name: Overview
