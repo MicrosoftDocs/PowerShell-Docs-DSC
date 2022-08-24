@@ -1,4 +1,0 @@
-{
-  "extends": "../../../../../../.markdownlint.json",
-  "no-duplicate-header": false
-}
