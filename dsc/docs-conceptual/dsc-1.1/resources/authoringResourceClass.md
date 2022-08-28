@@ -14,7 +14,7 @@ resource, so there is no need to create a separate MOF file. The folder structur
 resource is also simpler, because a **DSCResources** folder is not necessary.
 
 In a class-based DSC resource, the schema is defined as properties of the class which can be
-modified with attributes to specify the property type.. The resource is implemented by `Get()`,
+modified with attributes to specify the property type. The resource is implemented by `Get()`,
 `Set()`, and `Test()` methods (equivalent to the `Get-TargetResource`, `Set-TargetResource`,
 and `Test-TargetResource` functions in a script resource.
 
