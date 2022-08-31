@@ -9,6 +9,8 @@ description: >
 
 # Get started with invoking DSC resources
 
+> Applies To: PowerShell 7.2
+
 This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
 `Invoke-DscResource` cmdlet.
 

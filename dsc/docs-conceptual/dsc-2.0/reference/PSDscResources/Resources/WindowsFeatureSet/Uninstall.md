@@ -32,8 +32,16 @@ This snippet shows how you can define a `Configuration` with a `WindowsFeatureSe
 ensure that the `Telnet-Client` and `RSAT-File-Services` Windows features and their subfeatures are
 uninstalled.
 
+> [!IMPORTANT]
+> There's a limitation in machine configuration that prevents a DSC Resource from using any
+> PowerShell cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery.
+> This example is provided for demonstrative purposes, but because the DSC Resource uses cmdlets
+> from the DISM module, which ships as one of the [Windows modules][2], it won't work in machine
+> configuration.
+
 :::code source="Uninstall.Config.ps1":::
 
 <!-- Reference Links -->
 
 [1]: ../WindowsFeature/WindowsFeature.md
+[2]: /powershell/windows/module-compatibility#module-list

@@ -43,4 +43,15 @@ cmdlet to ensure a user-specified package is installed.
 This snippet shows how you can define a `Configuration` with a `WindowsPackageCab` resource block to
 ensure a user-specified package is installed.
 
+> [!IMPORTANT]
+> There's a limitation in machine configuration that prevents a DSC Resource from using any
+> PowerShell cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery.
+> This example is provided for demonstrative purposes, but because the DSC Resource uses cmdlets
+> from the DISM module, which ships as one of the [Windows modules][1], it won't work in machine
+> configuration.
+
 :::code source="Install.Config.ps1":::
+
+<!-- Reference Links -->
+
+[1]: /powershell/windows/module-compatibility#module-list

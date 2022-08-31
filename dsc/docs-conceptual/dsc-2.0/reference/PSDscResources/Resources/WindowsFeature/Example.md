@@ -70,4 +70,15 @@ ensure a Windows Feature is installed or installed with user-provided settings.
 By default, it ensures the `Telnet-Client` Windows feature is installed without subfeatures and
 doesn't write the installation logs to a file.
 
+> [!IMPORTANT]
+> There's a limitation in machine configuration that prevents a DSC Resource from using any
+> PowerShell cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery.
+> This example is provided for demonstrative purposes, but because the DSC Resource uses cmdlets
+> from the DISM module, which ships as one of the [Windows modules][1], it won't work in machine
+> configuration.
+
 :::code source="Example.Config.ps1":::
+
+<!-- Reference Links -->
+
+[1]: /powershell/windows/module-compatibility#module-list

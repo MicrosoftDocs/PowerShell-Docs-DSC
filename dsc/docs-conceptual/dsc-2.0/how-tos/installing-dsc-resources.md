@@ -8,6 +8,8 @@ description: >
 
 # Installing DSC Resources
 
+> Applies To: PowerShell 7.2
+
 Before you write a DSC Resource to solve your problem, you should look through the DSC Resources
 that have already been created by both Microsoft and the PowerShell community.
 
