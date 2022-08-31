@@ -8,6 +8,8 @@ description: >
 ---
 # DSC Resource authoring checklist
 
+> Applies To: PowerShell 7.2
+
 This checklist is a list of best practices when authoring a new DSC Resource.
 
 ## Module contains a manifest

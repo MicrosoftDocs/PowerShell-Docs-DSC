@@ -9,6 +9,8 @@ description: >
 
 # Authoring a single-instance DSC Resource
 
+> Applies To: PowerShell 7.2
+
 > [!NOTE]
 > This article describes a best practice for defining a DSC resource that allows only a single
 > instance in a DSC Configuration. There is no built-in DSC feature to do this. That might change in

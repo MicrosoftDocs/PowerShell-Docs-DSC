@@ -11,8 +11,8 @@ description: >
 > Applies To: PowerShell 7.2
 
 DSC is constructed around a **Get**, **Test**, and **Set** process. [DSC Resources][1] are
-implemented to complete each of these operations. In a [DSC Configuration][2], you define DSC Resource
-blocks to fill in properties that define the desired state for that DSC Resource.
+implemented to complete each of these operations. In a [DSC Configuration][2], you define DSC
+Resource blocks to fill in properties that define the desired state for that DSC Resource.
 
 You can inspect a DSC Resource to see the properties it can manage with the `Get-DscResource`
 cmdlet.
@@ -58,7 +58,7 @@ TerminateTimeout     [UInt32]             False {}
 ## Get
 
 The **Get** method of a DSC Resource retrieves the current state of that DSC Resource on the system.
-This state is returned as a [hashtable][4]. The keys of the **hashtable** are the resource's
+This state is returned as a [hashtable][3]. The keys of the **hashtable** are the resource's
 properties.
 
 This is sample output from calling `Invoke-DscResource` with the **Get** method for the `Service`
@@ -169,12 +169,11 @@ reboot is required.
 
 ## See also
 
-- [Azure Automation DSC Overview][5]
+- [Azure Automation DSC Overview][4]
 
 <!-- Reference Links -->
 
 [1]: resources.md
 [2]: configurations.md
-[3]: /windows/desktop/wmisdk/managed-object-format--mof-
-[4]: /powershell/module/microsoft.powershell.core/about/about_hash_tables
-[5]: /azure/automation/automation-dsc-overview
+[3]: /powershell/module/microsoft.powershell.core/about/about_hash_tables
+[4]: /azure/automation/automation-dsc-overview
