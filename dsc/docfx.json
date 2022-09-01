@@ -30,7 +30,7 @@
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
-      "feedback_product_url": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+      "feedback_product_url": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
       "feedback_system": "GitHub",
       "hideScope": false,
       "ms.author": "sewhee",
@@ -42,7 +42,12 @@
       ],
       "titleSuffix": "PowerShell",
       "toc_preview": true,
-      "uhfHeaderId": "MSDocsHeader-Powershell",
+      "uhfHeaderId": "MSDocsHeader-Powershell"
+    },
+    "fileMetadata": {
+      "feedback_product_url": {
+        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332"
+      }
     },
     "markdownEngineName": "markdig",
     "overwrite": [],
