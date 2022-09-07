@@ -1,8 +1,8 @@
 ---
+description: PSDscResources Environment resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: Environment
-description: PSDscResources Environment resource
 ---
 
 # Environment

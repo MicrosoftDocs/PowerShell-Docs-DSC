@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources ProcessSet composite resource to stop multiple processes.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Stop multiple processes
-description: >
-  Use the PSDscResources ProcessSet composite resource to stop multiple processes.
 ---
 
 # Stop multiple processes

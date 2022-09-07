@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Set multiple services to run under the built-in account LocalService
 description: >
   Use the PSDscResources ServiceSet composite resource to set multiple services to run under the
   built-in account LocalService.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Set multiple services to run under the built-in account LocalService
 ---
 
 # Set multiple services to run under the built-in account LocalService

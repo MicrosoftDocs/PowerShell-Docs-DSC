@@ -1,8 +1,8 @@
 ---
+description: PSDscResources MsiPackage resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: MsiPackage
-description: PSDscResources MsiPackage resource
 ---
 
 # MsiPackage

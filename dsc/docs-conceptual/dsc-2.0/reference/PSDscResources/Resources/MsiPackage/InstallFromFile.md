@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Install the MSI file with the given ID at the given Path
 description: >
   Use the PSDscResources MsiPackage resource to install the MSI file with the given ID at the given
   path.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Install the MSI file with the given ID at the given Path
 ---
 
 # Install the MSI file with the given ID at the given path

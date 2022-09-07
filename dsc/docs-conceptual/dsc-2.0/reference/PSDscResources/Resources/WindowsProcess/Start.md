@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsProcess resource to start a process.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Start a process
-description: >
-  Use the PSDscResources WindowsProcess resource to start a process.
 ---
 
 # Start a process

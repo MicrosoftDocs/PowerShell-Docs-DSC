@@ -1,15 +1,14 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Using Import-DSCResource
 description: >
   Import-DSCResource is a dynamic keyword that can only be used inside a Configuration block. It is
   used to import the resource modules needed in your DSC Configuration.
+ms.date: 08/15/2022
+title:  Using Import-DSCResource
 ---
 
 # Using Import-DSCResource
 
-> Applies To: PowerShell 7.2, Azure Policy's machine configuration feature
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
 
 `Import-DSCResource` is a dynamic keyword, which can only be used inside a `Configuration` block to
 import any resources needed in your DSC Configuration. DSC Resources under `$PSHOME` are imported

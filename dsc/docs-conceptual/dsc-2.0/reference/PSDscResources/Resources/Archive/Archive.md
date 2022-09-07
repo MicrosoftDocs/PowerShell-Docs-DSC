@@ -1,8 +1,8 @@
 ---
+description: PSDscResources Archive resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: Archive
-description: PSDscResources Archive resource
 ---
 
 # Archive

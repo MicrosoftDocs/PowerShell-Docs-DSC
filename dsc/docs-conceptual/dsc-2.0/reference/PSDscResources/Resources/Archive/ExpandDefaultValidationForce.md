@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Expand an archive with default file validation and file overwrite allowed
 description: >
   Use the PSDscResources Archive resource to expand an archive with default file validation and file
   overwrite allowed.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Expand an archive with default file validation and file overwrite allowed
 ---
 
 # Expand an archive with default file validation and file overwrite allowed

@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Group resource to remove members of a group.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Remove members of a group
-description: >
-  Use the PSDscResources Group resource to remove members of a group.
 ---
 
 # Remove members of a group

@@ -1,14 +1,11 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  DSC Resources
 description: >
   DSC Resources provide a standardized interface for managing the settings of a system.
+ms.date: 08/15/2022
+title:  DSC Resources
 ---
 
 # DSC Resources
-
-> Applies to PowerShell 7.2
 
 ## Overview
 

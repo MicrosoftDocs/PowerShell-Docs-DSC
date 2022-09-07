@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Install a cab file with the given name from the given path
 description: >
   Use the PSDscResources WindowsPackageCab resource to install a cab file with the given name from
   the given path.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Install a cab file with the given name from the given path
 ---
 
 # Install a cab file with the given name from the given path

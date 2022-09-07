@@ -11,10 +11,12 @@ items:
       items:
         - name: Terminology
           href: concepts/terminology.md
-        - name: DSC Resources
-          href: concepts/resources.md
         - name: Get, Test, and Set
           href: concepts/get-test-set.md
+        - name: DSC Resources
+          href: concepts/resources.md
+        - name: Class-based DSC Resources
+          href: concepts/class-based-resources.md
         - name: DSC Configurations
           href: concepts/configurations.md
         - name: Import-DSCResource

@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Group resource to set members of a group.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Set members of a group
-description: >
-  Use the PSDscResources Group resource to set members of a group.
 ---
 
 # Set members of a group

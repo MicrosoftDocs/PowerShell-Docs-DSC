@@ -1,14 +1,13 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  DSC Configurations
 description: >
   DSC configurations are PowerShell scripts that define a special kind of command.
+ms.date: 08/15/2022
+title:  DSC Configurations
 ---
 
 # DSC Configurations
 
-> Applies To: PowerShell 7.2, Azure Policy's machine configuration feature
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
 
 DSC Configurations are PowerShell scripts that define a special kind of command. To define a
 Configuration, use the PowerShell keyword `configuration`.

@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Enable the specified Windows optional feature and output logs to the specified path
 description: >
   Use the PSDscResources WindowsOptionalFeature resource to enable the specified Windows optional
   feature and output logs to the specified path.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Enable the specified Windows optional feature and output logs to the specified path
 ---
 
 # Enable the specified Windows optional feature and output logs to the specified path

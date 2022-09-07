@@ -1,8 +1,8 @@
 ---
-ms.date: 08/15/2022
-title:  Desired State Configuration 2.0
 description: >
   Overview of Desired State Configuration 2.0
+ms.date: 08/15/2022
+title:  Desired State Configuration 2.0
 ---
 # Desired State Configuration 2.0
 

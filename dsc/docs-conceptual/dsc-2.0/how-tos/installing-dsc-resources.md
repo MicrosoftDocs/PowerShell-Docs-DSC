@@ -1,9 +1,8 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,resource,gallery,setup
-title:  Installing DSC Resources
 description: >
   This article covers how to find and install DSC Resources from the PowerShell Gallery.
+ms.date: 08/15/2022
+title:  Installing DSC Resources
 ---
 
 # Installing DSC Resources

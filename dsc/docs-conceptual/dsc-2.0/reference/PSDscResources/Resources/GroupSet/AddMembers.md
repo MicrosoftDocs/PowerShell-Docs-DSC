@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources GroupSet composite resource to add members to multiple groups.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Add members to multiple groups
-description: >
-  Use the PSDscResources GroupSet composite resource to add members to multiple groups.
 ---
 
 # Add members to multiple groups

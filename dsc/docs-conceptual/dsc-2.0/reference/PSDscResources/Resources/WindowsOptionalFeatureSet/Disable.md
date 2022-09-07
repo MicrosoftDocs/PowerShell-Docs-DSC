@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsOptionalFeatureSet composite resource to disable multiple features.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Disable multiple features
-description: >
-  Use the PSDscResources WindowsOptionalFeatureSet composite resource to disable multiple features.
 ---
 
 # Disable multiple features

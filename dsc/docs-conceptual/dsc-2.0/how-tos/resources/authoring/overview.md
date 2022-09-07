@@ -1,10 +1,9 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Authoring DSC Resources
 description: >
   This article provides an overview of developing DSC Resources and links to articles with specific
   information and examples.
+ms.date: 08/15/2022
+title:  Authoring DSC Resources
 ---
 
 # Authoring DSC Resources

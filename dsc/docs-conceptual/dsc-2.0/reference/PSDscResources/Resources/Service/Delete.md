@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Service resource to delete a service.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Delete a service
-description: >
-  Use the PSDscResources Service resource to delete a service.
 ---
 
 # Delete a service

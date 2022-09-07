@@ -1,8 +1,8 @@
 ---
+description: PSDscResources WindowsOptionalFeatureSet composite resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: WindowsOptionalFeatureSet
-description: PSDscResources WindowsOptionalFeatureSet composite resource
 ---
 
 # WindowsOptionalFeatureSet

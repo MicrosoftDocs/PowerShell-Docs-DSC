@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsFeature resource to install or uninstall a Windows feature.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Install or uninstall a Windows feature
-description: >
-  Use the PSDscResources WindowsFeature resource to install or uninstall a Windows feature.
 ---
 
 # Install or uninstall a Windows feature

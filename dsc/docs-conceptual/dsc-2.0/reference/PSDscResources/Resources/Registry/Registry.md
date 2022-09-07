@@ -1,8 +1,8 @@
 ---
+description: PSDscResources Registry resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: Registry
-description: PSDscResources Registry resource
 ---
 
 # Registry

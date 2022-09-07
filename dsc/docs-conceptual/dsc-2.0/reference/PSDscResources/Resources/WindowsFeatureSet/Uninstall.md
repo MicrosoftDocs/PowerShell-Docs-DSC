@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Uninstall multiple Windows features
 description: >
   Use the PSDscResources WindowsFeatureSet composite resource to uninstall multiple Windows
   features.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Uninstall multiple Windows features
 ---
 
 # Uninstall multiple Windows features

@@ -1,8 +1,8 @@
 ---
+description: PSDscResources WindowsFeature resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: WindowsFeature
-description: PSDscResources WindowsFeature resource
 ---
 
 # WindowsFeature

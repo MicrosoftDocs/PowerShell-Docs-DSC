@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Overview of the PSDscResources module
 description: >
   The PSDscResources module includes improved versions of the resources found in earlier versions of
   the PSDesiredStateConfiguration module.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Overview of the PSDscResources module
 ---
 
 # PSDscResources

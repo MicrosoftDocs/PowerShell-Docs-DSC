@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Install the MSI file with the given ID at the given HTTPS URL
 description: >
   Use the PSDscResources MsiPackage resource to install the MSI file with the given ID at the given
   HTTPS URL.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Install the MSI file with the given ID at the given HTTPS URL
 ---
 
 # Install the MSI file with the given ID at the given HTTPS URL
