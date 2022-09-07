@@ -566,7 +566,6 @@ The implementation of the **Set** method can't use any `return` statements. It s
 idempotently enforce the desired state.
 
 > [!NOTE]
-
 > You may need to retrieve the current state with the **Get** method if you need to enforce the
 > desired state depending on the current state of the system.
 >
