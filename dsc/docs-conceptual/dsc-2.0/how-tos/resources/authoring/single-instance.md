@@ -1,15 +1,12 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Authoring a single-instance DSC Resource
 description: >
   This article describes a best practice for defining a DSC Resource that allows only a single
   instance in a DSC Configuration.
+ms.date: 08/15/2022
+title:  Authoring a single-instance DSC Resource
 ---
 
 # Authoring a single-instance DSC Resource
-
-> Applies To: PowerShell 7.2
 
 > [!NOTE]
 > This article describes a best practice for defining a DSC resource that allows only a single

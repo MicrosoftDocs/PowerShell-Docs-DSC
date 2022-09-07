@@ -1,16 +1,15 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title: Managing dependencies in DSC Configurations
 description: >
   As your DSC Configuration grows larger and more complex, you can use the `DependsOn` meta-property
   to change the applied order of your DSC Resources by specifying that one DSC Resource depends on
   another DSC Resource.
+ms.date: 08/15/2022
+title: Managing dependencies in DSC Configurations
 ---
 
 # Managing dependencies in DSC Configurations
 
-> Applies To: PowerShell 7.2, Azure Policy's machine configuration feature
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
 
 When you write [DSC Configurations][1] for [Azure Policy's machine configuration feature][2], you
 add [Resource blocks][3] to configure aspects of a system. As you continue to add DSC Resource

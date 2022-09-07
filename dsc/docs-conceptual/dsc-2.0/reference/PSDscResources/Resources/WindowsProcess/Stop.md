@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsProcess resource to stop a process.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Stop a process
-description: >
-  Use the PSDscResources WindowsProcess resource to stop a process.
 ---
 
 # Stop a process

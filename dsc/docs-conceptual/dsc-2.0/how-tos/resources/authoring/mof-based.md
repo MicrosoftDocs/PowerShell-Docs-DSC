@@ -1,15 +1,12 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Authoring a MOF-based DSC Resource
 description: >
   This article shows how you can write a MOF-based DSC Resource with a script module and a schema
   file.
+ms.date: 08/15/2022
+title:  Authoring a MOF-based DSC Resource
 ---
 
 # Authoring a MOF-based DSC Resource
-
-> Applies To: PowerShell 7.2
 
 This article shows how you can create a MOF-based DSC Resource by writing a schema and developing
 a script module  to manage an IIS website.

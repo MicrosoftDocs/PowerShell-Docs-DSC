@@ -1,8 +1,8 @@
 ---
-ms.date: 09/07/2022
-title:  Class-based DSC Resources
 description: >
   Class-based DSC Resources are a simplified implementation of DSC Resources.
+ms.date: 09/07/2022
+title:  Class-based DSC Resources
 ---
 
 # Class-based DSC Resources

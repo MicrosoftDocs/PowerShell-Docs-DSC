@@ -1,10 +1,9 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Get started with invoking DSC Resources
 description: >
   This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
   Invoke-DscResource cmdlet.
+ms.date: 08/15/2022
+title:  Get started with invoking DSC Resources
 ---
 
 # Get started with invoking DSC resources

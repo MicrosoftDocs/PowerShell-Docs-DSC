@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources ServiceSet composite resource to ensure that multiple services are running.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Ensure that multiple services are running
-description: >
-  Use the PSDscResources ServiceSet composite resource to ensure that multiple services are running.
 ---
 
 # Ensure that multiple services are running

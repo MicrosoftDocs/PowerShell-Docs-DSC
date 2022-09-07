@@ -1,14 +1,11 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title: Authoring a composite DSC Resource
 description: >
   This article describes how to develop a DSC Resource composed of other DSC Resources
+ms.date: 08/15/2022
+title: Authoring a composite DSC Resource
 ---
 
 # Authoring a composite DSC Resource
-
-> Applies To: PowerShell 7.2
 
 In real-world situations, DSC Configurations can become long and complex, calling several different
 DSC Resources and setting dozens of properties. To help address this complexity, you can use a DSC

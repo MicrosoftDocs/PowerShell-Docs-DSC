@@ -1,14 +1,11 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Get-Test-Set
 description: >
   This article illustrates how to implement the Get, Test, and Set methods in a DSC Configuration.
+ms.date: 08/15/2022
+title:  Get-Test-Set
 ---
 
 # Get-Test-Set
-
-> Applies To: PowerShell 7.2
 
 DSC is constructed around a **Get**, **Test**, and **Set** process. [DSC Resources][1] are
 implemented to complete each of these operations. In a [DSC Configuration][2], you define DSC

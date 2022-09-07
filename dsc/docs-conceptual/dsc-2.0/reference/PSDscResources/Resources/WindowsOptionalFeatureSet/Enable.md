@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsOptionalFeatureSet composite resource to enable multiple features.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Enable multiple features
-description: >
-  Use the PSDscResources WindowsOptionalFeatureSet composite resource to enable multiple features.
 ---
 
 # Enable multiple features

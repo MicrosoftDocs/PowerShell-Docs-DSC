@@ -1,8 +1,8 @@
 ---
+description: PSDscResources User resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: User
-description: PSDscResources User resource
 ---
 
 # User

@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources User resource to create a new user.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Create a new user
-description: >
-  Use the PSDscResources User resource to create a new user.
 ---
 
 # Create a new user

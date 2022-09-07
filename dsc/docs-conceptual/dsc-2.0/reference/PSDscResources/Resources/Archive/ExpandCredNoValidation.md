@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Expand an archive under a credential without file validation
 description: >
   Use the PSDscResources Archive resource to expand an archive under a credential without file
   validation.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Expand an archive under a credential without file validation
 ---
 
 # Expand an archive under a credential without file validation

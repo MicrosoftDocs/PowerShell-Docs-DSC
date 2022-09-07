@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Registry resource to add or modify a registry key value.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Add or modify a registry key value
-description: >
-  Use the PSDscResources Registry resource to add or modify a registry key value.
 ---
 
 # Add or update a registry key value

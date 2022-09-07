@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsFeatureSet composite resource to install multiple Windows features.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Install multiple Windows features
-description: >
-  Use the PSDscResources WindowsFeatureSet composite resource to install multiple Windows features.
 ---
 
 # Install multiple Windows features

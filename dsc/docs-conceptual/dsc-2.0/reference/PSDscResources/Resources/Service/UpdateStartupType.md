@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Service resource to update a service's StartupType.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Update a service's StartupType
-description: >
-  Use the PSDscResources Service resource to update a service's StartupType.
 ---
 
 # Update a service's StartupType
