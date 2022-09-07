@@ -1,8 +1,8 @@
 ---
+description: PSDscResources GroupSet composite resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: GroupSet
-description: PSDscResources GroupSet composite resource
 ---
 
 # GroupSet

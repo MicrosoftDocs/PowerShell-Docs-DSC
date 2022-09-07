@@ -1,15 +1,16 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  Using Import-DSCResource
 description: >
   Import-DSCResource is a dynamic keyword that can only be used inside a Configuration block. It is
   used to import the resource modules needed in your DSC Configuration.
+ms.date: 08/15/2022
+title:  Using Import-DSCResource
 ---
 
 # Using Import-DSCResource
 
-`Import-DSCResource` is a dynamic keyword, which can only be used inside a `configuration` block to
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
+
+`Import-DSCResource` is a dynamic keyword, which can only be used inside a `Configuration` block to
 import any resources needed in your DSC Configuration. DSC Resources under `$PSHOME` are imported
 automatically, but it's best practice to explicitly import all DSC Resources used in your
 [DSC Configuration][1].
@@ -35,27 +36,29 @@ Parameters
   parameter. By default, the latest available version of the DSC Resource is imported.
 
 ```powershell
-Import-DscResource -ModuleName xActiveDirectory
+Import-DSCResource -ModuleName xActiveDirectory
 ```
 
 ## Example: Use Import-DSCResource within a DSC Configuration
 
 ```powershell
 Configuration MSDSCConfiguration {
-    # Search for and imports three DSC Resources from the xPSDesiredStateConfiguration module.
-    Import-DSCResource -ModuleName xPSDesiredStateConfiguration -Name Service, RemoteFile, Registry
+    # Search for and imports two DSC Resources from the PSDscResources module.
+    Import-DSCResource -ModuleName PSDscResources -Name Service, Registry
 
-    # Search for and import Resource1 from the module that defines it.
-    # If only -Name parameter is used then resources can belong to different PowerShell modules as well.
-    # TimeZone resource is from the ComputerManagementDSC module which is not installed by default.
-    # As a best practice, list each requirement on a different line if possible.  This makes reviewing
-    # multiple changes in source control a bit easier.
-    Import-DSCResource -Name Registry
+    # Search for and import Resource1 from the module that defines it. If only
+    # the -Name parameter is used then resources can belong to different
+    # PowerShell modules as well. TimeZone resource is from the
+    # ComputerManagementDSC module which is not installed by default. As a best
+    # practice, list each requirement on a different line if possible.  This
+    # makes reviewing  multiple changes in source control a bit easier.
+    Import-DSCResource -Name Service
     Import-DSCResource -Name TimeZone
 
-    # Search for and import all DSC resources inside the Module xPSDesiredStateConfiguration.
-    # When specifying the ModuleName parameter, it is a requirement to list each on a new line.
-    Import-DSCResource -ModuleName xPSDesiredStateConfiguration
+    # Search for and import all DSC resources inside the PSDscResources module.
+    # When specifying the ModuleName parameter, it is a requirement to list each
+    # on a new line.
+    Import-DSCResource -ModuleName PSDscResources
     # You can specify a ModuleVersion parameter
     Import-DSCResource -ModuleName ComputerManagementDsc -ModuleVersion 6.0.0.0
 ...
@@ -68,7 +71,7 @@ Configuration MSDSCConfiguration {
 > during compilation.
 >
 > ```powershell
-> Import-DscResource -Name UserConfigProvider*,TestLogger1 -ModuleName UserConfigProv,PsModuleForTestLogger
+> Import-DSCResource -Name Service, TimeZone -ModuleName PSDscResources, xPSDesiredStateConfiguration
 > ```
 
 Things to consider when using only the **Name** parameter:
@@ -113,11 +116,11 @@ Consider the following DSC Configuration:
 
 ```powershell
 Configuration SchemaValidationInCorrectEnumValue {
-    Import-DSCResource -Name WindowsFeature -Module PSDscResources
+    Import-DSCResource -Name User -Module PSDscResources
 
-    WindowsFeature ROLE1 {
-        Name   = 'Telnet-Client'
-        Ensure = 'Invalid'
+    User ExampleUser {
+        UserName = 'ExampleDscUser'
+        Ensure   = 'Invalid'
     }
 }
 ```
@@ -125,15 +128,16 @@ Configuration SchemaValidationInCorrectEnumValue {
 Compiling this DSC Configuration results in an error.
 
 ```Output
-Write-Error: C:\code\dsc\Sample.ps1:4
+Write-Error: C:\code\dsc\sample.ps1:4:5
 Line |
-   4 |          WindowsFeature ROLE1
-     |          ~~~~~~~~~~~~~~
-     | At least one of the values 'Invalid' is not supported or valid for property
-     | 'Ensure' on class 'WindowsFeature'. Please specify only supported values:
-     | Present, Absent.
+   4 |      User ExampleUser {
+     |      ~~~~
+     | At least one of the values 'Invalid' is not supported or   
+     | valid for property 'Ensure' on class 'User'. Please specify
+     | only supported values: Present, Absent.
 
-InvalidOperation: Errors occurred while processing configuration 'SchemaValidationInCorrectEnumValue'.
+InvalidOperation: Errors occurred while processing configuration
+'SchemaValidationInCorrectEnumValue'.
 ```
 
 IntelliSense and schema validation allow you to catch more errors during parse and compilation time,
@@ -141,15 +145,15 @@ avoiding future complications.
 
 > [!NOTE]
 > Each DSC Resource can have a name and a **FriendlyName** defined by the DSC Resource's schema.
-> Below are the first two lines of `MSFT_ServiceResource.shema.mof`.
+> Below are the first two lines of `MSFT_UserResource.schema.mof`.
 >
 > ```syntax
-> [ClassVersion("1.0.0"),FriendlyName("Service")]
-> class MSFT_ServiceResource : OMI_BaseResource
+> [ClassVersion("1.0.0"), FriendlyName("User")]
+> class MSFT_UserResource : OMI_BaseResource
 > ```
 >
-> When using this DSC Resource in a `Configuration` block, you can specify **MSFT_ServiceResource**
-> or **Service**.
+> When using this DSC Resource in a `Configuration` block, you can specify `MSFT_UserResource` or
+> `User`.
 
 ## See also
 

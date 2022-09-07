@@ -1,14 +1,12 @@
 ---
-ms.date: 08/15/2022
-title:  Authoring a class-based DSC Resource
 description: >
   This article shows how to create a DSC Resource that manages a file in a specified path with
   PowerShell classes.
+ms.date: 08/15/2022
+title:  Authoring a class-based DSC Resource
 ---
 
 # Authoring a class-based DSC Resource
-
-> Applies To: PowerShell 7.2
 
 You can define a DSC Resource by creating a PowerShell class. In a class-based DSC Resource, the
 schema is defined as properties of the class that can be modified with attributes to specify the

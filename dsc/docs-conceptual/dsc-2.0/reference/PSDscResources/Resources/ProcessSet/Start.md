@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources ProcessSet composite resource to start multiple processes.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Start multiple processes
-description: >
-  Use the PSDscResources ProcessSet composite resource to start multiple processes.
 ---
 
 # Start multiple processes

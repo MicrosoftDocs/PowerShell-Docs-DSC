@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Uninstall the MSI file with the given ID at the given path
 description: >
   Use the PSDscResources MsiPackage resource to Uninstall the MSI file with the given ID at the
   given path.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Uninstall the MSI file with the given ID at the given path
 ---
 
 # Uninstall the MSI file with the given ID at the given path

@@ -1,8 +1,8 @@
 ---
+description: PSDscResources Group resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: Group
-description: PSDscResources Group resource
 ---
 
 # Group

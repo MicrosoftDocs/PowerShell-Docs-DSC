@@ -1,8 +1,8 @@
 ---
+description: PSDscResources ServiceSet composite resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: ServiceSet
-description: PSDscResources ServiceSet composite resource
 ---
 
 # ServiceSet

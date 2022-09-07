@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Script resource to create a file with content.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Create a file with content
-description: >
-  Use the PSDscResources Script resource to create a file with content.
 ---
 
 # Create a file with content

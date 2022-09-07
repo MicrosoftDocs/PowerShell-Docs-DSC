@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Service resource to create a service.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Create a service
-description: >
-  Use the PSDscResources Service resource to create a service.
 ---
 
 # Create a service

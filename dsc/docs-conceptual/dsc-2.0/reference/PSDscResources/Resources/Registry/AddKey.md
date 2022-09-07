@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Registry resource to add a registry key.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Add a registry key
-description: >
-  Use the PSDscResources Registry resource to add a registry key.
 ---
 
 # Add a registry key

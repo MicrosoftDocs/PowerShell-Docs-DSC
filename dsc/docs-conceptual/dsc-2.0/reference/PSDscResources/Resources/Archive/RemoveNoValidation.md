@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Archive resource to remove an archive without file validation.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Remove an archive without file validation
-description: >
-  Use the PSDscResources Archive resource to remove an archive without file validation.
 ---
 
 # Remove an archive without file validation

@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsOptionalFeatureSet composite resource to disable multiple features.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Disable multiple features
-description: >
-  Use the PSDscResources WindowsOptionalFeatureSet composite resource to disable multiple features.
 ---
 
 # Disable multiple features
@@ -31,8 +31,16 @@ This snippet shows how you can define a `Configuration` with a `WindowsOptionalF
 block to ensure that the `MicrosoftWindowsPowerShellV2` and `Internet-Explorer-Optional-amd64`
 Windows optional features are disabled.
 
+> [!IMPORTANT]
+> There's a limitation in machine configuration that prevents a DSC Resource from using any
+> PowerShell cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery.
+> This example is provided for demonstrative purposes, but because the DSC Resource uses cmdlets
+> from the DISM module, which ships as one of the [Windows modules][2], it won't work in machine
+> configuration.
+
 :::code source="Disable.Config.ps1":::
 
 <!-- Reference Links -->
 
 [1]: ../WindowsOptionalFeature/WindowsOptionalFeature.md
+[2]: /powershell/windows/module-compatibility#module-list

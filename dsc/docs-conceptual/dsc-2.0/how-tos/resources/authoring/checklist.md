@@ -1,10 +1,9 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title:  DSC Resource authoring checklist
 description: >
   This article contains a checklist of best practices that should be used when authoring a new DSC
   Resource.
+ms.date: 08/15/2022
+title:  DSC Resource authoring checklist
 ---
 # DSC Resource authoring checklist
 

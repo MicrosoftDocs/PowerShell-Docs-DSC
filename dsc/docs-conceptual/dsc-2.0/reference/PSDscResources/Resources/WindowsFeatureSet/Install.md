@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsFeatureSet composite resource to install multiple Windows features.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Install multiple Windows features
-description: >
-  Use the PSDscResources WindowsFeatureSet composite resource to install multiple Windows features.
 ---
 
 # Install multiple Windows features
@@ -31,8 +31,16 @@ This snippet shows how you can define a `Configuration` with a `WindowsFeatureSe
 ensure that the `Telnet-Client` and `RSAT-File-Services` Windows features are installed with their
 subfeatures.
 
+> [!IMPORTANT]
+> There's a limitation in machine configuration that prevents a DSC Resource from using any
+> PowerShell cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery.
+> This example is provided for demonstrative purposes, but because the DSC Resource uses cmdlets
+> from the DISM module, which ships as one of the [Windows modules][2], it won't work in machine
+> configuration.
+
 :::code source="Install.Config.ps1":::
 
 <!-- Reference Links -->
 
 [1]: ../WindowsFeature/WindowsFeature.md
+[2]: /powershell/windows/module-compatibility#module-list

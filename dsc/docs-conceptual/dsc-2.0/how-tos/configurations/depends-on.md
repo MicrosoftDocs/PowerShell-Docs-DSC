@@ -1,14 +1,15 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,setup
-title: Managing dependencies in DSC Configurations
 description: >
   As your DSC Configuration grows larger and more complex, you can use the `DependsOn` meta-property
   to change the applied order of your DSC Resources by specifying that one DSC Resource depends on
   another DSC Resource.
+ms.date: 08/15/2022
+title: Managing dependencies in DSC Configurations
 ---
 
 # Managing dependencies in DSC Configurations
+
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
 
 When you write [DSC Configurations][1] for [Azure Policy's machine configuration feature][2], you
 add [Resource blocks][3] to configure aspects of a system. As you continue to add DSC Resource
@@ -26,41 +27,26 @@ array of strings with the following syntax.
 DependsOn = '[<Resource Type>]<Resource Name>', '[<Resource Type>]<Resource Name>'
 ```
 
-The following example configures a firewall rule after enabling and configuring the public profile.
+The following example configures a group's membership after creating a user.
 
 ```powershell
-# Install the NetworkingDSC module to configure firewall rules and profiles.
-Install-Module -Name NetworkingDSC
+Configuration ConfigureExampleUserGroup {
+    Import-DSCResource -Name User, Group -Module PSDscResources
 
-Configuration ConfigureFirewall {
-    # It's best practice to explicitly import required resources and modules.
-    Import-DSCResource -Name Firewall, FirewallProfile -Module NetworkingDsc
-
-    Firewall Firewall {
-        Name                  = 'IIS-WebServerRole-HTTP-In-TCP'
-        Ensure                = 'Present'
-        Enabled               = 'True'
-        DependsOn             = '[FirewallProfile]FirewallProfilePublic'
+    Group Example {
+        GroupName = 'DscExampleGroup'
+        Members   = 'DscExampleUser'
+        DependsOn = '[User]Example'
     }
 
-    FirewallProfile FirewallProfilePublic {
-        Name                    = 'Public'
-        Enabled                 = 'True'
-        DefaultInboundAction    = 'Block'
-        DefaultOutboundAction   = 'Allow'
-        AllowInboundRules       = 'True'
-        AllowLocalFirewallRules = 'False'
-        AllowLocalIPsecRules    = 'False'
-        NotifyOnListen          = 'True'
-        LogFileName             = '%systemroot%\system32\LogFiles\Firewall\pfirewall.log'
-        LogMaxSizeKilobytes     = 16384
-        LogAllowed              = 'False'
-        LogBlocked              = 'True'
-        LogIgnored              = 'NotConfigured'
+    User Example {
+        UserName    = 'DscExampleUser'
+        Ensure      = 'Present'
+        Description = 'Example user who should be a member of DscExampleGroup.'
     }
 }
 
-ConfigureFirewall -OutputPath C:\Temp\
+ConfigureExampleUserGroup
 ```
 
 <!-- Reference Links -->

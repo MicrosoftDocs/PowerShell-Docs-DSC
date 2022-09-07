@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Environment resource to remove an environment variable.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Remove an environment variable
-description: >
-  Use the PSDscResources Environment resource to remove an environment variable.
 ---
 
 # Remove an environment variable

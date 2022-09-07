@@ -1,14 +1,14 @@
 ---
-ms.date: 08/15/2022
-keywords:  dsc,powershell,configuration,service,setup
-title:  Write and compile a DSC Configuration
 description: >
   This exercise walks through creating and compiling a DSC Configuration from start to finish. In
   the following example, you will learn how to write and compile a minimal Configuration
+ms.date: 08/15/2022
+title:  Write and compile a DSC Configuration
 ---
+
 # Write and compile a DSC Configuration
 
-> Applies To: PowerShell 7.2
+> Applies To: PowerShell 7, Azure Policy's machine configuration feature
 
 This exercise walks through creating and compiling a DSC Configuration from start to finish. In the
 following example, you'll learn how to write and compile a minimal DSC Configuration to ensure a

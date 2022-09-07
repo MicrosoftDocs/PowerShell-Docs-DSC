@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Environment resource to create a non-path environment variable.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Create a non-path environment variable
-description: >
-  Use the PSDscResources Environment resource to create a non-path environment variable.
 ---
 
 # Create a non-path environment variable

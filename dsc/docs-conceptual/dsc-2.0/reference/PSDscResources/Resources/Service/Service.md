@@ -1,8 +1,8 @@
 ---
+description: PSDscResources Service resource
 ms.date: 08/08/2022
 ms.topic: reference
 title: Service
-description: PSDscResources Service resource
 ---
 
 # Service

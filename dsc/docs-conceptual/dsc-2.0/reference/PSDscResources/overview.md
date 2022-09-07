@@ -1,10 +1,10 @@
 ---
-ms.date: 08/08/2022
-ms.topic: reference
-title: Overview of the PSDscResources module
 description: >
   The PSDscResources module includes improved versions of the resources found in earlier versions of
   the PSDesiredStateConfiguration module.
+ms.date: 08/08/2022
+ms.topic: reference
+title: Overview of the PSDscResources module
 ---
 
 # PSDscResources
@@ -62,7 +62,7 @@ comments.
 - [WindowsProcess][22]: Start or stop a Windows process.
 - [ProcessSet][23]: Manage multiple Windows processes with common settings.
 
-### Resources that Work on Nano Server
+### Resources that work on Nano Server
 
 - [Group][9]
 - [Script][13]
@@ -71,6 +71,21 @@ comments.
 - [WindowsOptionalFeature][19]
 - [WindowsOptionalFeatureSet][20]
 - [WindowsPackageCab][21]
+
+### Resources that don't work in machine configuration
+
+When using Azure Policy's machine configuration feature, don't use the following resources:
+
+- `WindowsFeature`
+- `WindowsFeatureSet`
+- `WindowsOptionalFeature`
+- `WindowsOptionalFeatureSet`
+- `WindowsPackageCab`
+
+There's a limitation in machine configuration that prevents a DSC Resource from using any PowerShell
+cmdlets not included in PowerShell itself or in a module on the PowerShell Gallery. These DSC
+Resources use cmdlets from one or more [Windows modules][24] and won't work in machine
+configuration.
 
 <!-- Reference Links -->
 
@@ -97,3 +112,4 @@ comments.
 [21]: Resources/WindowsPackageCab/WindowsPackageCab.md
 [22]: Resources/WindowsProcess/WindowsProcess.md
 [23]: Resources/ProcessSet/ProcessSet.md
+[24]: /powershell/windows/module-compatibility#module-list

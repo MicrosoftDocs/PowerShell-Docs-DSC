@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Registry resource to remove a registry key value.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Remove a registry key value
-description: >
-  Use the PSDscResources Registry resource to remove a registry key value.
 ---
 
 # Remove a registry key value

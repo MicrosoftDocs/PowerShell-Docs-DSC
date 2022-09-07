@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources Environment resource to create or update a path environment variable.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Create or update a path environment variable
-description: >
-  Use the PSDscResources Environment resource to create or update a path environment variable.
 ---
 
 # Create or update a path environment variable

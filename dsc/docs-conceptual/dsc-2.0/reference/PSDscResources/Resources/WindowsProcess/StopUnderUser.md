@@ -1,9 +1,9 @@
 ---
+description: >
+  Use the PSDscResources WindowsProcess resource to stop a process under a user.
 ms.date: 08/08/2022
 ms.topic: reference
 title: Stop a process under a user
-description: >
-  Use the PSDscResources WindowsProcess resource to stop a process under a user.
 ---
 
 # Stop a process under a user
