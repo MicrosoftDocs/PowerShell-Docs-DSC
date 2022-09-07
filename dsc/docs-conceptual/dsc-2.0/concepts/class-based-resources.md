@@ -19,12 +19,10 @@ it:
 - In the [root module][02], like `MyModule.psm1`
 - In a [nested module][03], like `MyDscResource.psm1`
 
-Whether you defined the class-based DSC Resource in the root module or a nested module, you must
-have a module manifest (`.psd1`) file and include the class-based DSC Resource in the
-[DscResourcesToExport][04] setting for DSC to recognize them. If the class-based DSC Resource isn't
-listed in the **DscResourcesToExport** setting for a module, the [Get-DscResource][05] cmdlet,
-[Import-DSCResource] dynamic keyword, and DSC itself when compiling a DSC Configuration all fail to
-recognize the class-based DSC Resource.
+Regardless where the DSC Resource is defined, the DSC Resource must be listed in the
+[DscResourcesToExport][04] property of a module manifest (`.psd1`) file. The [Get-DscResource][05]
+cmdlet, the [Import-DSCResource] dynamic keyword, and DSC itself, when compiling a DSC
+Configuration, will fail if the DSC Resource isn't listed a manifest.
 
 For more information on creating a module manifest, see [New-ModuleManifest][06]. For more
 information on the settings of a module manifest, see [about_Module_Manifests][07].
@@ -368,9 +366,9 @@ found for the SimpleConfigSettings object. The available property is:
 [CheckForUpdates <System.Int32>]"
 ```
 
-Complex properties can have properties that are also complex properties. There isn't a technical
-limit to how many layers of nesting you can use, but for the best user experience, limit the depth
-of complex properties to three levels or fewer.
+Complex properties can have properties that are also complex properties. There is no
+limit to the level of nesting you can use. For the best user experience, limit the depth
+of complex properties to three levels.
 
 ```powershell
 class SimpleConfigUpdateSettings {
@@ -395,14 +393,13 @@ class SimpleConfigSettings {
 
 [DscResource()]
 class SimpleConfig {
-    [DscProperty(Mandatory)] [SimpleConfigData]
+    [DscProperty(Mandatory)] [SimpleConfigSettings]
     $Settings
 }
 ```
 
-With the **Settings** property defined as a complex property where the **Updates** subproperty is
-also a complex property, a user can call `Invoke-DscResource` with more safety and information about
-the expected values:
+This example shows how defining nested complex properties provides validation. This validation
+provides useful error messages when you call `Invoke-DscResource`.
 
 ```powershell
 $Parameters = @{
@@ -437,8 +434,8 @@ for the SimpleConfigUpdateSettings object. The available property is:
 
 When defining a class-based DSC Resource, you can add properties that don't have the **DscProperty**
 attribute. These properties can't be used directly with `Invoke-DscResource` or in a DSC
-Configuration, but they can be used internally by the class or directly be a user creating an
-instance of the class themselves.
+Configuration. They can be used internally by the class or directly be a user creating an instance
+of the class themselves.
 
 For more information on class properties, see [about_Classes][15].
 
@@ -450,9 +447,8 @@ Class-based DSC Resources must implement three [methods][16]:
 - **Test** to validate whether the DSC Resource is in the desired state
 - **Set** to enforce the desired state of the DSC Resource
 
-If any of these methods aren't defined with the expected output type and parameters (also called the
-method's _signature_), the class won't be recognized as a valid DSC Resource because the
-**DscResource** attribute indicates to the parser that the class must be a valid DSC Resource.
+A method's _signature_ is defined by it's expected output type and parameters. The class won't be
+recognized as a valid DSC Resource if it doesn't contain the correct signatures for these methods.
 
 PowerShell class methods are different from functions in a few important ways. For the purposes of
 writing a class-based DSC Resource, these are the most important:
@@ -523,8 +519,8 @@ The **Test** method's signature should always match this:
 }
 ```
 
-Instead of reimplementing the logic from the **Get** method to get the current state of the resource
-to compare to the desired state, call the **Get** method and assign its output to a variable.
+Instead of reimplementing the logic from the **Get** method, call the **Get** method and assign its
+output to a variable.
 
 ```powershell
 [bool] Test() {
@@ -570,15 +566,15 @@ The implementation of the **Set** method can't use any `return` statements. It s
 idempotently enforce the desired state.
 
 > [!NOTE]
-> Because the method has no input, you may need to retrieve the current state with the **Get**
-> method if you need to have different logic for how to enforce the desired state depending on the
-> current state of the system.
+
+> You may need to retrieve the current state with the **Get** method if you need to enforce the
+> desired state depending on the current state of the system.
 >
-> For example, you might have logic for creating a service when it doesn't exist instead of setting
-> a property of the service if it exists but with an incorrect value.
+> For example, you might have logic for creating a service when it doesn't exist instead of
+> correcting an incorrect property value.
 >
-> This is also why it's important when using `Invoke-DscResource` to always call the **Test** method
-> and only call the **Set** method if **Test** returns `$false`. While all DSC Resources should be
+> This is also why it's important when using `Invoke-DscResource` to call the **Test** method and
+> only call the **Set** method if **Test** returns `$false`. While all DSC Resources should be
 > idempotent, you have no guarantee that any DSC Resource is truly idempotent without reviewing its
 > implementation.
 
@@ -629,15 +625,15 @@ signature:
 ```
 
 If there's no required logic to perform, like setting defaults based on the operating system, you
-don't need to write any code in the constructor. For example, the default constructor for
-`MyDscResource` could be implemented as minimally as this:
+don't need to write any code in the constructor. The following example shows a minimal definition
+for the default constructor:
 
 ```powershell
 MyDscResource() {}
 ```
 
-If `MyDscResource` needed to set the default value of a **Format** property based on the operating
-system, defaulting to JSON for Windows and YAML for others, that could be implemented like this:
+You can add code to the constructor to set default values for properties of your class. For example,
+you may want to set a value based on the target operating system:
 
 ```powershell
 MyDscResource() {
@@ -655,17 +651,12 @@ MyDscResource() {
 
 ### Defining a custom constructor
 
-While DSC only ever calls the parameterless constructor, you might find it useful to define one or
-more constructors with parameters if the class is used in other circumstances, such as by functions
-in your module.
+DSC only calls the parameterless constructor. However, you can define other constructors with
+parameters if the class is used in other circumstances, such as by functions in your module.
 
 For more information on defining constructors, see [about_Classes][17]
 
 ## Best practices
-
-Class-based DSC Resources are flexible and powerful. They define the schema for the manageable
-settings of a software component and implement the logic to retrieve the current state, validate it
-against the desired state, and enforce the desired state.
 
 This is a non-exhaustive list of best practices for authoring high quality class-based DSC Resources
 that are idempotent, safe, and maintainable. It supplements the
@@ -686,10 +677,9 @@ an invalid value and how the value was invalid.
 > Only use validation attributes to ensure the user input for a property is valid, not to see
 > whether the property is in the correct state. That's what the **Test** method is for.
 >
-> For example, don't validate whether the value of a **Path** property exists already unless it's
-> required to exist for the rest of the DSC Resource's logic to work. If the DSC Resource creates a
-> file at that location when it doesn't exist, don't validate its existence on the property
-> declaration.
+> For example, don't validate that a **Path** value exists already unless it's required to exist for
+> the rest of the DSC Resource's logic to work. If the DSC Resource creates a file at that location,
+> don't validate its existence on the property declaration.
 
 If you're using any [complex properties][19], be sure to apply validation attributes to those
 subproperties as well. Those subproperties are validated at the same time as their parent property.
@@ -720,7 +710,7 @@ using namespace System.Management.Automation
 class ValidateHttps : ValidateArgumentsAttribute {
     [void]  Validate([object]$Url, [EngineIntrinsics]$engineIntrinsics) {
         [uri]$Uri = $Url
-        
+
         if($Uri.Scheme -ne 'https') {
             $Message = @(
                 "Specified value '$Url' is not a valid HTTPS URL."
@@ -790,9 +780,9 @@ you to apply validation on subproperties. For more information, see [Complex pro
 
 ### Add a Validation method if properties are interdependent
 
-If your DSC Resource has properties that can't be validated by a validation attribute because they
-rely on a combination of properties, add a validation method to your class-based DSC Resource. Call
-it at the beginning of your **Get**, **Test**, and **Set** methods.
+You may have a DSC Resource that has properties that must be combined to be validated. These
+properties can't be validated by a validation attribute. Add a validation method to your class-based
+DSC Resource and call it at the beginning of your **Get**, **Test**, and **Set** methods.
 
 For example, if your DSC Resource for managing a configuration file has the **Path** and
 **Extension** properties you might need to validate:
@@ -808,9 +798,9 @@ instance fails validation.
 [void] ValidatePath() {
     $ExtensionSpecified = ![string]::IsNullOrEmpty($this.Extension)
     $PathExtension = Split-Path -Path $this.Path -Extension
-    
+
     if (
-        $PathExtension -and 
+        $PathExtension -and
         $ExtensionSpecified -and
         ($PathExtension -ne $this.Extension)
     ) {
@@ -822,7 +812,7 @@ instance fails validation.
             "value must be the same as the value of Extension or Extension must"
             "not be specified."
         ) -join ' '
-        
+
         throw [System.ArgumentException]::new($Message)
     } elseif (!$ExtensionSpecified) {
         $Message = @(
@@ -830,7 +820,7 @@ instance fails validation.
             "property wasn't specified. When the value of Path is a folder, the"
             "Extension property is mandatory. Specify a value for Extension."
         ) -join ' '
-        
+
         throw [System.ArgumentException]::new($Message)
     }
 }
