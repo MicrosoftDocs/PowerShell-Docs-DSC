@@ -46,6 +46,7 @@ Configuration HelloWorld {
         }
     }
 }
+HelloWorld
 ```
 
 > [!IMPORTANT]
