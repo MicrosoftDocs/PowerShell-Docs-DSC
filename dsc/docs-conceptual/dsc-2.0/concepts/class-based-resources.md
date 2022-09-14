@@ -22,7 +22,7 @@ it:
 Regardless where the DSC Resource is defined, the DSC Resource must be listed in the
 [DscResourcesToExport][04] property of a module manifest (`.psd1`) file. The [Get-DscResource][05]
 cmdlet, the [Import-DSCResource] dynamic keyword, and DSC itself, when compiling a DSC
-Configuration, will fail if the DSC Resource isn't listed a manifest.
+Configuration, will fail if the DSC Resource isn't listed as a manifest.
 
 For more information on creating a module manifest, see [New-ModuleManifest][06]. For more
 information on the settings of a module manifest, see [about_Module_Manifests][07].
@@ -434,7 +434,7 @@ for the SimpleConfigUpdateSettings object. The available property is:
 
 When defining a class-based DSC Resource, you can add properties that don't have the **DscProperty**
 attribute. These properties can't be used directly with `Invoke-DscResource` or in a DSC
-Configuration. They can be used internally by the class or directly be a user creating an instance
+Configuration. They can be used internally by the class or directly by a user creating an instance
 of the class themselves.
 
 For more information on class properties, see [about_Classes][15].
@@ -447,7 +447,7 @@ Class-based DSC Resources must implement three [methods][16]:
 - **Test** to validate whether the DSC Resource is in the desired state
 - **Set** to enforce the desired state of the DSC Resource
 
-A method's _signature_ is defined by it's expected output type and parameters. The class won't be
+A method's _signature_ is defined by its expected output type and parameters. The class won't be
 recognized as a valid DSC Resource if it doesn't contain the correct signatures for these methods.
 
 PowerShell class methods are different from functions in a few important ways. For the purposes of
@@ -471,7 +471,7 @@ the class-based DSC Resource.
 ### Get
 
 The **Get** method is used to retrieve the current state of the DSC Resource and return it as an
-object. It must define it's output as the class itself and take no parameters.
+object. It must define its output as the class itself and take no parameters.
 
 For example, a class-based DSC Resource called `MyDscResource` must have this signature:
 
@@ -664,7 +664,7 @@ Resources. The practices in this section are specific to class-based DSC Resourc
 
 ### Use validation attributes
 
-If you can validate a property with on or more of the [validation attributes][12] do so. This
+If you can validate a property with one or more of the [validation attributes][12], do so. This
 validation is checked before any method is called with `Invoke-DscResource` and when you compile a
 DSC Configuration. Raising an error earlier reduces the chances that the DSC Resource will fail in
 an unpredictable way when enforcing state.
