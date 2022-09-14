@@ -22,7 +22,7 @@ it:
 Regardless where the DSC Resource is defined, the DSC Resource must be listed in the
 [DscResourcesToExport][04] property of a module manifest (`.psd1`) file. The [Get-DscResource][05]
 cmdlet, the [Import-DSCResource] dynamic keyword, and DSC itself, when compiling a DSC
-Configuration, will fail if the DSC Resource isn't listed as a manifest.
+Configuration, will fail if the DSC Resource isn't listed in a manifest.
 
 For more information on creating a module manifest, see [New-ModuleManifest][06]. For more
 information on the settings of a module manifest, see [about_Module_Manifests][07].
