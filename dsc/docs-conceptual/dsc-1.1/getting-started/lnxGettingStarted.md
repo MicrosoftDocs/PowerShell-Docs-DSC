@@ -14,10 +14,10 @@ For general information about DSC, see
 
 The following Linux operating system versions are supported by DSC for Linux.
 
-- CentOS 6, 7, and 8 (x64)
+- CentOS 7, and 8 (x64)
 - Debian GNU/Linux 8, 9, and 10 (x64)
-- Oracle Linux 6 and 7 (x64)
-- Red Hat Enterprise Linux Server 6, 7, and 8 (x64)
+- Oracle Linux 7 (x64)
+- Red Hat Enterprise Linux Server 7, and 8 (x64)
 - SUSE Linux Enterprise Server 12 and 15 (x64)
 - Ubuntu Server 14.04 LTS, 16.04 LTS, 18.04 LTS, and 20.04 LTS (x64)
 
