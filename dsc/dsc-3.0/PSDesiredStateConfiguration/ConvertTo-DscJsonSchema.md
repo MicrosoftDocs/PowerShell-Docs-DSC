@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Module Name: PSDesiredStateConfiguration
 ms.date: 09/14/2021
-online version: https://docs.microsoft.com/powershell/module/psdesiredstateconfiguration/convertto-dscjsonschema?view=dsc-3.0&WT.mc_id=ps-gethelp
+online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/convertto-dscjsonschema?view=dsc-3.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
 ---
 
