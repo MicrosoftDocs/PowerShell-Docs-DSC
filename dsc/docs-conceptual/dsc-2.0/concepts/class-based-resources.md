@@ -129,12 +129,80 @@ It defines four properties:
 - **Format** is an optional property for the DSC Resource and expects to get a **String** for its
   value.
 
+### Default property values
+
+When a class-based DSC Resource instance is created, the default parameterless constructor is used.
+Unless you override this behavior, the default parameterless constructor intializes every property
+to the default value for its type. If the property is defined with an explicit default, that value
+is used instead. For more information on constructors for class-based DSC Resources, see
+[Constructors](#constructors).
+
+Whether the property is a [reference type][n1] or a [value type][n2] determines the default value.
+Reference types initialize to `$null`. Value types initialize to the value specified in their
+definition.
+
+Unlike other implementations, class-based DSC Resources manage all defined properties that have the
+**DscProperty** attribute, even when you don't specify that property in a DSC Configuration or when
+using `Invoke-DscResource`. Because value type properties have a non-null default value, there's no
+way for a class-based DSC Resource to distinguish between a property that wasn't specified and one
+that was specified as the default value.
+
+> [!IMPORTANT]
+> When you use a class-based DSC Resource, any value type properties you don't explicitly set are
+> always set to their default value as defined in the DSC Resource.
+>
+> It isn't possible to use a class-based DSC Resource without managing every value type property
+> defined for that DSC Resource. Unlike other DSC Resources, removing a property from your DSC
+> Configuration or from the call to `Invoke-DscResource` doesn't ignore that property's state. I
+> resets it to the default.
+>
+> Only reference type properties can be unmanaged for a class-based DSC Resource.
+
+You can check whether a type is a reference or value type by inspecting its **BaseType**.
+
+```powershell
+function Test-IsValueType ($Object) {
+    $base = $Object.GetType().BaseType
+    while ($true) {
+        switch ($base.FullName) {
+            'System.Object' { return $false }
+            'System.ValueType' { return $true }
+            default {
+                $base = $base.BaseType
+            }
+        }
+    }
+}
+
+Test-IsValueType 'foo'
+Test-IsValueType 5
+```
+
+```output
+False
+True
+```
+
+This table includes a few types commonly used in DSC Resources. It notes whether they're reference
+or value types and, if they're value types, what their default value is when a DSC Resource is
+initialized.
+
+|                     Name                      |   Type    |        Default Value        |
+| :-------------------------------------------- | :-------: | :-------------------------: |
+|               **System.String**               | Reference |           `$null`           |
+| **System.Management.Automation.PSCredential** | Reference |           `$null`           |
+|              **System.DateTime**              |   Value   | January 1, 0001 12:00:00 AM |
+|              **System.TimeSpan**              |   Value   |   All fields set to `0`.    |
+|                **System.Enum**                |   Value   |             `0`             |
+|               **System.Int32**                |   Value   |             `0`             |
+|               **System.Double**               |   Value   |             `0`             |
+
 ### Validation property attributes
 
 The properties of a class-based DSC Resource may also use [validation attributes][12] to constrain
 the user-specified values for a property. The validation is applied when you compile a DSC
-Configuration or call `Invoke-DSCResource`. VS Code doesn't currently validate the values specified
-in your DSC Configuration while you're editing it.
+Configuration or call `Invoke-DSCResource`. VS Code doesn't validate the values specified in your
+DSC Configuration while you're editing it.
 
 > [!CAUTION]
 > When using `Invoke-DscResource`, validation failures for the properties don't stop the cmdlet from
@@ -508,8 +576,9 @@ default constructor for the `MyDscResource` class. It checks to see if the file 
 
 ### Test
 
-The **Test** method is used to validate whether the DSC Resource is in the desired state and returns
-`$true` if it is or `$false` if it isn't. It must define boolean output and take no parameters.
+The **Test** method is used to validate whether the DSC Resource is in the desired state and
+returns `$true` if it's in the desired state or `$false` if it isn't. It must define boolean output
+and take no parameters.
 
 The **Test** method's signature should always match this:
 
@@ -692,6 +761,59 @@ This gives users a better error message and makes maintenance easier if you use 
 anywhere else in your module. Instead of having to update every cmdlet or check for that property,
 you can update the enum definition.
 
+Remember that enums are value type properties. They default to `0` when an instance of the
+class-based DSC Resource is created. If you set an explicit default value for an enum property, that
+enum can't be unmanaged. If a user doesn't specify the property, the DSC Resource will behave the
+same as if the user had explicitly specified the default value.
+
+To support unmanaged enum properties, make sure not to define a label for the `0` value. By default,
+if you don't specify the integer value for any labels when using the `enum` statement, the first
+declared label has a value of `0`. Instead, define the first label with a value of `1` (or any
+higher value).
+
+For example:
+
+```powershell
+enum OptionalSetting {
+    FirstOption = 1
+    SecondOption
+    ThirdOption
+}
+```
+
+Then, in your **Test** and **Set** methods, you can ignore the enum property if the value is `0`.
+In **Test**, if the enum property is `0`, ignore the current state of the DSC Resource on the
+system. Don't report the DSC Resource as out of desired state if the current state is a valid value.
+In **Set**, make sure your logic for modifying system state ignores the enum property if it's `0`.
+
+> [!NOTE]
+> This method for implementing enum properties that can be unmanaged only works when the underlying
+> value of the enum labels doesn't matter or when `0` isn't a valid underlying value.
+
+### Explicitly define default values for value type properties
+
+When authoring a class-based DSC Resource, ensure that your properties specify correct default
+values for every value type property. You'll need to ensure your default values stay in sync with
+those of the component your DSC Resource manages.
+
+Document the behavior of these properties for your users. Make sure that your documentation explains
+that these properties will be set to their default value if the user doesn't specify them when using
+the DSC Resource.
+
+### Ensure the DSC Resource respects unmanaged reference type properties
+
+Because reference type properties initialize to `$null`, unlike value type properties, a DSC
+Resource can distinguish between whether a reference type property was specified or not. Make sure
+that your DSC Resources ignore unmanaged reference type properties in the **Test** and **Set**
+methods.
+
+In **Test**, if the reference type property is `$null`, ignore the current state of the DSC Resource
+on the system. Don't report the DSC Resource as out of desired state if the current state isn't
+`$null`.
+
+In **Set**, make sure your logic for modifying the system state ignores any reference type
+properties that are `$null`.
+
 ### Use a custom validation attribute instead of ValidateScript
 
 For properties that require more complex validation, consider defining your own attribute that
@@ -857,3 +979,5 @@ Resource easier. It also makes your DSC Resource's methods easier to read and un
 [19]: #complex-properties
 [20]: #enum-properties
 [21]: /dotnet/api/system.management.automation.validateargumentsattribute
+[n1]: /dotnet/csharp/language-reference/keywords/reference-types
+[n2]: /dotnet/csharp/language-reference/builtin-types/value-types
