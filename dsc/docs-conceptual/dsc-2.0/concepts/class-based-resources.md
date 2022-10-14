@@ -1,7 +1,7 @@
 ---
 description: >
   Class-based DSC Resources are a simplified implementation of DSC Resources.
-ms.date: 09/07/2022
+ms.date: 10/14/2022
 title:  Class-based DSC Resources
 ---
 
@@ -32,7 +32,7 @@ A class-based DSC Resource must:
 1. Use the **DscResource** attribute.
 1. Declare one or more properties with the **DscProperty** attribute. At least one of the properties
    must be a **Key** property.
-1. Implement the **Get**, **Test**, and **Set** methods.
+1. Implement the `Get()`, `Test()`, and `Set()` methods.
 1. Define a default constructor if it defines any alternate constructors.
 
 ## The DscResource attribute
@@ -53,7 +53,7 @@ As well as identifying the class as a DSC Resource, the **DscResource** attribut
 validation to the class-based DSC Resource. PowerShell raises a parse error for the definition of
 a class-based DSC Resource when:
 
-- One or more of the **Get**, **Test**, and **Set** methods is incorrectly defined or missing
+- One or more of the `Get()`, `Test()`, and `Set()` methods is incorrectly defined or missing
 - The class doesn't have at least one **Key** property
 - The class defines a non-default constructor without defining a default constructor
 
@@ -90,7 +90,7 @@ The definition of the **DscProperty** determines how DSC treats that property:
   `Invoke-DscResource`, the cmdlet raises an error. If any **Mandatory** properties aren't specified
   when authoring a DSC Configuration, compiling the configuration raises an error.
 - `[DscProperty(NotConfigurable)]` - Indicates that the property is **ReadOnly**. It isn't a
-  manageable setting of this DSC Resource, but will contain a value after the **Get** method of the
+  manageable setting of this DSC Resource, but will contain a value after the `Get()` method of the
   DSC Resource is called.
 - `[DscProperty()]` - Indicates that the property is a configurable setting of this DSC Resource.
   Specifying this property is optional when using `Invoke-DscResource` or authoring a DSC
@@ -125,7 +125,7 @@ It defines four properties:
 - **Settings** is a **Mandatory** property for the DSC Resource and expects to get a **Hashtable**
   for its value.
 - **LastModified** is a **ReadOnly** property for the DSC Resource and expects to get a **DateTime**
-  for its value from the **Get** method.
+  for its value from the `Get()` method.
 - **Format** is an optional property for the DSC Resource and expects to get a **String** for its
   value.
 
@@ -206,7 +206,7 @@ DSC Configuration while you're editing it.
 
 > [!CAUTION]
 > When using `Invoke-DscResource`, validation failures for the properties don't stop the cmdlet from
-> invoking the **Get**, **Test**, or **Set** method. To prevent the cmdlet from invoking a method
+> invoking the `Get()`, `Test()`, or `Set()` method. To prevent the cmdlet from invoking a method
 > when the input fails a property's validation attribute, specify your [ErrorActionPreference][19]
 > as `Stop`.
 
@@ -511,9 +511,9 @@ For more information on class properties, see [about_Classes][11].
 
 Class-based DSC Resources must implement three [methods][10]:
 
-- **Get** to retrieve the current state of the DSC Resource
-- **Test** to validate whether the DSC Resource is in the desired state
-- **Set** to enforce the desired state of the DSC Resource
+- `Get()` to retrieve the current state of the DSC Resource
+- `Test()` to validate whether the DSC Resource is in the desired state
+- `Set()` to enforce the desired state of the DSC Resource
 
 A method's _signature_ is defined by its expected output type and parameters. The class won't be
 recognized as a valid DSC Resource if it doesn't contain the correct signatures for these methods.
@@ -538,7 +538,7 @@ the class-based DSC Resource.
 
 ### Get
 
-The **Get** method is used to retrieve the current state of the DSC Resource and return it as an
+The `Get()` method is used to retrieve the current state of the DSC Resource and return it as an
 object. It must define its output as the class itself and take no parameters.
 
 For example, a class-based DSC Resource called `MyDscResource` must have this signature:
@@ -549,7 +549,7 @@ For example, a class-based DSC Resource called `MyDscResource` must have this si
 }
 ```
 
-To make the **Get** method return the correct object, you need to create an instance of the class.
+To make the `Get()` method return the correct object, you need to create an instance of the class.
 Then you can populate that instance's properties with the current values from the system. Finally,
 use the `return` keyword to output the current state.
 
@@ -568,7 +568,7 @@ use the `return` keyword to output the current state.
 }
 ```
 
-In the example implementation, the **Get** method initializes the `$CurrentState` variable with the
+In the example implementation, the `Get()` method initializes the `$CurrentState` variable with the
 default constructor for the `MyDscResource` class. It checks to see if the file specified in the
 **Path** property exists. If it does, the method sets the **Ensure** and **Path** properties on
 `$CurrentState` to `Present` and the appropriate path. If it doesn't, the method sets **Ensure** to
@@ -576,11 +576,11 @@ default constructor for the `MyDscResource` class. It checks to see if the file 
 
 ### Test
 
-The **Test** method is used to validate whether the DSC Resource is in the desired state and
+The `Test()` method is used to validate whether the DSC Resource is in the desired state and
 returns `$true` if it's in the desired state or `$false` if it isn't. It must define boolean output
 and take no parameters.
 
-The **Test** method's signature should always match this:
+The `Test()` method's signature should always match this:
 
 ```powershell
 [bool] Test() {
@@ -588,7 +588,7 @@ The **Test** method's signature should always match this:
 }
 ```
 
-Instead of reimplementing the logic from the **Get** method, call the **Get** method and assign its
+Instead of reimplementing the logic from the `Get()` method, call the `Get()` method and assign its
 output to a variable.
 
 ```powershell
@@ -607,8 +607,8 @@ output to a variable.
 }
 ```
 
-In the example implementation, the **Test** method initializes a variable, `$InDesiredState`, as
-`$true` before setting `$CurrentState` to the output of the **Get** method for the class-based DSC
+In the example implementation, the `Test()` method initializes a variable, `$InDesiredState`, as
+`$true` before setting `$CurrentState` to the output of the `Get()` method for the class-based DSC
 Resource.
 
 It then checks the values of the properties of `$CurrentState` against those specified on the DSC
@@ -620,10 +620,10 @@ statement.
 
 ### Set
 
-The **Set** method is used to enforce the desired state of the DSC Resource. It doesn't have any
+The `Set()` method is used to enforce the desired state of the DSC Resource. It doesn't have any
 output and takes no parameters.
 
-The **Set** method's signature should always match this:
+The `Set()` method's signature should always match this:
 
 ```powershell
 [void] Set() {
@@ -631,24 +631,24 @@ The **Set** method's signature should always match this:
 }
 ```
 
-The implementation of the **Set** method can't use any `return` statements. It should be written to
+The implementation of the `Set()` method can't use any `return` statements. It should be written to
 idempotently enforce the desired state.
 
 > [!NOTE]
-> You may need to retrieve the current state with the **Get** method if you need to enforce the
+> You may need to retrieve the current state with the `Get()` method if you need to enforce the
 > desired state depending on the current state of the system.
 >
 > For example, you might have logic for creating a service when it doesn't exist instead of
 > correcting an incorrect property value.
 >
-> This is also why it's important when using `Invoke-DscResource` to call the **Test** method and
-> only call the **Set** method if **Test** returns `$false`. While all DSC Resources should be
+> This is also why it's important when using `Invoke-DscResource` to call the `Test()` method and
+> only call the `Set()` method if `Test()` returns `$false`. While all DSC Resources should be
 > idempotent, you have no guarantee that any DSC Resource is truly idempotent without reviewing its
 > implementation.
 
 ### Optional methods
 
-Beyond the required **Get**, **Test**, and **Set** methods, a class-based DSC Resource can define
+Beyond the required `Get()`, `Test()`, and `Set()` methods, a class-based DSC Resource can define
 any number of additional methods. One use case for this is to define helper methods, such as for
 code used in more than one of the required methods.
 
@@ -743,7 +743,7 @@ an invalid value and how the value was invalid.
 
 > [!NOTE]
 > Only use validation attributes to ensure the user input for a property is valid, not to see
-> whether the property is in the correct state. That's what the **Test** method is for.
+> whether the property is in the correct state. That's what the `Test()` method is for.
 >
 > For example, don't validate that a **Path** value exists already unless it's required to exist for
 > the rest of the DSC Resource's logic to work. If the DSC Resource creates a file at that location,
@@ -804,14 +804,14 @@ the DSC Resource.
 
 Because reference type properties initialize to `$null`, unlike value type properties, a DSC
 Resource can distinguish between whether a reference type property was specified or not. Make sure
-that your DSC Resources ignore unmanaged reference type properties in the **Test** and **Set**
+that your DSC Resources ignore unmanaged reference type properties in the `Test()` and `Set()`
 methods.
 
-In **Test**, if the reference type property is `$null`, ignore the current state of the DSC Resource
+In `Test()`, if the reference type property is `$null`, ignore the current state of the DSC Resource
 on the system. Don't report the DSC Resource as out of desired state if the current state isn't
 `$null`.
 
-In **Set**, make sure your logic for modifying the system state ignores any reference type
+In `Set()`, make sure your logic for modifying the system state ignores any reference type
 properties that are `$null`.
 
 ### Use a custom validation attribute instead of ValidateScript
@@ -903,7 +903,7 @@ you to apply validation on subproperties. For more information, see [complex pro
 
 You may have a DSC Resource that has properties that must be combined to be validated. These
 properties can't be validated by a validation attribute. Add a validation method to your class-based
-DSC Resource and call it at the beginning of your **Get**, **Test**, and **Set** methods.
+DSC Resource and call it at the beginning of your `Get()`, `Test()`, and `Set()` methods.
 
 For example, if your DSC Resource for managing a configuration file has the **Path** and
 **Extension** properties you might need to validate:
@@ -948,7 +948,7 @@ instance fails validation.
 ```
 
 If you need to validate several different parameters or groups of parameters in this way, define a
-generic validation method that calls the others. Use that method in **Get**, **Test**, and **Set**.
+generic validation method that calls the others. Use that method in `Get()`, `Test()`, and `Set()`.
 
 ### Extract shared code into methods or functions
 
