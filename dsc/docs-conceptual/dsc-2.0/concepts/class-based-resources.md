@@ -12,20 +12,20 @@ settings of a system. This article explains their structure and requirements.
 
 ## Structure of a class-based DSC Resource
 
-A class-based DSC Resource is defined as a [PowerShell class][01] in a module file (`.psm1`). The
+A class-based DSC Resource is defined as a [PowerShell class][09] in a module file (`.psm1`). The
 class-based DSC Resource doesn't have special requirements for where it's defined. You can define
 it:
 
-- In the [root module][02], like `MyModule.psm1`
-- In a [nested module][03], like `MyDscResource.psm1`
+- In the [root module][18], like `MyModule.psm1`
+- In a [nested module][17], like `MyDscResource.psm1`
 
 Regardless where the DSC Resource is defined, the DSC Resource must be listed in the
-[DscResourcesToExport][04] property of a module manifest (`.psd1`) file. The [Get-DscResource][05]
+[DscResourcesToExport][16] property of a module manifest (`.psd1`) file. The [Get-DscResource][21]
 cmdlet, the [Import-DSCResource] dynamic keyword, and DSC itself, when compiling a DSC
 Configuration, will fail if the DSC Resource isn't listed in a manifest.
 
-For more information on creating a module manifest, see [New-ModuleManifest][06]. For more
-information on the settings of a module manifest, see [about_Module_Manifests][07].
+For more information on creating a module manifest, see [New-ModuleManifest][20]. For more
+information on the settings of a module manifest, see [about_Module_Manifests][15].
 
 A class-based DSC Resource must:
 
@@ -37,7 +37,7 @@ A class-based DSC Resource must:
 
 ## The DscResource attribute
 
-The definition of the class must have the [DscResource][08] attribute. This attribute indicates that
+The definition of the class must have the [DscResource][03] attribute. This attribute indicates that
 the class defines a DSC Resource.
 
 To add the **DscResource** attribute to a class, declare it on the line immediately before the class
@@ -57,8 +57,8 @@ a class-based DSC Resource when:
 - The class doesn't have at least one **Key** property
 - The class defines a non-default constructor without defining a default constructor
 
-The **DscResource** attribute can also be specified with the [RunAsCredential][09] property to
-specify the class-based DSC Resource's behavior when using the [PsDscRunAsCredential][10] property:
+The **DscResource** attribute can also be specified with the [RunAsCredential][04] property to
+specify the class-based DSC Resource's behavior when using the [PsDscRunAsCredential][08] property:
 
 - `Optional` - A user may use the **PsDscRunAsCredential** property with this DSC Resource. This is
   the default behavior. This behavior can also be specified as `Default` instead of `Optional`.
@@ -75,7 +75,7 @@ specify the class-based DSC Resource's behavior when using the [PsDscRunAsCreden
 ## Class-based DSC Resource properties
 
 The schema of a class-based DSC Resource is defined by the properties of the class. For a property
-to be recognized as part of the schema, it must have the [DscProperty][11] attribute.
+to be recognized as part of the schema, it must have the [DscProperty][02] attribute.
 
 The definition of the **DscProperty** determines how DSC treats that property:
 
@@ -135,9 +135,9 @@ When a class-based DSC Resource instance is created, the default parameterless c
 Unless you override this behavior, the default parameterless constructor intializes every property
 to the default value for its type. If the property is defined with an explicit default, that value
 is used instead. For more information on constructors for class-based DSC Resources, see
-[Constructors](#constructors).
+[Constructors][23].
 
-Whether the property is a [reference type][n1] or a [value type][n2] determines the default value.
+Whether the property is a [reference type][07] or a [value type][06] determines the default value.
 Reference types initialize to `$null`. Value types initialize to the value specified in their
 definition.
 
@@ -199,7 +199,7 @@ initialized.
 
 ### Validation property attributes
 
-The properties of a class-based DSC Resource may also use [validation attributes][12] to constrain
+The properties of a class-based DSC Resource may also use [validation attributes][14] to constrain
 the user-specified values for a property. The validation is applied when you compile a DSC
 Configuration or call `Invoke-DSCResource`. VS Code doesn't validate the values specified in your
 DSC Configuration while you're editing it.
@@ -207,7 +207,7 @@ DSC Configuration while you're editing it.
 > [!CAUTION]
 > When using `Invoke-DscResource`, validation failures for the properties don't stop the cmdlet from
 > invoking the **Get**, **Test**, or **Set** method. To prevent the cmdlet from invoking a method
-> when the input fails a property's validation attribute, specify your [ErrorActionPreference][13]
+> when the input fails a property's validation attribute, specify your [ErrorActionPreference][19]
 > as `Stop`.
 
 Defining validation attributes for properties is simpler than implementing the same logic in a
@@ -253,12 +253,12 @@ ValidateSet attribute. Supply an argument that is in the set and then
 try the command again."
 ```
 
-For more information about the validation attributes, see [about_Functions_Advanced_Parameters][12].
+For more information about the validation attributes, see [about_Functions_Advanced_Parameters][14].
 
 ### Enum properties
 
 For a better authoring and user experience than using the **ValidateSet** attribute, you can define
-an [Enum][14] that specifies a set of valid values.
+an [Enum][13] that specifies a set of valid values.
 
 For example, you could define a **FormatOption** enum and use it as the type for the **Format**
 property of a class-based DSC Resource:
@@ -304,7 +304,7 @@ Enums are also useful for when you need to use the same property across several 
 Resources. You can define the enum once and use it everywhere you need to, whereas with a
 **ValidateSet** attribute, you need to update every DSC Resource that shares the property.
 
-For more information on enums in PowerShell, see [about_Enum][14].
+For more information on enums in PowerShell, see [about_Enum][13].
 
 ### The Ensure property
 
@@ -505,11 +505,11 @@ attribute. These properties can't be used directly with `Invoke-DscResource` or 
 Configuration. They can be used internally by the class or directly by a user creating an instance
 of the class themselves.
 
-For more information on class properties, see [about_Classes][15].
+For more information on class properties, see [about_Classes][11].
 
 ## Class-based DSC Resource methods
 
-Class-based DSC Resources must implement three [methods][16]:
+Class-based DSC Resources must implement three [methods][10]:
 
 - **Get** to retrieve the current state of the DSC Resource
 - **Test** to validate whether the DSC Resource is in the desired state
@@ -531,7 +531,7 @@ writing a class-based DSC Resource, these are the most important:
   user specifies the **Property** parameter with `Invoke-DscResource` or when defining the DSC
   Resource block in a DSC Configuration.
 
-For more information on class methods, see [about_Classes][16].
+For more information on class methods, see [about_Classes][10].
 
 The methods can call cmdlets and native commands, including ones defined in the same module as
 the class-based DSC Resource.
@@ -679,7 +679,7 @@ the parameterless constructor and then each specified property is set on the ins
 > on the system for some reason. For example a class-based DSC Resource that only works on Windows
 > might throw an exception if created on a non-Windows system.
 
-For more information about constructors, see [about_Classes][17]
+For more information about constructors, see [about_Classes][12]
 
 ### Defining a default constructor
 
@@ -722,18 +722,18 @@ MyDscResource() {
 DSC only calls the parameterless constructor. However, you can define other constructors with
 parameters if the class is used in other circumstances, such as by functions in your module.
 
-For more information on defining constructors, see [about_Classes][17]
+For more information on defining constructors, see [about_Classes][12]
 
 ## Best practices
 
 This is a non-exhaustive list of best practices for authoring high quality class-based DSC Resources
 that are idempotent, safe, and maintainable. It supplements the
-[DSC Resource authoring checklist][18], which defines more general guidance for authoring DSC
+[DSC Resource authoring checklist][01], which defines more general guidance for authoring DSC
 Resources. The practices in this section are specific to class-based DSC Resources.
 
 ### Use validation attributes
 
-If you can validate a property with one or more of the [validation attributes][12], do so. This
+If you can validate a property with one or more of the [validation attributes][14], do so. This
 validation is checked before any method is called with `Invoke-DscResource` and when you compile a
 DSC Configuration. Raising an error earlier reduces the chances that the DSC Resource will fail in
 an unpredictable way when enforcing state.
@@ -749,13 +749,13 @@ an invalid value and how the value was invalid.
 > the rest of the DSC Resource's logic to work. If the DSC Resource creates a file at that location,
 > don't validate its existence on the property declaration.
 
-If you're using any [complex properties][19], be sure to apply validation attributes to those
+If you're using any [complex properties][22], be sure to apply validation attributes to those
 subproperties as well. Those subproperties are validated at the same time as their parent property.
 
 ### Use enums instead of ValidateSet
 
 If a property of the class-based DSC Resource has a list of valid values it accepts, define it as an
-[enum property][20] instead of using the **ValidateSet** attribute.
+[enum property][24] instead of using the **ValidateSet** attribute.
 
 This gives users a better error message and makes maintenance easier if you use those values
 anywhere else in your module. Instead of having to update every cmdlet or check for that property,
@@ -817,7 +817,7 @@ properties that are `$null`.
 ### Use a custom validation attribute instead of ValidateScript
 
 For properties that require more complex validation, consider defining your own attribute that
-inherits from the [ValidateArgumentsAttribute][21] class or one of its derivatives.
+inherits from the [ValidateArgumentsAttribute][05] class or one of its derivatives.
 
 This gives you much more control over the validation of the property and the messaging for when a
 specified value fails validation.
@@ -897,7 +897,7 @@ URL that begins with 'https://'."
 
 If your DSC Resource has a property with known subproperties, create a class for it and define those
 subproperties on that class. This provides a more discoverable surface for the settings and allows
-you to apply validation on subproperties. For more information, see [Complex properties][19].
+you to apply validation on subproperties. For more information, see [complex properties][22].
 
 ### Add a Validation method if properties are interdependent
 
@@ -957,27 +957,27 @@ method or function and move the code there instead. This makes testing and maint
 Resource easier. It also makes your DSC Resource's methods easier to read and understand.
 
 <!-- Reference Links -->
-
-[01]: /powershell/module/microsoft.powershell.core/about/about_classes
-[02]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#rootmodule
-[03]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#nestedmodules
-[04]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#dscresourcestoexport
-[05]: /powershell/module/psdesiredstateconfiguration/get-dscresource
-[06]: /powershell/module/microsoft.powershell.core/new-modulemanifest
-[07]: /powershell/module/microsoft.powershell.core/about/about_module_manifests
-[08]: /dotnet/api/system.management.automation.dscresourceattribute
-[09]: /dotnet/api/system.management.automation.dscresourceattribute.runascredential
-[10]: /powershell/dsc/configurations/runasuser?view=dsc-1.1&preserve-view=true
-[11]: /dotnet/api/system.management.automation.dscpropertyattribute
-[12]: /powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters#parameter-and-variable-validation-attributes
-[13]: /powershell/module/microsoft.powershell.core/about/about_preference_variables#erroractionpreference
-[14]: /powershell/module/microsoft.powershell.core/about/about_enum
-[15]: /powershell/module/microsoft.powershell.core/about/about_classes#class-properties
-[16]: /powershell/module/microsoft.powershell.core/about/about_classes#class-methods
-[17]: /powershell/module/microsoft.powershell.core/about/about_classes#constructor
-[18]: ../how-tos/resources/authoring/checklist.md
-[19]: #complex-properties
-[20]: #enum-properties
-[21]: /dotnet/api/system.management.automation.validateargumentsattribute
-[n1]: /dotnet/csharp/language-reference/keywords/reference-types
-[n2]: /dotnet/csharp/language-reference/builtin-types/value-types
+[01]: ../how-tos/resources/authoring/checklist.md
+[02]: /dotnet/api/system.management.automation.dscpropertyattribute
+[03]: /dotnet/api/system.management.automation.dscresourceattribute
+[04]: /dotnet/api/system.management.automation.dscresourceattribute.runascredential
+[05]: /dotnet/api/system.management.automation.validateargumentsattribute
+[06]: /dotnet/csharp/language-reference/builtin-types/value-types
+[07]: /dotnet/csharp/language-reference/keywords/reference-types
+[08]: /powershell/dsc/configurations/runasuser?view=dsc-1.1&preserve-view=true
+[09]: /powershell/module/microsoft.powershell.core/about/about_classes
+[10]: /powershell/module/microsoft.powershell.core/about/about_classes#class-methods
+[11]: /powershell/module/microsoft.powershell.core/about/about_classes#class-properties
+[12]: /powershell/module/microsoft.powershell.core/about/about_classes#constructor
+[13]: /powershell/module/microsoft.powershell.core/about/about_enum
+[14]: /powershell/module/microsoft.powershell.core/about/about_functions_advanced_parameters#parameter-and-variable-validation-attributes
+[15]: /powershell/module/microsoft.powershell.core/about/about_module_manifests
+[16]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#dscresourcestoexport
+[17]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#nestedmodules
+[18]: /powershell/module/microsoft.powershell.core/about/about_module_manifests#rootmodule
+[19]: /powershell/module/microsoft.powershell.core/about/about_preference_variables#erroractionpreference
+[20]: /powershell/module/microsoft.powershell.core/new-modulemanifest
+[21]: /powershell/module/psdesiredstateconfiguration/get-dscresource
+[22]: #complex-properties
+[23]: #constructors
+[24]: #enum-properties
