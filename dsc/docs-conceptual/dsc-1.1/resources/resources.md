@@ -89,7 +89,7 @@ Configuration TestConfig
     {
         # The name of this resource block, can be anything you choose, as l
         # ong as it is of type [String] as indicated by the schema.
-        Service "Spooler:Running"
+        Service "Spooler - Running"
         {
             Name = "Spooler"
             State = "Running"
@@ -112,7 +112,7 @@ Configuration TestConfig
     {
         # The name of this resource block, can be anything you choose, as
         # long as it is of type [String] as indicated by the schema.
-        Service "Spooler:Running"
+        Service "Spooler - Running"
         {
             Name = "Spooler"
             State = "Running"
@@ -120,7 +120,7 @@ Configuration TestConfig
 
         # To configure a second service resource block, add another Service
         # resource block and use a unique name.
-        Service "DHCP:Running"
+        Service "DHCP - Running"
         {
             Name = "DHCP"
             State = "Running"
