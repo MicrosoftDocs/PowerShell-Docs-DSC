@@ -153,7 +153,7 @@ that was specified as the default value.
 >
 > It isn't possible to use a class-based DSC Resource without managing every value type property
 > defined for that DSC Resource. Unlike other DSC Resources, removing a property from your DSC
-> Configuration or from the call to `Invoke-DscResource` doesn't ignore that property's state. I
+> Configuration or from the call to `Invoke-DscResource` doesn't ignore that property's state. It
 > resets it to the default.
 >
 > Only reference type properties can be unmanaged for a class-based DSC Resource.
@@ -189,13 +189,13 @@ initialized.
 
 |                     Name                      |   Type    |        Default Value        |
 | :-------------------------------------------- | :-------: | :-------------------------: |
-|               **System.String**               | Reference |           `$null`           |
-| **System.Management.Automation.PSCredential** | Reference |           `$null`           |
-|              **System.DateTime**              |   Value   | January 1, 0001 12:00:00 AM |
-|              **System.TimeSpan**              |   Value   |   All fields set to `0`.    |
 |                **System.Enum**                |   Value   |             `0`             |
 |               **System.Int32**                |   Value   |             `0`             |
 |               **System.Double**               |   Value   |             `0`             |
+|              **System.DateTime**              |   Value   | January 1, 0001 12:00:00 AM |
+|              **System.TimeSpan**              |   Value   |   All fields set to `0`.    |
+|               **System.String**               | Reference |           `$null`           |
+| **System.Management.Automation.PSCredential** | Reference |           `$null`           |
 
 ### Validation property attributes
 
@@ -763,7 +763,7 @@ you can update the enum definition.
 
 Remember that enums are value type properties. They default to `0` when an instance of the
 class-based DSC Resource is created. If you set an explicit default value for an enum property, that
-enum can't be unmanaged. If a user doesn't specify the property, the DSC Resource will behave the
+enum can't be unmanaged. If a user doesn't specify the property, the DSC Resource behaves the
 same as if the user had explicitly specified the default value.
 
 To support unmanaged enum properties, make sure not to define a label for the `0` value. By default,
@@ -781,10 +781,10 @@ enum OptionalSetting {
 }
 ```
 
-Then, in your **Test** and **Set** methods, you can ignore the enum property if the value is `0`.
-In **Test**, if the enum property is `0`, ignore the current state of the DSC Resource on the
+Then, in your `Test()` and `Set()` methods, you can ignore the enum property if the value is `0`.
+In `Test()`, if the enum property is `0`, ignore the current state of the DSC Resource on the
 system. Don't report the DSC Resource as out of desired state if the current state is a valid value.
-In **Set**, make sure your logic for modifying system state ignores the enum property if it's `0`.
+In `Set()`, make sure your logic for modifying system state ignores the enum property if it's `0`.
 
 > [!NOTE]
 > This method for implementing enum properties that can be unmanaged only works when the underlying
@@ -797,7 +797,7 @@ values for every value type property. You'll need to ensure your default values 
 those of the component your DSC Resource manages.
 
 Document the behavior of these properties for your users. Make sure that your documentation explains
-that these properties will be set to their default value if the user doesn't specify them when using
+that these properties are set to their default values if the user doesn't specify them when using
 the DSC Resource.
 
 ### Ensure the DSC Resource respects unmanaged reference type properties
