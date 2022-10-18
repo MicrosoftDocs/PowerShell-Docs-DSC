@@ -21,6 +21,10 @@ items:
           href: concepts/configurations.md
         - name: Import-DSCResource
           href: concepts/import-dscresource.md
+    - name: Tutorials
+      items:
+        - name: Create a class-based DSC Resource
+          href: tutorials/create-class-based-resource.md
     - name: How-to guides
       items:
         - name: Installing DSC Resources
