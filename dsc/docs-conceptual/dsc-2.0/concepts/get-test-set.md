@@ -11,8 +11,7 @@ DSC is constructed around a **Get**, **Test**, and **Set** process. [DSC Resourc
 implemented to complete each of these operations. In a [DSC Configuration][2], you define DSC
 Resource blocks to fill in properties that define the desired state for that DSC Resource.
 
-You can inspect a DSC Resource to see the properties it can manage with the `Get-DscResource`
-cmdlet.
+You can inspect a DSC Resource with the `Get-DscResource` cmdlet to see the properties it manages.
 
 ```powershell
 Get-DscResource -Name Service -Module PSDscResources -OutVariable Resource

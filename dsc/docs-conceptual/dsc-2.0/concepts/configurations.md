@@ -40,7 +40,7 @@ A DSC Configuration script consists of the following parts:
   `Configuration` keyword and provide a name. In this case, the name of the DSC Configuration is
   `MyDscConfiguration`.
 - One or more DSC Resource blocks. This is where the DSC Configuration defines the settings for the
-  software it's configuring. In this case, there are two DSC Resource blocks. They both use the
+  component it's configuring. In this case, there are two DSC Resource blocks. They both use the
   `Environment` DSC Resource.
 
 ## Compiling the configuration
