@@ -9,8 +9,8 @@ items:
           href: getting-started/invoking-dsc-resources.md
     - name: Concepts
       items:
-        - name: Terminology
-          href: concepts/terminology.md
+        - name: Glossary
+          href: concepts/glossary.md
         - name: Get, Test, and Set
           href: concepts/get-test-set.md
         - name: DSC Resources
