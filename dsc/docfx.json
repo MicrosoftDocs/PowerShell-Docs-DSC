@@ -2,6 +2,7 @@
   "build": {
     "content": [
       { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ]},
+      { "dest": "dsc", "files": [ "index.md" ], "src": "dsc" },
 
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
@@ -33,6 +34,7 @@
       "feedback_product_url": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
       "feedback_system": "GitHub",
       "hideScope": false,
+      "manager": "mkluck",
       "ms.author": "sewhee",
       "ms.devlang": "powershell",
       "ms.prod": "powershell",
@@ -46,7 +48,9 @@
     },
     "fileMetadata": {
       "feedback_product_url": {
-        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332"
+        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "**/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "**/dsc-3.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose"
       }
     },
     "markdownEngineName": "markdig",
