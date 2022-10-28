@@ -2,7 +2,7 @@
   "build": {
     "content": [
       { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ]},
-      { "dest": "dsc", "files": [ "index.md" ], "src": "dsc" },
+      { "dest": "dsc", "files": [ "index.md" ], "src": "." },
 
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
