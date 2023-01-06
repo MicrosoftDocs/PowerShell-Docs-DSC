@@ -1,7 +1,7 @@
 ---
 description: >
   This article describes how to develop a DSC Resource composed of other DSC Resources
-ms.date: 08/15/2022
+ms.date: 01/06/2023
 title: Authoring a composite DSC Resource
 ---
 
@@ -17,7 +17,7 @@ file with a `.schema.psm1` extension. For more information about DSC Resources, 
 
 > [!IMPORTANT]
 > Composite DSC Resources don't work with `Invoke-DscResource`. In DSC 2.0 and later, they're only
-> supported for use with [Azure Policy's machine configuration feature][2].
+> supported for use with [Azure Automanage's machine configuration feature][2].
 
 ## Creating the composite resource
 

@@ -2,7 +2,7 @@
 description: >
   The PSDscResources module includes improved versions of the resources found in earlier versions of
   the PSDesiredStateConfiguration module.
-ms.date: 08/08/2022
+ms.date: 01/06/2023
 ms.topic: reference
 title: Overview of the PSDscResources module
 ---
@@ -74,7 +74,7 @@ comments.
 
 ### Resources that don't work in machine configuration
 
-When using Azure Policy's machine configuration feature, don't use the following resources:
+When using Azure Automanage's machine configuration feature, don't use the following resources:
 
 - `WindowsFeature`
 - `WindowsFeatureSet`

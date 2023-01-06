@@ -2,7 +2,7 @@
 description: >-
   Create a class-based DSC Resource
 ms.topic: tutorial
-ms.date: 10/14/2022
+ms.date: 01/06/2023
 ms.custom: template-tutorial
 title: Create a class-based DSC Resource
 ---
@@ -906,7 +906,7 @@ First, `Set()` needs to determine whether the DSC Resource needs to be created, 
 ```
 
 `Set()` first calls the `Test()` method to determine if anything actually needs to be done. Some
-tools like, Azure Policy's machine configuration feature, ensure that the `Set()` method is only
+tools like, Azure Automanage's machine configuration feature, ensure that the `Set()` method is only
 called after the `Test()` method. However, there's no such guarantee when you use the
 `Invoke-DscResource` cmdlet.
 

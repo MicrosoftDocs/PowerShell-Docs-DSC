@@ -2,13 +2,13 @@
 description: >
   This exercise walks through creating and compiling a DSC Configuration from start to finish. In
   the following example, you will learn how to write and compile a minimal Configuration
-ms.date: 08/15/2022
+ms.date: 01/06/2023
 title:  Write and compile a DSC Configuration
 ---
 
 # Write and compile a DSC Configuration
 
-> Applies To: PowerShell 7, Azure Policy's machine configuration feature
+> Applies To: PowerShell 7, Azure Automanage's machine configuration feature
 
 This exercise walks through creating and compiling a DSC Configuration from start to finish. In the
 following example, you'll learn how to write and compile a minimal DSC Configuration to ensure a
@@ -18,7 +18,7 @@ For an overview of what DSC is and how it works, see [Desired State Configuratio
 
 > [!IMPORTANT]
 > Starting in DSC 2.0, there is no supported way to use DSC Configurations directly. They're only
-> supported for use with [Azure Policy's machine configuration feature][2].
+> supported for use with [Azure Automanage's machine configuration feature][2].
 
 ## Requirements
 

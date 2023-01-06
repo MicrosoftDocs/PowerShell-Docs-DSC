@@ -1,6 +1,6 @@
 ---
 description: Learn how to use the Desired State Configuration feature of PowerShell to manage the state of a machine as code.
-ms.date: 03/22/2022
+ms.date: 01/06/2023
 title: Manage configuration using PowerShell DSC
 ---
 
@@ -66,17 +66,17 @@ Invoke-DscResource @{
 ```
 
 For additional details, view the
-[Invoke-DscResource](/powershell/module/psdesiredstateconfiguration/invoke-dscresource) help.
+[Invoke-DscResource][01] help.
 
-## The guest configuration feature of Azure Policy
+## The machine configuration feature of Azure Automanage
 
-For machines hosted in Microsoft Azure, or connected for hybrid management, the guest configuration
-feature of Azure Policy offers the ability to audit or apply configurations. The feature can be used
-stand-alone to assign configurations as a machine is deployed, or dynamically to assign
-configurations to a machine based on properties defined by the API.
+For machines hosted in Microsoft Azure, or connected for hybrid management, the machine
+configuration feature of Azure Automanage offers the ability to audit or apply configurations. The
+feature can be used stand-alone to assign configurations as a machine is deployed, or dynamically
+to assign configurations to a machine based on properties defined by the API.
 
 For more information, see the page
-[Understand the guest configuration feature of Azure Policy](/azure/governance/policy/concepts/guest-configuration).
+[Understand the machine configuration feature of Azure Automanage][02].
 
 ## DSC resources with third-party tools
 
@@ -85,5 +85,11 @@ additional details, see the documentation for each third-party solution.
 
 ## See Also
 
-- [DSC Configurations](../concepts/configurations.md)
-- [DSC Resources](../concepts/resources.md)
+- [DSC Configurations][03]
+- [DSC Resources][04]
+
+<!-- Link References -->
+[01]: /powershell/module/psdesiredstateconfiguration/invoke-dscresource
+[02]: /azure/governance/machine-configuration/overview
+[03]: ../concepts/configurations.md
+[04]: ../concepts/resources.md
