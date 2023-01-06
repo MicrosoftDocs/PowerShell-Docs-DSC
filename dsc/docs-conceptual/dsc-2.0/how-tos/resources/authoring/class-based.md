@@ -2,7 +2,7 @@
 description: >
   This article shows how to create a DSC Resource that manages a file in a specified path with
   PowerShell classes.
-ms.date: 08/15/2022
+ms.date: 01/06/2023
 title:  Authoring a class-based DSC Resource
 ---
 
@@ -61,7 +61,7 @@ follows.
 [string] $content
 
 [DscProperty(NotConfigurable)]
-[Reason[]] $Reasons
+[MyDscResourceReason[]] $Reasons
 ```
 
 Notice that the properties are modified by attributes. The meaning of the attributes is as follows:
@@ -90,7 +90,7 @@ If you would like to include a new type with defined properties that you can use
 DSC Resource, create a class with property types as described before.
 
 ```powershell
-class Reason {
+class MyDscResourceReason {
     [DscProperty()]
     [string] $Code
 
@@ -98,6 +98,18 @@ class Reason {
     [string] $Phrase
 }
 ```
+
+> [!NOTE]
+> The `MyDscResourceReason` class is declared here with the module's name as a prefix. While you can
+> give embedded classes any name, if two or more modules define a class with the same name and are
+> both used in a configuration, PowerShell raises an exception.
+>
+> To avoid exceptions caused by name conflicts in DSC, prefix the names of your embedded classes
+> with the module name. If the name of your embedded class is already unlikely to conflict, you can
+> use it without a prefix.
+>
+> If your DSC Resource is designed for use with Azure Automanage's machine configuration feature,
+> always prefix the name of the embedded class you create for the **Reasons** property.
 
 ### Public and Private functions
 
@@ -122,10 +134,10 @@ function Get-File {
         [String]$content
     )
 
-    $fileContent        = [reason]::new()
+    $fileContent        = [MyDscResourceReason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [reason]::new()
+    $filePresent        = [MyDscResourceReason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -292,9 +304,12 @@ enum ensure {
 
 <#
     This class is used within the DSC Resource to standardize how data
-    is returned about the compliance details of the machine.
+    is returned about the compliance details of the machine. Note that
+    the class name is prefixed with the module name - this helps prevent
+    errors raised when multiple modules with DSC Resources define the
+    Reasons property for reporting when they're out-of-state.
 #>
-class Reason {
+class MyDscResourceReason {
     [DscProperty()]
     [string] $Code
 
@@ -317,10 +332,10 @@ function Get-File {
         [String]$content
     )
 
-    $fileContent        = [reason]::new()
+    $fileContent        = [MyDscResourceReason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [reason]::new()
+    $filePresent        = [MyDscResourceReason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -487,7 +502,7 @@ class NewFile {
         about the Resource when it is present.
     #>
     [DscProperty(NotConfigurable)]
-    [Reason[]] $Reasons
+    [MyDscResourceReason[]] $Reasons
 
     <#
         This method is equivalent of the Get-TargetResource script function.
