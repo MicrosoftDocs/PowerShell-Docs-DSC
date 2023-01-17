@@ -21,6 +21,7 @@ The following versions are supported:
 - Windows Server 2012R2
 - Windows Server 2012
 - Windows Server 2008 R2 SP1
+- Windows 11
 - Windows 10
 - Windows 8.1
 - Windows 7
