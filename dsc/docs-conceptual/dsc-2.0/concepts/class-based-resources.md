@@ -1,7 +1,7 @@
 ---
 description: >
   Class-based DSC Resources are a simplified implementation of DSC Resources.
-ms.date: 10/14/2022
+ms.date: 01/06/2023
 title:  Class-based DSC Resources
 ---
 
@@ -497,6 +497,73 @@ type "SimpleConfigUpdateSettings". The Interval property was not found
 for the SimpleConfigUpdateSettings object. The available property is:
 [UpdateInterval <System.Int32>] , [UpdateUrl <System.String>]"
 ```
+
+### The Reasons property
+
+If your class-based DSC Resource is intended for use with Azure Automanage's machine configuration
+feature, your DSC Resource must have **Reasons** property that meets the following requirements:
+
+- It must declared with the **NotConfigurable** property on the **DscProperty** attribute.
+- It must be an array of objects that have a **String** property named **Code**, a **String**
+  property named **Phrase**, and no other properties. You can define the object type as
+  **hashtable** or create the object as a [complex property](#complex-properties).
+
+Machine configuration uses the **Reasons** property to standardize how compliance information is
+presented. Each object returned by the `Get()` method for the **Reasons** property identifies how
+and why an instance of the DSC Resource isn't compliant.
+
+Machine configuration expects the **Code** and **Phrase** properties. The **Phrase** property should
+be a human-readable string that explains how the instance is out of the desired state. The **Code**
+property must be formatted specifically so machine configuration can clearly display the audit
+information for the DSC Resource.
+
+The **Code** property uses this formatting without any spaces:
+
+```text
+<ResourceName>:<ResourceName>:<Identifier>
+```
+
+In this formatting, replace `<ResourceName>` with the actual name of the DSC Resource and
+`<Identifier>` with a short name for why the DSC Resource is out of state. The **Code** property
+must not include any whitespace characters. For example, if a DSC Resource called **Tailspin** was
+out of compliance because the configuration file doesn't exist, the **Code** might be
+`Tailspin:Tailspin:ConfigFileNotFound`.
+
+This snippet shows how you can define the **Reasons** property as a **hashtable**:
+
+```powershell
+class MyDscResource {
+    [DscProperty(NotConfigurable)]
+    [hashtable[]] $Reasons
+}
+```
+
+To define the **Reasons** property as a complex property, you need to define a class for it, then
+add it to the DSC Resource:
+
+```powershell
+class MyModuleReason {
+    [DscProperty()]
+    [string] $Code
+
+    [DscProperty()]
+    [string] $Phrase
+}
+
+class MyDscResource {
+    [DscProperty(NotConfigurable)]
+    [MyModuleReason[]] $Reasons
+}
+```
+
+> [!NOTE]
+> The class defined for the **Reasons** property is named `MyModuleReason` instead of `Reason`,
+> using the module's name as a prefix. While you can give the class any name, if two or more
+> modules define a class with the same name and are both used in a configuration, PowerShell raises
+> an exception.
+>
+> To avoid exceptions caused by name conflicts in DSC and machine configuration, always prefix the
+> name of the class you define for the **Reasons** property.
 
 ### Non-resource properties
 

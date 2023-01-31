@@ -20,3 +20,7 @@ languageSettings:
     locale: '*'
     dictionaries:
       - dsc-terms
+  - languageId: yaml
+    locale: '*'
+    dictionaries:
+      - dsc-terms
