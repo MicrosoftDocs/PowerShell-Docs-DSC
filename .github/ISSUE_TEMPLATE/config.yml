@@ -1,16 +1,16 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 🎃 Hacktoberfest 2022
-    url: https://github.com/MicrosoftDocs/PowerShell-Docs/issues/9257
-    about: >-
-      If you'd like to participate in Hacktoberfest 2022, before filing an issue, check the info
-      and instructions.
-  - name: PowerShell Product Feedback
+  - name: Looking to give feedback on PowerShell?
     url: https://github.com/PowerShell/PowerShell/issues/new/choose
     about: Please open feature requests for current PowerShell here.
-  - name: DSC Product Feedback
+  - name: Looking to give feedback on DSC?
     url: https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose
     about: Please open feature requests for DSC here.
-  - name: Where to find help for DSC
+  - name: Looking for support?
     url: https://dsccommunity.org/help/
     about: DSC support resources
+  - name: What's the Quality Contributions Project?
+      url: https://learn.microsoft.com/powershell/scripting/community/contributing/quality-improvements
+      about: >-
+        If you'd like to commit to improving quality for the documentation, before filing an issue,
+        check the info and instructions.
