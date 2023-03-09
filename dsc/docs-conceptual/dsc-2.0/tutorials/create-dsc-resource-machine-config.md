@@ -123,11 +123,10 @@ Mode                 LastWriteTime         Length Name
 -a---            9/8/2022  1:58 PM              0 Helpers.ps1
 ```
 
-Open `Helpers.ps1` in VS Code. Add the following line, replacing `<Separator>` with `;` if you're on
-Windows and `:` if you're on Linux or macOS.
+Open `Helpers.ps1` in VS Code. Add the following line.
 
 ```powershell
-$env:PSModulePath += "<Separator>$pwd"
+$env:PSModulePath += "$([System.IO.Path]::PathSeparator)$pwd"
 ```
 
 Open `ExampleResources.psm1` in VS Code. The module is now scaffolded and ready for you to author a
@@ -195,7 +194,7 @@ For this tutorial, we're defining a DSC Resource for managing the settings of th
 application through its configuration file. TSToy is an application that has configuration at the
 user and machine levels. The DSC Resource should be able to configure either file.
 
-The DSC Resource should enable users to configure:
+The DSC Resource should enable users to define:
 
 - The scope of the configuration they're managing, either `Machine` or `User`
 - Whether the configuration file should exist
@@ -297,6 +296,10 @@ Machine configuration uses the **Reasons** property to standardize how complianc
 presented. Each object returned by the `Get()` method for the **Reasons** property identifies how
 and why an instance of the DSC Resource isn't compliant.
 
+Machine configuration uses the **Reasons** property to standardize how compliance information is
+presented. Each object returned by the `Get()` method for the **Reasons** property identifies one
+of the DSC Resource's properties, its desired state, and its actual state.
+
 To define the **Reasons** property, you need to define a class for it. Define the
 **ExampleResourcesReason** class after the **TailspinEnsure** enum. It should have the **Code** and
 **Phrase** properties as strings. Both properties should have the **DscProperty** attribute.
@@ -313,10 +316,7 @@ class ExampleResourcesReason {
     [string] $Phrase
 
     [string] ToString() {
-        return @(
-            "$($this.Code):"
-            ($this.Phrase -split "`n")
-        ) -join "`n`t"
+        return "`n$($this.Code):`n`t$($this.Phrase)`n"
     }
 }
 ```
@@ -406,10 +406,7 @@ class ExampleResourcesReason {
     [string] $Phrase
 
     [string] ToString() {
-        return @(
-            "$($this.Code):"
-            ($this.Phrase -split "`n")
-        ) -join "`n`t"
+        return "`n$($this.Code):`n`t$($this.Phrase)`n"
     }
 }
 ```
@@ -716,9 +713,8 @@ The `Get()` method now returns accurate information about the current state of t
 ### Handling Reasons
 
 For Machine Configuration compatible DSC Resources, the `Get()` method also needs to populate the
-**Reasons** property. The **Reasons** property reports how a DSC Resource is out of state. For this
-purpose, create the `GetReasons()` method. It should return an array of **ExampleResourcesReason**
-objects and take a single **Tailspin** object as input.
+**Reasons** property. For this purpose, create the `GetReasons()` method. It should return an array
+of **ExampleResourcesReason** objects and take a single **Tailspin** object as input.
 
 ```powershell
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
@@ -728,41 +724,45 @@ objects and take a single **Tailspin** object as input.
 }
 ```
 
-Next, the method needs to check the validity of each configurable setting. For each setting that is
-out of the desired state, the method needs to return an **ExampleResourcesReason** identifying and
-describing the state.
+Next, the method needs to check the validity of each configurable setting. For every setting, the
+method needs to return an **ExampleResourcesReason** identifying and describing the state.
 
 The first setting to verify is the `$Ensure` property. If `$Ensure` is out of state, all other
 properties will be incorrect since the configuration file exists when it shouldn't or doesn't exist
 when it should.
 
-If `$Ensure` is out of state, the method needs to define a reason with the correct code and a
-sensible phrase. The code is always in the format `<ResourceName>.<ResourceName>.<PropertyName>`.
-The **Phrase** is always a sentence describing the expected state followed by a newline and then a
-sentence describing the actual state.
+The method needs to define a reason with the correct code and a sensible phrase. The code is always
+in the format `<ResourceName>.<ResourceName>.<PropertyName>`. The **Phrase** is always a sentence
+describing the check, followed by sentences describing the expected state and actual state.
 
 ```powershell
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
     [ExampleResourcesReason[]]$DefinedReasons = @()
 
+    $FilePath = $this.GetConfigurationFile()
+
+    if ($this.Ensure -eq [TailspinEnsure]::Present) {
+        $Expected = "Expected configuration file to exist at '$FilePath'."
+    } else {
+        $Expected = "Expected configuration file not to exist at '$FilePath'."
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+        $Actual = "The configuration file exists at '$FilePath'."
+    } else {
+        $Actual = "The configuration file was not found at '$FilePath'."
+    }
+
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.Ensure"
+        Phrase = @(
+            "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+            $Expected
+            $Actual
+        ) -join "`n`t"
+    }
+
     if ($CurrentState.Ensure -ne $this.Ensure) {
-        $FilePath = $this.GetConfigurationFile()
-
-        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-            $Actual = "The configuration file exists at '$FilePath'"
-        }
-        else {
-            $Actual = "The configuration file was not found at '$FilePath'"
-        }
-
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.Ensure"
-            Phrase = @(
-                "The configuration file was expected to be: $($this.Ensure)"
-                $Actual
-            ) -join "`n"
-        }
-
         return $DefinedReasons
     }
 
@@ -778,24 +778,30 @@ and shouldn't exist.
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
     [ExampleResourcesReason[]]$DefinedReasons = @()
 
+    $FilePath = $this.GetConfigurationFile()
+
+    if ($this.Ensure -eq [TailspinEnsure]::Present) {
+        $Expected = "Expected configuration file to exist at '$FilePath'."
+    } else {
+        $Expected = "Expected configuration file not to exist at '$FilePath'."
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+        $Actual = "The configuration file exists at '$FilePath'."
+    } else {
+        $Actual = "The configuration file was not found at '$FilePath'."
+    }
+
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.Ensure"
+        Phrase = @(
+            "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+            $Expected
+            $Actual
+        ) -join "`n`t"
+    }
+
     if ($CurrentState.Ensure -ne $this.Ensure) {
-        $FilePath = $this.GetConfigurationFile()
-
-        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-            $Actual = "The configuration file exists at '$FilePath'"
-        }
-        else {
-            $Actual = "The configuration file was not found at '$FilePath'"
-        }
-
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.Ensure"
-            Phrase = @(
-                "The configuration file was expected to be: $($this.Ensure)"
-                $Actual
-            ) -join "`n"
-        }
-
         return $DefinedReasons
     }
 
@@ -808,33 +814,39 @@ and shouldn't exist.
 ```
 
 If `$Ensure` is `Present` and the file exists, the method needs to check the remaining configurable
-properties. If the property is out of state, the method needs to define a reason for it.
+properties.
 
-Checking the `$UpdateAutomatically` property is straight forward, since it's a mandatory and boolean
+Checking the `$UpdateAutomatically` property is straightforward, since it's a mandatory and boolean
 value.
 
 ```powershell
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
     [ExampleResourcesReason[]]$DefinedReasons = @()
 
+    $FilePath = $this.GetConfigurationFile()
+
+    if ($this.Ensure -eq [TailspinEnsure]::Present) {
+        $Expected = "Expected configuration file to exist at '$FilePath'."
+    } else {
+        $Expected = "Expected configuration file not to exist at '$FilePath'."
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+        $Actual = "The configuration file exists at '$FilePath'."
+    } else {
+        $Actual = "The configuration file was not found at '$FilePath'."
+    }
+
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.Ensure"
+        Phrase = @(
+            "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+            $Expected
+            $Actual
+        ) -join "`n`t"
+    }
+
     if ($CurrentState.Ensure -ne $this.Ensure) {
-        $FilePath = $this.GetConfigurationFile()
-
-        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-            $Actual = "The configuration file exists at '$FilePath'"
-        }
-        else {
-            $Actual = "The configuration file was not found at '$FilePath'"
-        }
-
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.Ensure"
-            Phrase = @(
-                "The configuration file was expected to be: $($this.Ensure)"
-                $Actual
-            ) -join "`n"
-        }
-
         return $DefinedReasons
     }
 
@@ -842,14 +854,13 @@ value.
         return $DefinedReasons
     }
 
-    if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.UpdateAutomatically"
-            Phrase = @(
-                "Expected automatic updating to be: $($this.UpdateAutomatically)"
-                "Automatic updating was set to: $($CurrentState.UpdateAutomatically)"
-            ) -join "`n"
-        }
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.UpdateAutomatically"
+        Phrase = (@(
+                "Checked value of the 'updates.automatic' key in the TSToy configuration file."
+                "Expected boolean value of '$($this.UpdateAutomatically)'"
+                "Actual boolean value of '$($CurrentState.UpdateAutomatically)'"
+            ) -join "`n`t")
     }
 
     return $DefinedReasons
@@ -864,24 +875,30 @@ value of `0` indicates the property isn't being managed.
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
     [ExampleResourcesReason[]]$DefinedReasons = @()
 
+    $FilePath = $this.GetConfigurationFile()
+
+    if ($this.Ensure -eq [TailspinEnsure]::Present) {
+        $Expected = "Expected configuration file to exist at '$FilePath'."
+    } else {
+        $Expected = "Expected configuration file not to exist at '$FilePath'."
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+        $Actual = "The configuration file exists at '$FilePath'."
+    } else {
+        $Actual = "The configuration file was not found at '$FilePath'."
+    }
+
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.Ensure"
+        Phrase = @(
+            "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+            $Expected
+            $Actual
+        ) -join "`n`t"
+    }
+
     if ($CurrentState.Ensure -ne $this.Ensure) {
-        $FilePath = $this.GetConfigurationFile()
-
-        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-            $Actual = "The configuration file exists at '$FilePath'"
-        }
-        else {
-            $Actual = "The configuration file was not found at '$FilePath'"
-        }
-
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.Ensure"
-            Phrase = @(
-                "The configuration file was expected to be: $($this.Ensure)"
-                $Actual
-            ) -join "`n"
-        }
-
         return $DefinedReasons
     }
 
@@ -889,22 +906,21 @@ value of `0` indicates the property isn't being managed.
         return $DefinedReasons
     }
 
-    if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.UpdateAutomatically"
-            Phrase = @(
-                "Expected automatic updating to be: $($this.UpdateAutomatically)"
-                "Automatic updating was set to: $($CurrentState.UpdateAutomatically)"
-            ) -join "`n"
-        }
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.UpdateAutomatically"
+        Phrase = (@(
+                "Checked value of the 'updates.automatic' key in the TSToy configuration file."
+                "Expected boolean value of '$($this.UpdateAutomatically)'"
+                "Actual boolean value of '$($CurrentState.UpdateAutomatically)'"
+            ) -join "`n`t")
     }
+
+    return $DefinedReasons
 
     # Short-circuit the check; UpdateFrequency isn't defined by caller
     if ($this.UpdateFrequency -eq 0) {
         return $DefinedReasons
     }
-
-    return $DefinedReasons
 }
 ```
 
@@ -915,24 +931,30 @@ property and define a reason if they're out of state.
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
     [ExampleResourcesReason[]]$DefinedReasons = @()
 
+    $FilePath = $this.GetConfigurationFile()
+
+    if ($this.Ensure -eq [TailspinEnsure]::Present) {
+        $Expected = "Expected configuration file to exist at '$FilePath'."
+    } else {
+        $Expected = "Expected configuration file not to exist at '$FilePath'."
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+        $Actual = "The configuration file exists at '$FilePath'."
+    } else {
+        $Actual = "The configuration file was not found at '$FilePath'."
+    }
+
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.Ensure"
+        Phrase = @(
+            "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+            $Expected
+            $Actual
+        ) -join "`n`t"
+    }
+
     if ($CurrentState.Ensure -ne $this.Ensure) {
-        $FilePath = $this.GetConfigurationFile()
-
-        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-            $Actual = "The configuration file exists at '$FilePath'"
-        }
-        else {
-            $Actual = "The configuration file was not found at '$FilePath'"
-        }
-
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.Ensure"
-            Phrase = @(
-                "The configuration file was expected to be: $($this.Ensure)"
-                $Actual
-            ) -join "`n"
-        }
-
         return $DefinedReasons
     }
 
@@ -940,14 +962,13 @@ property and define a reason if they're out of state.
         return $DefinedReasons
     }
 
-    if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.UpdateAutomatically"
-            Phrase = @(
-                "Expected automatic updating to be: $($this.UpdateAutomatically)"
-                "Automatic updating was set to: $($CurrentState.UpdateAutomatically)"
-            ) -join "`n"
-        }
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.UpdateAutomatically"
+        Phrase = (@(
+                "Checked value of the 'updates.automatic' key in the TSToy configuration file."
+                "Expected boolean value of '$($this.UpdateAutomatically)'"
+                "Actual boolean value of '$($CurrentState.UpdateAutomatically)'"
+            ) -join "`n`t")
     }
 
     # Short-circuit the check; UpdateFrequency isn't defined by caller
@@ -955,14 +976,13 @@ property and define a reason if they're out of state.
         return $DefinedReasons
     }
 
-    if ($CurrentState.UpdateFrequency -ne $this.UpdateFrequency) {
-        $DefinedReasons += [ExampleResourcesReason]@{
-            Code   = "Tailspin.Tailspin.UpdateFrequency"
-            Phrase = @(
-                "Expected update frequency to be: $($this.UpdateFrequency)"
-                "Update frequency was set to: $($CurrentState.UpdateFrequency)"
-            ) -join "`n"
-        }
+    $DefinedReasons += [ExampleResourcesReason]@{
+        Code   = "Tailspin.Tailspin.UpdateFrequency"
+        Phrase = (@(
+                "Checked value of the 'updates.checkFrequency' key in the TSToy configuration file."
+                "Expected integer value of '$($this.UpdateFrequency)'."
+                "Actual integer value of '$($CurrentState.UpdateFrequency)'."
+            ) -join "`n`t")
     }
 
     return $DefinedReasons
@@ -1036,32 +1056,77 @@ Invoke-DscResource -Method Get @SharedParameters
 ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
-UpdateFrequency     : 30
-Reasons             : {Tailspin.Tailspin.UpdateAutomatically:
-                        Expected automatic updating to be: False
-                        Automatic updating was set to: True}
+UpdateFrequency     : 1
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'False'
+                        Actual boolean value of 'True'
+                      }
 
 ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
-UpdateFrequency     : 30
-Reasons             : {}
-
-Invoke-DscResource -Method Get @SharedParameters
+UpdateFrequency     : 1
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      }
 
 ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
-UpdateFrequency     : 30
-Reasons             : {Tailspin.Tailspin.UpdateFrequency:
-                        Expected update frequency to be: 1
-                        Update frequency was set to: 30}
+UpdateFrequency     : 1
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      ,
+                      Tailspin.Tailspin.UpdateFrequency:
+                        Checked value of the 'updates.checkFrequency' key in
+                      the TSToy configuration file.
+                        Expected integer value of '1'.
+                        Actual integer value of '1'.
+                      }
 ```
 
 ### The Test method
 
-With the `Get()` method implemented and using the `GetReasons()` method to verify whether the
-current state is compliant with the desired state, the `Test()` method can be implemented.
+With the `Get()` method implemented, you can verify whether the current state is compliant with the
+desired state.
 
 The `Test()` methods minimal implementation always returns `$true`.
 
@@ -1079,7 +1144,7 @@ $SharedParameters = @{
     Module   = 'ExampleResources'
     Property = @{
         ConfigurationScope = 'User'
-        UpdateAutomatically = $true
+        UpdateAutomatically = $false
     }
 }
 
@@ -1099,15 +1164,19 @@ InDesiredState
 
 You need to make the `Test()` method accurately reflect whether the DSC Resource is in the desired
 state. The `Test()` method should always call the `Get()` method to have the current state to
-compare against the desired state. Now that the `Get()` method populates the `$Reasons` property,
-which describes how the resource is out of state, the only required check is whether the `$Reasons`
-property is empty. If it is, the resource is in the desired state.
+compare against the desired state. Then check is whether the `$Ensure` property is correct. If it
+isn't, return `$false` immediately. No further checks are required if the `$Ensure` property is out
+of the desired state.
 
 ```powershell
 [bool] Test() {
     $CurrentState = $this.Get()
 
-    return $CurrentState.Reasons.Count -eq 0
+    if ($CurrentState.Ensure -ne $this.Ensure) {
+        return $false
+    }
+
+    return $true
 }
 ```
 
@@ -1119,7 +1188,7 @@ $TestParameters = @{
     Module   = 'ExampleResources'
     Property = @{
         ConfigurationScope  = 'User'
-        UpdateAutomatically = $true
+        UpdateAutomatically = $false
         Ensure              = 'Absent'
     }
 }
@@ -1141,8 +1210,144 @@ InDesiredState
           True
 ```
 
-By relying on the verification in the `GetReasons()` method, the `Test()` method returns an accurate
-report on the desired state without much further processing.
+Next, check to see if the value of `$Ensure` is `Absent`. If the configuration file doesn't exist
+and shouldn't exist, there's no reason to check the remaining properties.
+
+```powershell
+[bool] Test() {
+    $CurrentState = $this.Get()
+
+    if ($CurrentState.Ensure -ne $this.Ensure) {
+        return $false
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Absent) {
+        return $true
+    }
+
+    return $true
+}
+```
+
+Next, the method needs to compare the current state of the properties that manage TSToy's update
+behavior. First, check to see if the `$UpdateAutomatically` property is in the correct state. If it
+isn't, return `$false`.
+
+```powershell
+[bool] Test() {
+    $CurrentState = $this.Get()
+
+    if ($CurrentState.Ensure -ne $this.Ensure) {
+        return $false
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Absent) {
+        return $true
+    }
+
+    if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
+        return $false
+    }
+
+    return $true
+}
+```
+
+To compare `$UpdateFrequency`, we need to determine if the user specified the value. Because
+`$UpdateFrequency` is initialized to `0` and the property's **ValidateRange** attribute specifies
+that it must be between `1` and `90`, we know that a value of `0` indicates that the property wasn't
+specified.
+
+With that information, the `Test()` method should:
+
+1. Return `$true` if the user didn't specify `$UpdateFrequency`
+1. Return `$false` if the user did specify `$UpdateFrequency` and the value of the system doesn't
+   equal the user-specified value
+1. Return `$true` if neither of the prior conditions were met
+
+```powershell
+[bool] Test() {
+    $CurrentState = $this.Get()
+
+    if ($CurrentState.Ensure -ne $this.Ensure) {
+        return $false
+    }
+
+    if ($CurrentState.Ensure -eq [TailspinEnsure]::Absent) {
+        return $true
+    }
+
+    if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
+        return $false
+    }
+
+    if ($this.UpdateFrequency -eq 0) {
+        return $true
+    }
+
+    if ($CurrentState.UpdateFrequency -ne $this.UpdateFrequency) {
+        return $false
+    }
+
+    return $true
+}
+```
+
+Now the `Test()` method uses the following order of operations:
+
+1. Retrieve the current state of TSToy's configuration.
+1. Return `$false` if the configuration exists when it should not or does not exist when it should.
+1. Return `$true` if the configuration does not exist and should not exist.
+1. Return `$false` if the configuration's automatic update setting doesn't match the desired one.
+1. Return `$true` if the user didn't specify a value for the update frequency setting.
+1. Return `$false` if the user's specified value for the update frequency setting doesn't match the
+  configuration's setting.
+1. Return `$true` if none of the prior conditions were met.
+
+You can verify the `Test()` method locally:
+
+```powershell
+$SharedParameters = @{
+    Name     = 'Tailspin'
+    Module   = 'ExampleResources'
+    Property = @{
+        ConfigurationScope  = 'User'
+        Ensure              = 'Present'
+        UpdateAutomatically = $false
+    }
+}
+
+Invoke-DscResource -Method Get @SharedParameters
+
+Invoke-DscResource -Method Test @SharedParameters
+
+$SharedParameters.Property.UpdateAutomatically = $true
+Invoke-DscResource -Method Test @SharedParameters
+
+$SharedParameters.Property.UpdateFrequency = 1
+Invoke-DscResource -Method Test @SharedParameters
+```
+
+```Output
+ConfigurationScope  Ensure UpdateAutomatically UpdateFrequency
+------------------  ------ ------------------- ---------------
+              User Present                True              30
+
+InDesiredState
+--------------
+         False
+
+InDesiredState
+--------------
+          True
+
+InDesiredState
+--------------
+         False
+```
+
+With this code, the `Test()` method is able to accurately determine whether the configuration file
+is in the desired state.
 
 ### The Set method
 
@@ -1492,18 +1697,33 @@ Get-Content -Path $TSToyUserPath
 {
     "unmanaged_key": true,
     "updates": {
-        "automatic": false,
+        "automatic": true,
         "checkFrequency": 30
     }
 }
 
 ConfigurationScope  : User
 Ensure              : Present
-UpdateAutomatically : False
+UpdateAutomatically : True
 UpdateFrequency     : 30
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'False'
+                        Actual boolean value of 'True'
+                      }
 
-InDesiredState : True
+InDesiredState : False
 
 RebootRequired : False
 
@@ -1513,14 +1733,29 @@ ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : False
 UpdateFrequency     : 30
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'False'
+                        Actual boolean value of 'False'
+                      }
 
 {
-    "unmanaged_key": true,
-    "updates": {
-        "automatic": false,
-        "checkFrequency": 30
-    }
+  "unmanaged_key": true,
+  "updates": {
+    "automatic": false,
+    "checkFrequency": 30
+  }
 }
 ```
 
@@ -1555,20 +1790,33 @@ Get-Content -Path $TSToyUserPath
 
 ```Output
 {
-    "unmanaged_key": true,
-    "updates": {
-        "automatic": false,
-        "checkFrequency": 30
-    }
+  "unmanaged_key": true,
+  "updates": {
+    "automatic": false,
+    "checkFrequency": 30
+  }
 }
 
 ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : False
 UpdateFrequency     : 30
-Reasons             : {Tailspin.Tailspin.UpdateAutomatically:
-                        Expected automatic updating to be: True
-                        Automatic updating was set to: False}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'False'
+                      }
 
 InDesiredState : False
 
@@ -1580,7 +1828,22 @@ ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
 UpdateFrequency     : 30
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      }
 
 {
   "unmanaged_key": true,
@@ -1634,9 +1897,28 @@ ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
 UpdateFrequency     : 30
-Reasons             : {Tailspin.Tailspin.UpdateFrequency:
-                        Expected update frequency to be: 1
-                        Update frequency was set to: 30}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      ,
+                      Tailspin.Tailspin.UpdateFrequency:
+                        Checked value of the 'updates.checkFrequency' key in
+                      the TSToy configuration file.
+                        Expected integer value of '1'.
+                        Actual integer value of '30'.
+                      }
 
 InDesiredState : False
 
@@ -1648,13 +1930,34 @@ ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
 UpdateFrequency     : 1
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file to exist at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      ,
+                      Tailspin.Tailspin.UpdateFrequency:
+                        Checked value of the 'updates.checkFrequency' key in
+                      the TSToy configuration file.
+                        Expected integer value of '1'.
+                        Actual integer value of '1'.
+                      }
 
 {
   "unmanaged_key": true,
   "updates": {
-    "automatic": true,
-    "checkFrequency": 1
+    "checkFrequency": 1,
+    "automatic": true
   }
 }
 ```
@@ -1672,7 +1975,7 @@ $DesiredState = @{
     Module   = 'ExampleResources'
     Property = @{
         ConfigurationScope  = 'User'
-        UpdateAutomatically = $true
+        UpdateAutomatically = $false
         Ensure              = 'Absent'
     }
 }
@@ -1692,8 +1995,8 @@ Test-Path -Path $TSToyUserPath
 {
   "unmanaged_key": true,
   "updates": {
-    "automatic": true,
-    "checkFrequency": 1
+    "checkFrequency": 1,
+    "automatic": true
   }
 }
 
@@ -1701,10 +2004,16 @@ ConfigurationScope  : User
 Ensure              : Present
 UpdateAutomatically : True
 UpdateFrequency     : 1
-Reasons             : {Tailspin.Tailspin.Ensure:
-                        The configuration file was expected to be: Absent
-                        The configuration file exists at 'C:\Users\mikey\AppData
-                      \Roaming\TailSpinToys\tstoy'}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file not to exist at 'C:\Users\ml
+                      ombardi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.j
+                      son'.
+                        The configuration file exists at 'C:\Users\mlombardi\App
+                      Data\Roaming\TailSpinToys\tstoy\tstoy.config.json'.
+                      }
 
 InDesiredState : False
 
@@ -1716,7 +2025,17 @@ ConfigurationScope  : User
 Ensure              : Absent
 UpdateAutomatically : False
 UpdateFrequency     : 0
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the User scope.
+                        Expected configuration file not to exist at 'C:\Users\ml
+                      ombardi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.j
+                      son'.
+                        The configuration file was not found at 'C:\Users\mlomba
+                      rdi\AppData\Roaming\TailSpinToys\tstoy\tstoy.config.json'
+                      .
+                      }
 
 False
 ```
@@ -1759,10 +2078,15 @@ ConfigurationScope  : Machine
 Ensure              : Absent
 UpdateAutomatically : False
 UpdateFrequency     : 0
-Reasons             : {Tailspin.Tailspin.Ensure:
-                        The configuration file was expected to be: Present
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the Machine scope.
+                        Expected configuration file to exist at
+                      'C:\ProgramData\TailSpinToys\tstoy\tstoy.config.json'.
                         The configuration file was not found at
-                      'C:\ProgramData\TailSpinToys\tstoy\tstoy.config.json'}
+                      'C:\ProgramData\TailSpinToys\tstoy\tstoy.config.json'.
+                      }
 
 InDesiredState : False
 
@@ -1774,7 +2098,21 @@ ConfigurationScope  : Machine
 Ensure              : Present
 UpdateAutomatically : True
 UpdateFrequency     : 0
-Reasons             : {}
+Reasons             : {
+                      Tailspin.Tailspin.Ensure:
+                        Checked existence of the TSToy configuration file in
+                      the Machine scope.
+                        Expected configuration file to exist at
+                      'C:\ProgramData\TailSpinToys\tstoy\tstoy.config.json'.
+                        The configuration file exists at
+                      'C:\ProgramData\TailSpinToys\tstoy\tstoy.config.json'.
+                      ,
+                      Tailspin.Tailspin.UpdateAutomatically:
+                        Checked value of the 'updates.automatic' key in the
+                      TSToy configuration file.
+                        Expected boolean value of 'True'
+                        Actual boolean value of 'True'
+                      }
 
 {
   "updates": {
@@ -1871,7 +2209,23 @@ class Tailspin {
     [bool] Test() {
         $CurrentState = $this.Get()
 
-        return $CurrentState.Reasons.Count -eq 0
+        if ($CurrentState.Ensure -ne $this.Ensure) {
+            return $false
+        }
+
+        if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
+            return $false
+        }
+
+        if ($this.UpdateFrequency -eq 0) {
+            return $true
+        }
+
+        if ($CurrentState.UpdateFrequency -ne $this.UpdateFrequency) {
+            return $false
+        }
+
+        return $true
     }
 
     [void] Set() {
@@ -1886,9 +2240,11 @@ class Tailspin {
 
         if ($IsAbsent) {
             $this.Create()
-        } elseif ($ShouldBeAbsent) {
+        }
+        elseif ($ShouldBeAbsent) {
             $this.Remove()
-        } else {
+        }
+        else {
             $this.Update()
         }
     }
@@ -1925,24 +2281,30 @@ class Tailspin {
     [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
         [ExampleResourcesReason[]]$DefinedReasons = @()
 
+        $FilePath = $this.GetConfigurationFile()
+
+        if ($this.Ensure -eq [TailspinEnsure]::Present) {
+            $Expected = "Expected configuration file to exist at '$FilePath'."
+        } else {
+            $Expected = "Expected configuration file not to exist at '$FilePath'."
+        }
+
+        if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
+            $Actual = "The configuration file exists at '$FilePath'."
+        } else {
+            $Actual = "The configuration file was not found at '$FilePath'."
+        }
+
+        $DefinedReasons += [ExampleResourcesReason]@{
+            Code   = "Tailspin.Tailspin.Ensure"
+            Phrase = @(
+                "Checked existence of the TSToy configuration file in the $($this.ConfigurationScope) scope."
+                $Expected
+                $Actual
+            ) -join "`n`t"
+        }
+
         if ($CurrentState.Ensure -ne $this.Ensure) {
-            $FilePath = $this.GetConfigurationFile()
-
-            if ($CurrentState.Ensure -eq [TailspinEnsure]::Present) {
-                $Actual = "The configuration file exists at '$FilePath'"
-            }
-            else {
-                $Actual = "The configuration file was not found at '$FilePath'"
-            }
-
-            $DefinedReasons += [ExampleResourcesReason]@{
-                Code   = "Tailspin.Tailspin.Ensure"
-                Phrase = @(
-                    "The configuration file was expected to be: $($this.Ensure)"
-                    $Actual
-                ) -join "`n"
-            }
-
             return $DefinedReasons
         }
 
@@ -1950,14 +2312,13 @@ class Tailspin {
             return $DefinedReasons
         }
 
-        if ($CurrentState.UpdateAutomatically -ne $this.UpdateAutomatically) {
-            $DefinedReasons += [ExampleResourcesReason]@{
-                Code   = "Tailspin.Tailspin.UpdateAutomatically"
-                Phrase = @(
-                    "Expected automatic updating to be: $($this.UpdateAutomatically)"
-                    "Automatic updating was set to: $($CurrentState.UpdateAutomatically)"
-                ) -join "`n"
-            }
+        $DefinedReasons += [ExampleResourcesReason]@{
+            Code   = "Tailspin.Tailspin.UpdateAutomatically"
+            Phrase = (@(
+                    "Checked value of the 'updates.automatic' key in the TSToy configuration file."
+                    "Expected boolean value of '$($this.UpdateAutomatically)'"
+                    "Actual boolean value of '$($CurrentState.UpdateAutomatically)'"
+                ) -join "`n`t")
         }
 
         # Short-circuit the check; UpdateFrequency isn't defined by caller
@@ -1965,14 +2326,13 @@ class Tailspin {
             return $DefinedReasons
         }
 
-        if ($CurrentState.UpdateFrequency -ne $this.UpdateFrequency) {
-            $DefinedReasons += [ExampleResourcesReason]@{
-                Code   = "Tailspin.Tailspin.UpdateFrequency"
-                Phrase = @(
-                    "Expected update frequency to be: $($this.UpdateFrequency)"
-                    "Update frequency was set to: $($CurrentState.UpdateFrequency)"
-                ) -join "`n"
-            }
+        $DefinedReasons += [ExampleResourcesReason]@{
+            Code   = "Tailspin.Tailspin.UpdateFrequency"
+            Phrase = (@(
+                    "Checked value of the 'updates.checkFrequency' key in the TSToy configuration file."
+                    "Expected integer value of '$($this.UpdateFrequency)'."
+                    "Actual integer value of '$($CurrentState.UpdateFrequency)'."
+                ) -join "`n`t")
         }
 
         return $DefinedReasons
@@ -1983,7 +2343,7 @@ class Tailspin {
 
         $Json = $this.ToConfigJson()
 
-        $FilePath   = $this.GetConfigurationFile()
+        $FilePath = $this.GetConfigurationFile()
 
         $FolderPath = Split-Path -Path $FilePath
 
@@ -2002,7 +2362,7 @@ class Tailspin {
         $ErrorActionPreference = 'Stop'
 
         $Json = $this.ToConfigJson()
-        $FilePath   = $this.GetConfigurationFile()
+        $FilePath = $this.GetConfigurationFile()
 
         Set-Content -Path $FilePath -Value $Json -Encoding utf8 -Force
     }
@@ -2054,10 +2414,7 @@ class ExampleResourcesReason {
     [string] $Phrase
 
     [string] ToString() {
-        return @(
-            "$($this.Code):"
-            ($this.Phrase -split "`n")
-        ) -join "`n`t"
+        return "`n$($this.Code):`n`t$($this.Phrase)`n"
     }
 }
 ```
