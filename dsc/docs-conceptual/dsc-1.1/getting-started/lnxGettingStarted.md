@@ -52,16 +52,14 @@ DSC for Linux is available for download from the
 [PowerShell-DSC-for-Linux](https://github.com/Microsoft/PowerShell-DSC-for-Linux/releases/tag/v1.2.1-0)
 repository in the repository.
 
-To install DSC, install the package that is appropriate for your Linux system (.rpm or .deb) and
-OpenSSL version (ssl_098 or ssl_100), and architecture (x64/x86). RPM packages are appropriate for
-CentOS, Red Hat Enterprise Linux, SUSE Linux Enterprise Server, and Oracle Linux. DEB packages are
-appropriate for Debian GNU/Linux and Ubuntu Server. The ssl_098 packages are appropriate for
-computers with OpenSSL 0.9.8 installed while the ssl_100 packages are appropriate for computers with
-OpenSSL 1.0 installed.
+To install DSC, install the package that is appropriate for your Linux system (.rpm or .deb), 
+OpenSSL version, and architecture (x64/x86). RPM packages are appropriate for CentOS, Red Hat
+Enterprise Linux, SUSE Linux Enterprise Server, and Oracle Linux. DEB packages are appropriate
+for Debian GNU/Linux and Ubuntu Server. 
 
 > [!NOTE]
-> Support for DSC Linux is limited up to Open SSL version 1.1.
-> To determine the installed OpenSSL version, run the command openssl version.
+> Support for DSC Linux OpenSSL up to version 1.1. To determine the installed OpenSSL version,
+> run the command `openssl version`.
 
 Run the following command to install DSC on a CentOS 7 x64 system.
 
