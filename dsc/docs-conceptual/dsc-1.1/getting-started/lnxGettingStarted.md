@@ -60,6 +60,7 @@ computers with OpenSSL 0.9.8 installed while the ssl_100 packages are appropriat
 OpenSSL 1.0 installed.
 
 > [!NOTE]
+> Support for DSC Linux is limited up to Open SSL version 1.1.
 > To determine the installed OpenSSL version, run the command openssl version.
 
 Run the following command to install DSC on a CentOS 7 x64 system.
