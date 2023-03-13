@@ -25,6 +25,8 @@ items:
       items:
         - name: Create a class-based DSC Resource
           href: tutorials/create-class-based-resource.md
+        - name: Create a class-based DSC Resource for machine configuration
+          href: tutorials/create-dsc-resource-machine-config.md
     - name: How-to guides
       items:
         - name: Installing DSC Resources
