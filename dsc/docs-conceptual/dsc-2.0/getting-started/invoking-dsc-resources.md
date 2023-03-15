@@ -2,7 +2,7 @@
 description: >
   This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
   Invoke-DscResource cmdlet.
-ms.date: 08/15/2022
+ms.date: 03/15/2023
 title:  Get started with invoking DSC Resources
 ---
 
@@ -99,6 +99,7 @@ The `Get` method retrieves the current state of a resource.
 ```powershell
 Invoke-DscResource -Name Environment -Module PSDscResources -Method Get -Property @{
     Name   = 'DSC_EXAMPLE'
+    Target = 'Process'
 }
 ```
 
