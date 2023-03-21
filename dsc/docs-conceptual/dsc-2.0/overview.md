@@ -11,12 +11,12 @@ in the PowerShell package. Separating DSC into its own module allows us to inves
 independent of PowerShell and reduces the size of the PowerShell package. Users of DSC can enjoy
 the benefit of upgrading DSC without the need to upgrade PowerShell, accelerating time to deployment
 of new DSC features. Users that want to continue using DSC v2 can download
-**PSDesiredStateConfiguration** 2.0.5 from the PowerShell Gallery.
+**PSDesiredStateConfiguration** 2.0.6 from the PowerShell Gallery.
 
 Users working with non-Windows environments can expect cross-platform features in DSC v3. For more
 information about the future of DSC, see the [PowerShell Team blog][1].
 
-To install **PSDesiredStateConfiguration** 2.0.5 from the PowerShell Gallery:
+To install **PSDesiredStateConfiguration** 2.0.6 from the PowerShell Gallery:
 
 ```powershell
 Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumVersion 2.99
