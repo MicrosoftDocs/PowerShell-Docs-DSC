@@ -6,3 +6,6 @@ _themes*/
 _repo.*/
 
 .openpublishing.buildcore.ps1
+.vscode/styles/*
+!.vscode/styles/Vocab
+.vale/
