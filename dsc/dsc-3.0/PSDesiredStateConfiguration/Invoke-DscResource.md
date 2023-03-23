@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 09/14/2021
+ms.date: 03/21/2023
 online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/invoke-dscresource?view=dsc-3.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Invoke-DscResource
@@ -26,14 +26,7 @@ The `Invoke-DscResource` cmdlet runs a method of a specified PowerShell Desired 
 (DSC) resource.
 
 This cmdlet invokes a DSC resource directly, without creating a configuration document. Using this
-cmdlet, configuration management products can manage windows or Linux by using DSC resources. This
-cmdlet also enables debugging of resources when the DSC engine is running with debugging enabled.
-
-> [!NOTE]
-> `Invoke-DscResource` is an experimental feature in PowerShell 7. To use the cmdlet, you must
-> enable it using the following command.
->
-> `Enable-ExperimentalFeature PSDesiredStateConfiguration.InvokeDscResource`
+cmdlet, configuration management products can manage windows or Linux with DSC resources.
 
 ## EXAMPLES
 
@@ -44,8 +37,8 @@ mandatory **Path** and **Arguments** properties to start the specified Windows p
 
 ```powershell
 Invoke-DscResource -Name WindowsProcess -Method Set -ModuleName PSDesiredStateConfiguration -Property @{
-  Path = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
-  Arguments = ''
+    Path      = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+    Arguments = ''
 }
 ```
 
@@ -56,10 +49,13 @@ module named **PSDesiredStateConfiguration**.
 
 ```powershell
 $SplatParam = @{
-  Name = 'WindowsProcess'
-  ModuleName = 'PSDesiredStateConfiguration'
-  Property = @{Path = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'; Arguments = ''}
-  Method = Test
+    Name       = 'WindowsProcess'
+    ModuleName = 'PSDesiredStateConfiguration'
+    Method     = 'Test'
+    Property   = @{
+        Path      = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+        Arguments = ''
+    }
 }
 
 Invoke-DscResource @SplatParam
@@ -87,7 +83,7 @@ Accept wildcard characters: False
 
 ### -ModuleName
 
-Specifies the name of the module from which this cmdlet invokes the specified resource.
+Specifies the name of the module providing the specified DSC Resource to invoke.
 
 ```yaml
 Type: Microsoft.PowerShell.Commands.ModuleSpecification
@@ -103,7 +99,7 @@ Accept wildcard characters: False
 
 ### -Name
 
-Specifies the name of the DSC resource to start.
+Specifies the name of the DSC resource to invoke.
 
 ```yaml
 Type: System.String
@@ -152,10 +148,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 
-- Previously, Windows PowerShell 5.1 resources ran under System context unless specified with user
-context using the key **PsDscRunAsCredential**. In PowerShell 7.0, Resources run in the user's
-context, and **PsDscRunAsCredential** is no longer supported. Previous configurations using this key
-will throw an exception.
+- In Windows PowerShell 5.1 resources ran under the System context unless specified with user
+  context using the key **PsDscRunAsCredential**. In PowerShell 7.0, Resources run in the user's
+  context, and **PsDscRunAsCredential** is no longer supported. Using this key causes the cmdlet to
+  throw an exception.
 
 - As of PowerShell 7, `Invoke-DscResource` no longer supports invoking WMI DSC resources. This
   includes the **File** and **Log** resources in **PSDesiredStateConfiguration**.
