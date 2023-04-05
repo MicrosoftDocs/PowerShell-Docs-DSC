@@ -1,6 +1,6 @@
 ---
 description: Learn how to use the Desired State Configuration feature of PowerShell to manage the state of a machine as code.
-ms.date: 01/06/2023
+ms.date: 04/04/2023
 title: Manage configuration using PowerShell DSC
 ---
 
@@ -17,7 +17,7 @@ reference a DSC resource and pass through the properties that define how to mana
 Test if the machine is in the correct state, for an example resource.
 
 ```powershell
-Invoke-DscResource @{
+$TestParameters = @{
   Name = 'Environment'
   ModuleName = 'PSDscResources'
   Property = @{
@@ -29,12 +29,13 @@ Invoke-DscResource @{
   }
   Method = Test
 }
+Invoke-DscResource @TestParameters
 ```
 
 Get the current state of a machine, for an example resource.
 
 ```powershell
-Invoke-DscResource @{
+$GetParameters = @{
   Name = 'Environment'
   ModuleName = 'PSDscResources'
   Property = @{
@@ -46,12 +47,13 @@ Invoke-DscResource @{
   }
   Method = Get
 }
+Invoke-DscResource @GetParameters
 ```
 
 Set the state of the machine, for an example resource.
 
 ```powershell
-Invoke-DscResource @{
+$SetParameters = @{
   Name = 'Environment'
   ModuleName = 'PSDscResources'
   Property = @{
@@ -63,10 +65,10 @@ Invoke-DscResource @{
   }
   Method = Set
 }
+Invoke-DscResource @SetParameters
 ```
 
-For additional details, view the
-[Invoke-DscResource][01] help.
+For more information, view the [Invoke-DscResource][01] help.
 
 ## The machine configuration feature of Azure Automanage
 
