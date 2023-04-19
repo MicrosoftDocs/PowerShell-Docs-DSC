@@ -148,7 +148,7 @@ ImplementedAs Name                            Properties
 [1]: https://www.powershellgallery.com/
 [2]: https://github.com/
 [3]: /powershell/module/powershellget/
-[4]: /powershell/scripting/gallery/installing-psget
+[4]: /powershell/gallery/powershellget/install-powershellget
 [5]: /powershell/module/powershellget/find-dscresource
 [6]: /powershell/module/microsoft.powershell.core/where-object
 [7]: /powershell/module/PowershellGet/Install-Module

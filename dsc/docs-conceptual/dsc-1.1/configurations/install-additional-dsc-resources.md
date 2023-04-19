@@ -45,7 +45,7 @@ console using [PowerShellGet](/powershell/module/powershellget/).
 ## Installing PowerShellGet
 
 To determine if you already have **PowerShell** get, or to get help installing it, see the following
-guide: [Installing PowerShellGet](/powershell/scripting/gallery/installing-psget).
+guide: [Installing PowerShellGet](/powershell/gallery/powershellget/install-powershellget).
 
 ## Finding DSC resources using PowerShellGet
 
