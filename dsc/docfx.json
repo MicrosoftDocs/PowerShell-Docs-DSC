@@ -1,57 +1,61 @@
 {
   "build": {
     "content": [
-      { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ]},
+      { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ] },
       { "dest": "dsc", "files": [ "index.md" ], "src": "." },
-
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module/dsc-1.1", "files": [ "toc.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
-
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module/dsc-2.0", "files": [ "toc.yml" ], "src": "dsc-2.0", "version": "dsc-2.0" },
-
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-3.0", "version": "dsc-3.0" },
       { "dest": "module", "exclude": [ "toc.yml" ], "files": [ "**/*.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
       { "dest": "module", "files": [ "**/About/*.md" ], "src": "dsc-3.0", "version": "dsc-3.0" },
       { "dest": "module/dsc-3.0", "files": [ "toc.yml" ], "src": "dsc-3.0", "version": "dsc-3.0" },
-
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder" },
       { "dest": "module", "files": [ "**/*.md", "**/*.yml" ], "src": "virtual-folder-module" }
     ],
     "exportRawModel": true,
     "exportViewModel": true,
     "externalReference": [],
+    "fileMetadata": {
+      "feedback_product_url": {
+        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "**/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "**/dsc-3.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose"
+      },
+      "ms.topic": {
+        "docs-conceptual/**": "conceptual",
+        "dsc-1.1/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
+        "dsc-2.0/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "dsc-2.0/PSDesiredStateConfiguration/About/*.md": "conceptual",
+        "dsc-3.0/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "conceptual"
+      }
+    },
     "globalMetadata": {
-      "author": "sdwheeler",
       "apiPlatform": "powershell",
+      "author": "sdwheeler",
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "feedback_product_url": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
       "feedback_system": "GitHub",
       "hideScope": false,
-      "manager": "mkluck",
+      "manager": "jasongroce",
       "ms.author": "sewhee",
       "ms.devlang": "powershell",
       "ms.prod": "powershell",
-      "ms.topic": "reference",
       "searchScope": [
         "PowerShell"
       ],
       "titleSuffix": "PowerShell",
       "toc_preview": true,
       "uhfHeaderId": "MSDocsHeader-Powershell"
-    },
-    "fileMetadata": {
-      "feedback_product_url": {
-        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
-        "**/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
-        "**/dsc-3.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose"
-      }
     },
     "markdownEngineName": "markdig",
     "overwrite": [],
