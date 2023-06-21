@@ -10,10 +10,12 @@ Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
 
 > [!IMPORTANT]
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
-> there are no plans to offer new features or capabilities. It is recommended to begin transitioning
-> managed clients to [Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
-> (includes features beyond Pull Server on Windows Server) or one of the community solutions listed
-> [here](pullserver.md#community-solutions-for-pull-service).
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
+> [guest configuration](../governance/machine-configuration/overview.md).
+> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
+> and the most commonly requested features from customer feedback. Guest configuration also includes
+> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
 
 A DSC [SMB](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831795(v=ws.11))
 pull server is a computer hosting SMB file shares that make DSC configuration files and DSC

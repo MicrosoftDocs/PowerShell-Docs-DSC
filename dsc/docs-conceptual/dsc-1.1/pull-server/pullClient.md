@@ -10,10 +10,12 @@ description: This article is an overview of the information available for settin
 
 > [!IMPORTANT]
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
-> there are no plans to offer new features or capabilities. It is recommended to begin transitioning
-> managed clients to [Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
-> (includes features beyond Pull Server on Windows Server) or one of the community solutions listed
-> [here](pullserver.md#community-solutions-for-pull-service).
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
+> [guest configuration](../governance/machine-configuration/overview.md).
+> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
+> and the most commonly requested features from customer feedback. Guest configuration also includes
+> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
 
 Each target node has to be told to use pull mode and given the URL or file location where it can
 contact the pull server to get configurations and resources, and where it should send report data.
