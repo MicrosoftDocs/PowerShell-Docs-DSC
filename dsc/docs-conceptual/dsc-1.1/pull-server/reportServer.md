@@ -8,9 +8,10 @@ description: The Local Configuration Manager (LCM) of a node can be configured t
 
 Applies To: Windows PowerShell 5.0
 
-> [!IMPORTANT] The Pull Server (Windows Feature _DSC-Service_) is a supported component of Windows
-> Server however there are no plans to offer new features or capabilities. we would like you to know
-> that a newer version of DSC is now generally available, managed by a feature of Azure Policy named
+> [!IMPORTANT]
+> The Pull Server (Windows Feature _DSC-Service_) is a supported component of Windows Server however
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
 > [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
 > service combines features of DSC Extension, Azure Automation State Configuration, and the most
 > commonly requested features from customer feedback. Guest configuration also includes hybrid

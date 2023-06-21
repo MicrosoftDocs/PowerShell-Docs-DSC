@@ -8,7 +8,7 @@ description: Local Configuration Manager (LCM) can be centrally managed by a Pul
 # Desired State Configuration Pull Service
 
 > [!IMPORTANT]
-> The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
+> The Pull Server (Windows Feature _DSC-Service_) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
 > [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
