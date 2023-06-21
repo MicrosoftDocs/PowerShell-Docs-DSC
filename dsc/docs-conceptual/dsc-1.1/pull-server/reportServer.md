@@ -1,5 +1,5 @@
 ---
-ms.date:  06/12/2017
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Using a DSC report server
 description: The Local Configuration Manager (LCM) of a node can be configured to send reports about its configuration status to a pull server that can then be queried to retrieve that data.
@@ -9,21 +9,20 @@ description: The Local Configuration Manager (LCM) of a node can be configured t
 Applies To: Windows PowerShell 5.0
 
 > [!IMPORTANT]
-> The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server
-> however there are no plans to offer new features or capabilities. It is recommended to
-> begin transitioning managed clients to [Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
-> (includes features beyond Pull Server on Windows Server) or one of the community solutions
-> listed [here](pullserver.md#community-solutions-for-pull-service).
->
-> [!NOTE]
-> The report server described in this topic is not available in PowerShell 4.0.
+> The Pull Server (Windows Feature _DSC-Service_) is a supported component of Windows Server however
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 The Local Configuration Manager (LCM) of a node can be configured to send reports about its
-configuration status to a pull server that can then be queried to retrieve that data. Each time
-the node checks and applies a configuration, it sends a report to the report server. These reports
-are stored in a database on the server, and can be retrieved by calling the reporting web service.
-Each report contains information such as what configurations were applied and whether they
-succeeded, the resources used, any errors that were thrown, and start and finish times.
+configuration status to a pull server that can then be queried to retrieve that data. Each time the
+node checks and applies a configuration, it sends a report to the report server. These reports are
+stored in a database on the server, and can be retrieved by calling the reporting web service. Each
+report contains information such as what configurations were applied and whether they succeeded, the
+resources used, any errors that were thrown, and start and finish times.
 
 ## Configuring a node to send reports
 
@@ -136,10 +135,16 @@ function GetReport
         $serviceURL = "http://CONTOSO-REPORT:8080/PSDSCPullServer.svc"
     )
 
-    $requestUri = "$serviceURL/Nodes(AgentId= '$AgentId')/Reports"
-    $request = Invoke-WebRequest -Uri $requestUri  -ContentType "application/json;odata=minimalmetadata;streaming=true;charset=utf-8" `
-               -UseBasicParsing -Headers @{Accept = "application/json";ProtocolVersion = "2.0"} `
-               -ErrorAction SilentlyContinue -ErrorVariable ev
+    $invokeWebRequestSplat = @{
+        Uri = "$serviceURL/Nodes(AgentId= '$AgentId')/Reports"
+        ContentType = "application/json;odata=minimalmetadata;streaming=true;charset=utf-8"
+        UseBasicParsing = $true
+        Headers = @{Accept = "application/json"; ProtocolVersion = "2.0"}
+        ErrorAction = 'SilentlyContinue'
+        ErrorVariable = 'ev'
+    }
+
+    $request = Invoke-WebRequest @invokeWebRequestSplat
     $object = ConvertFrom-Json $request.content
     return $object.value
 }

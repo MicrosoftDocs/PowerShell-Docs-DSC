@@ -1,5 +1,5 @@
 ---
-ms.date:  12/12/2018
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Set up a Pull Client using Configuration IDs in PowerShell 4.0
 description:  This article explains how to set up a Pull Client using Configuration IDs in PowerShell 4.0
@@ -11,10 +11,12 @@ description:  This article explains how to set up a Pull Client using Configurat
 
 > [!IMPORTANT]
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
-> there are no plans to offer new features or capabilities. It is recommended to begin transitioning
-> managed clients to [Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
-> (includes features beyond Pull Server on Windows Server) or one of the community solutions listed
-> [here](pullserver.md#community-solutions-for-pull-service).
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 Before setting up a pull client, you should set up a pull server. Though this order is not required,
 it helps with troubleshooting, and helps you ensure that the registration was successful. To set up
@@ -79,14 +81,17 @@ Configuration PullClientConfigId
 {
     LocalConfigurationManager
     {
-        ConfigurationID = "1C707B86-EF8E-4C29-B7C1-34DA2190AE24";
-        RefreshMode = "PULL";
-        DownloadManagerName = "WebDownloadManager";
-        RebootNodeIfNeeded = $true;
-        RefreshFrequencyMins = 30;
-        ConfigurationModeFrequencyMins = 30;
-        ConfigurationMode = "ApplyAndAutoCorrect";
-        DownloadManagerCustomData = @{ServerUrl = "http://PullServer:8080/PSDSCPullServer/PSDSCPullServer.svc"; AllowUnsecureConnection = "TRUE"}
+        ConfigurationID = "1C707B86-EF8E-4C29-B7C1-34DA2190AE24"
+        RefreshMode = "PULL"
+        DownloadManagerName = "WebDownloadManager"
+        RebootNodeIfNeeded = $true
+        RefreshFrequencyMins = 30
+        ConfigurationModeFrequencyMins = 30
+        ConfigurationMode = "ApplyAndAutoCorrect"
+        DownloadManagerCustomData = @{
+            ServerUrl = "http://PullServer:8080/PSDSCPullServer/PSDSCPullServer.svc"
+            AllowUnsecureConnection = "TRUE"
+        }
     }
 }
 PullClientConfigId -Output "."
