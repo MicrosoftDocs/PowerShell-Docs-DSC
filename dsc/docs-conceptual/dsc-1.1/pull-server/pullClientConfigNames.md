@@ -1,5 +1,5 @@
 ---
-ms.date:  06/12/2017
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Set up a Pull Client using Configuration Names in PowerShell 5.0 and later
 description: The article explains how to set up a Pull Client using Configuration Names in PowerShell 5.0 and later
@@ -10,10 +10,12 @@ description: The article explains how to set up a Pull Client using Configuratio
 
 > [!IMPORTANT]
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
-> there are no plans to offer new features or capabilities. It is recommended to begin transitioning
-> managed clients to [Azure Automation DSC](/azure/automation/automation-dsc-getting-started)
-> (includes features beyond Pull Server on Windows Server) or one of the community solutions listed
-> [here](pullserver.md#community-solutions-for-pull-service).
+> there are no plans to offer new features or capabilities. we would like you to know that a newer
+> version of DSC is now generally available, managed by a feature of Azure Policy named
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 Before setting up a pull client, you should set up a pull server. Though this order is not required,
 it helps with troubleshooting, and helps you ensure that the registration was successful. To set up
@@ -63,16 +65,20 @@ decorated with the **DSCLocalConfigurationManager** attribute. For more informat
 configuring the LCM, see
 [Configuring the Local Configuration Manager](../managing-nodes/metaConfig.md).
 
-The following script configures the LCM to pull configurations from a server named "CONTOSO-PullSrv".
+The following script configures the LCM to pull configurations from a server named
+"CONTOSO-PullSrv".
 
 - In the script, the **ConfigurationRepositoryWeb** block defines the pull server. The **ServerURL**
   property specifies the endpoint for the pull server.
 
 - The **RegistrationKey** property is a shared key between all client nodes for a pull server and
-  that pull server. The same value is stored in a file on the pull server. > [!NOTE] > Registration
-  keys work only with **web** pull servers. You must still use **ConfigurationID** with an **SMB**
-  pull server. > For information about configuring a pull server by using **ConfigurationID**, see
-  [Setting up a pull client using configuration ID](pullClientConfigId.md)
+  that pull server. The same value is stored in a file on the pull server.
+
+  > [!NOTE]
+  > Registration keys work only with **web** pull servers. You must still use **ConfigurationID**
+  > with an **SMB** pull server. > For information about configuring a pull server by using
+  > **ConfigurationID**, see
+  > [Setting up a pull client using configuration ID](pullClientConfigId.md)
 
 - The **ConfigurationNames** property is an array that specifies the names of the configurations
   intended for the client node. >**Note:** If you specify more than one value in the
