@@ -1,5 +1,5 @@
 ---
-ms.date: 03/22/2022
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  DSC Pull Service
 description: Local Configuration Manager (LCM) can be centrally managed by a Pull Service solution. When using this approach, the node that is being managed is registered with a service and assigned a configuration in LCM settings.
@@ -11,10 +11,10 @@ description: Local Configuration Manager (LCM) can be centrally managed by a Pul
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
-> [guest configuration](../governance/machine-configuration/overview.md).
-> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
-> and the most commonly requested features from customer feedback. Guest configuration also includes
-> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 Local Configuration Manager (LCM) can be centrally managed by a Pull Service solution. When using
 this approach, the node that is being managed is registered with a service and assigned a
@@ -146,7 +146,10 @@ a `Configuration` that sets up the web service.
             [ValidateNotNullOrEmpty()]
             [string] $certificateThumbPrint,
 
-            [Parameter(HelpMessage='This should be a string with enough entropy (randomness) to protect the registration of clients to the pull server.  We will use new GUID by default.')]
+            [Parameter(HelpMessage='This should be a string with enough entropy (randomness)' +
+                ' to protect the registration of clients to the pull server.  We will use new' +
+                ' GUID by default.'
+            )]
             [ValidateNotNullOrEmpty()]
             [string] $RegistrationKey   # A guid that clients use to initiate conversation with pull server
         )
@@ -194,19 +197,24 @@ a `Configuration` that sets up the web service.
    **certificateThumbPrint** parameter and a GUID registration key as the **RegistrationKey**
    parameter:
 
-    ```powershell
-    # To find the Thumbprint for an installed SSL certificate for use with the pull server list all
-    # certificates in your local store and then copy the thumbprint for the appropriate certificate
-    # by     reviewing the certificate subjects
+   ```powershell
+   # To find the Thumbprint for an installed SSL certificate for use with the pull server list all
+   # certificates in your local store and then copy the thumbprint for the appropriate certificate
+   # by     reviewing the certificate subjects
 
-    dir Cert:\LocalMachine\my
+   dir Cert:\LocalMachine\my
 
-    # Then include this thumbprint when running the configuration
-    Sample_xDscWebServiceRegistration -certificateThumbprint 'A7000024B753FA6FFF88E966FD6E19301FAE9CCC' -RegistrationKey '140a952b-b9d6-406b-b416-e0f759c9c0e4' -OutputPath c:\Configs\PullServer
+   # Then include this thumbprint when running the configuration
+   $sample_xDscWebServiceRegistrationSplat = @{
+       certificateThumbprint = 'A7000024B753FA6FFF88E966FD6E19301FAE9CCC'
+       RegistrationKey = '140a952b-b9d6-406b-b416-e0f759c9c0e4'
+       OutputPath = 'C:\Configs\PullServer'
+   }
+   Sample_xDscWebServiceRegistration @sample_xDscWebServiceRegistrationSplat
 
-    # Run the compiled configuration to make the target node a DSC Pull Server
-    Start-DscConfiguration -Path c:\Configs\PullServer -Wait -Verbose
-    ```
+   # Run the compiled configuration to make the target node a DSC Pull Server
+   Start-DscConfiguration -Path c:\Configs\PullServer -Wait -Verbose
+   ```
 
 #### Registration Key
 
@@ -239,10 +247,10 @@ configuration Sample_MetaConfigurationToRegisterWithLessSecurePullServer
         [string] $NodeName = 'localhost',
 
         [ValidateNotNullOrEmpty()]
-        [string] $RegistrationKey, #same as the one used to set up pull server in previous configuration
+        [string] $RegistrationKey, # the key used to set up pull server in previous configuration
 
         [ValidateNotNullOrEmpty()]
-        [string] $ServerName = 'localhost' #node name of the pull server, same as $NodeName used in previous configuration
+        [string] $ServerName = 'localhost' # The name of the pull server, same as $NodeName used in previous configuration
     )
 
     Node $NodeName
@@ -254,20 +262,25 @@ configuration Sample_MetaConfigurationToRegisterWithLessSecurePullServer
 
         ConfigurationRepositoryWeb CONTOSO-PullSrv
         {
-            ServerURL          = "https://$ServerName`:8080/PSDSCPullServer.svc" # notice it is https
+            ServerURL          = "https://$ServerName`:8080/PSDSCPullServer.svc"
             RegistrationKey    = $RegistrationKey
             ConfigurationNames = @('ClientConfig')
         }
 
         ReportServerWeb CONTOSO-PullSrv
         {
-            ServerURL       = "https://$ServerName`:8080/PSDSCPullServer.svc" # notice it is https
+            ServerURL       = "https://$ServerName`:8080/PSDSCPullServer.svc"
             RegistrationKey = $RegistrationKey
         }
     }
 }
 
-Sample_MetaConfigurationToRegisterWithLessSecurePullServer -RegistrationKey $RegistrationKey -OutputPath c:\Configs\TargetNodes
+$MetaConfigurationSplat = @{
+    RegistrationKey = $RegistrationKey
+    OutputPath = 'c:\Configs\TargetNodes'
+}
+
+Sample_MetaConfigurationToRegisterWithLessSecurePullServer @MetaConfigurationSplat
 ```
 
 > [!NOTE]

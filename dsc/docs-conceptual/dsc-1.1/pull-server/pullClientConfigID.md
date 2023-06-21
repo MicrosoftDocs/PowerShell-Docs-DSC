@@ -1,5 +1,5 @@
 ---
-ms.date:  12/12/2018
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Set up a Pull Client using Configuration IDs in PowerShell 5.0 and later
 description:  This article explains how to set up a Pull Client using Configuration IDs in PowerShell 5.0 and later
@@ -13,10 +13,10 @@ description:  This article explains how to set up a Pull Client using Configurat
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
-> [guest configuration](../governance/machine-configuration/overview.md).
-> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
-> and the most commonly requested features from customer feedback. Guest configuration also includes
-> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 Before setting up a pull client, you should set up a pull server. Though this order is not required,
 it helps with troubleshooting, and helps you ensure that the registration was successful. To set up
@@ -313,7 +313,6 @@ configuration PullClientConfigID
         ConfigurationRepositoryWeb CONTOSO-PullSrv
         {
             ServerURL = 'https://CONTOSO-PullSrv:8080/PSDSCPullServer.svc'
-
         }
 
         ResourceRepositoryWeb CONTOSO-ResourceSrv

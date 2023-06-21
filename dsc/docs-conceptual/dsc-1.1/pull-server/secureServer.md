@@ -12,10 +12,10 @@ Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
-> [guest configuration](../governance/machine-configuration/overview.md).
-> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
-> and the most commonly requested features from customer feedback. Guest configuration also includes
-> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 Summary: This document is intended to include process and extensibility to assist engineers who are
 preparing for the solution. Details should provide best practices as identified by customers and
@@ -190,10 +190,12 @@ When choosing a name for the DNS record, keep the solution architecture in mind.
 balancing, the certificate used to secure traffic over HTTPS will need to share the same name as the
 DNS record.
 
-|       Scenario        |                                                                                         Best Practice
-|:--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-|Test Environment       | Reproduce the planned production environment, if possible. A server hostname is suitable for simple configurations. If DNS is not available, an IP address may be used in lieu of a hostname.
-|Single Node Deployment | Create a DNS CNAME record that points to the server hostname.
+Scenario best practices
+
+- Test Environment - Reproduce the planned production environment, if possible. A server hostname is
+  suitable for simple configurations. If DNS is not available, an IP address may be used in lieu of
+  a hostname.
+- Single Node Deployment - Create a DNS CNAME record that points to the server hostname.
 
 For more information, see [Configuring DNS Round Robin in Windows Server](/previous-versions/windows/it-pro/windows-server-2003/cc787484(v=ws.10)).
 
@@ -636,20 +638,23 @@ Node
 ```powershell
 Configuration PullClient {
     param(
-    $ID,
-    $Server
+        $ID,
+        $Server
     )
-        LocalConfigurationManager
-                {
-                    ConfigurationID = $ID;
-                    RefreshMode = 'PULL';
-                    DownloadManagerName = 'WebDownloadManager';
-                    RebootNodeIfNeeded = $true;
-                    RefreshFrequencyMins = 30;
-                    ConfigurationModeFrequencyMins = 15;
-                    ConfigurationMode = 'ApplyAndAutoCorrect';
-                    DownloadManagerCustomData = @{ServerUrl = "http://"+$Server+":8080/PSDSCPullServer.svc"; AllowUnsecureConnection = $true}
-                }
+    LocalConfigurationManager
+    {
+        ConfigurationID = $ID;
+        RefreshMode = 'PULL';
+        DownloadManagerName = 'WebDownloadManager';
+        RebootNodeIfNeeded = $true;
+        RefreshFrequencyMins = 30;
+        ConfigurationModeFrequencyMins = 15;
+        ConfigurationMode = 'ApplyAndAutoCorrect';
+        DownloadManagerCustomData = @{
+            ServerUrl = "http://"+$Server+":8080/PSDSCPullServer.svc"
+            AllowUnsecureConnection = $true
+        }
+    }
 }
 
 PullClient -ID 'INSERTGUID' -Server 'INSERTSERVER' -Output 'C:\DSCConfig\'
@@ -661,7 +666,7 @@ Set-DscLocalConfigurationManager -ComputerName 'Localhost' -Path 'C:\DSCConfig\'
 This example shows how to manually initiate a client connection (requires WMF5) for testing.
 
 ```powershell
-Update-DscConfiguration –Wait -Verbose
+Update-DscConfiguration -Wait -Verbose
 ```
 
 The [Add-DnsServerResourceRecordName](/powershell/module/dnsserver/add-dnsserverresourcerecordcname)
@@ -683,4 +688,4 @@ OData web service. The type of file depends on the operating system, as describe
 
 In the [Advanced example script](https://github.com/mgreenegit/Whitepapers/blob/Dev/PullServerCPIG.md#installation-and-configuration-scripts)
 for installing a Pull Server, you will also find an example of how to automatically control the
-web.config file settings to prevent any chance of error caused by file type.
+`web.config` file settings to prevent any chance of error caused by file type.

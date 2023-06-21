@@ -1,5 +1,5 @@
 ---
-ms.date:  04/11/2018
+ms.date: 06/21/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Setting up a DSC SMB pull server
 description: A DSC SMB pull server is a computer hosting SMB file shares that make DSC configuration files and DSC resources available to target nodes when those nodes ask for them.
@@ -12,10 +12,10 @@ Applies To: Windows PowerShell 4.0, Windows PowerShell 5.0
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
-> [guest configuration](../governance/machine-configuration/overview.md).
-> The guest configuration service combines features of DSC Extension, Azure Automation State Configuration,
-> and the most commonly requested features from customer feedback. Guest configuration also includes
-> hybrid machine support through [Arc-enabled servers](../azure-arc/servers/overview.md).
+> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
+> service combines features of DSC Extension, Azure Automation State Configuration, and the most
+> commonly requested features from customer feedback. Guest configuration also includes hybrid
+> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
 
 A DSC [SMB](/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831795(v=ws.11))
 pull server is a computer hosting SMB file shares that make DSC configuration files and DSC
@@ -147,9 +147,10 @@ Configuration DSCSMB
 Save any configuration MOF files and/or DSC resources that you want client nodes to pull in the SMB
 share folder.
 
-Any configuration MOF file must be named *ConfigurationID*.mof, where *ConfigurationID* is the value
-of the **ConfigurationID** property of the target node's LCM. For more information about setting up
-pull clients, see [Setting up a pull client using configuration ID](pullClientConfigID.md).
+Any configuration MOF file must be named `<ConfigurationID>.mof`, where `<ConfigurationID>` is the
+value of the **ConfigurationID** property of the target node's LCM. For more information about
+setting up pull clients, see
+[Setting up a pull client using configuration ID](pullClientConfigID.md).
 
 > [!NOTE]
 > You must use configuration IDs if you are using an SMB pull server. Configuration names are not
@@ -157,7 +158,7 @@ pull clients, see [Setting up a pull client using configuration ID](pullClientCo
 
 Each resource module needs to be zipped and named according to the following pattern
 `{Module Name}_{Module Version}.zip`. For example, a module named xWebAdminstration with a module
-version of 3.1.2.0 would be named 'xWebAdministration_3.2.1.0.zip'. Each version of a module must be
+version of 3.1.2.0 would be named `xWebAdministration_3.2.1.0.zip`. Each version of a module must be
 contained in a single zip file. Separate versions of a module in a zip file are not supported.
 Before packaging up DSC resource modules for use with pull server, you need to make a small change
 to the directory structure.
