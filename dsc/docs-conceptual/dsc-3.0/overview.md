@@ -1,6 +1,6 @@
 ---
 description: Learn about the Desired State Configuration feature of PowerShell including the purpose and when it should be used.
-ms.date: 12/16/2021
+ms.date: 06/28/2023
 title:  PowerShell Desired State Configuration overview
 ---
 
@@ -10,9 +10,9 @@ Desired State Configuration (DSC) is a feature of PowerShell where modules are s
 specific way to simplify configuration management in Linux and Windows machines.
 
 DSC is a declarative language, where the state of a machine is described using a format that should
-be clear to understand even if the reader is not a subject matter expert. DSC is unique compared to
+be clear to understand even if the reader isn't a subject matter expert. DSC is unique compared to
 imperative PowerShell script format, because the definition of an application environment is
-separate from the script logic that implements how it is delivered.
+separate from the script logic that implements how it's delivered.
 
 There are two primary components:
 
@@ -40,5 +40,9 @@ Install-Module -Name PSDesiredStateConfiguration -AllowPrerelease
 
 ## See Also
 
-- [DSC Configurations](concepts/configurations.md)
-- [DSC Resources](concepts/resources.md)
+- [DSC Configurations][01]
+- [DSC Resources][02]
+
+<!-- link references -->
+[01]: concepts/configurations.md
+[02]: concepts/resources.md
