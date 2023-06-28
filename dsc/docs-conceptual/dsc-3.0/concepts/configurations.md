@@ -1,6 +1,6 @@
 ---
 description: DSC configurations are PowerShell scripts that define a special type of function.
-ms.date: 05/23/2022
+ms.date: 06/28/2023
 title: DSC Configurations
 ---
 # Configurations
@@ -29,12 +29,12 @@ A configuration script consists of the following parts:
   **Configuration** keyword and providing a name. In this case, the name of the configuration is
   `MyDscConfiguration`.
 - One or more resource blocks. This is where the configuration sets the properties for the resources
-  that it is configuring. In this case, there are two resource blocks, each of which call the
+  that it's configuring. In this case, there are two resource blocks, each of which call the
   **WindowsFeature** resource.
 
 Within a **Configuration** block, you can do anything that you normally could in a PowerShell
-function. In the previous example, if you didn't want to hard code the name of the
-Windows feature in the configuration, you could add a parameter.
+function. In the previous example, if you didn't want to hard code the name of the Windows feature
+in the configuration, you could add a parameter.
 
 In this example, you specify the name of the feature by passing it as the **WindowsFeature**
 parameter when you compile the configuration. The name defaults to `RSAT`.
@@ -42,8 +42,7 @@ parameter when you compile the configuration. The name defaults to `RSAT`.
 > [!NOTE]
 > The **WindowsFeature** DSC Resource is only available on Windows Server computers. For computers
 > with a client OS, like Windows 11, you need to use **WindowsOptionalFeature** instead. For more
-> information, see
-> [the "WindowsOptionalFeature" section of the PSDscResources documentation](https://github.com/PowerShell/PSDscResources#windowsoptionalfeature).
+> information, see the _WindowsOptionalFeature_ section of the [PSDscResources documentation][01].
 
 ```powershell
 Configuration MyDscConfiguration
@@ -76,8 +75,8 @@ When you call the configuration, it:
 - Creates a file named _localhost.mof_ in the new directory.
 
 > [!NOTE]
-> The MOF file contains all of the configuration information for the target node.
-> Because of this, it's important to keep it secure.
+> The MOF file contains all of the configuration information for the target node. Because of this,
+> it's important to keep it secure.
 
 Compiling the first configuration above results in the following folder structure:
 
@@ -105,7 +104,7 @@ MyDscConfiguration -WindowsFeature 'Telnet-Client'
 ## Importing resources in your configuration
 
 `Import-DscResource` is a dynamic keyword that can only be recognized within a **Configuration**
-block, it is not a cmdlet. `Import-DscResource` supports the following parameters:
+block, it's not a cmdlet. `Import-DscResource` supports the following parameters:
 
 - **Name**: The DSC resource name(s) that you must import. If the module name is specified, the
   command searches for these DSC resources within this module. Otherwise, the command searches the
@@ -117,4 +116,8 @@ block, it is not a cmdlet. `Import-DscResource` supports the following parameter
 
 ## See Also
 
-- [DSC Resources](resources.md)
+- [DSC Resources][02]
+
+<!-- link references -->
+[01]: https://github.com/PowerShell/PSDscResources#windowsoptionalfeature
+[02]: resources.md
