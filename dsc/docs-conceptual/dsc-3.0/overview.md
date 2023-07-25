@@ -31,11 +31,16 @@ on machines without also planning an upgrade of the PowerShell 7 installation.
 
 ## Installation
 
-To install `PSDesiredStateConfiguration` version `3.0.0`
-from the PowerShell Gallery:
+To install the `PSDesiredStateConfiguration` version 3 from the PowerShell Gallery:
 
 ```powershell
-Install-Module -Name PSDesiredStateConfiguration -AllowPrerelease
+@InstallParameters = @{
+    Name            = 'PSDesiredStateConfiguration'
+    RequiredVersion = '3.0.0-beta1'
+    AllowPreRelease = $true
+    Force           = $true
+}
+Install-Module @InstallParameters
 ```
 
 ## See Also
