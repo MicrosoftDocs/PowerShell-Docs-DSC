@@ -1,15 +1,115 @@
 items:
   - name: Desired State Configuration (DSC) 3.0 Preview
     href: overview.md
+  - name: Glossary
+    href: glossary.md
   - name: Getting started
-    expanded: true
     items:
-      - name: Manage configuration using PowerShell DSC
+      - name: Get started managing state with DSCv3
         href: getting-started/getting-started.md
   - name: Concepts
-    expanded: true
     items:
-      - name: Configurations
+      - name: Configuration Documents
         href: concepts/configurations.md
       - name: Resources
         href: concepts/resources.md 
+  - name: Resources
+    items:
+      - name: Concepts
+        items:
+          - name: Anatomy of a command-based DSC Resource
+            href: resources/concepts/anatomy.md
+      - name: Tutorials
+        items:
+          - name: Overview
+            href: resources/tutorials/overview.md
+          - name: Write your first DSC Resource
+            items:
+              - name: Overview
+                href: resources/tutorials/first-resource/overview.md
+              - name: In Go
+                href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
+      - name: Samples
+        items:
+          - name: Overview
+            href: resources/samples/overview.md
+          - name: First DSC Resource
+            items:
+              - name: Overview
+                href: resources/samples/first-resource/overview.md
+              - name: Go
+                href: https://github.com/PowerShell/DSC-Samples/tree/main/samples/go/resources/first
+  - name: Command line reference
+    items:
+      - name: dsc command
+        href: reference/cli/dsc.md
+      - name: dsc config command
+        items:
+          - name: dsc config
+            href: reference/cli/config/command.md
+          - name: dsc config get
+            href: reference/cli/config/get.md
+          - name: dsc config set
+            href: reference/cli/config/set.md
+          - name: dsc config test
+            href: reference/cli/config/test.md
+      - name: dsc resource command
+        items:
+          - name: dsc resource
+            href: reference/cli/resource/command.md
+          - name: dsc resource get
+            href: reference/cli/resource/get.md
+          - name: dsc resource list
+            href: reference/cli/resource/list.md
+          - name: dsc resource schema
+            href: reference/cli/resource/schema.md
+          - name: dsc resource set
+            href: reference/cli/resource/set.md
+          - name: dsc resource test
+            href: reference/cli/resource/test.md
+      - name: dsc schema command
+        href: reference/cli/schema/command.md
+  - name: Schema reference
+    items:
+      - name: Configuration
+        items:
+          - name: Documents
+            href: reference/schemas/config/document.md
+          - name: Document Parameters
+            href: reference/schemas/config/parameter.md
+          - name: Resource Instances
+            href: reference/schemas/config/resource.md
+      - name: Resource
+        items:
+          - name:  Manifests
+            items:
+              - name: Root
+                href: reference/schemas/resource/manifest/root.md
+              - name: Get Property
+                href: reference/schemas/resource/manifest/get.md
+              - name: Set Property
+                href: reference/schemas/resource/manifest/set.md
+              - name: Test Property
+                href: reference/schemas/resource/manifest/test.md
+              - name: Provider Property
+                href: reference/schemas/resource/manifest/provider.md
+              - name: Validate Property
+                href: reference/schemas/resource/manifest/validate.md
+              - name: Schema
+                items:
+                  - name: Property
+                    href: reference/schemas/resource/manifest/schema/property.md
+                  - name: Embedded Schemas
+                    href: reference/schemas/resource/manifest/schema/embedded.md
+          - name: Well-known properties
+            items:
+              - name: Overview
+                href: reference/schemas/resource/properties/overview.md
+              - name: _ensure
+                href: reference/schemas/resource/properties/ensure.md
+              - name: _inDesiredState
+                href: reference/schemas/resource/properties/inDesiredState.md
+              - name: _purge
+                href: reference/schemas/resource/properties/purge.md
+              - name: _rebootRequested
+                href: reference/schemas/resource/properties/rebootRequested.md
