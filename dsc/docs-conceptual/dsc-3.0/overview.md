@@ -1,53 +1,93 @@
 ---
-description: Learn about the Desired State Configuration feature of PowerShell including the purpose and when it should be used.
+description: >-
+  Learn about the Desired State Configuration feature of PowerShell including the purpose and when
+  it should be used.
 ms.date: 06/28/2023
-title:  PowerShell Desired State Configuration overview
+title:  PowerShell Desired State Configuration v3 overview
 ---
 
-# PowerShell Desired State Configuration overview
+# PowerShell Desired State Configuration v3 overview
 
-Desired State Configuration (DSC) is a feature of PowerShell where modules are structured in a
-specific way to simplify configuration management in Linux and Windows machines.
+Microsoft's Desired State Configuration (DSC) is a declarative configuration platform, where the
+state of a machine is described using a format that should be clear to understand even if the
+reader isn't a subject matter expert. Unlike imperative tools, with DSC the definition of an
+application environment is separate from the script logic that implements how it's delivered.
 
-DSC is a declarative language, where the state of a machine is described using a format that should
-be clear to understand even if the reader isn't a subject matter expert. DSC is unique compared to
-imperative PowerShell script format, because the definition of an application environment is
-separate from the script logic that implements how it's delivered.
+The DSCv3 command line application abstracts the management of software components declaratively
+and idempotently. DSCv3 runs on Linux, macOS, and Windows without any external dependencies.
 
-There are two primary components:
+With DSCv3, you can:
 
-- **Configurations** are declarative PowerShell scripts that define instances of resources.
-  Typically configurations define what to automate. Example scenarios include requirements for an
-  application environment or operational/security standards.
-- **Resources** contain the script functions that define how to automate. Resources always contain
-  three methods, "Get", "Test", and "Set". Example scenarios include how to update the contents of a
-  file, how to run a utility that changes the state of a machine, or how to configure settings of an
-  application.
+- Author DSC Resources to manage your systems in any language.
+- Invoke individual resources.
+- Create configuration documents that define the desired state of a system.
 
-As of version 7.2, the module `PSDesiredStateConfiguration` containing the DSC feature and must be
-installed as an independent component after you install PowerShell. Separating DSC into an
-independent module reduces the size of the PowerShell release package, and allows DSC to be upgraded
-on machines without also planning an upgrade of the PowerShell 7 installation.
+## Configuration Documents
+
+DSC Configuration Documents are declarative YAML files that define instances of resources.
+Typically, configuration documents define what state to enforce.
+
+Example scenarios include requirements for an application environment or operational/security
+standards.
+
+## DSC Resources
+
+DSC Resources define how to manage state for a particular system or application component.
+Resources describe a schema for the manageable settings of the component. Every resource can be
+used to with the **Get** and **Test** operations to retrieve the current state of a resource
+instance and validate whether it's in the desired state. Most resources also support enforcing the
+desired state with the **Set** operation.
+
+Example scenarios include how to update the contents of a file, how to run a utility that changes
+the state of a machine, or how to configure settings of an application.
+
+### Differences from PowerShell DSC
+
+DSCv3 leverages the [PSDesiredStateConfiguration module][00] to maintain compatibility with
+existing PowerShell based resources.
+
+DSCv3 differs from PowerShell DSC in a few important ways:
+
+- DSCv3 doesn't depend on PowerShell. You can use DSCv3 without PowerShell installed and manage
+  resources written in bash, python, C#, Go, or any other language.
+- DSCv3 doesn't include a local configuration manager. DSCv3 is invoked as a command. It doesn't
+  run as a service.
+- Non-PowerShell resources define their schemas with JSON files, not MOF files.
+- Configuration documents are defined in JSON or YAML files, not PowerShell script files.
+
+Importantly, while DSCv3 represents a major change to the DSC platform, DSCv3 is able to invoke
+PowerShell DSC Resources, including script-based and class-based DSC Resources, as they exist
+today. The configuration documents aren't compatible, but all published PowerShell DSC Resources
+are. You can use PowerShell DSC resources in DSCv3 with both Windows PowerShell and PowerShell.
 
 ## Installation
 
+To install DSCv3:
+
+1. Download the [latest release from the PowerShell/DSC repository][01].
+1. Expand the release archive.
+1. Add the folder containing the expanded archive contents to the `PATH`.
+
 To install the `PSDesiredStateConfiguration` version 3 from the PowerShell Gallery:
 
-```powershell
-@InstallParameters = @{
-    Name            = 'PSDesiredStateConfiguration'
-    RequiredVersion = '3.0.0-beta1'
-    AllowPreRelease = $true
-    Force           = $true
-}
-Install-Module @InstallParameters
-```
+## Integrating with DSCv3
+
+DSCv3 is a platform tool that abstracts the concerns for defining and invoking resources. Higher
+order tools, like Azure Machine Configuration, Azure Automanaged VM, and WinGet are early partners
+for DSCv3 as orchestration agents.
+
+DSCv3 uses JSON schemas to define the structure of resources, configuration documents, and the
+outputs that DSCv3 returns. These schemas make it easier to integrate DSCv3 with other tools,
+because they standardize and document how to interface with DSCv3.
 
 ## See Also
 
-- [DSC Configurations][01]
-- [DSC Resources][02]
+- [Anatomy of a command-based DSC Resource][02] to learn about authoring a resource in your
+  language of choice.
+- [Command line reference for the 'dsc' command][03]
 
 <!-- link references -->
-[01]: concepts/configurations.md
-[02]: concepts/resources.md
+[00]: https://github.com/powershell/psdesiredstateconfiguration
+[01]: https://github.com/PowerShell/DSC/releases/latest
+[02]: resources/concepts/anatomy.md
+[03]: reference/cli/dsc.md
