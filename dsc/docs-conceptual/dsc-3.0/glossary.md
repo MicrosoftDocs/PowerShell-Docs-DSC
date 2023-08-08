@@ -95,7 +95,7 @@ provider.
 
 ### DSC Resource provider
 
-A resource provider is a resource group that enables the use of non-command-based resources with
+A _resource provider_ is a resource group that enables the use of non-command-based resources with
 DSC v3. Every nested resource instance must be a resource type the provider supports.
 
 #### Guidelines

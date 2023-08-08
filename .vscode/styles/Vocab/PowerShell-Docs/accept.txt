@@ -1,3 +1,7 @@
-
+DSC
+dsc
 LCM
 WMI
+IIS
+component
+determine

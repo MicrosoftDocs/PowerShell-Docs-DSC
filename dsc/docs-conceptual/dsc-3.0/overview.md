@@ -34,9 +34,9 @@ standards.
 
 DSC Resources define how to manage state for a particular system or application component.
 Resources describe a schema for the manageable settings of the component. Every resource can be
-used to with the **Get** and **Test** operations to retrieve the current state of a resource
-instance and validate whether it's in the desired state. Most resources also support enforcing the
-desired state with the **Set** operation.
+used with the **Get** and **Test** operations to retrieve the current state of a resource instance
+and validate whether it's in the desired state. Most resources also support enforcing the desired
+state with the **Set** operation.
 
 Example scenarios include how to update the contents of a file, how to run a utility that changes
 the state of a machine, or how to configure settings of an application.
