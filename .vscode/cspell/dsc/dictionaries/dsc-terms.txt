@@ -1,1 +1,3 @@
 Automanage
+DSC
+idempotently
