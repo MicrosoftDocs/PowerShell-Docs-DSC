@@ -40,8 +40,8 @@ resource in configuration documents and as the value of the `--resource` flag wh
 
 The fully qualified type name of a resource uses the following syntax:
 
-```text
-`<owner>[.<group>][.<area>]/<name>`
+```Syntax
+<owner>[.<group>][.<area>]/<name>
 ```
 
 Every resource must define an `owner` and a `name`. The `group` and `area` components enable
@@ -53,7 +53,7 @@ For more information about type names and how DSC validates them, see
 
 ## Resource properties
 
-A resource's properties are the settings and options a user can declare for managing an instance.
+The properties of a resource are the settings and options a user can declare for managing an instance.
 Resources always have at least one property. Resources define their properties in their schema.
 
 Properties are optional by default. Resources can be invoked directly or declared in a
