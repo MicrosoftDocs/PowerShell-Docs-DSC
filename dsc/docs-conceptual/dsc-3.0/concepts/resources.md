@@ -10,11 +10,11 @@ title: DSC Resources
 
 <!-- markdownlint-disable MD013 -->
 
-DSC Resources represent a standardized interface for managing the settings of a system. Resources
-can model components as generic as a file or as specific as an IIS server setting. Resources use a
-declarative syntax rather than imperative. Instead of specifying _how_ to set a system to the
-desired state, with DSC you specify _what_ the desired state is. Resources handle the "how" for
-you.
+In Microsoft's Desired State Configuration (DSC) platform, DSC Resources represent a standardized
+interface for managing the settings of a system. Resources can model components as generic as a
+file or as specific as an IIS server setting. Resources use a declarative syntax rather than
+imperative. Instead of specifying _how_ to set a system to the desired state, with DSC you specify
+_what_ the desired state is. Resources handle the "how" for you.
 
 Resources manage _instances_ of a configurable component. For example, the
 `PSDscResources/Environment` resource manages environment variables. Each environment variable is a
@@ -29,12 +29,12 @@ DSCv3 supports several kinds of resources:
   resource instances and processes them. Resource groups may apply special handling to their nested
   resource instances, like changing the user the resources run as.
 - A _resource provider_ is a resource group that enables the use of non-command-based resources
-  with DSC v3. For example, the `DSC/PowerShellGroup` resource provider enables the use of DSC
+  with DSCv3. For example, the `DSC/PowerShellGroup` resource provider enables the use of DSC
   Resources implemented in PowerShell modules.
 
 ## Resource type names
 
-DSC Resources are identified by their fully qualified type name. The type name is used to specify a
+Resources are identified by their fully qualified type name. The type name is used to specify a
 resource in configuration documents and as the value of the `--resource` flag when using the
 `dsc resource *` commands.
 
@@ -53,8 +53,9 @@ For more information about type names and how DSC validates them, see
 
 ## Resource properties
 
-The properties of a resource are the settings and options a user can declare for managing an instance.
-Resources always have at least one property. Resources define their properties in their schema.
+The properties of a resource are the settings and options a user can declare for managing an
+instance. Resources always have at least one property. Resources define their properties in their
+schema.
 
 Properties are optional by default. Resources can be invoked directly or declared in a
 configuration with only the properties that are relevant to the current task or purpose. You don't

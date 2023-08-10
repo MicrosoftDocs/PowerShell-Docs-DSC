@@ -1,15 +1,15 @@
 ---
 description: >-
-  Learn about the Desired State Configuration feature of PowerShell including the purpose and when
+  Learn about Microsoft's Desired State Configuration platform, including what it does and when
   it should be used.
 ms.date: 06/28/2023
-title:  PowerShell Desired State Configuration v3 overview
+title:  Microsoft Desired State Configuration v3 overview
 ---
 
-# PowerShell Desired State Configuration v3 overview
+# Microsoft Desired State Configuration v3 overview
 
-Microsoft's Desired State Configuration (DSC) is a declarative configuration platform, where the
-state of a machine is described using a format that should be clear to understand even if the
+Microsoft's Desired State Configuration (DSC) is a declarative configuration platform. With DSC,
+the state of a machine is described using a format that should be clear to understand even if the
 reader isn't a subject matter expert. Unlike imperative tools, with DSC the definition of an
 application environment is separate from the script logic that implements how it's delivered.
 
@@ -43,10 +43,10 @@ the state of a machine, or how to configure settings of an application.
 
 ### Differences from PowerShell DSC
 
-DSCv3 leverages the [PSDesiredStateConfiguration module][00] to maintain compatibility with
+DSCv3 leverages the [PSDesiredStateConfiguration module][00] to support compatibility with
 existing PowerShell based resources.
 
-DSCv3 differs from PowerShell DSC in a few important ways:
+DSCv3 differs from PowerShell Desired State Configuration (PSDSC) in a few important ways:
 
 - DSCv3 doesn't depend on PowerShell. You can use DSCv3 without PowerShell installed and manage
   resources written in bash, python, C#, Go, or any other language.
@@ -56,9 +56,9 @@ DSCv3 differs from PowerShell DSC in a few important ways:
 - Configuration documents are defined in JSON or YAML files, not PowerShell script files.
 
 Importantly, while DSCv3 represents a major change to the DSC platform, DSCv3 is able to invoke
-PowerShell DSC Resources, including script-based and class-based DSC Resources, as they exist
-today. The configuration documents aren't compatible, but all published PowerShell DSC Resources
-are. You can use PowerShell DSC resources in DSCv3 with both Windows PowerShell and PowerShell.
+PSDSC Resources, including script-based and class-based DSC Resources, as they exist today. The
+configuration documents aren't compatible, but all published PSDSC Resources are. You can use PSDSC
+resources in DSCv3 with both Windows PowerShell and PowerShell.
 
 ## Installation
 
