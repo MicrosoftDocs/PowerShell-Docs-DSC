@@ -1,7 +1,11 @@
-DSC
-dsc
-LCM
-WMI
-IIS
 component
 determine
+DSC
+dsc
+IIS
+LCM
+MOF
+PSDSC
+raised
+[sS]ubsequent
+WMI
