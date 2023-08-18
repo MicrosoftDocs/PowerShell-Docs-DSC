@@ -14,7 +14,7 @@ title: DSC Configuration Documents
 In Microsoft's Desired State Configuration (DSC) platform, DSC configuration documents declare the
 desired state of a system as data files. Configuration documents define a collection of
 [DSC Resource][01] instances to describe what the desired state should be, not how to put the
-system into that state. The DSC Resources handle the "how" for the configuration document's
+system into that state. The DSC Resources handle the _how_ for the configuration document
 instances.
 
 DSCv3 can process configuration documents to:
@@ -46,7 +46,7 @@ properties define how DSCv3 processes the document. The top-level properties for
 ## Defining a configuration document
 
 Minimally, a configuration document defines the `$schema` and `resources` properties. The
-`$schema` property must be a valid URI for DSC's configuration document schema. The `resources`
+`$schema` property must be a valid URI for the DSC configuration document schema. The `resources`
 property must define at least one DSC Resource instance.
 
 For example:
@@ -64,8 +64,8 @@ resources:
         String: This is an example.
 ```
 
-The example document declares a single resource instance called `example key value`. The instance
-uses the `Microsoft.Windows/Registry` resource to declare that:
+The example document defines a single resource instance called `example key value`. The instance
+uses the `Microsoft.Windows/Registry` resource to declare the following desired state:
 
 - The `example\key` registry key should exist in the system's current user hive.
 - The `example\key` registry key should have a value called `Example`.
@@ -78,15 +78,14 @@ and setting the state of the registry key and value.
 ### Defining resource instances
 
 As shown in the prior example, configuration documents include a collection of resource instances.
-Together, the instances describe a system's desired state. A configuration document can include any
-number of resource instances. The instances can be of any available DSC Resource.
+Together, the instances describe the desired state of a system. A configuration document can include any
+number of resource instances.
 
 A resource instance declaration always includes:
 
 - `name` - A short, human-readable name for the instance that's unique in the document. This name
-  is used for logging and it helps to document an instance's purpose in the document.
-- `type` - The [fully qualified type name][02] for the resource to identify the resource DSC should
-  use to manage the instance.
+  is used for logging and it helps describe the purpose of the instance.
+- `type` - The [fully qualified type name][02] of the resource that DSC should use to manage the instance.
 - `properties` - The desired state for the instance. DSC validates the values against the
   resource's instance schema.
 
@@ -118,8 +117,7 @@ hadErrors: false
 
 ## Testing a configuration
 
-The `dsc config test` command compares the current state of the resource instances defined in a
-configuration document to their desired state. The result for each instance includes:
+The `dsc config test` command compares the current state of the resource instances to their desired state. The result for each instance includes:
 
 - The desired state for the instance.
 - The actual state of the instance.
