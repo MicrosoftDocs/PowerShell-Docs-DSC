@@ -39,7 +39,7 @@ items:
                 href: resources/samples/first-resource/overview.md
               - name: Go
                 href: https://github.com/PowerShell/DSC-Samples/tree/main/samples/go/resources/first
-  - name: Command line reference
+  - name: dsc command line reference
     items:
       - name: dsc command
         href: reference/cli/dsc.md
@@ -113,3 +113,63 @@ items:
                 href: reference/schemas/resource/properties/purge.md
               - name: _rebootRequested
                 href: reference/schemas/resource/properties/rebootRequested.md
+  - name: Resource reference
+    items:
+      - name: Command-based resources
+        items:
+          - name: Microsoft/OSInfo
+            items:
+              - name: Overview
+                href: reference/microsoft/osinfo/overview.md
+              - name: DSC Resource
+                href: reference/microsoft/osinfo/resource.md
+              - name: DSC Examples
+                items:
+                  - name: Validate with dsc resource
+                    href: reference/microsoft/osinfo/examples/validate-with-dsc-resource.md
+                  - name: Validate in a configuration
+                    href: reference/microsoft/osinfo/examples/validate-in-a-configuration.md
+              - name: Command line reference
+                items:
+                  - name: osinfo command
+                    href: reference/microsoft/osinfo/cli/osinfo.md
+          - name: Microsoft.Windows/Registry
+            items:
+              - name: Overview
+                href: reference/microsoft/windows/registry/overview.md
+              - name: DSC Resource
+                href: reference/microsoft/windows/registry/resource.md
+              - name: DSC Examples
+                items:
+                  - name: Manage a registry key
+                    href: reference/microsoft/windows/registry/examples/manage-a-registry-key.md
+                  - name: Manage a registry value
+                    href: reference/microsoft/windows/registry/examples/manage-a-registry-value.md
+                  - name: Configure registry keys and values
+                    href: reference/microsoft/windows/registry/examples/configure-registry-keys-and-values.md
+              - name: Command line reference
+                items:
+                  - name: registry command
+                    href: reference/microsoft/windows/registry/cli/registry.md
+                  - name: registry config command
+                    items:
+                      - name: registry config
+                        href: reference/microsoft/windows/registry/cli/config/command.md
+                      - name: registry config get
+                        href: reference/microsoft/windows/registry/cli/config/get.md
+                      - name: registry config set
+                        href: reference/microsoft/windows/registry/cli/config/set.md
+                      - name: registry config test
+                        href: reference/microsoft/windows/registry/cli/config/test.md
+                  - name: registry find command
+                    href: reference/microsoft/windows/registry/cli/find/command.md
+                  - name: registry query command
+                    href: reference/microsoft/windows/registry/cli/query/command.md
+                  - name: registry remove command
+                    href: reference/microsoft/windows/registry/cli/remove/command.md
+                  - name: registry schema command
+                    href: reference/microsoft/windows/registry/cli/schema/command.md
+                  - name: registry set command
+                    href: reference/microsoft/windows/registry/cli/set/command.md
+                  - name: registry test command
+                    href: reference/microsoft/windows/registry/cli/test/command.md
