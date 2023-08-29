@@ -4,8 +4,9 @@
       { "dest": "dsc", "files": [ "breadcrumb/toc.yml" ] },
 
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-1.1", "version": "dsc-1.1" },
-      { "dest": "module", "exclude": [ "docs-conceptual/**" ], "files": [ "**/*.yml", "**/About/*.md" ], "src": "dsc-1.1", "version": "dsc-1.1" },
       { "dest": "module/dsc", "files": [ "toc.yml" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      { "dest": "module", "exclude": [ "docs-conceptual/**" ], "files": [ "**/*.yml", "**/About/*.md" ], "src": "dsc-1.1", "version": "dsc-1.1" },
+      
       
       { "dest": "dsc", "files": [ "**/*.md", "**/*.yml" ], "src": "docs-conceptual/dsc-2.0", "version": "dsc-2.0" },
       { "dest": "module", "exclude": [ "docs-conceptual/**" ], "files": [ "**/*.yml", "**/About/*.md" ], "src": "dsc-2.0", "version": "dsc-2.0" },
