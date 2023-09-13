@@ -3,6 +3,8 @@ items:
     href: overview.md
   - name: Glossary
     href: glossary.md
+  - name: Changelog
+    href: changelog.md
   - name: Getting started
     items:
       - name: Get started managing state with DSCv3
@@ -47,6 +49,8 @@ items:
         items:
           - name: dsc config
             href: reference/cli/config/command.md
+          - name: dsc config export
+            href: reference/cli/config/export.md
           - name: dsc config get
             href: reference/cli/config/get.md
           - name: dsc config set
@@ -57,6 +61,8 @@ items:
         items:
           - name: dsc resource
             href: reference/cli/resource/command.md
+          - name: dsc resource export
+            href: reference/cli/resource/export.md
           - name: dsc resource get
             href: reference/cli/resource/get.md
           - name: dsc resource list
@@ -85,6 +91,8 @@ items:
             items:
               - name: Root
                 href: reference/schemas/resource/manifest/root.md
+              - name: Export Property
+                href: reference/schemas/resource/manifest/export.md
               - name: Get Property
                 href: reference/schemas/resource/manifest/get.md
               - name: Set Property
@@ -113,6 +121,26 @@ items:
                 href: reference/schemas/resource/properties/purge.md
               - name: _rebootRequested
                 href: reference/schemas/resource/properties/rebootRequested.md
+      - name: Outputs
+        items:
+          - name: dsc config command outputs
+            items:
+              - name: dsc config get output
+                href: reference/schemas/outputs/config/get.md
+              - name: dsc config set output
+                href: reference/schemas/outputs/config/set.md
+              - name: dsc config test output
+                href: reference/schemas/outputs/config/test.md
+          - name: dsc resource command outputs
+            items:
+              - name: dsc resource get output
+                href: reference/schemas/outputs/resource/get.md
+              - name: dsc resource list output
+                href: reference/schemas/outputs/resource/list.md
+              - name: dsc resource set output
+                href: reference/schemas/outputs/resource/set.md
+              - name: dsc resource test output
+                href: reference/schemas/outputs/resource/test.md
   - name: Resource reference
     items:
       - name: Command-based resources
