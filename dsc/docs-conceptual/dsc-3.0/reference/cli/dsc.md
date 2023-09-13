@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc' command
-ms.date:     08/04/2023
+ms.date:     09/06/2023
 ms.topic:    reference
 title:       dsc
 ---
@@ -98,6 +98,31 @@ options and arguments after this one.
 Type:      Boolean
 Mandatory: false
 ```
+
+## Environment Variables
+
+By default, the `dsc` command searches for command-based DSC Resource manifests in the folders
+defined by the `PATH` environment variable. If the `DSC_RESOURCE_PATH` environment variable is
+defined, `dsc` searches the folders in `DSC_RESOURCE_PATH` instead of `PATH`.
+
+The `DSC_RESOURCE_PATH` environment must be an environment variable that follows the same
+conventions as the `PATH` environment variable for the operating system. Separate folder paths with
+a semicolon (`;`) on Windows and a colon (`:`) on other platforms.
+
+## Exit Codes
+
+The `dsc` command uses semantic exit codes. Each exit code represents a different result for the
+execution of the command.
+
+| Exit Code |                                                 Meaning                                                 |
+| :-------: | :------------------------------------------------------------------------------------------------------ |
+|    `0`    | The command executed successfully without any errors.                                                   |
+|    `1`    | The command failed because it received invalid arguments.                                               |
+|    `2`    | The command failed because a resource raised an error.                                                  |
+|    `3`    | The command failed because a value couldn't be serialized to or deserialized from JSON.                 |
+|    `4`    | The command failed because input for the command wasn't valid YAML or JSON.                             |
+|    `5`    | The command failed because a resource definition or instance value was invalid against its JSON schema. |
+|    `6`    | The command was cancelled by a <kbd>Ctrl</kbd>+<kbd>C</kbd> interruption.                               |
 
 [01]: config/command.md
 [02]: resource/command.md
