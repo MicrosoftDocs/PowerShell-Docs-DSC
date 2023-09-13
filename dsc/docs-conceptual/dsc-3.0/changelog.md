@@ -141,11 +141,8 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
   - Provide contextual error messages when a value fails pattern validation.
   - Define default snippets to autocomplete values.
 
-  These schemas are non-canonical and should only be used for authoring.
-
-  <!-- Add this back in after the document is written
-  For more information, see [Using the enhanced schemas for authoring][12].
-  -->
+  These schemas are non-canonical and should only be used for authoring. For more information, see
+  [Authoring with enhanced schemas][12].
 
   <details><summary>Related work items</summary>
 
@@ -218,7 +215,7 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [09]: reference/schemas/config/parameter.md#defaultvalue
 [10]: reference/schemas/config/parameter.md#allowedvalues
 [11]: reference/schemas/config/parameter.md
-<!-- [12]: /powershell/dsc/concepts/using-enhanced-schemas?view=dsc-3.0&preserve-view=true -->
+[12]: /powershell/dsc/concepts/enhanced-authoring?view=dsc-3.0&preserve-view=true
 [13]: /powershell/dsc/reference/microsoft/osinfo/resource?view=dsc-3.0&preserve-view=true
 [14]: reference/schemas/config/document.md#schema
 
