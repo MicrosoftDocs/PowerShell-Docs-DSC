@@ -39,7 +39,7 @@ Registry [string] #ResourceName
 |Force |If the specified registry key is present, **Force** overwrites it with the new value. If deleting a registry key with subkeys, this needs to be `$true`. |
 |Hex |Indicates if data will be expressed in hexadecimal format. If specified, the DWORD/QWORD value data is presented in hexadecimal format. Not valid for other types. The default value is `$false`. |
 |ValueData |The data for the registry value. |
-|ValueType |Indicates the type of the value. The supported types are: **String** (REG_SZ), **Binary** (REG-BINARY), **Dword** (32-bit REG_DWORD), **Qword** (64-bit REG_QWORD), **MultiString** (REG_MULTI_SZ), **ExpandString** (REG_EXPAND_SZ). |
+|ValueType |Indicates the type of the value. The supported types are: **String** (REG_SZ), **Binary** (REG_BINARY), **Dword** (32-bit REG_DWORD), **Qword** (64-bit REG_QWORD), **MultiString** (REG_MULTI_SZ), **ExpandString** (REG_EXPAND_SZ). |
 
 ## Common properties
 
