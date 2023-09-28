@@ -64,6 +64,7 @@
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
+      "feedback_system": "OpenSource",
       "hideScope": false,
       "manager": "jasongroce",
       "ms.author": "sewhee",
