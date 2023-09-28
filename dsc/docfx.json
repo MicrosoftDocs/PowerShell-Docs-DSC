@@ -16,7 +16,6 @@
     "exportViewModel": true,
     "externalReference": [],
     "fileMetadata": {
-      "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "feedback_product_url": {
         "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
         "**/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
@@ -64,6 +63,7 @@
       "author": "sdwheeler",
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
+      "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "hideScope": false,
       "manager": "jasongroce",
       "ms.author": "sewhee",
