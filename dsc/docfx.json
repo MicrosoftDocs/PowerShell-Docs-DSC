@@ -38,6 +38,8 @@
       "extendBreadcrumb": true,
       "feedback_github_repo": "MicrosoftDocs/PowerShell-Docs-DSC",
       "feedback_system": "OpenSource",
+      "feedback_help_link_url": "https://learn.microsoft.com/powershell/scripting/community/community-support",
+      "feedback_help_link_type": "ask-the-community",
       "open_source_feedback_contributorGuideUrl": "https://learn.microsoft.com/powershell/scripting/community/contributing/powershell-style-guide",
       "open_source_feedback_issueTitle": "",
       "open_source_feedback_issueLabels": "needs-triage",
