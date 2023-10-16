@@ -17,17 +17,26 @@
     "externalReference": [],
     "fileMetadata": {
       "feedback_product_url": {
-        "**/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
-        "**/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
-        "**/dsc-3.0/**/*.md": "https://github.com/PowerShell/DSC/issues/new/choose"
+        "docs-conceptual/dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "docs-conceptual/dsc-1.1/**/*.yml": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "docs-conceptual/dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "docs-conceptual/dsc-2.0/**/*.yml": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "docs-conceptual/dsc-3.0/**/*.md": "https://github.com/PowerShell/DSC/issues/new/choose",
+        "docs-conceptual/dsc-3.0/**/*.yml": "https://github.com/PowerShell/DSC/issues/new/choose",
+        "dsc-1.1/**/*.md": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "dsc-1.1/**/*.yml": "https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332",
+        "dsc-2.0/**/*.md": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "dsc-2.0/**/*.yml": "https://github.com/PowerShell/PSDesiredStateConfiguration/issues/new/choose",
+        "dsc-3.0/**/*.md": "https://github.com/PowerShell/DSC/issues/new/choose",
+        "dsc-3.0/**/*.yml": "https://github.com/PowerShell/DSC/issues/new/choose"
       },
       "ms.topic": {
-        "docs-conceptual/**": "conceptual",
-        "dsc-1.1/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "docs-conceptual/*": "conceptual",
+        "dsc-1.1/PSDesiredStateConfiguration/*": "managed-reference",
         "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
-        "dsc-2.0/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "dsc-2.0/PSDesiredStateConfiguration/*": "managed-reference",
         "dsc-2.0/PSDesiredStateConfiguration/About/*.md": "conceptual",
-        "dsc-3.0/PSDesiredStateConfiguration/*.md": "managed-reference",
+        "dsc-3.0/PSDesiredStateConfiguration/*": "managed-reference",
         "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "conceptual"
       }
     },
