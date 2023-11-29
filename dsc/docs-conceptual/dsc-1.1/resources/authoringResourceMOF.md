@@ -1,5 +1,5 @@
 ---
-ms.date: 07/08/2020
+ms.date: 11/29/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Writing a custom DSC resource with MOF
 description: This article defines the schema for a DSC custom resource in a MOF file and implements the resource in a PowerShell script file.
@@ -27,6 +27,7 @@ schema is defined in the file `Demo_IISWebsite.schema.mof`, and the resource scr
 ```
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
     |- MyDscResources (folder)
+        |- MyDscResources.psd1 (file, required)
         |- DSCResources (folder)
             |- Demo_IISWebsite (folder)
                 |- Demo_IISWebsite.psd1 (file, optional)

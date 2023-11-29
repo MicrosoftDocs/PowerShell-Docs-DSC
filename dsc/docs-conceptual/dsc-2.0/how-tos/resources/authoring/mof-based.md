@@ -2,7 +2,7 @@
 description: >
   This article shows how you can write a MOF-based DSC Resource with a script module and a schema
   file.
-ms.date: 08/15/2022
+ms.date: 11/29/2023
 title:  Authoring a MOF-based DSC Resource
 ---
 
@@ -29,6 +29,7 @@ Optionally, you can create a module manifest (`.psd1`) file.
 ```text
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
     |- MyDscResources (folder)
+        |- MyDscResources.psd1 (file, Required)
         |- DSCResources (folder)
             |- Demo_IISWebsite (folder)
                 |- Demo_IISWebsite.psd1 (file, optional)
