@@ -1,6 +1,6 @@
 ---
 description: PSDscResources Script resource
-ms.date: 08/08/2022
+ms.date: 12/01/2023
 ms.topic: reference
 title: Script
 ---
@@ -32,7 +32,6 @@ specific DSC resource isn't available. You must provide the code for these metho
 dependencies, and ensure your code is idempotent.
 
 > [!TIP]
-
 > Where possible, it's best practice to use a defined DSC resource instead of this one. The `Script`
 > resource has drawbacks that make it more difficult to test, maintain, and predict.
 >
@@ -41,6 +40,9 @@ dependencies, and ensure your code is idempotent.
 > no guarantees that this resource is implemented idempotently or that it'll work as expected on
 > any system because it uses custom code. It can't be tested without being invoked on a target
 > system.
+>
+> Before using the `Script` resource, consider whether you can [author a resource][01] instead.
+> Using well-defined DSC resources makes your configurations more readable and maintainable.
 
 ### Requirements
 
@@ -76,7 +78,7 @@ Type: System.String
 ### TestScript
 
 Specify a PowerShell scriptblock that validates whether the resource is in the desired state. This
-script block runs when the **Test** mothod for this resource is invoked.
+script block runs when the **Test** method for this resource is invoked.
 
 This script block should return `$true` if the resource is in the desired state and `$false` if it
 isn't in the desired state.
@@ -108,8 +110,9 @@ Type: System.String
 
 ## Examples
 
-- [Create a file with content][1]
+- [Create a file with content][02]
 
 <!-- Reference Links -->
 
-[1]: Example.md
+[01]: ../../../../how-tos/resources/authoring/overview.md
+[02]: Example.md
