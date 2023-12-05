@@ -1,5 +1,5 @@
 ---
-ms.date:  06/12/2017
+ms.date: 12/05/2023
 keywords:  dsc,powershell,configuration,setup
 title:  Understanding DSC's role in a CI/CD pipeline
 description: This article describes the types of approaches available for combining configurations and resources in a CI/CD pipeline.
@@ -131,6 +131,3 @@ outage.
 > should include a static reference to a specific version of each resource, and should be validated
 > by tests before reaching production server nodes. The process of testing and releasing changes
 > from source control creates a safe environment for releasing change in small but frequent batches.
-
-For more information about using release pipelines to manage core infrastructure, see the
-whitepaper: [The Release Pipeline Model](../further-reading/whitepapers.md).
