@@ -289,7 +289,3 @@ items:
             href: reference/mof-classes/msft-dsclocalconfigurationmanager-stopconfiguration.md
           - name: TestConfiguration method
             href: reference/mof-classes/msft-dsclocalconfigurationmanager-testconfiguration.md
-  - name: Further reading
-    items:
-      - name: Whitepapers
-        href: further-reading/whitepapers.md

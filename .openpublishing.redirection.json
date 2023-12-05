@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/further-reading/whitepapers.md",
+            "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
+            "redirect_document_id": true
+        },
+        {
             "source_path": "dsc/index.md",
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
