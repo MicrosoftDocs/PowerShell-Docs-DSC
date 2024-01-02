@@ -64,6 +64,8 @@ product ID.
 ```powershell
 Configuration PackageTest
 {
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+
     Package PackageExample
     {
         Ensure      = "Present"  # You can also set Ensure to "Absent"

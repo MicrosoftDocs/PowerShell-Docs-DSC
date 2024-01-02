@@ -81,6 +81,8 @@ PowerShell, respectively).
 ```powershell
 Configuration PackageTest
 {
+    Import-DscResource -ModuleName 'PackageManagement'
+
     PackageManagementSource SourceRepository
     {
         Ensure      = "Present"

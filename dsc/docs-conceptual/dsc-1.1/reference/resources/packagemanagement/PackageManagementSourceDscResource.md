@@ -66,6 +66,8 @@ DSC resource.
 ```powershell
 Configuration PackageManagementSourceTest
 {
+    Import-DscResource -ModuleName 'PackageManagement'
+
     PackageManagementSource SourceRepository
     {
         Ensure      = "Present"
