@@ -103,6 +103,8 @@ The source directory is a UNC path (`\\PullServer\DemoSource`) shared from the P
 ```powershell
 Configuration FileResourceDemo
 {
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+
     Node "localhost"
     {
         File DirectoryCopy
