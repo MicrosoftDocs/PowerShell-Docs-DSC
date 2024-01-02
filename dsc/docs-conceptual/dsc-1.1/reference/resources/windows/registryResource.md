@@ -62,6 +62,8 @@ This example ensures that the registry value "TestValue" under a key named "Exam
 ```powershell
 Configuration RegistryTest
 {
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+
     Registry RegistryExample
     {
         Ensure      = "Present"  # You can also set Ensure to "Absent"
@@ -79,6 +81,8 @@ This example ensures that a key named "ExampleKey2" is present in the **HKEY\_LO
 ```powershell
 Configuration RegistryTest
 {
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+
     Registry RegistryExample
     {
         Ensure      = "Present"  # You can also set Ensure to "Absent"

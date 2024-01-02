@@ -64,6 +64,7 @@ all subfeatures of each, are installed.
 configuration FeatureSetTest
 {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
+
     Node localhost
     {
 

@@ -65,6 +65,7 @@ Service [string] #ResourceName
 configuration ServiceTest
 {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
+
     Node localhost
     {
 

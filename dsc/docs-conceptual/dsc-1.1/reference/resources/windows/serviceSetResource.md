@@ -63,6 +63,7 @@ The following configuration starts the "Windows Audio" and "Remote Desktop Servi
 configuration ServiceSetTest
 {
     Import-DscResource -ModuleName PSDesiredStateConfiguration
+
     Node localhost
     {
         ServiceSet ServiceSetExample
