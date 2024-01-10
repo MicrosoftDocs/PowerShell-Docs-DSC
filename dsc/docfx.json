@@ -30,8 +30,23 @@
         "dsc-3.0/**/*.md": "https://github.com/PowerShell/DSC/issues/new/choose",
         "dsc-3.0/**/*.yml": "https://github.com/PowerShell/DSC/issues/new/choose"
       },
+      "ms.subservice": {
+        "docs-conceptual/dsc-1.1/**/*.md": "conceptual",
+        "docs-conceptual/dsc-1.1/**/*.yml": "conceptual",
+        "docs-conceptual/dsc-2.0/**/*.md": "conceptual",
+        "docs-conceptual/dsc-2.0/**/*.yml": "conceptual",
+        "docs-conceptual/dsc-3.0/**/*.md": "conceptual",
+        "docs-conceptual/dsc-3.0/**/*.yml": "conceptual",
+        "dsc-1.1/**/*.md": "cmdlets",
+        "dsc-1.1/**/*.yml": "cmdlets",
+        "dsc-2.0/**/*.md": "cmdlets",
+        "dsc-2.0/**/*.yml": "cmdlets",
+        "dsc-3.0/**/*.md": "cmdlets",
+        "dsc-3.0/**/*.yml": "cmdlets"
+      },
       "ms.topic": {
-        "docs-conceptual/*": "conceptual",
+        "docs-conceptual/**": "conceptual",
+        "docs-conceptual/**/reference/**": "reference",
         "dsc-1.1/PSDesiredStateConfiguration/*": "managed-reference",
         "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
         "dsc-2.0/PSDesiredStateConfiguration/*": "managed-reference",
@@ -59,7 +74,7 @@
       "manager": "jasongroce",
       "ms.author": "sewhee",
       "ms.devlang": "powershell",
-      "ms.prod": "powershell",
+      "ms.service": "powershell",
       "searchScope": [
         "PowerShell"
       ],
