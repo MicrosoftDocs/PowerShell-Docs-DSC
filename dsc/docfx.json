@@ -31,7 +31,8 @@
         "dsc-3.0/**/*.yml": "https://github.com/PowerShell/DSC/issues/new/choose"
       },
       "ms.topic": {
-        "docs-conceptual/*": "conceptual",
+        "docs-conceptual/**": "conceptual",
+        "docs-conceptual/**/reference/**": "reference",
         "dsc-1.1/PSDesiredStateConfiguration/*": "managed-reference",
         "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
         "dsc-2.0/PSDesiredStateConfiguration/*": "managed-reference",
