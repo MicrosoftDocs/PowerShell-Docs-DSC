@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the '_rebootRequested' well-known DSC Resource property.
-ms.date:     08/04/2023
+ms.date:     01/17/2024
 ms.topic:    reference
 title:       DSC Resource _rebootRequested property schema
 ---
@@ -15,7 +15,7 @@ Indicates whether an instance is in the desired state.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/resource/properties/rebootRequested.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/resource/properties/rebootRequested.json
 Type:          [boolean, 'null']
 ReadOnly:      true
 ```
@@ -43,6 +43,6 @@ snippet:
 
 ```json
 "_rebootRequested": {
-  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/resource/properties/rebootRequested.json"
+  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/resource/properties/rebootRequested.json"
 }
 ```

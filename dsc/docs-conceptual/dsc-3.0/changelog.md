@@ -2,10 +2,12 @@
 title: "Desired State Configuration changelog"
 description: >-
   A log of the changes for releases of DSCv3.
-ms.date: 09/27/2023
+ms.date: 01/17/2024
 ---
 
 # Changelog
+
+<!-- markdownlint-disable-file MD033 -->
 
 All notable changes to DSCv3 are documented in this file. The format is based on
 [Keep a Changelog][m1], and DSCv3 adheres to [Semantic Versioning][m2].
@@ -20,9 +22,175 @@ This section includes a summary of user-facing changes since the last release. F
 changes since the last release, see the [diff on GitHub][unreleased].
 
 <!-- Unreleased comparison link -->
-[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.3...main
+[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.4...main
 
 <!-- Add entries between releases under the appropriate section heading here  -->
+
+## [v3.0.0-alpha.4][release-v3.0.0-alpha.4] - 2023-11-14
+
+This section includes a summary of changes for the `alpha.4` release. For the full list of changes
+in this release, see the [diff on GitHub][compare-v3.0.0-alpha.4].
+
+<!-- Release links -->
+[release-v3.0.0-alpha.4]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0-alpha.4 "Link to the DSC v3.0.0-alpha.4 release on GitHub"
+[compare-v3.0.0-alpha.4]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.3...v3.0.0-alpha.4
+
+### Changed
+
+- Updated the canonical version of the schema URIs from `2023/08` to `2023/10`, as this release
+  includes breaking changes for the schemas.
+
+  As part of this change, the `$schema` keyword for both [configuration documents][21] and
+  [resource manifests][22] accepts any valid URI for the schemas, instead of only one. Now, you
+  can set the value for the keyword to the unbundled schema, the bundled schema, or the enhanced
+  authoring schema for any supported version.
+
+- Replaced the `_ensure` well-known property with the boolean [_exist][23] property. This improves
+  the semantics for users and simplifies implementation for resources, replacing the string enum
+  values `Present` and `Absent` with `true` and `false` respectively.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#202][#202]
+  - PRs: [#206][#206]
+
+  </details>
+
+- Updated the `Microsoft.Windows/Registry` resource to use the `_exist` property instead of
+  `_ensure` and updated the output to be idiomatic for a DSC Resource.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#162][#162]
+  - PRs: [#206][#206]
+
+  </details>
+
+- When a user presses the <kbd>Ctrl</kbd>+<kbd>C</kbd> key combination, DSC now recursively
+  terminates all child processes before exiting. This helps prevent dangling processes that were
+  previously unhandled by the interrupt event.
+
+  <details><summary>Related work items</summary>
+
+  - PRs: [#213][#213]
+
+  </details>
+
+### Added
+
+- Added the [--input][24] and [--input-file][25] global options to the root `dsc` command. Now, you
+  can pass input to DSC from a variable or file instead of piping from stdin.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#130][#130]
+  - PRs: [#217][#217]
+
+  </details>
+
+- Added the `arg` value as an option for defining how a command-based DSC Resource expects to
+  receive input. This enables resource authors to define resources that handle DSC passing the
+  instance JSON as an argument.
+
+  <details><summary>Related work items</summary>
+
+  - PRs: [#213][#213]
+
+  </details>
+
+- Added the new [completer][26] command enables users to add shell completions for DSC to their
+  shell. The command supports completions for Bash, Elvish, fish, PowerShell, and ZSH.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#186][#186]
+  - PRs: [#216][#216]
+
+  </details>
+
+- DSC now emits log messages to the stderr stream. This can make it easier to understand what DSC
+  is doing. This doesn't affect the data output. By default, DSC emits errors, warnings, and
+  informational messages, but not debug or trace messaging. You can control the level of the
+  logging with the new [--logging-level][27] option on the root `dsc` command.
+
+  <details><summary>Related work items</summary>
+
+  - Issues:
+    - [#107][#107]
+    - [#158][#158]
+  - PRs:
+    - [#211][#211]
+    - [#248][#248]
+
+  </details>
+
+- Added optimizations for the resource discovery process that runs before most `dsc` commands.
+  These optimizations significantly reduce the command execution duration, especially for the
+  `dsc resource *` commands, which rarely need to run a full discovery for resources.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#173][#173]
+  - PRs: [#240][#240]
+
+  </details>
+
+- Added initial [configuration document functions][28] to DSC. You can now use the [base64()][29],
+  [concat()][30], and [resourceId()][31] functions in the configuration document.
+
+  > [!NOTE]
+  > The `resourceId` function has been reimplemented as a document function instead of a special
+  > case, but it has the same functionality and parameters.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#57][#57]
+  - PRs:
+    - [#241][#241]
+    - [#252][#252]
+
+  </details>
+
+### Fixed
+
+- The `--format` option now works as users expect when the output is redirected or saved to a
+  variable. Before this fix, DSC always returned JSON output, even when the user wanted to save
+  the output as YAML. With this fix, the specified format is respected.
+
+  <details><summary>Related work items</summary>
+
+  - PRs: [#215][#215]
+
+  </details>
+
+- The `DSC/PowerShellGroup` resource now correctly returns the _labels_ for enumerations instead of
+  their integer value, making it easier to understand and compare results.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#159][#159]
+  - PRs: [#208][#208]
+
+  </details>
+
+- DSC no longer terminates during discovery when a resource errors unless the erroring resource is
+  being used for the command. DSC still terminates on a resource error during discovery under the
+  following conditions:
+
+  - When the erroring resource type is the same as the value of the `--resource` option for a
+    `dsc resource *` command.
+  - When an instance in the configuration document uses the erroring resource type for a
+    `dsc config *` command.
+
+  DSC emits the resource errors during discovery as warning messages for the `dsc resource list`
+  command. In all other cases, DSC emits the errors as debug messages.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#121][#121]
+  - PRs: [#240][#240]
+
+  </details>
 
 ## [v3.0.0-alpha.3][release-v3.0.0-alpha.3] - 2023-09-26
 
@@ -291,24 +459,58 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [19]: reference/schemas/resource/manifest/set.md#input
 [20]: reference/schemas/resource/manifest/test.md#input
 
+<!-- alpha.4 links -->
+[21]: reference/schemas/config/document.md#schema
+[22]: reference/schemas/resource/manifest/root.md#schema
+[23]: reference/schemas/resource/properties/exist.md
+[24]: reference/cli/dsc.md#-i---input
+[25]: reference/cli/dsc.md#-p---input-file
+[26]: reference/cli/completer/command.md
+[27]: reference/cli/dsc.md#-l---logging-level
+[28]: reference/schemas/config/functions/overview.md
+[29]: reference/schemas/config/functions/base64.md
+[30]: reference/schemas/config/functions/concat.md
+[31]: reference/schemas/config/functions/resourceId.md
+
 <!-- Issue and PR links -->
+[#107]: https://github.com/PowerShell/DSC/issues/107
+[#121]: https://github.com/PowerShell/DSC/issues/121
 [#127]: https://github.com/PowerShell/DSC/issues/127
+[#130]: https://github.com/PowerShell/DSC/issues/130
 [#133]: https://github.com/PowerShell/DSC/issues/133
 [#150]: https://github.com/PowerShell/DSC/issues/150
 [#156]: https://github.com/PowerShell/DSC/issues/156
+[#158]: https://github.com/PowerShell/DSC/issues/158
+[#159]: https://github.com/PowerShell/DSC/issues/159
+[#162]: https://github.com/PowerShell/DSC/issues/162
 [#163]: https://github.com/PowerShell/DSC/issues/163
 [#168]: https://github.com/PowerShell/DSC/issues/168
 [#171]: https://github.com/PowerShell/DSC/issues/171
 [#172]: https://github.com/PowerShell/DSC/issues/172
+[#173]: https://github.com/PowerShell/DSC/issues/173
 [#174]: https://github.com/PowerShell/DSC/issues/174
 [#175]: https://github.com/PowerShell/DSC/issues/175
 [#176]: https://github.com/PowerShell/DSC/issues/176
 [#177]: https://github.com/PowerShell/DSC/issues/177
 [#181]: https://github.com/PowerShell/DSC/issues/181
 [#182]: https://github.com/PowerShell/DSC/issues/182
+[#186]: https://github.com/PowerShell/DSC/issues/186
 [#197]: https://github.com/PowerShell/DSC/issues/197
 [#198]: https://github.com/PowerShell/DSC/issues/198
 [#199]: https://github.com/PowerShell/DSC/issues/199
+[#202]: https://github.com/PowerShell/DSC/issues/202
+[#206]: https://github.com/PowerShell/DSC/issues/206
+[#208]: https://github.com/PowerShell/DSC/issues/208
+[#211]: https://github.com/PowerShell/DSC/issues/211
+[#213]: https://github.com/PowerShell/DSC/issues/213
+[#215]: https://github.com/PowerShell/DSC/issues/215
+[#216]: https://github.com/PowerShell/DSC/issues/216
+[#217]: https://github.com/PowerShell/DSC/issues/217
+[#240]: https://github.com/PowerShell/DSC/issues/240
+[#241]: https://github.com/PowerShell/DSC/issues/241
+[#248]: https://github.com/PowerShell/DSC/issues/248
+[#252]: https://github.com/PowerShell/DSC/issues/252
 [#45]:  https://github.com/PowerShell/DSC/issues/45
+[#57]:  https://github.com/PowerShell/DSC/issues/57
 [#73]:  https://github.com/PowerShell/DSC/issues/73
 [#98]:  https://github.com/PowerShell/DSC/issues/98

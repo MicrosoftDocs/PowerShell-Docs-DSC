@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the 'validate' property in a DSC Resource manifest
-ms.date:     08/04/2023
+ms.date:     01/17/2024
 ms.topic:    reference
 title:       DSC Resource manifest validate property schema reference
 ---
@@ -15,7 +15,7 @@ This property
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/resource/manifest.validate.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/resource/manifest.validate.json
 Type:          object
 ```
 
