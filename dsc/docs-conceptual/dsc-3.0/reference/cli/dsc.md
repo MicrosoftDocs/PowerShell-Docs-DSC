@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc' command
-ms.date:     09/06/2023
+ms.date:     01/17/2024
 ms.topic:    reference
 title:       dsc
 ---
@@ -19,6 +19,11 @@ dsc [Options] <COMMAND>
 
 ## Commands
 
+### completer
+
+The `completer` command returns a shell script that, when executed, registers completions for the
+given shell. For more information, see [completer][01].
+
 ### config
 
 The `config` command manages a DSC Configuration document. You can use it to:
@@ -27,7 +32,7 @@ The `config` command manages a DSC Configuration document. You can use it to:
 - Test whether a configuration is in the desired state.
 - Set a configuration to the desired state.
 
-For more information, see [config][01].
+For more information, see [config][02].
 
 ### resource
 
@@ -39,12 +44,12 @@ The `resource` command manages a DSC Resource. You can use it to:
 - Test whether a resource instance is in the desired state.
 - Set a resource instance to the desired state.
 
-For more information, see [resource][02]
+For more information, see [resource][03]
 
 ### schema
 
 The `schema` command returns the JSON schema for a specific DSC type. For more information, see
-[schema][03].
+[schema][04].
 
 ### help
 
@@ -89,6 +94,61 @@ Type:      Boolean
 Mandatory: false
 ```
 
+### -i, --input
+
+Defines input for the command as a string instead of piping input from stdin. This option is
+mutually exclusive with the `--input-file` option. When you use this option, DSC ignores any input
+from stdin.
+
+To pass input for a command or subcommand, specify this option before the command, like
+`dsc --input $desired resource test`.
+
+```yaml
+Type:      String
+Mandatory: false
+```
+
+### -l, --logging-level
+
+Defines the minimum log level DSC should emit during an operation. Messages in DSC are categorized
+by their log level.
+
+The following list shows the valid log levels from highest to lowest level. When this option is
+set to any value in the list, DSC emits messages at that level and above.
+
+- `Error`
+- `Warning`
+- `Info` (default)
+- `Debug`
+- `Trace`
+
+For example, when the log level is `Debug`, DSC emits messages for every log level except `Trace`.
+Dsc emits only error messages when the log level is `Error`. DSC ignores every message with a lower
+log level.
+
+```yaml
+Type: String
+Mandatory: false
+DefaultValue: Info
+ValidValues:  [Error, Warning, Info, Debug, Trace]
+```
+
+### -p, --input-file
+
+Defines the path to a text file to read as input for the command instead of piping input from
+stdin. This option is mutually exclusive with the `--input` option. When you use this option, DSC
+ignores any input from stdin.
+
+To pass a file to read as input for a command or subcommand, specify this option before the
+command, like `dsc --input-file web.dsc.config.yaml config set`.
+
+If the specified file doesn't exist, DSC raises an error.
+
+```yaml
+Type:      String
+Mandatory: false
+```
+
 ### -V, --version
 
 Displays the version of the application. When you specify this option, the application ignores all
@@ -124,6 +184,7 @@ execution of the command.
 |    `5`    | The command failed because a resource definition or instance value was invalid against its JSON schema. |
 |    `6`    | The command was cancelled by a <kbd>Ctrl</kbd>+<kbd>C</kbd> interruption.                               |
 
-[01]: config/command.md
-[02]: resource/command.md
-[03]: schema/command.md
+[01]: completer/command.md
+[02]: config/command.md
+[03]: resource/command.md
+[04]: schema/command.md

@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for a parameter in a Desired State Configuration document.
-ms.date:     08/04/2023
+ms.date:     01/17/2024
 ms.topic:    reference
 title:       DSC Configuration document parameter schema
 ---
@@ -15,7 +15,7 @@ Defines runtime options for a configuration.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.parameter.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.parameter.json
 Type:          object
 ```
 

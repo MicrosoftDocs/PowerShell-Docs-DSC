@@ -47,6 +47,8 @@ items:
     items:
       - name: dsc command
         href: reference/cli/dsc.md
+      - name: dsc completer command
+        href: reference/cli/completer/command.md
       - name: dsc config command
         items:
           - name: dsc config
@@ -87,6 +89,16 @@ items:
             href: reference/schemas/config/parameter.md
           - name: Resource Instances
             href: reference/schemas/config/resource.md
+          - name: Functions
+            items:
+              - name: Overview
+                href: reference/schemas/config/functions/overview.md
+              - name: base64
+                href: reference/schemas/config/functions/base64.md
+              - name: concat
+                href: reference/schemas/config/functions/concat.md
+              - name: resourceId
+                href: reference/schemas/config/functions/resourceId.md
       - name: Resource
         items:
           - name:  Manifests
@@ -117,6 +129,8 @@ items:
                 href: reference/schemas/resource/properties/overview.md
               - name: _ensure
                 href: reference/schemas/resource/properties/ensure.md
+              - name: _exist
+                href: reference/schemas/resource/properties/exist.md
               - name: _inDesiredState
                 href: reference/schemas/resource/properties/inDesiredState.md
               - name: _purge
@@ -143,6 +157,14 @@ items:
                 href: reference/schemas/outputs/resource/set.md
               - name: dsc resource test output
                 href: reference/schemas/outputs/resource/test.md
+      - name: Shared definitions
+        items:
+          - name: message
+            href: reference/schemas/definitions/message.md
+          - name: resourceType
+            href: reference/schemas/definitions/resourceType.md
+          - name: Parameter dataTypes
+            href: reference/schemas/definitions/parameters/dataTypes.md
   - name: Resource reference
     items:
       - name: Command-based resources
