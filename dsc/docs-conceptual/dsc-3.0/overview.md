@@ -2,7 +2,7 @@
 description: >-
   Learn about Microsoft's Desired State Configuration platform, including what it does and when
   it should be used.
-ms.date: 06/28/2023
+ms.date: 01/29/2024
 title:  Microsoft Desired State Configuration v3 overview
 ---
 
@@ -68,7 +68,14 @@ To install DSCv3:
 1. Expand the release archive.
 1. Add the folder containing the expanded archive contents to the `PATH`.
 
-To install the `PSDesiredStateConfiguration` version 3 from the PowerShell Gallery:
+To install the `PSDesiredStateConfiguration` version 3 beta from the PowerShell Gallery:
+
+```powershell
+# Using PSResourceGet
+Install-PSResource -Name PSDesiredStateConfiguration -Version 3.0.0-beta1 -Prerelease
+# Using PowerShellGet
+Install-Module -Name PSDesiredStateConfiguration -RequiredVersion 3.0.0-beta1 -AllowPrerelease
+```
 
 ## Integrating with DSCv3
 
