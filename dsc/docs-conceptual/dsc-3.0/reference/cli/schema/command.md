@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc schema' command
-ms.date:     08/04/2023
+ms.date:     03/06/2024
 ms.topic:    reference
 title:       dsc schema
 ---
@@ -86,6 +86,18 @@ ValidValues: [
                configuration-set-result,
                configuration-test-result
              ]
+```
+
+### -f, --format
+
+The `--format` option controls the console output format for the command. If the command output is
+redirected or captured as a variable, the output is always JSON.
+
+```yaml
+Type:         String
+Mandatory:    false
+DefaultValue: yaml
+ValidValues:  [json, pretty-json, yaml]
 ```
 
 ### -h, --help
