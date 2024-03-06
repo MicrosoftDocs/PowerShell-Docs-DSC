@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc resource schema' command
-ms.date:     08/04/2023
+ms.date:     03/06/2024
 ms.topic:    reference
 title:       dsc resource schema
 ---
@@ -96,6 +96,18 @@ The fully qualified type name syntax is: `<owner>[.<group>][.<area>]/<name>`, wh
 ```yaml
 Type:      String
 Mandatory: true
+```
+
+### -f, --format
+
+The `--format` option controls the console output format for the command. If the command output is
+redirected or captured as a variable, the output is always JSON.
+
+```yaml
+Type:         String
+Mandatory:    false
+DefaultValue: yaml
+ValidValues:  [json, pretty-json, yaml]
 ```
 
 ### -h, --help
