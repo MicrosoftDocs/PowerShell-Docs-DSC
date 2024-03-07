@@ -2,6 +2,7 @@
 title: "Desired State Configuration changelog"
 description: >-
   A log of the changes for releases of DSCv3.
+ms.topic: whats-new
 ms.date: 03/06/2024
 ---
 
