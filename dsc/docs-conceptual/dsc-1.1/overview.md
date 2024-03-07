@@ -1,6 +1,7 @@
 ---
 description: Overview of the PSDesiredStateConfiguration v1.1 module.
 ms.date: 12/15/2021
+ms.topic: overview
 title:  PSDesiredStateConfiguration v1.1
 ---
 # PSDesiredStateConfiguration v1.1

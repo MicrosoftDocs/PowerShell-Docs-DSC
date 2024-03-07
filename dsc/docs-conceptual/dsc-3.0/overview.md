@@ -3,6 +3,7 @@ description: >-
   Learn about Microsoft's Desired State Configuration platform, including what it does and when
   it should be used.
 ms.date: 01/29/2024
+ms.topic: overview
 title:  Microsoft Desired State Configuration v3 overview
 ---
 
