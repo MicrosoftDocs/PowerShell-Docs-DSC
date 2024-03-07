@@ -2,6 +2,7 @@
 description: >
   Overview of Desired State Configuration 2.0
 ms.date: 05/15/2023
+ms.topic: overview
 title:  Desired State Configuration 2.0
 ---
 # Desired State Configuration 2.0

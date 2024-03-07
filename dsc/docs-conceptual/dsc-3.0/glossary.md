@@ -2,6 +2,7 @@
 title: "Glossary: Desired State Configuration"
 description: >-
   A glossary of terms for PowerShell Desired State Configuration (DSC) v3.
+ms.topic: glossary
 ms.date: 08/07/2023
 ---
 
