@@ -1,5 +1,5 @@
 ---
-ms.date:  10/13/2017
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title:  Desired State Configuration Overview for Engineers
 description: This document is intended for developer and operations teams to understand the benefits of PowerShell Desired State Configuration (DSC).
@@ -92,7 +92,7 @@ DSC allows you to say what you want done, and the underlying logic is abstracted
 # A configuration is a special kind of PowerShell function
 Configuration Sample_Share
 {
-   Import-DscResource -Module xSmbShare
+   Import-DSCResource -ModuleName xSmbShare
    # Nodes are the endpoint we wish to configure
    # A Configuration block can have zero or more Node blocks
    Node $NodeName

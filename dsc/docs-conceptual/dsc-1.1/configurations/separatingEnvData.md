@@ -1,5 +1,5 @@
 ---
-ms.date:  06/12/2017
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title:  Separating configuration and environment data
 description: It can be useful to separate the data used in a DSC configuration from the configuration itself by using configuration data. By doing this, you can use a single configuration for multiple environments.
@@ -155,9 +155,9 @@ Let's define the configuration in a file named `MyWebApp.ps1`:
 ```powershell
 Configuration MyWebApp
 {
-    Import-DscResource -Module PSDesiredStateConfiguration
-    Import-DscResource -Module xSqlPs
-    Import-DscResource -Module xWebAdministration
+    Import-DSCResource -ModuleName PSDesiredStateConfiguration
+    Import-DSCResource -ModuleName xSqlPs
+    Import-DSCResource -ModuleName xWebAdministration
 
     Node $AllNodes.Where{$_.Role -contains "MSSQL"}.NodeName
    {

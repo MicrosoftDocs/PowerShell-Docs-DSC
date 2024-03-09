@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxEnvironment Resource
 description: DSC for Linux nxEnvironment Resource
@@ -54,7 +54,7 @@ The following example shows how to use the **nxEnvironment** resource to ensure 
 **TestEnvironmentVariable** is not present, it will be created.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 nxEnvironment EnvironmentExample
 {

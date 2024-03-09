@@ -1,5 +1,5 @@
 ---
-ms.date: 07/08/2020
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title: Composite resources - Using a DSC configuration as a resource
 description: This article describes how to create and use a composite resource.
@@ -66,7 +66,7 @@ Configuration xVirtualMachine
     )
 
     # Import the module that defines custom resources
-    Import-DscResource -Module xComputerManagement,xHyper-V
+    Import-DSCResource -ModuleName xComputerManagement,xHyper-V
 
     # Install the Hyper-V role
     WindowsFeature HyperV
@@ -180,7 +180,7 @@ resource to rename it.
 ```powershell
 configuration RenameVM
 {
-    Import-DscResource -Module xVirtualMachine
+    Import-DSCResource -ModuleName xVirtualMachine
     Node localhost
     {
         xVirtualMachine VM
@@ -212,7 +212,7 @@ xVirtualMachine resource.
 ```PowerShell
 Configuration MultipleVms
 {
-    Import-DscResource -Module xVirtualMachine
+    Import-DSCResource -ModuleName xVirtualMachine
     Node localhost
     {
         xVirtualMachine VMs

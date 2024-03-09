@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxScript Resource
 description: DSC for Linux nxScript Resource
@@ -45,7 +45,7 @@ The following example demonstrates the use of the **nxScript** resource to perfo
 configuration management.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node
 {

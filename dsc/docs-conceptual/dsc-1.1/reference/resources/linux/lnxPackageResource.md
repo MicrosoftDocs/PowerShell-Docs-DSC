@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxPackage Resource
 description: DSC for Linux nxPackage Resource
@@ -49,7 +49,7 @@ The following example ensures that the package named "httpd" is installed on a L
 the "Yum" package manager.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node
 {
