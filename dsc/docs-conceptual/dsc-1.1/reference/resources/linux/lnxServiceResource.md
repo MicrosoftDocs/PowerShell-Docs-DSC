@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxService Resource
 description: DSC for Linux nxService Resource
@@ -49,7 +49,7 @@ The following example shows configuration of the 'httpd' service (for Apache HTT
 registered with the **SystemD** service controller.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node
 {

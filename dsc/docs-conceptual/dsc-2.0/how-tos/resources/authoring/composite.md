@@ -1,7 +1,7 @@
 ---
 description: >
   This article describes how to develop a DSC Resource composed of other DSC Resources
-ms.date: 01/06/2023
+ms.date: 03/09/2024
 title: Authoring a composite DSC Resource
 ---
 
@@ -65,7 +65,7 @@ Configuration xVirtualMachine {
     )
 
     # Import the module that defines custom resources
-    Import-DscResource -Module xComputerManagement, xHyper-V
+    Import-DSCResource -ModuleName xComputerManagement, xHyper-V
 
     # Install the Hyper-V role
     WindowsFeature HyperV {
@@ -173,7 +173,7 @@ calls the `xVirtualMachine` composite DSC Resource to create a virtual machine.
 
 ```powershell
 Configuration CreateVM {
-    Import-DscResource -Module xVirtualMachine
+    Import-DSCResource -ModuleName xVirtualMachine
 
     xVirtualMachine VM {
         VMName          = "Test"
@@ -192,7 +192,7 @@ names for the **VMName** property of the composite DSC Resource.
 
 ```PowerShell
 Configuration MultipleVms {
-    Import-DscResource -Module xVirtualMachine
+    Import-DSCResource -ModuleName xVirtualMachine
 
     xVirtualMachine VMs {
         VMName          = @(

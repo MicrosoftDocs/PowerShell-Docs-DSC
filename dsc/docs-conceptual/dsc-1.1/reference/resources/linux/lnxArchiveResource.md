@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxArchive Resource
 description: DSC for Linux nxArchive Resource
@@ -45,7 +45,7 @@ The following example shows how to use the **nxArchive** resource to ensure that
 archive file called `website.tar` exist and are extracted at a given destination.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 nxFile SyncArchiveFromWeb
 {
