@@ -2,7 +2,7 @@
 description: >
   This article shows how to create a DSC Resource that manages a file in a specified path with
   PowerShell classes.
-ms.date: 01/06/2023
+ms.date: 03/09/2024
 title:  Authoring a class-based DSC Resource
 ---
 
@@ -126,7 +126,7 @@ functions.
 function Get-File {
     param(
         [ensure]$ensure,
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -149,7 +149,7 @@ function Get-File {
             "The file was expected to be: $ensure"
             "The file exists at path: $path"
         ) -join "`n"
-        
+
         $existingFileContent    = Get-Content $path -Raw
         if ([string]::IsNullOrEmpty($existingFileContent)) {
             $existingFileContent = ''
@@ -186,7 +186,7 @@ function Get-File {
 function Set-File {
     param(
         [ensure]$ensure = "Present",
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -207,7 +207,7 @@ function Set-File {
 function Test-File {
     param(
         [ensure]$ensure = "Present",
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -217,7 +217,7 @@ function Test-File {
 
     $test = $false
     $get = Get-File @PSBoundParameters
-    
+
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
@@ -324,7 +324,7 @@ class MyDscResourceReason {
 function Get-File {
     param(
         [ensure]$ensure,
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -347,7 +347,7 @@ function Get-File {
             "The file was expected to be: $ensure"
             "The file exists at path: $path"
         ) -join "`n"
-        
+
         $existingFileContent    = Get-Content $path -Raw
 
         if ([string]::IsNullOrEmpty($existingFileContent)) {
@@ -385,7 +385,7 @@ function Get-File {
 function Set-File {
     param(
         [ensure]$ensure = "Present",
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -406,7 +406,7 @@ function Set-File {
 function Test-File {
     param(
         [ensure]$ensure = "Present",
-        
+
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [String]$path,
@@ -416,7 +416,7 @@ function Test-File {
 
     $test = $false
     $get = Get-File @PSBoundParameters
-    
+
     if ($get.ensure -eq $ensure) {
         $test = $true
     }
@@ -455,7 +455,7 @@ function ConvertTo-SpecialChars {
 
 [DscResource()]
 class NewFile {
-    
+
     <#
         This property is the fully qualified path to the file that is
         expected to be present or absent.
@@ -514,7 +514,7 @@ class NewFile {
         $get = Get-File -ensure $this.ensure -path $this.path -content $this.content
         return $get
     }
-    
+
     <#
         This method is equivalent of the Set-TargetResource script function.
         It sets the Resource to the desired state.
@@ -522,7 +522,7 @@ class NewFile {
     [void] Set() {
         $set = Set-File -ensure $this.ensure -path $this.path -content $this.content
     }
-    
+
     <#
         This method is equivalent of the Test-TargetResource script
         function. It should return True or False, showing whether the
@@ -546,58 +546,58 @@ this:
 
     # Script module or binary module file associated with this manifest.
     RootModule = 'NewFile.psm1'
-    
+
     # Version number of this module.
     ModuleVersion = '1.0.0'
-    
+
     # ID used to uniquely identify this module
     GUID = 'fad0d04e-65d9-4e87-aa17-39de1d008ee4'
-    
+
     # Author of this module
     Author = 'Microsoft Corporation'
-    
+
     # Company or vendor of this module
     CompanyName = 'Microsoft Corporation'
-    
+
     # Copyright statement for this module
     Copyright = ''
-    
+
     # Description of the functionality provided by this module
     Description = 'Create and set content of a file'
-    
+
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.0'
-    
+
     # Functions to export from this module
     FunctionsToExport = @('Get-File','Set-File','Test-File')
-    
+
     # DSC Resources to export from this module
     DscResourcesToExport = @('NewFile')
-    
+
     # Private data to pass to the module specified in RootModule/ModuleToProcess.
     # This may also contain a PSData hashtable with additional module metadata used by PowerShell.
     PrivateData = @{
-    
+
         PSData = @{
-    
+
             # Tags applied to this module. These help with module discovery in online galleries.
             # Tags = @(Power Plan, Energy, Battery)
-    
+
             # A URL to the license for this module.
             # LicenseUri = ''
-    
+
             # A URL to the main website for this project.
             # ProjectUri = ''
-    
+
             # A URL to an icon representing this module.
             # IconUri = ''
-    
+
             # ReleaseNotes of this module
             # ReleaseNotes = ''
-    
+
         } # End of PSData hashtable
-    
-    } 
+
+    }
 }
 ```
 
@@ -610,7 +610,7 @@ property **Content**. If not, the entire file is written.
 
 ```powershell
 Configuration MyConfig {
-    Import-DSCResource -module NewFile
+    Import-DSCResource -ModuleName NewFile
     NewFile testFile {
         Path = "/tmp/test.txt"
         Content = "DSC Rocks!"

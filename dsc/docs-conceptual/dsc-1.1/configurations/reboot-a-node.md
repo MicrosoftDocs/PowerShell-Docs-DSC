@@ -1,5 +1,5 @@
 ---
-ms.date:  01/17/2019
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title:  Reboot a Node
 description: Many configuration settings can require the computer to be rebooted for the configuration change to be complete. This article explains how to manage reboots in a configuration.
@@ -98,8 +98,8 @@ Configuration Example
         $ExchangeAdminCredential
     )
 
-    Import-DscResource -Module xExchange
-    Import-DscResource -Module ComputerManagementDsc
+    Import-DSCResource -ModuleName xExchange
+    Import-DSCResource -ModuleName ComputerManagementDsc
 
     Node $AllNodes.NodeName
     {

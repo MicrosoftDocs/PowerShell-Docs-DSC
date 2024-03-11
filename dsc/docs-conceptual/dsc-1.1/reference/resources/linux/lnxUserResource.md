@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxUser Resource
 description: DSC for Linux nxUser Resource
@@ -52,7 +52,7 @@ nxUser <string> #ResourceName
 The following example ensures that the user "monuser" exists and is a member of the group "DBusers".
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node
 {

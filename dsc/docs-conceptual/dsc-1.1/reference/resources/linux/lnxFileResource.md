@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxFile Resource
 description: DSC for Linux nxFile Resource
@@ -67,7 +67,7 @@ break characters:
    with the web or ftp URL to the file.
 
    ```powershell
-   Import-DSCResource -Module nx
+   Import-DSCResource -ModuleName nx
 
    Node $Node
    {
@@ -86,7 +86,7 @@ break characters:
    property to use the Linux line-break character.
 
    ```powershell
-   Import-DSCResource -Module nx
+   Import-DSCResource -ModuleName nx
 
    Node $Node
    {
@@ -112,7 +112,7 @@ break characters:
       Return $outputStr
    }
 
-   Import-DSCResource -Module nx
+   Import-DSCResource -ModuleName nx
 
    Node $Node
    {
@@ -139,7 +139,7 @@ The following example ensures that the directory `/opt/mydir` exists, and that a
 contents exists this directory.
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node {
     nxFile DirectoryExample

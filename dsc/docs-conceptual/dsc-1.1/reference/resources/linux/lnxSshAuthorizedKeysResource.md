@@ -1,5 +1,5 @@
 ---
-ms.date: 07/17/2020
+ms.date: 03/09/2024
 ms.topic: reference
 title: DSC for Linux nxSshAuthorizedKeys Resource
 description: DSC for Linux nxSshAuthorizedKeys Resource
@@ -42,7 +42,7 @@ nxAuthorizedKeys <string> #ResourceName
 The following example defines a public ssh authorized key for the user "monuser".
 
 ```powershell
-Import-DSCResource -Module nx
+Import-DSCResource -ModuleName nx
 
 Node $node
 {

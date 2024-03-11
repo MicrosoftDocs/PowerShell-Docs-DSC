@@ -1,5 +1,5 @@
 ---
-ms.date:  12/12/2018
+ms.date: 03/09/2024
 keywords:  dsc,powershell,resource,gallery,setup
 title:  Add Parameters to a Configuration
 description: DSC Configurations can be parameterized to allow more dynamic configurations based on user input.
@@ -18,7 +18,7 @@ This example starts with a basic Configuration that configures the "Spooler" ser
 Configuration TestConfig
 {
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -ModuleName PSDesiredStateConfiguration
 
     Node localhost
     {
@@ -112,7 +112,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -ModuleName PSDesiredStateConfiguration
 
     Node $ComputerName
     {
@@ -150,7 +150,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -ModuleName PSDesiredStateConfiguration
 
     Node $ComputerName
     {
@@ -237,7 +237,7 @@ Configuration TestConfig
     )
 
     # It is best practice to explicitly import any required resources or modules.
-    Import-DSCResource -Module PSDesiredStateConfiguration
+    Import-DSCResource -ModuleName PSDesiredStateConfiguration
 
     Node $ComputerName
     {

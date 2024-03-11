@@ -1,5 +1,5 @@
 ---
-ms.date:  06/04/2021
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title:  Get started with Desired State Configuration (DSC) for Linux
 description: This topic explains how to get started using PowerShell Desired State Configuration (DSC) for Linux.
@@ -52,10 +52,10 @@ DSC for Linux is available for download from the
 [PowerShell-DSC-for-Linux](https://github.com/Microsoft/PowerShell-DSC-for-Linux/releases/tag/v1.2.1-0)
 repository in the repository.
 
-To install DSC, install the package that is appropriate for your Linux system (.rpm or .deb), 
+To install DSC, install the package that is appropriate for your Linux system (.rpm or .deb),
 OpenSSL version, and architecture (x64/x86). RPM packages are appropriate for CentOS, Red Hat
 Enterprise Linux, SUSE Linux Enterprise Server, and Oracle Linux. DEB packages are appropriate
-for Debian GNU/Linux and Ubuntu Server. 
+for Debian GNU/Linux and Ubuntu Server.
 
 > [!NOTE]
 > Support for DSC Linux OpenSSL up to version 1.1. To determine the installed OpenSSL version,
@@ -87,7 +87,7 @@ document for a Linux computer using Windows PowerShell.
    ```powershell
    Configuration ExampleConfiguration{
 
-    Import-DSCResource -Module nx
+    Import-DSCResource -ModuleName nx
 
    }
    ```
@@ -97,7 +97,7 @@ document for a Linux computer using Windows PowerShell.
    ```powershell
    Configuration ExampleConfiguration
    {
-        Import-DscResource -Module nx
+        Import-DSCResource -ModuleName nx
 
         Node  "linuxhost.contoso.com"
         {

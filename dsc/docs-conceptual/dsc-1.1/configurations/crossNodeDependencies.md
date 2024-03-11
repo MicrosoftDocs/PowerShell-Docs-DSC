@@ -1,5 +1,5 @@
 ---
-ms.date:  12/12/2018
+ms.date: 03/09/2024
 keywords:  dsc,powershell,configuration,setup
 title:  Specifying cross-node dependencies
 description: DSC provides special resources that are used in configurations to specify dependencies on configurations on other nodes.
@@ -86,7 +86,7 @@ will typically want to specify a **RetryCount** and **RetryIntervalSec**.
 ```powershell
 Configuration JoinDomain
 {
-    Import-DscResource -Module xComputerManagement, xActiveDirectory
+    Import-DSCResource -ModuleName xComputerManagement, xActiveDirectory
 
     Node myDC
     {
