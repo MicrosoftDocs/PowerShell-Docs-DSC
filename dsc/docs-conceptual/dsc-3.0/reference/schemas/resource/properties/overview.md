@@ -2,7 +2,7 @@
 description: >-
   Information about the list of well-known DSC Resource properties, including their purpose and how
   to add them to a resource's manifest.
-ms.date:     01/17/2024
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       DSC well-known properties
 ---

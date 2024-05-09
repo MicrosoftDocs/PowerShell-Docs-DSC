@@ -39,6 +39,11 @@
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
             "redirect_url": "/powershell/dsc/concepts/glossary?view=dsc-2.0",
             "redirect_document_id": true
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/schemas/resource/manifest/provider.md",
+            "redirect_url": "/powershell/dsc/reference/schemas/resource/manifest/adapter",
+            "redirect_document_id": true
         }
     ]
 }

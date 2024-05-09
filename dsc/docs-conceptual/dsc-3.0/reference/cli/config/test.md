@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc config test' command
-ms.date:     03/06/2024
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       dsc config test
 ---
@@ -49,12 +49,12 @@ resource instances defined in the configuration document saved as `example.dsc.c
 
 ```yaml
 # example.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 resources:
 - name: Windows only
   type: DSC/AssertionGroup
   properties:
-    $schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+    $schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
     resources:
     - name: os
       type: Microsoft/OSInfo

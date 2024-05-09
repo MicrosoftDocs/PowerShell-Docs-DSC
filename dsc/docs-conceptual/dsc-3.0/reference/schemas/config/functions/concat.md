@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'concat' DSC configuration document function
-ms.date:     03/06/2024
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       concat
 ---
@@ -35,7 +35,7 @@ The configuration uses the `concat()` function to join the strings `abc` and `de
 
 ```yaml
 # concat.example.1.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 resources:
   - name: Echo 'abcdef'
     type: Test/Echo
@@ -58,15 +58,56 @@ messages: []
 hadErrors: false
 ```
 
+### Example 2 - Concatenate arrays of strings
+
+The configuration uses the `concat()` function to return a combined array of strings from two arrays of strings. It uses YAML's folded multiline syntax to make the function more readable.
+
+```yaml
+# concat.example.2.dsc.config.yaml
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
+resources:
+- name: Echo ['a', 'b', 'c', 'd', 'e', 'f']
+  type: Test/Echo
+  properties:
+    output: >-
+      [concat(
+        createArray('a', 'b', 'c'),
+        createArray('d', 'e', 'f')
+      )]
+```
+
+```bash
+dsc config get --document concat.example.2.dsc.config.yaml
+```
+
+```yaml
+results:
+- name: Echo ['a', 'b', 'c', 'd', 'e', 'f']
+  type: Test/Echo
+  result:
+    actualState:
+      output:
+      - a
+      - b
+      - c
+      - d
+      - e
+      - f
+messages: []
+hadErrors: false
+```
+
 ## Parameters
 
 ### inputValue
 
-A value to concatenate. Each value must be either a string or an array of strings. The strings are
-are added to the output string in the same order you pass them to the function.
+The `concat()` function expects two or more input values of the same type to concatenate. Each
+value must be either a string or an array of strings. If one value is a string and the other an
+array, or either value isn't a string or array of strings, DSC raises an error when validating the
+configuration document.
 
 ```yaml
-Type:         [string, array]
+Type:         [string, array(string)]
 Required:     true
 MinimumCount: 2
 MaximumCount: 18446744073709551615
@@ -74,10 +115,12 @@ MaximumCount: 18446744073709551615
 
 ## Output
 
-The output of the function is a single string with every **inputValue** concatenated together.
+When every **inputValue** is a string, `concat()`returns a single string with every **inputValue**
+concatenated together. When every **inputValue** is an array of strings, `concat()` returns a
+flattened array containing the strings from each input array.
 
 ```yaml
-Type: string
+Type: [string, array]
 ```
 
 <!-- Link reference definitions -->

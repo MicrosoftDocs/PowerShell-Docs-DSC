@@ -3,12 +3,35 @@ title: "Desired State Configuration changelog"
 description: >-
   A log of the changes for releases of DSCv3.
 ms.topic: whats-new
-ms.date: 03/06/2024
+ms.date: 05/09/2024
 ---
 
 # Changelog
 
 <!-- markdownlint-disable-file MD033 -->
+
+<!--
+    Helpful docs snippets
+
+    You can use the following snippets in this file to make authoring new change entries and
+    releases easier.
+
+    docs-changelog-entry-single-issue-pr: Adds a new changelog list entry with one related issue
+    and PR. Use this when a change entry only has one related issue and/or pull request. Always
+    use this snippet under a change kind heading, like 'Added' or 'Changed.'
+
+    docs-changelog-entry-multi-issue-pr: Adds a new changelog list entry with sub-lists for issues
+    and PRs. Use this when a change entry has more than one related issue and/or pull request.
+    Always use this snippet under a change kind heading, like 'Added' or 'Changed.'
+
+    docs-changelog-release-heading: Adds a new changelog release heading, following our existing
+    format. Use this when a new release is created to ensure that the new release heading has the
+    required links and synopsis.
+
+    docs-gh-link: Adds a new link to an issue or pull request on GitHub. Use this when adding a new
+    work item link reference and it will automatically construct the URL and reference link ID for
+    you from the work item ID.
+-->
 
 All notable changes to DSCv3 are documented in this file. The format is based on
 [Keep a Changelog][m1], and DSCv3 adheres to [Semantic Versioning][m2].
@@ -22,10 +45,514 @@ All notable changes to DSCv3 are documented in this file. The format is based on
 This section includes a summary of user-facing changes since the last release. For the full list of
 changes since the last release, see the [diff on GitHub][unreleased].
 
-<!-- Unreleased comparison link -->
-[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.5...main
+<!-- Unreleased comparison link - always update version to match last release tag-->
+[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-preview.7...main
 
-<!-- Add entries between releases under the appropriate section heading here  -->
+<!--
+    Unreleased change entry instructions:
+
+    Add entries between releases under the appropriate section heading here. When you need to add
+    a change, make sure it's under one of the H3s, not this H2. Use one of the following snippets
+    to add the change entry:
+
+    - docs-changelog-entry-single-issue-pr: Adds a new changelog list entry with one related issue
+      and PR. Use this when a change entry only has one related issue and/or pull request.
+
+    - docs-changelog-entry-multi-issue-pr: Adds a new changelog list entry with sub-lists for
+      issues and PRs. Use this when a change entry has more than one related issue and/or pull
+      request.
+
+    When you're ready to update the unreleased changelog entries for a new release, use the
+    docs-changelog-release-heading snippet to create the new release heading after this comment and
+    before the first H3 for the changes.
+
+    After doing so, rename the unreleased reference links from `ur-##` to `<prefix>-##`, where
+    <prefix> is a two-character prefix for the release. For alpha releases, we use `a#`, like `a5`
+    for the `v3.0.0.0-alpha.5` release. Leave the release links under the release section.
+-->
+
+<!-- Unreleased change links -->
+
+## [v3.0.0-preview.7][release-v3.0.0-preview.7] - 2024-04-22
+
+This section includes a summary of changes for the `preview.7` release. For the full list of changes
+in this release, see the [diff on GitHub][compare-v3.0.0-preview.7].
+
+<!-- Release links -->
+[release-v3.0.0-preview.7]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0-preview.7 "Link to the DSC v3.0.0-preview.7 release on GitHub"
+[compare-v3.0.0-preview.7]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.4...v3.0.0-preview.7
+
+### Changed
+
+- The version segment of the schema URIs for DSC have been updated from `2023/10` to `2024/04` to
+  accommodate breaking schema changes from the schemas that `alpha.5` used. You can find more
+  information about the specific changes to the schemas in the following changelog entries:
+
+  - [Renamed 'providers' to 'adapters'](#rename-provider-to-adapter)
+  - [Added the 'delete' operation for resources](#add-delete-operation)
+  - [Added the option to specify a required security context for a configuration document](#add-elevation-requirement)
+  - [Add option to specify a JSON input argument for resource commands](#add-json-input-arg)
+  - [Add 'kind' property to resource manifests](#add-kind-property)
+  - [Camel-cased 'SecureObject' and 'SecureString' parameter types](#camel-casing-secure-types)
+  - [Add 'capabilities' to 'dsc resource list' output](#add-capabilities)
+  - [Added metadata to config and resource output](#add-metadata-output)
+
+  Update your configuration documents and resource manifests to use the following URIs for the
+  `$schema` keyword:
+
+  ```yaml
+  Canonical URI for configuration documents: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
+
+  Bundled URI for configuration documents: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/bundled/config/document.json
+
+  Enhanced Authoring in VS Code URI for configuration documents: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/bundled/config/document.vscode.json
+
+  Canonical URI for resource manifests: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.json
+
+  Bundled URI for resource manifests: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/bundled/resource/manifest.json
+
+  Enhanced Authoring in VS Code URI for resource manifests: >-
+    https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/bundled/resource/manifest.vscode.json
+  ```
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#397][#397]
+
+  </details>
+
+- <a id="rename-provider-to-adapter" /> In this release, the term `DSC Resource Provider` is
+  replaced with the more semantically accurate `DSC Resource Adapter`. These resources enable users
+  to leverage resources that don't define a DSC Resource Manifest with DSC, like PSDSC resources -
+  they're _adapters_ between DSCv3 and resources defined in a different way.
+
+  Beyond using different terminology in the documentation, this change also renamed the resource
+  manifest property `provider` to [adapter][p7-01], and the `requires` property in the output for
+  `dsc resource list` has been renamed to [requireAdapter][p7-02].
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#310][#310]
+  - PRs:
+    - [#334][#334]
+    - [#373][#373]
+
+  </details>
+
+- <a id="camel-casing-secure-types"></a> Changed the casing for the [parameter type enums][p7-03]
+  from `SecureString` to `secureString` and `SecureObject` to `secureObject`, to better match the
+  type enumerations in ARM.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#364][#364]
+
+  </details>
+
+- The [envvar()][envvar()] function now raises an error when the specified environment variable
+  doesn't exist instead of returning an empty string. This change helps reduce unexpected and
+  difficult to diagnose errors when a configuration expects a value from the environment variable.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#336][#336]
+  - PRs: [#358][#358]
+
+  </details>
+
+- Renamed the `DscConfigRoot` environment variable to `DSC_CONFIG_ROOT`. DSC now correctly
+  absolutizes the variable, even when the path to a configuration document is a relative path. DSC
+  also raises a warning when you define the environment variable outside of DSC before overriding
+  it.
+
+  <details><summary>Related work items</summary>
+
+  - Issues:
+    - [#317][#317]
+    - [#335][#335]
+  - PRs: [#342][#342]
+
+  </details>
+
+- Updated the default behavior of the [dsc resource list][cmd-rlist] command and added the new
+  [--adapter][p7-04] option to the command.
+
+  Prior to this release, the command always called the `list` command for any discovered adapters,
+  even when searching for a non-adapted resource by name. Enumerating the adapted resources can be
+  a slow process, so the command no longer calls the adapters to list their adapted resources by
+  default.
+
+  Instead, you can use the `--adapter` option to specify a filter for the adapters you want to list
+  adapted resources for. Specify the fully qualified type name of an adapter or a string including
+  wildcards (`*`) to use as a filter for adapter names. You can specify the filter `*` to have DSC
+  call the `list` operation for every discovered adapter, returning all adapted resources.
+
+  For more information, see [dsc resource list][cmd-rlist].
+
+  <details><summary>Related work items</summary>
+
+  - Issues:
+    - [#274][#274]
+    - [#368][#368]
+  - PRs: [#377][#377]
+
+  </details>
+
+- Updated the table view for the [dsc resource list][cmd-rlist] command to display the resource
+  kind and capabilities. The capabilities column in the table uses bit flags for the display to
+  keep the column width manageable.
+
+  For more information, see the "Output" section of [dsc resource list][cmd-rlist].
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#329][#329]
+  - PRs: [#346][#346]
+
+  </details>
+
+### Added
+
+- <a id="add-delete-operation" /></a> Added the [dsc resource delete][cmd-rdelete] command and the
+  [delete][p7-05] operation property to the resource manifest. Prior to this release, resources had
+  to handle deleting resources as part of their `set` operation, and the development guidance was
+  to use the [_exist][p7-06] standard property to indicate whether a resource should exist.
+
+  Now, resource authors can indicate through the resource manifest whether the resource supports
+  the `delete` operation with a separate command or as part of the `set` operation. It can be
+  simpler to implement a separate `delete` operation than to handle deleting instances as part of
+  `set`. You can implement your resource to have an explicit `delete` command and handle deleting
+  instances as part of a `set` operation.
+
+  You can also use the `dsc resource delete` command to delete instances one at a time. For this
+  command, the JSON input defines the filter to pass to the resource for deleting the instance. For
+  more information, see [dsc resource delete command reference][cmd-rdelete].
+
+  If your resource handles deleting instances as part of `set`, use the [handlesExist][p7-07]
+  property to tell DSC so. When this property is `true`, the resource has the
+  [SetHandlesExist capability][p7-08].
+
+  If your resource has a separate command for deleting instances, use the [delete][p7-05] property
+  in your resource manifest to tell DSC and other tools how to invoke the operation. When this
+  property is defined, the resource has the [Delete capability][p7-09].
+
+  If your resource handles deleting instances, you should add the `_exist` standard property to the
+  resource's [instance schema][p7-10]. While you can use any property name for this, DSC is only aware of
+  deletion operations when you use the `_exist` property. DSC won't know to call the `delete`
+  operation for resources that don't have the [SetHandlesExist][p7-08] capability.
+
+  For resources that implement `delete` but don't handle `_exist` in the `set` operation, DSC can
+  now invoke the delete operation as-needed in a configuration whenever it enforces the desired
+  state for an instance of a resource with the `_exist` property set to `false`.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#290][#290]
+  - PRs:
+    - [#379][#379]
+    - [#382][#382]
+
+  </details>
+
+- <a id="add-elevation-requirement" /></a> Added the option to specify whether a configuration
+  document requires root or elevated permissions. Now, you can define the `securityContext`
+  metadata property under the `Microsoft.DSC` namespace in a configuration document to specify
+  which security context to use:
+
+  - `Current` - Any security context. This is the default if you don't specify this property in a
+    configuration document.
+  - `Elevated` - Elevated as root or an administrator.
+  - `Restricted` - Not elevated as root or an administrator.
+
+  For example, the following metadata at the top of a configuration document indicates that DSC
+  must run as a normal user account, not root or administrator:
+
+  ```yaml
+  metadata:
+    Microsoft.DSC:
+      securityContext: restricted
+  ```
+
+  For more information, see [DSC Configuration document metadata schema][p7-11].
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#258][#258]
+  - PRs: [#351][#351]
+
+  </details>
+
+- <a id="add-json-input-arg" /></a> Added the option to define a JSON input argument for resource
+  commands. When you define the `args` list for the following commands, you can now define a
+  special argument that the command expects to receive the compressed JSON data for:
+
+  - [delete][p7-12]
+  - [export][p7-13]
+  - [get][p7-14]
+  - [set][p7-15]
+  - [test][p7-16]
+  - [validate][p7-17]
+
+  DSC sends data to these commands in three ways:
+
+  1. When `input` is `stdin`, DSC sends the data as a string representing the data as a compressed
+     JSON object without spaces or newlines between the object properties.
+  1. When `input` is `env`, DSC sends the data as environment variables. It creates an environment
+     variable for each property in the input data object, using the name and value of the property.
+  1. When the `args` array includes a JSON input argument definition, DSC sends the data as a
+     string representing the data as a compressed JSON object to the specified argument.
+
+  If you don't define the `input` property and don't define a JSON input argument, DSC can't pass
+  the input JSON to the resource. You can only define one JSON input argument for a command.
+
+  You must define the `input` property, one JSON input argument in the `args` property array, or
+  both. For more information, see the relevant schema documentation for the command property.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#218][#218]
+  - PRs: [#385][#385]
+
+  </details>
+
+- <a id="added-config-functions"/></a> Added configuration functions:
+
+  - New mathematics functions include [add()][add()], [div()][div()], [max()][max()],
+    [min()][min()], [mod()][mod()], [mul()][mul()], and [sub()][sub()]. The mathematics functions
+    only operate on integer values.
+
+  - The [reference()][reference()] function enables you to reference the result output for other
+    resources, so you can use properties of one resource instance as values for another. The
+    `reference()` function only works for resources that DSC has already managed in a
+    configuration. You should always add the resource you're referencing with the `reference()`
+    function to the [dependsOn][p7-18] list for the instance using the reference.
+
+  - The [createArray()][createArray()] function enables you to create arrays of a given type from
+    values.
+
+  - The [int()][int()] function enables you to convert strings and numbers with fractional parts
+    into integers.
+
+  <details><summary>Related work items</summary>
+
+  - Issues:
+    - [#57][#57]
+  - PRs:
+    - [#347][#347]
+    - [#349][#349]
+    - [#352][#352]
+    - [#353][#353]
+    - [#354][#354]
+    - [#360][#360]
+    - [#361][#361]
+    - [#375][#375]
+    - [#376][#376]
+
+  </details>
+
+- <a id="add-kind-property" /></a> Added the [kind][p7-19] property to the resource manifest schema
+  and the [output][p7-20] for the [dsc resource list][cmd-rlist] command. This property indicates
+  whether the resource is a [group resource][p7-21] (`Group`), an [adapter resource][p7-22]
+  (`Adapter`), or neither (`Resource`). For more information, see
+  [DSC Resource kind schema reference][p7-23].
+
+  This property is mandatory in the resource manifest for group resources. If your resource
+  manifest doesn't define the `kind` property, DSC can infer whether the resource is an adapter
+  resource or not. Microsoft recommends always explicitly defining this property in resource
+  manifests, because the schema can apply enhanced validation based on the value of the `kind`
+  property.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#139][#139]
+  - PRs: [#338][#338]
+
+  </details>
+
+- <a id="add-capabilities" /></a> Added the [capabilities][p7-24] property to the output for the
+  [dsc resource list][cmd-rlist] command. The `capabilities` property indicates how you can use the
+  DSC Resource and how DSC and other higher order tools should handle it.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#356][#356]
+  - PRs: [#357][#357]
+
+  </details>
+
+- <a id="add-metadata-output" /></a> Added the `metadata` property to the outputs for `dsc config`
+  and `dsc resource` subcommands. This property in the output defines the context DSC was run under
+  and information about the operation. See the output reference for each command for more
+  information:
+
+  - [dsc config get][p7-25]
+  - [dsc config test][p7-26]
+  - [dsc config set][p7-27]
+  - [dsc resource get][p7-28]
+  - [dsc resource test][p7-29]
+  - [dsc resource set][p7-30]
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#401][#401]
+  - PRs: [#405][#405]
+
+  </details>
+
+- Added parsing for [configuration functions][cfuncs] in the [default values][p7-31] of parameters.
+  Prior to this release, DSC interpreted configuration functions in parameter default values as
+  literal strings.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#364][#364]
+
+  </details>
+
+- Added type validation for parameter [default values][p7-31]. Prior to this release, DSC didn't
+  validate that the default value for a parameter was valid for the parameter's [type][p7-32].
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#364]
+
+  </details>
+
+- Added support for resources to send trace information to DSC during command execution. DSC
+  Resources can emit JSON objects to stderr. If the object has a property in the following list
+  with a string value, DSC interprets the emitted object as a message of the matching level:
+  `Error`, `Warning`, `Info`, `Debug`, `Trace`.
+
+  For example, DSC would interpret a resource emitting the following JSON to stderr as a warning:
+
+  ```json
+  {"Warning":"Unable to access remote store, using cached local package data only"}
+  ```
+
+  DSC emits these messages along with its own messages when the specified trace level for the
+  command is equal to or lower than the message's level.
+
+  For more information about trace levels, see the [--trace-level][p7-33] option for the
+  [dsc][cmd] root command.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#89][#89]
+  - PRs: [#287][#287]
+
+  </details>
+
+- Added validation to ensure resources return data for their instances that is valid against their
+  own instance JSON schema. Prior to this release, the return data wasn't validated.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#251][#251]
+  - PRs: [#362][#362]
+
+  </details>
+
+- Added multi-line progress bars for the `dsc resource list` command to provide feedback to
+  interactive users about the resource discovery process. Prior to this release, the command
+  executed silently.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#323][#323]
+
+  </details>
+
+- Added functionality to insert metadata for adapter resources to indicate if the incoming data is
+  for a configuration instead of direct resource invocation. Prior to this release, adapters had no
+  way of discerning between a single-instance call for a configuration and a direct resource
+  invocation.
+
+  With this change, DSC inserts the following into the data object sent to the adapter during a
+  `dsc config` command:
+
+  ```json
+  "metadata": {
+    "Microsoft.DSC": {
+      "context": "Configuration"
+    }
+  }
+  ```
+
+  Adapters can then check whether this value is set in the input data and handle it as-needed.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#253][#253]
+  - PRs: [#348][#348]
+
+  </details>
+
+- Added the `Microsoft.Windows/RebootPending` resource, which checks whether a Windows machine has
+  a pending reboot. It can only be used for assertions, not to enforce state.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#333][#333]
+  - PRs: [#344][#344]
+
+  </details>
+
+- Added the `Microsoft.DSC.Transitional/RunCommandOnSet` resource, which runs a specified
+  executable or script with given arguments during a `set` operation. This resource is intended as
+  a temporary transitional resource while migrating to DSCv3 and implementing resources for your
+  needs.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#302][#302]
+  - PRs: [#321][#321]
+
+  </details>
+
+<!-- preview.7 change links -->
+[p7-01]: reference/schemas/resource/manifest/adapter.md
+[p7-02]: reference/schemas/outputs/resource/list.md#requireadapter
+[p7-03]: reference/schemas/definitions/parameters/dataTypes.md
+[p7-04]: reference/cli/resource/list.md#-a---adapter
+[p7-05]: reference/schemas/resource/manifest/delete.md
+[p7-06]: reference/schemas/resource/properties/exist.md
+[p7-07]: reference/schemas/resource/manifest/set.md#handlesexist
+[p7-08]: reference/schemas/outputs/resource/list.md#capability-sethandlesexist
+[p7-09]: reference/schemas/outputs/resource/list.md#capability-delete
+[p7-10]: reference/schemas/resource/manifest/root.md#schema-1
+[p7-11]: reference/schemas/config/metadata.md
+[p7-12]: reference/schemas/resource/manifest/delete.md#json-input-argument
+[p7-13]: reference/schemas/resource/manifest/export.md#json-input-argument
+[p7-14]: reference/schemas/resource/manifest/get.md#json-input-argument
+[p7-15]: reference/schemas/resource/manifest/set.md#json-input-argument
+[p7-16]: reference/schemas/resource/manifest/test.md#json-input-argument
+[p7-17]: reference/schemas/resource/manifest/validate.md#json-input-argument
+[p7-18]: reference/schemas/config/resource.md#dependson
+[p7-19]: reference/schemas/resource/manifest/root.md#kind
+[p7-20]: reference/schemas/outputs/resource/list.md
+[p7-21]: reference/schemas/definitions/resourceKind.md#group-resources
+[p7-22]: reference/schemas/definitions/resourceKind.md#adapter-resources
+[p7-23]: reference/schemas/definitions/resourceKind.md
+[p7-24]: reference/schemas/outputs/resource/list.md#capabilities
+[p7-25]: reference/schemas/outputs/config/get.md#metadata-1
+[p7-26]: reference/schemas/outputs/config/test.md#metadata-1
+[p7-27]: reference/schemas/outputs/config/set.md#metadata-1
+[p7-28]: reference/schemas/outputs/resource/get.md#metadata-1
+[p7-29]: reference/schemas/outputs/resource/test.md#metadata-1
+[p7-30]: reference/schemas/outputs/resource/set.md#metadata-1
+[p7-31]: reference/schemas/config/parameter.md#defaultvalue
+[p7-32]: reference/schemas/config/parameter.md#type
+[p7-33]: reference/cli/dsc.md#-l---trace-level
 
 ## [v3.0.0-alpha.5][release-v3.0.0-alpha.5] - 2024-02-27
 
@@ -47,12 +574,15 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
     `--document` and `--path` options for specifying the configuration document as a string or from
     a file. The relevant `resource` subcommands have the `--input` and `--path` options for
     specifying the instance properties as a string or from a file.
-  - The `--logging-level` option is renamed to [--trace-level][36] with the short name `-l`. The
+  - The `--logging-level` option is renamed to [--trace-level][a5.05] with the short name `-l`. The
     default trace level is now `warning` instead of `info`.
-  - Added the [--trace-format][37] option with the `-f` short name. This option enables you to
+  - Added the [--trace-format][a5.06] option with the `-f` short name. This option enables you to
     choose the format for the trace messages emitted to stderr. By default, the messages are
     emitted as lines of text with console colors. You can set this option to `plaintext` to emit
     the messages without console colors or to `json` to emit the messages as JSON objects.
+
+    The trace messaging is also updated to only emit source files and line numbers for the `debug`
+    and `trace` levels.
 
   <details><summary>Related work items</summary>
 
@@ -64,12 +594,13 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
     - [#299][#299]
     - [#303][#303]
     - [#305][#305]
+    - [#388][#388]
 
   </details>
 
-- Updated the JSON schemas for the [get][38], [set][39], and [test][40] output data. This change
-  corrects an issue with how DSC surfaced information about instances nested inside group and
-  adapter resources. Now when you review the output, you'll be able to see the results for each
+- Updated the JSON schemas for the [get][a5.07], [set][a5.08], and [test][a5.09] output data. This
+  change corrects an issue with how DSC surfaced information about instances nested inside group
+  and adapter resources. Now when you review the output, you'll be able to see the results for each
   nested instance instead of a confusing object that loses the nested instance type and name
   information.
 
@@ -83,27 +614,28 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
     - [#284][#284]
   - PRs: [#318][#318]
 
-  <details>
+  </details
 
-- Changed the [concat][41] configuration function to match the behavior of the ARM template
+- Changed the [concat][a5.10] configuration function to match the behavior of the ARM template
   function. The `concat()` function now only accepts strings or arrays of strings as input values.
-  It raises an error if the input values aren't of the same type.
+  It raises an error if the input values are not of the same type.
 
   <details><summary>Related work items</summary>
 
   - Issues: [#271][#271]
   - PRs: [#322][#322]
 
-  <details>
+  </details
 
 ### Added
 
-- Implemented support for referencing parameters in a configuration with the [parameters()][32]
+- Implemented support for referencing parameters in a configuration with the [parameters()][a5.01]
   configuration function. This enables you to take advantage of parameterized configurations. Until
   this release, you could define but not reference parameters.
 
-  Now, you can use the [--parameters][33] and [--parameters-file][34] options with the
-  [dsc config][35] commands to pass values for any parameter defined in the configuration document.
+  Now, you can use the [--parameters][a5.02] and [--parameters-file][a5.03] options with the
+  [dsc config][a5.04] commands to pass values for any parameter defined in the configuration
+  document.
 
   <details><summary>Related work items</summary>
 
@@ -125,11 +657,12 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
 
   </details>
 
-- Added the [DSCConfigRoot][42] environment variable and the [envvar() configuration function][43]
-  to enable users to reference files and folders relative to the folder containing the
-  configuration document. DSC automatically creates the `DSCConfigRoot` environment variable when
-  you use the `--path` option to specify the configuration document instead of passing the document
-  as a string from stdin or with the `--document` option.
+- Added the [DSCConfigRoot][a5.11] environment variable and the
+  [envvar() configuration function][a5.12] to enable users to reference files and folders relative
+  to the folder containing the configuration document. DSC automatically and only creates the
+  `DSCConfigRoot` environment variable when you use the `--path` option to specify the
+  configuration document instead of passing the document as a string from stdin or with the
+  `--document` option.
 
   > [!NOTE]
   > In this release, DSC doesn't expand the specified path to an absolute path. You should always
@@ -149,9 +682,10 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
 
   </details>
 
-- Added support for using the [dsc config export][44] and [dsc resource export][45] commands with
-  the PowerShell adapter resource. PSDSC resources can now participate in the `export` command if
-  they define a static method that returns an array of the PSDSC resource class.
+- Added support for using the [dsc config export][cmd-cexport] and
+  [dsc resource export][cmd-rexport] commands with the PowerShell adapter resource. PSDSC resources
+  can now participate in the `export` command if they define a static method that returns an array
+  of the PSDSC resource class.
 
   <details><summary>Related work Items</summary>
 
@@ -161,11 +695,11 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
   </details>
 
 - Added the `methods` column to the default table view for the console output of the
-  [dsc resource list][46] command. This new column indicates which methods the resource explicitly
-  implements. Valid values include `get`, `set`, `test`, and `export`. This information is only
-  available in the table view. It isn't part of the output object for the command. If you use the
-  [--format][47] parameter, capture the command output, or redirect the output, the `methods`
-  information isn't included.
+  [dsc resource list][cmd-rlist] command. This new column indicates which methods the resource
+  explicitly implements. Valid values include `get`, `set`, `test`, and `export`. This information
+  is only available in the table view. It isn't part of the output object for the command. If you
+  use the [--format][a5.16] parameter, capture the command output, or redirect the output, the
+  `methods` information isn't included.
 
   Resources that don't implement `test` rely on DSC's synthetic test behavior instead. They can
   still be used for test and set operations.
@@ -196,6 +730,21 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.5].
 
   </details>
 
+<!-- alpha.5 links -->
+[a5.01]: reference/schemas/config/functions/parameters.md
+[a5.02]: reference/cli/config/command.md#-p---parameters
+[a5.03]: reference/cli/config/command.md#-f---parameters_file
+[a5.04]: reference/cli/config/command.md
+[a5.05]: reference/cli/dsc.md#-l---trace-level
+[a5.06]: reference/cli/dsc.md#-f---trace-format
+[a5.07]: reference/schemas/outputs/resource/get.md
+[a5.08]: reference/schemas/outputs/resource/set.md
+[a5.09]: reference/schemas/outputs/resource/test.md
+[a5.10]: reference/schemas/config/functions/concat.md
+[a5.11]: reference/cli/config/command.md#environment-variables
+[a5.12]: reference/schemas/config/functions/envvar.md
+[a5.16]: reference/cli/resource/list.md#-f---format
+
 ## [v3.0.0-alpha.4][release-v3.0.0-alpha.4] - 2023-11-14
 
 This section includes a summary of changes for the `alpha.4` release. For the full list of changes
@@ -210,14 +759,14 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.4].
 - Updated the canonical version of the schema URIs from `2023/08` to `2023/10`, as this release
   includes breaking changes for the schemas.
 
-  As part of this change, the `$schema` keyword for both [configuration documents][21] and
-  [resource manifests][22] accepts any valid URI for the schemas, instead of only one. Now, you
+  As part of this change, the `$schema` keyword for both [configuration documents][a4.01] and
+  [resource manifests][a4.02] accepts any valid URI for the schemas, instead of only one. Now, you
   can set the value for the keyword to the unbundled schema, the bundled schema, or the enhanced
   authoring schema for any supported version.
 
-- Replaced the `_ensure` well-known property with the boolean [_exist][23] property. This improves
-  the semantics for users and simplifies implementation for resources, replacing the string enum
-  values `Present` and `Absent` with `true` and `false` respectively.
+- Replaced the `_ensure` well-known property with the boolean [_exist][a4.03] property. This
+  improves the semantics for users and simplifies implementation for resources, replacing the
+  string enum values `Present` and `Absent` with `true` and `false` respectively.
 
   <details><summary>Related work items</summary>
 
@@ -268,7 +817,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.4].
 
   </details>
 
-- Added the new [completer][26] command enables users to add shell completions for DSC to their
+- Added the new [completer][a4.04] command enables users to add shell completions for DSC to their
   shell. The command supports completions for Bash, Elvish, fish, PowerShell, and ZSH.
 
   <details><summary>Related work items</summary>
@@ -305,8 +854,9 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.4].
 
   </details>
 
-- Added initial [configuration document functions][28] to DSC. You can now use the [base64()][29],
-  [concat()][30], and [resourceId()][31] functions in the configuration document.
+- Added initial [configuration document functions][a4.05] to DSC. You can now use the
+  [base64()][a4.06], [concat()][a4.07], and [resourceId()][a4.08] functions in the configuration
+  document.
 
   > [!NOTE]
   > The `resourceId` function has been reimplemented as a document function instead of a special
@@ -362,6 +912,16 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.4].
 
   </details>
 
+<!-- alpha.4 links -->
+[a4.01]: reference/schemas/config/document.md#schema
+[a4.02]: reference/schemas/resource/manifest/root.md#schema
+[a4.03]: reference/schemas/resource/properties/exist.md
+[a4.04]: reference/cli/completer/command.md
+[a4.05]: reference/schemas/config/functions/overview.md
+[a4.06]: reference/schemas/config/functions/base64.md
+[a4.07]: reference/schemas/config/functions/concat.md
+[a4.08]: reference/schemas/config/functions/resourceId.md
+
 ## [v3.0.0-alpha.3][release-v3.0.0-alpha.3] - 2023-09-26
 
 This section includes a summary of changes for the `alpha.3` release. For the full list of changes
@@ -373,7 +933,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
 
 ### Changed
 
-- Replaced the `manifestVersion` property for resource manifests with [$schema][15]. Instead of
+- Replaced the `manifestVersion` property for resource manifests with [$schema][a3.01]. Instead of
   specifying a semantic version, resources need to indicate which canonical schema DSC should use
   to validate and process the manifest.
 
@@ -385,7 +945,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
   </details>
 
 - Updated the `preTest` property for the `set` command in resource manifests to
-  [implementsPretest][16] to more make the manifest easier to read and understand.
+  [implementsPretest][a3.02] to more make the manifest easier to read and understand.
 
   <details><summary>Related work items</summary>
 
@@ -393,7 +953,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
 
   </details>
 
-- The [dsc resource set][17] command no longer tests the resource instance before invoking the
+- The [dsc resource set][cmd-rset] command no longer tests the resource instance before invoking the
   `set` operation. This simplifies the behavior for the command and adheres more accurately to the
   implied contract for directly invoking a resource with DSC.
 
@@ -405,7 +965,8 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
   </details>
 
 - Replaced the `args` option with `env` for defining how a command-based resource expects to
-  receive input for the [get][18], [set][19], and [test][20] commands in the resource manifest.
+  receive input for the [get][a3.04], [set][a3.05], and [test][a3.06] commands in the resource
+  manifest.
 
   The `args` option was never implemented. Instead, resource authors can set the `input` property
   to `env` to indicate that the resource expects input as environmental variables.
@@ -416,7 +977,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
 
   </details>
 
-- The `input` property for the [get][18] command in a resource manifest no longer has a default
+- The `input` property for the [get][a3.04] command in a resource manifest no longer has a default
   value. Instead, when a resource doesn't define `input` for the `get` command, DSC doesn't send
   any input to the resource for that command.
 
@@ -425,6 +986,13 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.3].
   - PRs: [#198][#198]
 
   </details>
+
+<!-- alpha.3 links -->
+[a3.01]: reference/schemas/resource/manifest/root.md#schema
+[a3.02]: reference/schemas/resource/manifest/set.md#implementspretest
+[a3.04]: reference/schemas/resource/manifest/get.md#input
+[a3.05]: reference/schemas/resource/manifest/set.md#input
+[a3.06]: reference/schemas/resource/manifest/test.md#input
 
 ## [v3.0.0-alpha.2][release-v3.0.0-alpha.2] - 2023-09-05
 
@@ -435,11 +1003,23 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 [release-v3.0.0-alpha.2]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0-alpha.2 "Link to the DSC v3.0.0-alpha.2 release on GitHub"
 [compare-v3.0.0-alpha.2]: https://github.com/PowerShell/DSC/compare/v3.0.0-alpha.1...v3.0.0-alpha.2
 
+### Changed
+
+- The [$schema][a2.14] value for configuration documents now points to the canonical published
+  schema URI,
+  `https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json`.
+
+  <details><summary>Related work items</summary>
+
+  - PRs: [#156][#156]
+
+  </details>
+
 ### Added
 
-- Implemented functionality for the [dependsOn property of resource instances][01] in configuration
-  documents, enabling resource instances to depend on the successful processing of one or more
-  other instances in the document.
+- Implemented functionality for the [dependsOn property of resource instances][a2.01] in
+  configuration documents, enabling resource instances to depend on the successful processing of
+  one or more other instances in the document.
 
   <details><summary>Related work items</summary>
 
@@ -448,8 +1028,8 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added the [export][02] property to the resource manifest schema, indicating that the resource is
-  exportable and defining how DSC can retrieve the current state for every instance of the
+- Added the [export][a2.02] property to the resource manifest schema, indicating that the resource
+  is exportable and defining how DSC can retrieve the current state for every instance of the
   resource.
 
   <details><summary>Related work items</summary>
@@ -459,9 +1039,9 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added the [dsc config export][03] command to convert an input configuration document defining a
-  list of resource types into a usable configuration document that defines the current state for
-  every instance of those resources.
+- Added the [dsc config export][cmd-cexport] command to convert an input configuration document
+  defining a list of resource types into a usable configuration document that defines the current
+  state for every instance of those resources.
 
   <details><summary>Related work items</summary>
 
@@ -470,8 +1050,8 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added the [dsc resource export][04] command to generate a usable configuration document that
-  defines the current state for every instance of a specified resource.
+- Added the [dsc resource export][cmd-rexport] command to generate a usable configuration document
+  that defines the current state for every instance of a specified resource.
 
   <details><summary>Related work items</summary>
 
@@ -480,8 +1060,8 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added the [--all][05] option for the [dsc resource get][06] command, enabling users to retrieve
-  the current state for every instance of an exportable resource with a single command.
+- Added the [--all][a2.05] option for the [dsc resource get][cmd-rget] command, enabling users to
+  retrieve the current state for every instance of an exportable resource with a single command.
 
   <details><summary>Related work items</summary>
 
@@ -494,7 +1074,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
 - Added handling for the <kbd>Ctrl</kbd>+<kbd>C</kbd> key combination to cancel a DSC operation.
   When `dsc` cancels an operation due to this key-press, it indicates that the operation was
-  cancelled with [exit code 6][07].
+  cancelled with [exit code 6][a2.07].
 
   <details><summary>Related work items</summary>
 
@@ -503,7 +1083,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added support for using the [DSC_RESOURCE_PATH environment variable][08] to define a list of
+- Added support for using the [DSC_RESOURCE_PATH environment variable][a2.08] to define a list of
   folders to search for command-based DSC Resource manifests. When `DSC_RESOURCE_PATH` is defined,
   DSC searches those folders for resources and ignores the `PATH` variable for resource discovery.
 
@@ -516,7 +1096,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
 - The `DSC/AssertionGroup`, `DSC/Group`, and `DSC/ParallelGroup` resources now define semantic exit
   codes in their manifests. These resources now indicate that they use the same
-  [exit codes as the dsc command][08].
+  [exit codes as the dsc command][a2.08].
 
   <details><summary>Related work items</summary>
 
@@ -525,10 +1105,10 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Added type validation in the schema for the [defaultValue][09] and [allowedValues][10] properties
-  of [configuration document parameters][11] to improve the authoring experience. Now, when a
-  parameter defines values for these properties that are incompatible with the defined data type,
-  validation raises an error indicating that the values are invalid and why.
+- Added type validation in the schema for the [defaultValue][a2.09] and [allowedValues][a2.10]
+  properties of [configuration document parameters][a2.11] to improve the authoring experience.
+  Now, when a parameter defines values for these properties that are incompatible with the defined
+  data type, validation raises an error indicating that the values are invalid and why.
 
   <details><summary>Related work items</summary>
 
@@ -544,7 +1124,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
   - Define default snippets to autocomplete values.
 
   These schemas are non-canonical and should only be used for authoring. For more information, see
-  [Authoring with enhanced schemas][12].
+  [Authoring with enhanced schemas][a2.12].
 
   <details><summary>Related work items</summary>
 
@@ -552,7 +1132,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-- Documentation to the [Microsoft/OSInfo][13] resource instance schema and command-line tool to
+- Documentation to the [Microsoft/OSInfo][a2.13] resource instance schema and command-line tool to
   provide contextual help about the properties the resource can validate.
 
   <details><summary>Related work items</summary>
@@ -561,23 +1141,11 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
-### Changed
-
-- The [$schema][14] value for configuration documents now points to the canonical published schema
-  URI,
-  `https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/08/config/document.json`.
-
-  <details><summary>Related work items</summary>
-
-  - PRs: [#156][#156]
-
-  </details>
-
 ### Fixed
 
-- The data-type conditionals for the [configuration parameters][11] schema so that the `min*` and
-  `max*` keywords apply to the correct data types. Previously, the logic prevented them from ever
-  applying.
+- The data-type conditionals for the [configuration parameters][a2.11] schema so that the `min*`
+  and `max*` keywords apply to the correct data types. Previously, the logic prevented them from
+  ever applying.
 
   <details><summary>Related work items</summary>
 
@@ -594,6 +1162,19 @@ in this release, see the [diff on GitHub][compare-v3.0.0-alpha.2].
 
   </details>
 
+<!-- alpha.2 links -->
+[a2.01]: reference/schemas/config/resource.md#dependson
+[a2.02]: reference/schemas/resource/manifest/export.md
+[a2.05]: reference/cli/resource/get.md#-a---all
+[a2.07]: reference/cli/dsc.md#exit-codes
+[a2.08]: reference/cli/dsc.md#environment-variables
+[a2.09]: reference/schemas/config/parameter.md#defaultvalue
+[a2.10]: reference/schemas/config/parameter.md#allowedvalues
+[a2.11]: reference/schemas/config/parameter.md
+[a2.12]: /powershell/dsc/concepts/enhanced-authoring?view=dsc-3.0&preserve-view=true
+[a2.13]: /powershell/dsc/reference/microsoft/osinfo/resource?view=dsc-3.0&preserve-view=true
+[a2.14]: reference/schemas/config/document.md#schema
+
 ## [v3.0.0-alpha.1][release-v3.0.0-alpha.1] - 2023-08-04
 
 This is the first public release of DSC v3. Consider this release alpha quality. Use it only for
@@ -605,57 +1186,40 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [release-v3.0.0-alpha.1]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0-alpha.1 "Link to the DSC v3.0.0-alpha.1 release on GitHub"
 [compare-v3.0.0-alpha.1]: https://github.com/PowerShell/DSC/compare/6090b1464bbf81fded5453351708482a4db35258...v3.0.0-alpha.1
 
-<!-- alpha.2 links -->
-[01]: reference/schemas/config/resource.md#dependson
-[02]: reference/schemas/resource/manifest/export.md
-[03]: reference/cli/config/export.md
-[04]: reference/cli/resource/export.md
-[05]: reference/cli/resource/get.md#-a---all
-[06]: reference/cli/resource/get.md
-[07]: reference/cli/dsc.md#exit-codes
-[08]: reference/cli/dsc.md#environment-variables
-[09]: reference/schemas/config/parameter.md#defaultvalue
-[10]: reference/schemas/config/parameter.md#allowedvalues
-[11]: reference/schemas/config/parameter.md
-[12]: /powershell/dsc/concepts/enhanced-authoring?view=dsc-3.0&preserve-view=true
-[13]: /powershell/dsc/reference/microsoft/osinfo/resource?view=dsc-3.0&preserve-view=true
-[14]: reference/schemas/config/document.md#schema
-
-<!-- alpha.3 links -->
-[15]: reference/schemas/resource/manifest/root.md#schema
-[16]: reference/schemas/resource/manifest/set.md#implementspretest
-[17]: reference/cli/resource/set.md
-[18]: reference/schemas/resource/manifest/get.md#input
-[19]: reference/schemas/resource/manifest/set.md#input
-[20]: reference/schemas/resource/manifest/test.md#input
-
-<!-- alpha.4 links -->
-[21]: reference/schemas/config/document.md#schema
-[22]: reference/schemas/resource/manifest/root.md#schema
-[23]: reference/schemas/resource/properties/exist.md
-[26]: reference/cli/completer/command.md
-[28]: reference/schemas/config/functions/overview.md
-[29]: reference/schemas/config/functions/base64.md
-[30]: reference/schemas/config/functions/concat.md
-[31]: reference/schemas/config/functions/resourceId.md
-
-<!-- alpha.5 links -->
-[32]: reference/schemas/config/functions/parameters.md
-[33]: reference/cli/config/command.md#-p---parameters
-[34]: reference/cli/config/command.md#-f---parameters_file
-[35]: reference/cli/config/command.md
-[36]: reference/cli/dsc.md#-l---trace-level
-[37]: reference/cli/dsc.md#-f---trace-format
-[38]: reference/schemas/outputs/resource/get.md
-[39]: reference/schemas/outputs/resource/set.md
-[40]: reference/schemas/outputs/resource/test.md
-[41]: reference/schemas/config/functions/concat.md
-[42]: reference/cli/config/command.md#environment-variables
-[43]: reference/schemas/config/functions/envvar.md
-[44]: reference/cli/config/export.md
-[45]: reference/cli/resource/export.md
-[46]: reference/cli/resource/list.md
-[47]: reference/cli/resource/list.md#-f---format
+<!-- CLI reference links -->
+[cmd]:             reference/cli/dsc.md
+[cmd-completion]:  reference/cli/completer/command.md
+[cmd-schema]:      reference/cli/schema/command.md
+[cmd-c]:         reference/cli/config/command.md
+[cmd-cexport]:  reference/cli/config/export.md
+[cmd-cget]:     reference/cli/config/get.md
+[cmd-cset]:     reference/cli/config/set.md
+[cmd-ctest]:    reference/cli/config/test.md
+[cmd-r]:         reference/cli/resource/command.md
+[cmd-rdelete]:  reference/cli/resource/delete.md
+[cmd-rexport]:  reference/cli/resource/export.md
+[cmd-rget]:     reference/cli/resource/get.md
+[cmd-rlist]:    reference/cli/resource/list.md
+[cmd-rschema]:  reference/cli/resource/schema.md
+[cmd-rset]:     reference/cli/resource/set.md
+[cmd-rtest]:    reference/cli/resource/test.md
+<!-- Configuration function links -->
+[cfuncs]: reference/schemas/config/functions/overview.md
+[add()]: reference/schemas/config/functions/add.md
+[base64()]: reference/schemas/config/functions/base64.md
+[concat()]: reference/schemas/config/functions/concat.md
+[createArray()]: reference/schemas/config/functions/createArray.md
+[div()]: reference/schemas/config/functions/div.md
+[envvar()]: reference/schemas/config/functions/envvar.md
+[int()]: reference/schemas/config/functions/int.md
+[max()]: reference/schemas/config/functions/max.md
+[min()]: reference/schemas/config/functions/min.md
+[mod()]: reference/schemas/config/functions/mod.md
+[mul()]: reference/schemas/config/functions/mul.md
+[parameters()]: reference/schemas/config/functions/parameters.md
+[reference()]: reference/schemas/config/functions/reference.md
+[resourceId()]: reference/schemas/config/functions/resourceId.md
+[sub()]: reference/schemas/config/functions/sub.md
 
 <!-- Issue and PR links -->
 [#107]: https://github.com/PowerShell/DSC/issues/107
@@ -664,6 +1228,7 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [#129]: https://github.com/PowerShell/DSC/issues/129
 [#130]: https://github.com/PowerShell/DSC/issues/130
 [#133]: https://github.com/PowerShell/DSC/issues/133
+[#139]: https://github.com/PowerShell/DSC/issues/139
 [#150]: https://github.com/PowerShell/DSC/issues/150
 [#156]: https://github.com/PowerShell/DSC/issues/156
 [#158]: https://github.com/PowerShell/DSC/issues/158
@@ -694,33 +1259,81 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [#215]: https://github.com/PowerShell/DSC/issues/215
 [#216]: https://github.com/PowerShell/DSC/issues/216
 [#217]: https://github.com/PowerShell/DSC/issues/217
+[#218]: https://github.com/PowerShell/DSC/issues/218
 [#226]: https://github.com/PowerShell/DSC/issues/226
 [#227]: https://github.com/PowerShell/DSC/issues/227
 [#240]: https://github.com/PowerShell/DSC/issues/240
 [#241]: https://github.com/PowerShell/DSC/issues/241
 [#248]: https://github.com/PowerShell/DSC/issues/248
+[#251]: https://github.com/PowerShell/DSC/issues/251
 [#252]: https://github.com/PowerShell/DSC/issues/252
+[#253]: https://github.com/PowerShell/DSC/issues/253
+[#258]: https://github.com/PowerShell/DSC/issues/258
 [#263]: https://github.com/PowerShell/DSC/issues/263
 [#266]: https://github.com/PowerShell/DSC/issues/266
 [#271]: https://github.com/PowerShell/DSC/issues/271
+[#274]: https://github.com/PowerShell/DSC/issues/274
 [#279]: https://github.com/PowerShell/DSC/issues/279
 [#284]: https://github.com/PowerShell/DSC/issues/284
 [#286]: https://github.com/PowerShell/DSC/issues/286
+[#287]: https://github.com/PowerShell/DSC/issues/287
+[#290]: https://github.com/PowerShell/DSC/issues/290
 [#291]: https://github.com/PowerShell/DSC/issues/291
 [#294]: https://github.com/PowerShell/DSC/issues/294
 [#299]: https://github.com/PowerShell/DSC/issues/299
+[#302]: https://github.com/PowerShell/DSC/issues/302
 [#303]: https://github.com/PowerShell/DSC/issues/303
 [#305]: https://github.com/PowerShell/DSC/issues/305
 [#307]: https://github.com/PowerShell/DSC/issues/307
 [#309]: https://github.com/PowerShell/DSC/issues/309
+[#310]: https://github.com/PowerShell/DSC/issues/310
 [#311]: https://github.com/PowerShell/DSC/issues/311
 [#313]: https://github.com/PowerShell/DSC/issues/313
 [#314]: https://github.com/PowerShell/DSC/issues/314
+[#317]: https://github.com/PowerShell/DSC/issues/317
 [#318]: https://github.com/PowerShell/DSC/issues/318
+[#321]: https://github.com/PowerShell/DSC/issues/321
 [#322]: https://github.com/PowerShell/DSC/issues/322
+[#323]: https://github.com/PowerShell/DSC/issues/323
+[#329]: https://github.com/PowerShell/DSC/issues/329
+[#333]: https://github.com/PowerShell/DSC/issues/333
+[#334]: https://github.com/PowerShell/DSC/issues/334
+[#335]: https://github.com/PowerShell/DSC/issues/335
+[#336]: https://github.com/PowerShell/DSC/issues/336
+[#338]: https://github.com/PowerShell/DSC/issues/338
+[#342]: https://github.com/PowerShell/DSC/issues/342
+[#344]: https://github.com/PowerShell/DSC/issues/344
+[#346]: https://github.com/PowerShell/DSC/issues/346
+[#347]: https://github.com/PowerShell/DSC/issues/347
+[#348]: https://github.com/PowerShell/DSC/issues/348
+[#349]: https://github.com/PowerShell/DSC/issues/349
+[#351]: https://github.com/PowerShell/DSC/issues/351
+[#352]: https://github.com/PowerShell/DSC/issues/352
+[#353]: https://github.com/PowerShell/DSC/issues/353
+[#354]: https://github.com/PowerShell/DSC/issues/354
+[#356]: https://github.com/PowerShell/DSC/issues/356
+[#357]: https://github.com/PowerShell/DSC/issues/357
+[#358]: https://github.com/PowerShell/DSC/issues/358
+[#360]: https://github.com/PowerShell/DSC/issues/360
+[#361]: https://github.com/PowerShell/DSC/issues/361
+[#362]: https://github.com/PowerShell/DSC/issues/362
+[#364]: https://github.com/PowerShell/DSC/issues/364
+[#368]: https://github.com/PowerShell/DSC/issues/368
+[#373]: https://github.com/PowerShell/DSC/issues/373
+[#375]: https://github.com/PowerShell/DSC/issues/375
+[#376]: https://github.com/PowerShell/DSC/issues/376
+[#377]: https://github.com/PowerShell/DSC/issues/377
+[#379]: https://github.com/PowerShell/DSC/issues/379
+[#382]: https://github.com/PowerShell/DSC/issues/382
+[#385]: https://github.com/PowerShell/DSC/issues/385
+[#388]: https://github.com/PowerShell/DSC/issues/388
+[#397]: https://github.com/PowerShell/DSC/issues/397
+[#401]: https://github.com/PowerShell/DSC/issues/401
+[#405]: https://github.com/PowerShell/DSC/issues/405
 [#45]:  https://github.com/PowerShell/DSC/issues/45
 [#49]:  https://github.com/PowerShell/DSC/issues/49
 [#57]:  https://github.com/PowerShell/DSC/issues/57
 [#73]:  https://github.com/PowerShell/DSC/issues/73
 [#75]:  https://github.com/PowerShell/DSC/issues/75
+[#89]:  https://github.com/PowerShell/DSC/issues/89
 [#98]:  https://github.com/PowerShell/DSC/issues/98
