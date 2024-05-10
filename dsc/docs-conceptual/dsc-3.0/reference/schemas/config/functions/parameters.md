@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'parameters' DSC configuration document function
-ms.date:     03/06/2024
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       parameters
 ---
@@ -35,7 +35,7 @@ The configuration uses the `parameters()` function to echo the value of the `mes
 
 ```yaml
 # parameters.example.1.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 parameters:
   message:
     type:         string
@@ -89,7 +89,9 @@ hadErrors: false
 
 ### name
 
-The name of the parameter to return.
+The `parameters()` function expects a single string as input, representing the name of the
+parameter to return. If no parameter with the specified name is defined in the configuration
+document, DSC raises an error during validation.
 
 ```yaml
 Type:         string
@@ -100,7 +102,7 @@ MaximumCount: 1
 
 ## Output
 
-The output of the function is the value of the specified parameter.
+The `parameters()` function returns the value of the specified parameter.
 
 ```yaml
 Type: [string, int, bool, object, array]

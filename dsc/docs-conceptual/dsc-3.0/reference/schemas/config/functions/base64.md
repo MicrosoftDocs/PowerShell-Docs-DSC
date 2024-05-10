@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'base64' DSC configuration document function
-ms.date:     01/17/2024
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       base64
 ---
@@ -31,12 +31,12 @@ The configuration converts a basic string value with the `base64()` function.
 
 ```yaml
 # base64.example.1.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 resources:
   - name: Echo 'abc' in base64
     type: Test/Echo
     properties:
-      text: "[base64('abc')]"
+      output: "[base64('abc')]"
 ```
 
 ```bash
@@ -49,7 +49,7 @@ results:
   type: Test/Echo
   result:
     actualState:
-      text: YWJj
+      output: YWJj
 messages: []
 hadErrors: false
 ```
@@ -61,12 +61,12 @@ strings `a`, `b`, and `c` into `abc` before returning the base64 representation.
 
 ```yaml
 # base64.example.2.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/config/document.json
+$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 resources:
   - name: Echo concatenated 'a', 'b', 'c' in base64
     type: Test/Echo
     properties:
-      text: "[base64(concat('a', 'b', 'c'))]"
+      output: "[base64(concat('a', 'b', 'c'))]"
 ```
 
 ```bash
@@ -79,7 +79,7 @@ results:
   type: Test/Echo
   result:
     actualState:
-      text: YWJj
+      output: YWJj
 messages: []
 hadErrors: false
 ```
@@ -88,8 +88,9 @@ hadErrors: false
 
 ### inputString
 
-The value must be a single string. The function converts the value into a base64 representation. If
-the value isn't a string, DSC raises an error when validating the configuration document.
+The `base64()` function expects a single string as input. The function converts the value into a
+base64 representation. If the value isn't a string, DSC raises an error when validating the
+configuration document.
 
 ```yaml
 Type:         string
@@ -100,7 +101,7 @@ MaximumCount: 1
 
 ## Output
 
-The output of the function is the base64 representation of the **inputString** value.
+The `base64()` function returns the base64 representation of the **inputString** value.
 
 ```yaml
 Type: string

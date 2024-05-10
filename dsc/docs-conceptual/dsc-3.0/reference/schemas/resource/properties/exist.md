@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the '_exist' well-known DSC Resource property.
-ms.date:     10/05/2023
+ms.date:     05/09/2024
 ms.topic:    reference
 title:       DSC Resource _exist property schema
 ---
@@ -15,7 +15,7 @@ Indicates whether an instance should exist.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/resource/properties/exist.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/properties/exist.json
 Type:          boolean
 DefaultValue:  true
 ```
@@ -44,6 +44,6 @@ snippet:
 
 ```json
 "_exist": {
-  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2023/10/resource/properties/exist.json"
+  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/properties/exist.json"
 }
 ```
