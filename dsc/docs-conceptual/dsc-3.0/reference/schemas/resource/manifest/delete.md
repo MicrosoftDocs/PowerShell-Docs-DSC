@@ -1,28 +1,34 @@
 ---
-description: JSON schema reference for the 'get' property in a DSC Resource manifest
+description: JSON schema reference for the 'delete' property in a DSC Resource manifest
 ms.date:     05/09/2024
 ms.topic:    reference
-title:       DSC Resource manifest get property schema reference
+title:       DSC Resource manifest delete property schema reference
 ---
 
-# DSC Resource manifest get property schema reference
+# DSC Resource manifest delete property schema reference
 
 ## Synopsis
 
-Defines how to retrieve a DSC Resource instance.
+Indicates how to call the resource to delete a specific instance.
 
 ## Metadata
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.get.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.delete.json
 Type:          object
 ```
 
 ## Description
 
-Every command-based DSC Resource must define the `get` property in its manifest. This property
-defines how DSC can get the current state of a resource instance.
+Defines how DSC must call the DSC Resource to delete an instance. Define this method for resources
+as an alternative to handling the [`_exist`][01] property in a `set` operation, which can lead to
+highly complex code. If the `set` method for the resource is able to handle deleting an instance
+when `_exist` is `false`, set the [`handlesExist`][02] property of the set method definition to
+`true` instead.
+
+If you define the delete method in a resource manifest, ensure that you also define the
+[`_exist`][01] property in the [JSON schema for the resource's properties][03].
 
 DSC sends data to the command in three ways:
 
@@ -41,83 +47,9 @@ both.
 
 ## Examples
 
-### Example 1 - Minimal definition
+## Required properties
 
-This example is from the `Microsoft/OSInfo` DSC Resource.
-
-```json
-"get": {
-  "executable": "osinfo"
-}
-```
-
-It only defines the `executable` property. When a manifest doesn't define `args`, DSC passes no
-arguments to the command. When a manifest doesn't define `input`, the default behavior is to send a
-JSON blob to the command over `stdin`.
-
-With this definition, DSC calls the `get` method for this resource by running:
-
-```sh
-{ ... } | osinfo
-```
-
-### Example 2 - Input from stdin
-
-This example is from the `Microsoft.Windows/Registry` DSC Resource.
-
-```json
-"get": {
-  "executable": "registry",
-  "args": [
-    "config",
-    "get"
-  ],
-  "input": "stdin"
-}
-```
-
-It defines `executable` as `registry`, rather than `registry.exe`. The extension isn't required
-when the operating system recognizes the command as an executable. The manifest defines two
-arguments, `config` and `get`. The `input` property indicates that the `get` command expects its
-input as a JSON blob from `stdin`. Combined with the value for `executable`, DSC calls the get
-method for this resource by running:
-
-```sh
-{ ... } | registry config get
-```
-
-### Example 3 - JSON input argument
-
-This example uses a JSON input argument to send the data to the command.
-
-```json
-"get": {
-  "executable": "tstoy",
-  "args": [
-    "config",
-    "get",
-    { "jsonInputArg": "--input", "mandatory": true }
-  ],
-}
-```
-
-It defines the executable as `tstoy`. It defines two [string arguments](#string-arguments) and one [JSON input argument](#json-input-argument). When DSC invokes the `get` operation for this resource, it passes the JSON data to the resource as a compressed JSON string to the `--input` argument.
-
-The combined call for this operation is:
-
-```sh
-tstoy config get --input "{ ... }"
-```
-
-Where `{ ... }` represents the compressed JSON for the resource instance.
-
-Because the `mandatory` option for the JSON input argument is set to `true`, DSC passes an empty
-string to the argument when there's no data to send to the command. If the property wasn't defined,
-or was defined as `false`, DSC would omit the argument entirely when there's no data to send.
-
-## Required Properties
-
-The `get` definition must include these properties:
+The `delete` definition must include these properties:
 
 - [executable](#executable)
 
@@ -195,7 +127,7 @@ RequiredProperties: [jsonInputArg]
 
 The `input` property defines how to pass input to the resource. If this property isn't defined and
 the definition doesn't define a [JSON input argument](#json-input-argument), DSC doesn't send any
-input to the resource when invoking the `get` operation.
+input to the resource when invoking the `delete` operation.
 
 The value of this property must be one of the following strings:
 
@@ -227,3 +159,8 @@ Type:        string
 Required:    false
 ValidValues: [env, stdin]
 ```
+
+<!-- Link reference definitions -->
+[01]: ../properties/exist.md
+[02]: set.md#handlesexist
+[03]: schema/property.md

@@ -65,6 +65,8 @@ items:
         items:
           - name: dsc resource
             href: reference/cli/resource/command.md
+          - name: dsc resource delete
+            href: reference/cli/resource/delete.md
           - name: dsc resource export
             href: reference/cli/resource/export.md
           - name: dsc resource get
@@ -85,43 +87,71 @@ items:
         items:
           - name: Documents
             href: reference/schemas/config/document.md
-          - name: Document Parameters
+          - name: Document metadata
+            href: reference/schemas/config/metadata.md
+          - name: Document parameters
             href: reference/schemas/config/parameter.md
-          - name: Resource Instances
+          - name: Resource instances
             href: reference/schemas/config/resource.md
           - name: Functions
             items:
               - name: Overview
                 href: reference/schemas/config/functions/overview.md
+              - name: add
+                href: reference/schemas/config/functions/add.md
               - name: base64
                 href: reference/schemas/config/functions/base64.md
               - name: concat
                 href: reference/schemas/config/functions/concat.md
+              - name: createArray
+                href: reference/schemas/config/functions/createArray.md
+              - name: div
+                href: reference/schemas/config/functions/div.md
+              - name: envvar
+                href: reference/schemas/config/functions/envvar.md
+              - name: int
+                href: reference/schemas/config/functions/int.md
+              - name: max
+                href: reference/schemas/config/functions/max.md
+              - name: min
+                href: reference/schemas/config/functions/min.md
+              - name: mod
+                href: reference/schemas/config/functions/mod.md
+              - name: mul
+                href: reference/schemas/config/functions/mul.md
+              - name: parameters
+                href: reference/schemas/config/functions/parameters.md
+              - name: reference
+                href: reference/schemas/config/functions/reference.md
               - name: resourceId
                 href: reference/schemas/config/functions/resourceId.md
+              - name: sub
+                href: reference/schemas/config/functions/sub.md
       - name: Resource
         items:
           - name:  Manifests
             items:
               - name: Root
                 href: reference/schemas/resource/manifest/root.md
-              - name: Export Property
+              - name: Adapter property
+                href: reference/schemas/resource/manifest/adapter.md
+              - name: Delete property
+                href: reference/schemas/resource/manifest/delete.md
+              - name: Export property
                 href: reference/schemas/resource/manifest/export.md
-              - name: Get Property
+              - name: Get property
                 href: reference/schemas/resource/manifest/get.md
-              - name: Set Property
+              - name: Set property
                 href: reference/schemas/resource/manifest/set.md
-              - name: Test Property
+              - name: Test property
                 href: reference/schemas/resource/manifest/test.md
-              - name: Provider Property
-                href: reference/schemas/resource/manifest/provider.md
-              - name: Validate Property
+              - name: Validate property
                 href: reference/schemas/resource/manifest/validate.md
               - name: Schema
                 items:
                   - name: Property
                     href: reference/schemas/resource/manifest/schema/property.md
-                  - name: Embedded Schemas
+                  - name: Embedded schemas
                     href: reference/schemas/resource/manifest/schema/embedded.md
           - name: Well-known properties
             items:
@@ -137,6 +167,10 @@ items:
                 href: reference/schemas/resource/properties/purge.md
               - name: _rebootRequested
                 href: reference/schemas/resource/properties/rebootRequested.md
+      - name: Metadata
+        items:
+          - name: Microsoft.DSC properties
+            href: reference/schemas/metadata/Microsoft.DSC/properties.md
       - name: Outputs
         items:
           - name: dsc config command outputs
@@ -161,6 +195,8 @@ items:
         items:
           - name: message
             href: reference/schemas/definitions/message.md
+          - name: resourceKind
+            href: reference/schemas/definitions/resourceKind.md
           - name: resourceType
             href: reference/schemas/definitions/resourceType.md
           - name: Parameter dataTypes
