@@ -2,7 +2,7 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 03/21/2023
+ms.date: 05/15/2024
 online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/invoke-dscresource?view=dsc-2.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
 title: Invoke-DscResource
@@ -27,6 +27,9 @@ The `Invoke-DscResource` cmdlet runs a method of a specified PowerShell Desired 
 
 This cmdlet invokes a DSC resource directly, without creating a configuration document. Using this
 cmdlet, configuration management products can manage windows or Linux with DSC resources.
+
+This cmdlet doesn't work with composite resources. Composite resources are parameterized
+configurations. Using composite resources requires the LCM.
 
 > [!NOTE]
 > Before PSDesiredStateConfiguration 2.0.6, using `Invoke-DscResource` in PowerShell 7 requires
