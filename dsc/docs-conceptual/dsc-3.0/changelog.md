@@ -3,7 +3,7 @@ title: "Desired State Configuration changelog"
 description: >-
   A log of the changes for releases of DSCv3.
 ms.topic: whats-new
-ms.date: 05/09/2024
+ms.date: 06/24/2024
 ---
 
 # Changelog
@@ -46,7 +46,7 @@ This section includes a summary of user-facing changes since the last release. F
 changes since the last release, see the [diff on GitHub][unreleased].
 
 <!-- Unreleased comparison link - always update version to match last release tag-->
-[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-preview.7...main
+[unreleased]: https://github.com/PowerShell/DSC/compare/v3.0.0-preview.8...main
 
 <!--
     Unreleased change entry instructions:
@@ -72,6 +72,232 @@ changes since the last release, see the [diff on GitHub][unreleased].
 -->
 
 <!-- Unreleased change links -->
+
+## [v3.0.0-preview.8][release-v3.0.0-preview.8] - 2024-06-19
+
+This section includes a summary of changes for the `preview.8` release. For the full list of changes
+in this release, see the [diff on GitHub][compare-v3.0.0-preview.8].
+
+<!-- Release links -->
+[release-v3.0.0-preview.8]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0-preview.8 "Link to the DSC v3.0.0-preview.8 release on GitHub"
+[compare-v3.0.0-preview.8]: https://github.com/PowerShell/DSC/compare/v3.0.0-preview.7...v3.0.0-preview.8
+
+### Changed
+
+- Changed the `Microsoft.DSC/PowerShell` adapter to only handle PowerShell DSC Resources
+  implemented as classes. The `Microsoft.Windows/WindowsPowerShell` adapter continues to work with
+  classic PSDSC resources. Neither adapter supports composite PSDSC resources. This change
+  simplified the code and coincided with ensuring that the `Microsoft.DSC/PowerShell` adapter works
+  correctly on Linux and macOS as well as Windows. This change also brought performance
+  improvements to the adapter, speeding up resource invocation and discovery.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs:
+    - [#435][#435]
+    - [#439][#439]
+
+  </details>
+
+### Added
+
+- Added the [`--what-if` (`-w`)][p8-01] option to the [dsc config set][cmd-cset] command. When you
+  call `dsc config set` with the `--what-if` option, DSC doesn't actually invoke the resources to
+  enforce the desired state. Instead, it returns the expected output for the command, showing the
+  before and after state for each resource instance.
+
+  The output for the `dsc config set` operation with the `--what-if` operation is the same as an
+  [actual configuration set operation][p8-02], except that the metadata field
+  [executionType][p8-03] is set to `WhatIf` instead of `Actual`.
+
+  By default, the generated output is synthetic, based on the results of the resources' `test`
+  operation. Resources can define the [whatIf][p8-04] property in their resource manifest to
+  participate in what-if operations, reporting more specifically how they will change the system.
+  For example, participating resources could indicate whether an actual set operation will require
+  a reboot or whether the current user has the correct permissions to manage that resource
+  instance.
+
+  Participating resources have the [WhatIf capability][p8-05].
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#70][#70]
+  - PRs:
+    - [#400][#400]
+    - [#441][#441]
+
+  </details>
+
+- Added support for [importer resources][p8-06]. These resources resolve external sources to a
+  nested DSC Configuration document. The resolved instances are processed as nested resource
+  instances.
+
+  This required some updates to the schemas, all backwards-compatible:
+
+  - Added a new [resourceKind][p8-07] named `Import`.
+  - Added the [resolve][p8-08] command to resource manifests.
+  - Added the new [`Resolve`][p8-09] capability, returned in the output for the
+    [dsc resource list][cmd-rlist] command when DSC discovers an importer resource.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#429][#429]
+  - PRs:
+    - [#412][#412]
+    - [#464][#464]
+
+  </details>
+
+- Added the `Microsoft.DSC/Include` importer resource to resolve instances from an external
+  configuration document. The resolved instances are processed as nested instances for the
+  `Microsoft.DSC/Include` resource instance.
+  
+  You can use this resource to write smaller configuration documents and compose them as needed.
+  For example, you could define a security baseline and a web server configuration separately, then
+  combine them for a given application:
+
+  ```yaml
+  $schema: &schema https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
+  resources:
+  # Group of included baseline configurations
+  - name: Baselines
+    type: Microsoft.DSC/Group
+    properties:
+      $schema: *schema
+      resources:
+      - name: Security Baseline
+        type: Microsoft.DSC/Include
+        properties:
+          configurationFile: security_baseline.dsc.yaml
+          parametersFile:    security_baseline.parameters.yaml
+      - name: Web Server Baseline
+        type: Microsoft.DSC/Include
+        properties:
+          configurationFile: web_baseline.dsc.yaml
+          parametersFile:    web_baseline.parameters.yaml
+        dependsOn:
+          - "[resourceId('Microsoft.DSC/Include', 'Security Baseline')]"
+
+  # application configuration instances, all depend on the baselines
+  - name: Application configuration
+    type: MyApp/Settings
+    properties:
+      someSetting: someValue
+    dependsOn:
+      - "[resourceId('Microsoft.DSC/Group', 'Baselines')]"
+  ```
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#429][#429]
+  - PRs: [#412][#412]
+
+  </details>
+
+- Added caching for PowerShell Desired State Configuration (PSDSC) resources when using the
+  `Microsoft.DSC/PowerShell` and `Microsoft.Windows/PowerShell` adapters. The adapters use the
+  cache to speed up resource discovery. The performance improvement reduced the resource list time
+  under tests from eight seconds to two seconds, and reduced invocation operation times by half.
+
+  The adapters cache the resources in the following locations, depending on your platform:
+
+  |            Adapter             | Platform |                      Path                       |
+  | :----------------------------: | :------: | :---------------------------------------------- |
+  |   `Microsoft.DSC/PowerShell`   |  Linux   | `$HOME/.dsc/PSAdapterCache.json`                |
+  |   `Microsoft.DSC/PowerShell`   |  macOS   | `$HOME/.dsc/PSAdapterCache.json`                |
+  |   `Microsoft.DSC/PowerShell`   | Windows  | `%LOCALAPPDATA%\dsc\PSAdapterCache.json`        |
+  | `Microsoft.Windows/PowerShell` | Windows  | `%LOCALAPPDATA%\dsc\WindowsPSAdapterCache.json` |
+
+  The adapters check whether the cache is stale on each run and refresh it if:
+
+  - The `PSModulePath` environmental variable is updated.
+  - Any module is added or removed from the `PSModulePath`.
+  - Any related files in a cached PSDSC resource module has been updated since the cache was
+    written. The adapter watches the `LastWriteTime` of module files with the following extensions:
+    `.ps1`, `.psd1`, `.psm1`, and `.mof`.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#371][#371]
+  - PRs: [#432][#432]
+
+  </details>
+
+- Added the `DSC.PackageManagement/Apt` resource for managing software on systems that use the
+  advanced package tool (APT). In this release, you can use the resource to:
+
+  - Install the latest version of a package.
+  - Uninstall a package.
+  - Get the current state of a package.
+  - Export every installed package as a DSC resource instance.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#434][#434]
+
+  </details>
+
+- Added the `Microsoft.DSC.Experimental/SystemctlService` class-based PSDSC resource. It has the
+  `Get` and `Export` [capabilities][p8-10]. You can use it on Linux systems that manage services
+  with SystemD and `systemctl`. In this release, it doesn't support setting services.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: _None_.
+  - PRs: [#454][#454]
+
+  </details>
+
+### Fixed
+
+- Fixed the JSON Schema for [exit codes][p8-11] in the resource manifest to support negative
+  integers. Prior to this release, the DSC engine supported negative exit codes but the JSON Schema
+  forbid them.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#407][#407]
+  - PRs: [#410][#410]
+
+  </details>
+
+- Fixed the behavior of the [int()][int()] configuration function to error when given an input
+  value other than a string or integer. Prior to this release, when you specified a number with
+  a fractional part as input for the function, it coerced the input value to an integer representing
+  the fractional part. Starting with this release, the `int()` function raises an invalid input
+  error when the input value isn't a string or an integer.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#390][#390]
+  - PRs: [#438][#438]
+
+  </details>
+
+- Fixed the implementation to retrieve non-zero exit code descriptions for resource errors from the
+  resource manifest, if defined. Prior to this release, these error descriptions weren't surfaced.
+
+  <details><summary>Related work items</summary>
+
+  - Issues: [#431][#431]
+  - PRs: [#444][#444]
+
+  </details>
+
+<!-- Preview.8 links -->
+[p8-01]: reference/cli/config/set.md#-w---what-if
+[p8-02]: reference/schemas/outputs/config/set.md
+[p8-03]: reference/schemas/metadata/Microsoft.DSC/properties.md#executiontype
+[p8-04]: reference/schemas/resource/manifest/whatif.md
+[p8-05]: reference/schemas/outputs/resource/list.md#capability-whatif
+[p8-06]: reference/schemas/definitions/resourceKind.md#importer-resources
+[p8-07]: reference/schemas/definitions/resourceKind.md
+[p8-08]: reference/schemas/resource/manifest/resolve.md
+[p8-09]: reference/schemas/outputs/resource/list.md#capability-resolve
+[p8-10]: reference/schemas/outputs/resource/list.md#capabilities
+[p8-11]: reference/schemas/resource/manifest/root.md#exitcodes
 
 ## [v3.0.0-preview.7][release-v3.0.0-preview.7] - 2024-04-22
 
@@ -127,7 +353,7 @@ in this release, see the [diff on GitHub][compare-v3.0.0-preview.7].
 
   </details>
 
-- <a id="rename-provider-to-adapter" /> In this release, the term `DSC Resource Provider` is
+- <a id="rename-provider-to-adapter"></a> In this release, the term `DSC Resource Provider` is
   replaced with the more semantically accurate `DSC Resource Adapter`. These resources enable users
   to leverage resources that don't define a DSC Resource Manifest with DSC, like PSDSC resources -
   they're _adapters_ between DSCv3 and resources defined in a different way.
@@ -1319,6 +1545,7 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [#362]: https://github.com/PowerShell/DSC/issues/362
 [#364]: https://github.com/PowerShell/DSC/issues/364
 [#368]: https://github.com/PowerShell/DSC/issues/368
+[#371]: https://github.com/PowerShell/DSC/issues/371
 [#373]: https://github.com/PowerShell/DSC/issues/373
 [#375]: https://github.com/PowerShell/DSC/issues/375
 [#376]: https://github.com/PowerShell/DSC/issues/376
@@ -1327,12 +1554,29 @@ For the full list of changes in this release, see the [diff on GitHub][compare-v
 [#382]: https://github.com/PowerShell/DSC/issues/382
 [#385]: https://github.com/PowerShell/DSC/issues/385
 [#388]: https://github.com/PowerShell/DSC/issues/388
+[#390]: https://github.com/PowerShell/DSC/issues/390
 [#397]: https://github.com/PowerShell/DSC/issues/397
+[#400]: https://github.com/PowerShell/DSC/issues/400
 [#401]: https://github.com/PowerShell/DSC/issues/401
 [#405]: https://github.com/PowerShell/DSC/issues/405
+[#407]: https://github.com/PowerShell/DSC/issues/407
+[#410]: https://github.com/PowerShell/DSC/issues/410
+[#412]: https://github.com/PowerShell/DSC/issues/412
+[#429]: https://github.com/PowerShell/DSC/issues/429
+[#431]: https://github.com/PowerShell/DSC/issues/431
+[#432]: https://github.com/PowerShell/DSC/issues/432
+[#434]: https://github.com/PowerShell/DSC/issues/434
+[#435]: https://github.com/PowerShell/DSC/issues/435
+[#438]: https://github.com/PowerShell/DSC/issues/438
+[#439]: https://github.com/PowerShell/DSC/issues/439
+[#441]: https://github.com/PowerShell/DSC/issues/441
+[#444]: https://github.com/PowerShell/DSC/issues/444
+[#454]: https://github.com/PowerShell/DSC/issues/454
+[#464]: https://github.com/PowerShell/DSC/issues/464
 [#45]:  https://github.com/PowerShell/DSC/issues/45
 [#49]:  https://github.com/PowerShell/DSC/issues/49
 [#57]:  https://github.com/PowerShell/DSC/issues/57
+[#70]:  https://github.com/PowerShell/DSC/issues/70
 [#73]:  https://github.com/PowerShell/DSC/issues/73
 [#75]:  https://github.com/PowerShell/DSC/issues/75
 [#89]:  https://github.com/PowerShell/DSC/issues/89

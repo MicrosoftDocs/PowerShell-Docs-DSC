@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc config set' command
-ms.date:     05/09/2024
+ms.date:     06/24/2024
 ms.topic:    reference
 title:       dsc config set
 ---
@@ -53,7 +53,7 @@ The command inspects the resource instances defined in the configuration documen
 $schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
 resources:
 - name: Windows only
-  type: DSC/AssertionGroup
+  type: Microsoft.DSC/Assertion
   properties:
     $schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
     resources:
@@ -65,9 +65,9 @@ resources:
   type: Microsoft.Windows/Registry
   properties:
     keyPath: HKCU\example
-    _ensure: Present
+    _exist: true
   dependsOn:
-    - '[DSC/Assertion]Windows only'
+    - "[resourceId('Microsoft.DSC/Assertion', 'Windows only')"
 ```
 
 ```sh
@@ -122,6 +122,20 @@ ignores any input from stdin.
 
 ```yaml
 Type:      String
+Mandatory: false
+```
+
+### -w, --what-if
+
+When you specify this flag option, DSC doesn't actually change the system state with the `set`
+operation. Instead, it returns output indicating _how_ the operation will change system state when
+called without this option. Use this option to preview the changes DSC will make to a system.
+
+The output for the command when you use this option is the same as without, except that the
+`ExecutionType` metadata field is set to `WhatIf` instead of `Actual`.
+
+```yaml
+Type:      Boolean
 Mandatory: false
 ```
 
