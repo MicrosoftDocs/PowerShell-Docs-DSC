@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc' command
-ms.date:     03/06/2024
+ms.date:     06/24/2024
 ms.topic:    reference
 title:       dsc
 ---
@@ -161,6 +161,11 @@ execution of the command.
 |    `4`    | The command failed because input for the command wasn't valid YAML or JSON.                             |
 |    `5`    | The command failed because a resource definition or instance value was invalid against its JSON schema. |
 |    `6`    | The command was cancelled by a <kbd>Ctrl</kbd>+<kbd>C</kbd> interruption.                               |
+
+## Notes
+
+DSC expects input strings to use UTF-8 encoding. When you pass input from stdin or the path to a
+file, ensure that the input is encoded as UTF-8.
 
 [01]: completer/command.md
 [02]: config/command.md

@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for a parameter in a Desired State Configuration document.
-ms.date:     05/09/2024
+ms.date:     06/24/2024
 ms.topic:    reference
 title:       DSC Configuration document parameter schema
 ---
@@ -74,7 +74,7 @@ independent logging or recording that isn't handled by DSC, the value may be sto
 Use secure strings for passwords and secrets.
 
 For more information about data types, see
-[DSC configuration parameter data type schema reference][02].
+[DSC configuration parameter data type schema reference][03].
 
 ```yaml
 Type:        string
