@@ -1,7 +1,7 @@
 trigger:
 - xdanni-test
 
-pr: none # Disable pull request triggers.
+pr: none # Disable pull request triggers
 
 resources:
   repositories:
