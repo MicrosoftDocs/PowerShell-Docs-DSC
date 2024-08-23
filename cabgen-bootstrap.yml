@@ -1,14 +1,14 @@
 trigger:
 - xdanni-test
 
-pr: none # Disable pull request triggers
+pr: none # Disable pull request triggers.
 
 resources:
   repositories:
     - repository: ReferenceAutomation
       type: git
       name: Content CI/ReferenceAutomation
-      ref: refs/heads/xdanni/azps
+      ref: refs/heads/master
 
 extends:
   template: PowerShell/cabgen.yml@ReferenceAutomation
