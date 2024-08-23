@@ -1,5 +1,5 @@
 trigger:
-- live
+- xdanni-test
 
 pr: none # Disable pull request triggers.
 
