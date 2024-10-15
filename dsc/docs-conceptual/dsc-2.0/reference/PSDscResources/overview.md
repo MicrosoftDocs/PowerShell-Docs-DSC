@@ -74,7 +74,7 @@ comments.
 
 ### Resources that don't work in machine configuration
 
-When using Azure Automanage's machine configuration feature, don't use the following resources:
+When using Azure machine configuration, don't use the following resources:
 
 - `WindowsFeature`
 - `WindowsFeatureSet`

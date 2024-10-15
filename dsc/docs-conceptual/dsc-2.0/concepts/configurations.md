@@ -7,7 +7,7 @@ title:  DSC Configurations
 
 # DSC Configurations
 
-> Applies To: PowerShell 7, Azure Automanage's machine configuration feature
+> Applies To: PowerShell 7, Azure machine configuration
 
 DSC Configurations are PowerShell scripts that define a special kind of command. To define a
 Configuration, use the PowerShell keyword `configuration`.
