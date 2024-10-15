@@ -500,8 +500,8 @@ for the SimpleConfigUpdateSettings object. The available property is:
 
 ### The Reasons property
 
-If your class-based DSC Resource is intended for use with Azure Automanage's machine configuration
-feature, your DSC Resource must have **Reasons** property that meets the following requirements:
+If your class-based DSC Resource is intended for use with Azure machine configuration, your DSC
+Resource must have **Reasons** property that meets the following requirements:
 
 - It must declared with the **NotConfigurable** property on the **DscProperty** attribute.
 - It must be an array of objects that have a **String** property named **Code**, a **String**
