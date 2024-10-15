@@ -29,21 +29,18 @@ Install-Module -Name PSDesiredStateConfiguration -Repository PSGallery -MaximumV
 
 ## Use Case for DSC 2.0
 
-DSC 2.0 is supported for use with [Azure Automanage's machine configuration feature][02]. Other
-scenarios, such as directly calling DSC Resources with `Invoke-DscResource`, may be functional but
-aren't the primary intended use of this version.
+DSC 2.0 is supported for use with [Azure machine configuration][02]. Other scenarios, such as
+directly calling DSC Resources with `Invoke-DscResource`, may be functional but aren't the primary
+intended use of this version.
 
-If you aren't using Azure Automanage's machine configuration feature, you should use DSC 1.1.
-
-DSC 3.0 is available in public beta and should only be used with Azure machine configuration (which
-supports it) or for non-production environments to test migrating away from DSC 1.1.
+If you aren't using Azure machine configuration, you should use DSC 1.1.machine
 
 ## Changes from DSC 1.1
 
 There are several major changes in DSC 2.0.
 
-The only way to use DSC Resources in 2.0 is with the `Invoke-DscResource` cmdlet and Azure
-Automanage's machine configuration feature.
+The only way to use DSC Resources in 2.0 is with the `Invoke-DscResource` cmdlet or Azure machine
+configuration.
 
 The following cmdlets have been removed:
 

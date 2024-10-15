@@ -70,15 +70,14 @@ Invoke-DscResource @SetParameters
 
 For more information, view the [Invoke-DscResource][01] help.
 
-## The machine configuration feature of Azure Automanage
+## Azure machine configuration
 
 For machines hosted in Microsoft Azure, or connected for hybrid management, the machine
 configuration feature of Azure Automanage offers the ability to audit or apply configurations. The
 feature can be used stand-alone to assign configurations as a machine is deployed, or dynamically
 to assign configurations to a machine based on properties defined by the API.
 
-For more information, see the page
-[Understand the machine configuration feature of Azure Automanage][02].
+For more information, see [Understanding Azure Machine Configuration][02].
 
 ## DSC resources with third-party tools
 

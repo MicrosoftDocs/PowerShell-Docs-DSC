@@ -18,7 +18,7 @@ items:
         href: getting-started/nanoDSC.md
       - name: Get started with DSC in Azure Automation
         href: /azure/automation/automation-dsc-getting-started
-      - name: Get started with Azure Automanage's machine configuration
+      - name: Get started with Azure machine configuration
         href: /azure/governance/machine-configuration/overview
   - name: Quickstarts
     expanded: true

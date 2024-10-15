@@ -108,8 +108,8 @@ class MyDscResourceReason {
 > with the module name. If the name of your embedded class is already unlikely to conflict, you can
 > use it without a prefix.
 >
-> If your DSC Resource is designed for use with Azure Automanage's machine configuration feature,
-> always prefix the name of the embedded class you create for the **Reasons** property.
+> If your DSC Resource is designed for use with Azure machine configuration, always prefix the name
+> of the embedded class you create for the **Reasons** property.
 
 ### Public and Private functions
 

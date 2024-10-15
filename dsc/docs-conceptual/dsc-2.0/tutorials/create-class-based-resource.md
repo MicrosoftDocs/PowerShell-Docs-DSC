@@ -906,9 +906,8 @@ First, `Set()` needs to determine whether the DSC Resource needs to be created, 
 ```
 
 `Set()` first calls the `Test()` method to determine if anything actually needs to be done. Some
-tools like, Azure Automanage's machine configuration feature, ensure that the `Set()` method is only
-called after the `Test()` method. However, there's no such guarantee when you use the
-`Invoke-DscResource` cmdlet.
+tools like, Azure machine configuration, ensure that the `Set()` method is only called after the
+`Test()` method. However, there's no such guarantee when you use the `Invoke-DscResource` cmdlet.
 
 Since the `Test()` method calls `Get()`, which caches the current state, the DSC Resource can access
 the cached current state without having to call the `Get()` method again.

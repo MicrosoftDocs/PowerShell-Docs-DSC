@@ -1,18 +1,17 @@
 ---
 description: >-
-  Create a class-based DSC Resource for use with Azure Automanage's machine configuration feature
+  Create a class-based DSC Resource for use with Azure machine configuration
 ms.topic: tutorial
 ms.date: 03/08/2023
 ms.custom: template-tutorial
-title: Create a class-based DSC Resource for Machine Configuration
+title: Create a class-based DSC Resource for machine configuration
 ---
 
 # Tutorial: Create a class-based DSC Resource for machine configuration
 
 Get started authoring a class-based DSC Resource to manage a configuration file with
-[Azure Automanage's machine configuration feature][01]. Completing this tutorial gives you a
-machine-configuration compatible class-based DSC Resource in a module you can use for further
-learning and customization.
+[Azure machine configuration][01]. Completing this tutorial gives you a machine-configuration
+compatible class-based DSC Resource in a module you can use for further learning and customization.
 
 In this tutorial, you learn how to:
 
@@ -285,8 +284,8 @@ $UpdateFrequency
 
 ### Add the Reasons property
 
-Because this DSC Resource is intended for use with Azure Automanage's machine configuration
-feature, it must have **Reasons** property that meets the following requirements:
+Because this DSC Resource is intended for use with Azure machine configuration, it must have
+**Reasons** property that meets the following requirements:
 
 - It must be declared with the **NotConfigurable** property on the **DscProperty** attribute.
 - It must be an array of objects that have a **String** property named **Code**, a **String**
@@ -712,9 +711,9 @@ The `Get()` method now returns accurate information about the current state of t
 
 ### Handling Reasons
 
-For Machine Configuration compatible DSC Resources, the `Get()` method also needs to populate the
-**Reasons** property. For this purpose, create the `GetReasons()` method. It should return an array
-of **ExampleResourcesReason** objects and take a single **Tailspin** object as input.
+For Azure machine configuration compatible DSC Resources, the `Get()` method also needs to populate
+the **Reasons** property. For this purpose, create the `GetReasons()` method. It should return an
+array of **ExampleResourcesReason** objects and take a single **Tailspin** object as input.
 
 ```powershell
 [ExampleResourcesReason[]] GetReasons([Tailspin]$CurrentState) {
@@ -1384,9 +1383,8 @@ First, `Set()` needs to determine whether the DSC Resource needs to be created, 
 ```
 
 `Set()` first calls the `Test()` method to determine if anything actually needs to be done. Some
-tools like, Azure Automanage's machine configuration feature, ensure that the `Set()` method is only
-called after the `Test()` method. However, there's no such guarantee when you use the
-`Invoke-DscResource` cmdlet.
+tools like, Azure machine configuration, ensure that the `Set()` method is only called after the
+`Test()` method. However, there's no such guarantee when you use the `Invoke-DscResource` cmdlet.
 
 Since the `Test()` method calls `Get()`, which caches the current state, the DSC Resource can access
 the cached current state without having to call the `Get()` method again.
@@ -2428,8 +2426,8 @@ files in it.
 
 1. Read about [class-based DSC Resources][02], learn about how they work, and consider why the DSC
    Resource in this tutorial is implemented this way.
-1. Read about the [machine configuration feature of Azure Automanage][01] to understand how you can
-   use it to audit and configure your systems.
+1. Read about [Azure machine configuration][01] to understand how you can use it to audit and
+   configure your systems.
 1. Consider how this DSC Resource can be improved. Are there any edge cases or features it doesn't
    handle? Update the implementation to handle them.
 

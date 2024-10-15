@@ -3,7 +3,7 @@ items:
       href: overview.md
     - name: Getting Started
       items:
-        - name: Understand the machine configuration feature of Azure Automanage
+        - name: Understanding Azure Machine Configuration
           href: /azure/governance/machine-configuration/overview
         - name: Get started with invoking DSC Resources
           href: getting-started/invoking-dsc-resources.md
