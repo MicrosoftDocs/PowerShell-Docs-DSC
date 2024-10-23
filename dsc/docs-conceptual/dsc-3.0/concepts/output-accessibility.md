@@ -5,7 +5,7 @@ ms.date: 09/12/2024
 title: Improve the accessibility of DSC output in PowerShell
 ---
 
-# Improve the DSC accessibility of output in PowerShell
+# Improve the accessibility of DSC output in PowerShell
 
 Most terminal environments only display raw text. Users that rely on screen readers are faced with
 tedious narration when consuming large amounts of raw text because the raw output doesn't have the
@@ -102,7 +102,7 @@ dsc resource list -a Microsoft.Windows/WindowsPowerShell |
 
 ## Additional reading
 
-- [Improve the accessibility of output in PowerShell](https://learn.microsoft.com/powershell/scripting/learn/shell/output-for-screen-reader?view=powershell-7.4)
+- [Improve the accessibility of output in PowerShell](/powershell/scripting/learn/shell/output-for-screen-reader)
 - [Out-GridView](xref:Microsoft.PowerShell.Utility.Out-GridView)
 - [Export-Csv](xref:Microsoft.PowerShell.Utility.Export-Csv)
 - [ConvertTo-Html](xref:Microsoft.PowerShell.Utility.ConvertTo-Html)
