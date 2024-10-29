@@ -17,6 +17,8 @@ items:
         href: concepts/resources.md 
       - name: Enhanced authoring
         href: concepts/enhanced-authoring.md
+      - name: Output accessibility
+        href: concepts/output-accessibility.md
   - name: Resources
     items:
       - name: Concepts
