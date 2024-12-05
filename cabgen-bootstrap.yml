@@ -1,5 +1,5 @@
 trigger:
-- live
+- xdanni-test
 
 pr: none # Disable pull request triggers.
 
@@ -8,7 +8,7 @@ resources:
     - repository: ReferenceAutomation
       type: git
       name: Content CI/ReferenceAutomation
-      ref: refs/heads/master
+      ref: refs/heads/cabgen-s360
 
 extends:
   template: PowerShell/cabgen.yml@ReferenceAutomation
