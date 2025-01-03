@@ -39,7 +39,7 @@ Meta files in the root of the repository
 
 - `.*` - configuration files in the root of the repository
 - `*.md` - Project documentation in the root of the repository
-- `*.yml` - Project documentation in the root of the repository
+- `*.yml` - build automation files
 - `.devcontainer/*` - devcontainer configuration files
 - `.github/**/*` - GitHub templates, actions, and other meta files
 - `.vscode/**/*` - VS Code extension configurations
