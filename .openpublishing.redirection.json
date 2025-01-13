@@ -5,6 +5,7 @@
             "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
             "redirect_document_id": false
         },
+        // redirect index.md to overview
         {
             "source_path": "dsc/index.md",
             "redirect_url": "/powershell/dsc/overview",
@@ -30,6 +31,7 @@
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
         },
+        // redirect v1 getting-started articles to v2 getting-started article
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/lnxGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
@@ -45,6 +47,7 @@
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
+        // redirect v2 getting-started articles to v3 getting-started article
         {
             "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/lnxGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
@@ -60,6 +63,7 @@
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
             "redirect_document_id": false
         },
+        // redirect v2 getting-started article to v1 and v3
         {
             "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/invoking-dsc-resources.md",
             "redirect_url": "/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1",
@@ -70,7 +74,7 @@
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
             "redirect_document_id": false
         },
-        // redirect v3 article to v1 and v2
+        // redirect v3 getting-started article to v1 and v2
         {
             "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/getting-started.md",
             "redirect_url": "/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1",
@@ -81,6 +85,7 @@
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-2.0",
             "redirect_document_id": false
         },
+        // redirect delete files
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
             "redirect_url": "/powershell/dsc/concepts/glossary?view=dsc-2.0",
