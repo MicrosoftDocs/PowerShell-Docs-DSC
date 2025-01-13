@@ -11,6 +11,21 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "dsc/dsc-2.0/docs-conceptual/index.md",
+            "redirect_url": "/powershell/dsc/overview?view=dsc-2.0",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "dsc/dsc-3.0/docs-conceptual/index.md",
+            "redirect_url": "/powershell/dsc/overview?view=dsc-3.0",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "dsc/docs-conceptual/overview/overview.md",
+            "redirect_url": "/powershell/dsc/overview",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "dsc/docs-conceptual/index.md",
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
@@ -53,26 +68,6 @@
         {
             "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/invoking-dsc-resources.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "dsc/docs-conceptual/dsc-1.1/further-reading/whitepapers.md",
-            "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
-            "redirect_document_id": false
-        },
-        {
-            "source_path": "dsc/dsc-2.0/docs-conceptual/index.md",
-            "redirect_url": "/powershell/dsc/overview?view=dsc-2.0",
-            "redirect_document_id": true
-        },
-        {
-            "source_path": "dsc/dsc-3.0/docs-conceptual/index.md",
-            "redirect_url": "/powershell/dsc/overview?view=dsc-3.0",
-            "redirect_document_id": true
-        },
-        {
-            "source_path": "dsc/docs-conceptual/overview/overview.md",
-            "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
         },
         {
