@@ -2,7 +2,7 @@
     "redirections": [
         {
             "source_path": "dsc/docs-conceptual/dsc-1.1/further-reading/whitepapers.md",
-            "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
+            "redirect_url": "https://github.com/PowerShell/Whitepapers/blob/master/PullServerCPIG/PullServerCPIG.md",
             "redirect_document_id": false
         },
         // redirect index.md to overview
