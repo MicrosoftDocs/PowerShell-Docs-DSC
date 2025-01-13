@@ -47,7 +47,7 @@
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
-        // redirect v2 getting-started articles to v3 getting-started article
+        // redirect v1 getting-started articles to v3 getting-started article
         {
             "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/lnxGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
@@ -82,7 +82,7 @@
         },
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/getting-started.md",
-            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-2.0",
+            "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
         // redirect delete files
