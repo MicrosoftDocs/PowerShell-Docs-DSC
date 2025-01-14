@@ -135,11 +135,11 @@ enable other logs for debugging purposes by following the steps in [Where Are DS
 [W01]: ../troubleshooting/troubleshooting.md#where-are-dsc-event-logs
 [W02]: /windows-server/virtualization/hyper-v/hyper-v-server-2016
 [W03]: https://www.microsoft.com/download/details.aspx?id=54616
-[W04]: xref:PSDesiredStateConfiguration/Get-DscConfiguration
-[W05]: xref:PSDesiredStateConfiguration/Get-DscLocalConfigurationManager
-[W06]: xref:PSDesiredStateConfiguration/Remove-DscConfigurationDocument
-[W07]: xref:PSDesiredStateConfiguration/Set-DscLocalConfigurationManager
-[W08]: xref:PSDesiredStateConfiguration/Start-DscConfiguration
+[W04]: xref:PSDesiredStateConfiguration.Get-DscConfiguration
+[W05]: xref:PSDesiredStateConfiguration.Get-DscLocalConfigurationManager
+[W06]: xref:PSDesiredStateConfiguration.Remove-DscConfigurationDocument
+[W07]: xref:PSDesiredStateConfiguration.Set-DscLocalConfigurationManager
+[W08]: xref:PSDesiredStateConfiguration.Start-DscConfiguration
 
 <!-- NEW TAB -->
 # [Windows Nano](#tab/windows-nano)

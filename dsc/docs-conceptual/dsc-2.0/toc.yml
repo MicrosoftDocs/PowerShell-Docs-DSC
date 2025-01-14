@@ -2,11 +2,12 @@ items:
     - name: Desired State Configuration (DSC) 2.0
       href: overview.md
     - name: Getting Started
+      expanded: true
       items:
         - name: Understanding Azure Machine Configuration
           href: /azure/governance/machine-configuration/overview
         - name: Get started with invoking DSC Resources
-          href: getting-started/invoking-dsc-resources.md
+          href: getting-started/getting-started.md
     - name: Concepts
       items:
         - name: Glossary
@@ -53,4 +54,3 @@ items:
       items:
         - name: PSDscResources
           href: reference/PSDscResources/toc.yml
-  

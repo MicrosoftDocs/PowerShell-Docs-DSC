@@ -6,6 +6,7 @@ items:
   - name: Changelog
     href: changelog.md
   - name: Getting started
+    expanded: true
     items:
       - name: Get started managing state with DSCv3
         href: getting-started/getting-started.md
@@ -14,7 +15,7 @@ items:
       - name: Configuration Documents
         href: concepts/configurations.md
       - name: Resources
-        href: concepts/resources.md 
+        href: concepts/resources.md
       - name: Enhanced authoring
         href: concepts/enhanced-authoring.md
       - name: Output accessibility
