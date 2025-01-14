@@ -7,8 +7,6 @@ description: This topic explains how to get started using PowerShell Desired Sta
 # Get started with Desired State Configuration (DSC) for Linux
 
 This topic explains how to get started using PowerShell Desired State Configuration (DSC) for Linux.
-For general information about DSC, see
-[Get Started with Windows PowerShell Desired State Configuration](../overview.md).
 
 ## Supported Linux operation system versions
 
@@ -23,14 +21,14 @@ The following Linux operating system versions are supported by DSC for Linux.
 
 ## Installing DSC for Linux
 
-You must install the [Open Management Infrastructure (OMI)](https://github.com/Microsoft/omi) before
+You must install the [Open Management Infrastructure (OMI)][L02] before
 installing DSC for Linux.
 
 ### Installing OMI
 
 Desired State Configuration for Linux requires the Open Management Infrastructure (OMI) CIM server,
 version 1.0.8.1 or later. OMI can be downloaded from The Open Group:
-[Open Management Infrastructure (OMI)](https://github.com/Microsoft/omi).
+[Open Management Infrastructure (OMI)][L02].
 
 To install OMI, install the package that is appropriate for your Linux system (.rpm or .deb) and
 OpenSSL version (ssl_098 or ssl_100), and architecture (x64/x86). RPM packages are appropriate for
@@ -49,13 +47,13 @@ Run the following command to install OMI on a CentOS 7 x64 system.
 ### Installing DSC
 
 DSC for Linux is available for download from the
-[PowerShell-DSC-for-Linux](https://github.com/Microsoft/PowerShell-DSC-for-Linux/releases/tag/v1.2.1-0)
+[PowerShell-DSC-for-Linux][L03]
 repository in the repository.
 
 To install DSC, install the package that is appropriate for your Linux system (.rpm or .deb),
 OpenSSL version, and architecture (x64/x86). RPM packages are appropriate for CentOS, Red Hat
-Enterprise Linux, SUSE Linux Enterprise Server, and Oracle Linux. DEB packages are appropriate
-for Debian GNU/Linux and Ubuntu Server.
+Enterprise Linux, SUSE Linux Enterprise Server, and Oracle Linux. DEB packages are appropriate for
+Debian GNU/Linux and Ubuntu Server.
 
 > [!NOTE]
 > Support for DSC Linux OpenSSL up to version 1.1. To determine the installed OpenSSL version,
@@ -117,13 +115,10 @@ document for a Linux computer using Windows PowerShell.
 ### Push the configuration to the Linux computer
 
 Configuration documents (MOF files) can be pushed to the Linux computer using the
-[Start-DscConfiguration](/powershell/module/psdesiredstateconfiguration/start-dscconfiguration)
-cmdlet. In order to use this cmdlet, along with the
-[Get-DscConfiguration](/powershell/module/PSDesiredStateConfiguration/Get-DscConfiguration), or
-[Test-DscConfiguration](/powershell/module/psdesiredstateconfiguration/Test-DSCConfiguration)
-cmdlets, remotely to a Linux computer, you must use a CIMSession. The
-[New-CimSession](/powershell/module/CimCmdlets/New-CimSession) cmdlet is used to create a
-**CIMSession** to the Linux computer.
+[Start-DscConfiguration][L08] cmdlet. In order to use this cmdlet, along with the
+[Get-DscConfiguration][L05], or [Test-DscConfiguration][L09] cmdlets, remotely to a Linux computer,
+you must use a CIMSession. The [New-CimSession][L04] cmdlet is used to create a **CIMSession** to
+the Linux computer.
 
 The following code shows how to create a CIMSession for DSC for Linux.
 
@@ -151,12 +146,11 @@ $Sess = New-CimSession @sessParams
 
 > [!NOTE]
 > For "Push" mode, the user credential must be the root user on the Linux computer. Only SSL/TLS
-> connections are supported for DSC for Linux, the `New-CimSession` must be used with the –UseSSL
+> connections are supported for DSC for Linux, the `New-CimSession` must be used with the **UseSSL**
 > parameter set to $true. The SSL certificate used by OMI (for DSC) is specified in the file:
 > `/etc/opt/omi/conf/omiserver.conf` with the properties: pemfile and keyfile. If this certificate
-> is not trusted by the Windows computer that you are running the
-> [New-CimSession](/powershell/module/CimCmdlets/New-CimSession) cmdlet on, you can choose to ignore
-> certificate validation with the CIMSession Options:
+> is not trusted by the Windows computer that you are running the [New-CimSession][L04] cmdlet on,
+> you can choose to ignore certificate validation with the CIMSession Options:
 > `-SkipCACheck -SkipCNCheck -SkipRevocationCheck`
 
 Run the following command to push the DSC configuration to the Linux node.
@@ -167,9 +161,9 @@ Run the following command to push the DSC configuration to the Linux node.
 
 Configurations can be distributed to a Linux computer with a pull server, just like for Windows
 computers. For guidance on using a pull server, see
-[Windows PowerShell Desired State Configuration Pull Servers](../pull-server/pullServer.md). For
-additional information and limitations related to using Linux computers with a pull server, see the
-Release Notes for Desired State Configuration for Linux.
+[Windows PowerShell Desired State Configuration Pull Servers][L01]. For additional information and
+limitations related to using Linux computers with a pull server, see the Release Notes for Desired
+State Configuration for Linux.
 
 ### Working with configurations locally
 
@@ -185,13 +179,15 @@ scripts are locate in `/opt/microsoft/dsc/Scripts` and include the following:
 
 - GetDscLocalConfigurationManager.py
 
-  Returns the current meta-configuration applied to the computer. Similar to the cmdlet [Get-DSCLocalConfigurationManager](/powershell/module/PSDesiredStateConfiguration/Get-DscLocalConfigurationManager) cmdlet.
+  Returns the current meta-configuration applied to the computer. Similar to the cmdlet
+  [Get-DSCLocalConfigurationManager][L06] cmdlet.
 
   `# sudo ./GetDscLocalConfigurationManager.py`
 
 - InstallModule.py
 
-  Installs a custom DSC resource module. Requires the path to a .zip file containing the module shared object library and schema MOF files.
+  Installs a custom DSC resource module. Requires the path to a .zip file containing the module
+  shared object library and schema MOF files.
 
   `# sudo ./InstallModule.py /tmp/cnx_Resource.zip`
 
@@ -203,19 +199,18 @@ scripts are locate in `/opt/microsoft/dsc/Scripts` and include the following:
 
 - StartDscLocalConfigurationManager.py
 
-  Applies a configuration MOF file to the computer. Similar to the
-  [Start-DscConfiguration](/powershell/module/psdesiredstateconfiguration/start-dscconfiguration)
+  Applies a configuration MOF file to the computer. Similar to the [Start-DscConfiguration][L08]
   cmdlet. Requires the path to the configuration MOF to apply.
 
-  `# sudo ./StartDscLocalConfigurationManager.py –configurationmof /tmp/localhost.mof`
+  `# sudo ./StartDscLocalConfigurationManager.py -configurationmof /tmp/localhost.mof`
 
 - SetDscLocalConfigurationManager.py
 
   Applies a Meta Configuration MOF file to the computer. Similar to the
-  [Set-DSCLocalConfigurationManager](/powershell/module/PSDesiredStateConfiguration/Set-DscLocalConfigurationManager)
+  [Set-DSCLocalConfigurationManager][L07]
   cmdlet. Requires the path to the Meta Configuration MOF to apply.
 
-  `# sudo ./SetDscLocalConfigurationManager.py –configurationmof /tmp/localhost.meta.mof`
+  `# sudo ./SetDscLocalConfigurationManager.py -configurationmof /tmp/localhost.meta.mof`
 
 ## PowerShell Desired State Configuration for Linux Log Files
 
@@ -225,3 +220,14 @@ The following log files are generated for DSC for Linux messages.
 | ----------------- | ------------------ | -------------------------------------------------------------------------------------------------------- |
 | **omiserver.log** | `/var/opt/omi/log` | Messages relating to the operation of the OMI CIM server.                                                |
 | **dsc.log**       | `/var/opt/omi/log` | Messages relating to the operation of the Local Configuration Manager (LCM) and DSC resource operations. |
+
+<!-- link references -->
+[L01]: ../pull-server/pullServer.md
+[L02]: https://github.com/Microsoft/omi
+[L03]: https://github.com/Microsoft/PowerShell-DSC-for-Linux/releases/tag/v1.2.1-0
+[L04]: xref:CimCmdlets.New-CimSession
+[L05]: xref:PSDesiredStateConfiguration.Get-DscConfiguration
+[L06]: xref:PSDesiredStateConfiguration.Get-DscLocalConfigurationManager
+[L07]: xref:PSDesiredStateConfiguration.Set-DscLocalConfigurationManager
+[L08]: xref:PSDesiredStateConfiguration.Start-DscConfiguration
+[L09]: xref:PSDesiredStateConfiguration.Test-DscConfiguration

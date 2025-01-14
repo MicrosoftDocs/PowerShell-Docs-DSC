@@ -5,6 +5,7 @@
             "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
             "redirect_document_id": false
         },
+        // Redirect index.md to overview pages
         {
             "source_path": "dsc/index.md",
             "redirect_url": "/powershell/dsc/overview",
@@ -35,6 +36,7 @@
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
         },
+        // Redirect deleted files
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
             "redirect_url": "/powershell/dsc/concepts/glossary?view=dsc-2.0",
