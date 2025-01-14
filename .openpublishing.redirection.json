@@ -36,6 +36,27 @@
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
         },
+        // Redirect renamed files
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/lnxGettingStarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/nanoDsc.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/winGettingStarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/invoking-dsc-resources.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started",
+            "redirect_document_id": false
+        },
         // Redirect deleted files
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
