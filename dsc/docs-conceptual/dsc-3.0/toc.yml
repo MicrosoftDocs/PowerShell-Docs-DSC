@@ -6,7 +6,6 @@ items:
   - name: Changelog
     href: changelog.md
   - name: Getting started
-    expanded: true
     items:
       - name: Get started managing state with DSCv3
         href: getting-started/getting-started.md

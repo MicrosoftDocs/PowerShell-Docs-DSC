@@ -2,7 +2,6 @@ items:
     - name: Desired State Configuration (DSC) 2.0
       href: overview.md
     - name: Getting Started
-      expanded: true
       items:
         - name: Understanding Azure Machine Configuration
           href: /azure/governance/machine-configuration/overview
