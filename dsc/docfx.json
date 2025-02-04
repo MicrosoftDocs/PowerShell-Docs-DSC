@@ -53,11 +53,11 @@
         "docs-conceptual/**/reference/**": "language-reference",
         "docs-conceptual/**/troubleshooting/**": "troubleshooting",
         "docs-conceptual/**/tutorials/**": "tutorial",
-        "dsc-1.1/PSDesiredStateConfiguration/*": "managed-reference",
+        "dsc-1.1/PSDesiredStateConfiguration/*": "reference",
         "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
-        "dsc-2.0/PSDesiredStateConfiguration/*": "managed-reference",
+        "dsc-2.0/PSDesiredStateConfiguration/*": "reference",
         "dsc-2.0/PSDesiredStateConfiguration/About/*.md": "conceptual",
-        "dsc-3.0/PSDesiredStateConfiguration/*": "managed-reference",
+        "dsc-3.0/PSDesiredStateConfiguration/*": "reference",
         "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "conceptual"
       }
     },
