@@ -57,6 +57,11 @@
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-2.0",
             "redirect_document_id": false
         },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/getting-started.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-2.0",
+            "redirect_document_id": false
+        },
         // Redirect deleted files
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
