@@ -81,7 +81,7 @@ Install-Module -Name PSDesiredStateConfiguration -RequiredVersion 3.0.0-beta1 -A
 ## Integrating with DSCv3
 
 DSCv3 is a platform tool that abstracts the concerns for defining and invoking resources. Higher
-order tools, like Azure Machine Configuration, Azure Automanaged VM, and WinGet are early partners
+order tools, like Azure Dev Box, Windows Dev Home, and WinGet are early partners
 for DSCv3 as orchestration agents.
 
 DSCv3 uses JSON schemas to define the structure of resources, configuration documents, and the
