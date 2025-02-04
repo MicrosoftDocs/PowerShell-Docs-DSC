@@ -51,19 +51,19 @@
         },
         {
             // redirect v1.1 to v2
-            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/wingettingstarted.md",
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/winGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
         {
             // redirect v1.1 to v2
-            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/nanodsc.md",
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/nanoDsc.md",
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
         {
             // redirect v1.1 to v2
-            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/lnxgettingstarted.md",
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/lnxGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
             "redirect_document_id": false
         },
@@ -75,19 +75,19 @@
         },
         {
             // redirect v1.1 to v3
-            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/wingettingstarted.md",
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/winGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
             "redirect_document_id": false
         },
         {
             // redirect v1.1 to v3
-            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/nanodsc.md",
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/nanoDsc.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
             "redirect_document_id": false
         },
         {
             // redirect v1.1 to v3
-            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/lnxgettingstarted.md",
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/lnxGettingStarted.md",
             "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
             "redirect_document_id": false
         },
