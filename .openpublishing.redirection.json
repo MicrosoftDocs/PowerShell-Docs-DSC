@@ -5,6 +5,7 @@
             "redirect_url": "https://aka.ms/thereleasepipelinemodelpdf",
             "redirect_document_id": false
         },
+        // Redirect index.md to overview pages
         {
             "source_path": "dsc/index.md",
             "redirect_url": "/powershell/dsc/overview",
@@ -35,6 +36,68 @@
             "redirect_url": "/powershell/dsc/overview",
             "redirect_document_id": false
         },
+        // Redirect getting-started files
+        {
+            // redirect v2 to v1.1
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/invoking-dsc-resources.md",
+            "redirect_url": "/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v3 to v1.1
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/getting-started.md",
+            "redirect_url": "/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v2
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/wingettingstarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v2
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/nanodsc.md",
+            "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v2
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/lnxgettingstarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v3 to v2
+            "source_path": "dsc/docs-conceptual/dsc-2.0/getting-started/getting-started.md",
+            "redirect_url": "/powershell/dsc/getting-started/invoking-dsc-resources?view=dsc-2.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v3
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/wingettingstarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v3
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/nanodsc.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v1.1 to v3
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/lnxgettingstarted.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
+            "redirect_document_id": false
+        },
+        {
+            // redirect v2 to v3
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/invoking-dsc-resources.md",
+            "redirect_url": "/powershell/dsc/getting-started/getting-started?view=dsc-3.0",
+            "redirect_document_id": false
+        },
+        // Redirect deleted files
         {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
             "redirect_url": "/powershell/dsc/concepts/glossary?view=dsc-2.0",
