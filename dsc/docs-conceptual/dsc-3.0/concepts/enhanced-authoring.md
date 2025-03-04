@@ -162,7 +162,7 @@ specific workspace.
 ```json
 "json.schemas": [
     {
-        "fileMatch": ["**/*.dsc.resource.json", ],
+        "fileMatch": ["**/*.dsc.resource.json"],
         "url": "https://aka.ms/dsc/schemas/v3/bundled/resource/manifest.vscode.json"
     }
 ]
