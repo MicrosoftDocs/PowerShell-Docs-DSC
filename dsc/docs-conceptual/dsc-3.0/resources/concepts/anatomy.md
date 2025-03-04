@@ -44,7 +44,7 @@ At a minimum, the manifest must define:
   - A command to validate nested DSC Resources. This last option only applies to DSC group
     resources and DSC adapter resources.
 
-The manifest may define:
+The manifest can define:
 
 - The kind of resource the manifest describes: `adapter`, `group`, `importer`, or `resource`.
 

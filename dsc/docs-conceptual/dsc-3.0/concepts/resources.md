@@ -75,22 +75,22 @@ Most properties are one of the basic types:
 Complex properties require the property value to be an object with defined subproperties. The
 subproperties can be basic or complex, but they're usually a basic type.
 
-Resources may define their properties as read-only or write-only:
+Resources can define their properties as read-only or write-only:
 
 - A _read-only resource property_ defines metadata about an instance that the resource can retrieve
   but that a user can't directly set. You can't specify read-only properties in the desired state
   for an instance. Examples of read-only properties include the last time a file was modified or
   the author of an installed software package.
 - A _write-only resource property_ defines a value that the resource uses during a resource
-  operation but which can't be returned for the current state of an instance. Examples of
+  operation that can't be returned for the current state of an instance. Examples of
   write-only properties include credentials used to authenticate during a resource operation and
   the temporary directory to use when retrieving and unpacking a remote archive.
 
-DSC defines a set of _canonical resource properties_ which indicate that a resource participates in
+DSC defines a set of _canonical resource properties_, which indicate that a resource participates in
 shared semantics the DSC engine provides. For example, any resource that includes the `_exist`
 canonical property in its instance schema indicates that the resource manages instances that can be
 created and deleted. If a resource has the `_exist` canonical property and the `delete` capability,
-DSC can handle invoking the **Delete** operation instead of **Set** when the desired state
+DSC can invoke the **Delete** operation instead of **Set** when the desired state
 indicates the instance shouldn't exist. For more information about the available canonical
 properties, see [DSC canonical properties](../reference/schemas/resource/properties/overview.md).
 

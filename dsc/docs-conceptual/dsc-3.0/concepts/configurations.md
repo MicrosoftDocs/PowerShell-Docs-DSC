@@ -16,7 +16,7 @@ desired state of a system as data files. Configuration documents define a collec
 [DSC resource][01] instances to describe what the desired state should be, not how to put the
 system into that state. The DSC resources handle the _how_ for each instance.
 
-DSC can process configuration documents to:
+DSC processes configuration documents to:
 
 - Retrieve the current state of the defined resource instances with the `dsc config get` command.
 - Validate whether the instances are in the desired state with the `dsc config test` command.
@@ -30,11 +30,10 @@ properties define how DSC processes the document. The top-level properties for a
 - `$schema` (required) - Defines the URI for the JSON Schema the document adheres to. DSC
   uses this to know how to validate and interpret the document.
 - `resources` (required) - Defines the collection of resource instances the document manages.
-- `metadata` (optional) - Defines an arbitrary set of annotations for the document. Except for
-  metadata within the `Microsoft.DSC` property, DSC doesn't validate this data or use it directly.
-  The annotations can include notes like who authored the document, the last time someone updated
-  it, or any other information. DSC doesn't use the annotations. The metadata is for documentation
-  or other tools to use.
+- `metadata` (optional) - Defines an arbitrary set of annotations for the document. The annotations
+  can include notes like who authored the document, the last time someone updated it, or any other
+  information. With one exception, DSC doesn't use the annotations. The metadata is for
+  documentation or other tools to use.
 
   DSC applies validation to the `Microsoft.DSC` property. For more information, see the
   [DSC Configuration document metadata schema][02] reference.
