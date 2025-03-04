@@ -33,7 +33,7 @@ behavior based on the property's value in an instance's desired state:
 - When `_purge` is `false` or not specified, the resource ignores unmanaged entries.
 
 When a resource defines this property, it should always document which property or properties
-`_purge` affects. A resource may define `_purge` as a subproperty for a complex property.
+`_purge` affects. A resource can define `_purge` as a subproperty for a complex property.
 
 This property is write-only. A resource that uses the `_purge` property should never return
 `_purge` in the instance's output state. A resource must not define `_purge` as a mandatory

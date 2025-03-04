@@ -87,8 +87,8 @@ hadErrors: false
 The `reference()` function expects the resource ID of the instance to resolve as a reference. Use
 the [resourceId][01] function to build the resource ID for the instance instead of constructing the
 resource ID manually. The function verifies that the resource instance exists, while specifying
-only the string manually may lead to a harder to diagnose error if the referenced instance name is
-incorrect.
+only the string manually might lead to a harder to diagnose error if the referenced instance name
+is incorrect.
 
 ```yaml
 Type:         string

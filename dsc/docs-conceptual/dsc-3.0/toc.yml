@@ -1,265 +1,269 @@
 items:
   - name: Microsoft DSC 3.0
     href: overview.md
-  - name: Glossary
-    href: glossary.md
   - name: Changelog
     href: changelog.md
   - name: Getting started
     items:
-      - name: Get started managing state with DSCv3
-        href: getting-started/getting-started.md
+      - name: Managing state with DSC
+        href: get-started/index.md
   - name: Concepts
     items:
-      - name: Configuration Documents
-        href: concepts/configurations.md
-      - name: Resources
-        href: concepts/resources.md
+      - name: DSC configuration documents
+        items:
+          - name: Overview
+            href: concepts/configuration-documents/overview.md
+      - name: DSC resources
+        items:
+          - name: Overview
+            href: concepts/resources/overview.md
+          - name: Resource instances
+            href: concepts/resources/instances.md
+          - name: Resource operations
+            href: concepts/resources/operations.md
+          - name: Resource properties
+            href: concepts/resources/properties.md
+          - name: Resource capabilities
+            href: concepts/resources/capabilities.md
+          - name: Resource kinds
+            href: concepts/resources/kinds.md
+          - name: Anatomy of a command resource 
+            href: concepts/resources/anatomy.md
       - name: Enhanced authoring
         href: concepts/enhanced-authoring.md
       - name: Output accessibility
         href: concepts/output-accessibility.md
-  - name: Resources
+  - name: Tutorials
     items:
-      - name: Concepts
+      - name: Resource authoring
         items:
-          - name: Anatomy of a command-based DSC Resource
-            href: resources/concepts/anatomy.md
-      - name: Tutorials
-        items:
-          - name: Overview
-            href: resources/tutorials/overview.md
-          - name: Write your first DSC Resource
-            items:
-              - name: Overview
-                href: resources/tutorials/first-resource/overview.md
-              - name: In Go
-                href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
-      - name: Samples
-        items:
-          - name: Overview
-            href: resources/samples/overview.md
-          - name: First DSC Resource
-            items:
-              - name: Overview
-                href: resources/samples/first-resource/overview.md
-              - name: Go
-                href: https://github.com/PowerShell/DSC-Samples/tree/main/samples/go/resources/first
-  - name: dsc command line reference
+        - name: Overview
+          href: tutorials/resources/authoring/overview.md
+        - name: Write your first DSC resource
+          items:
+            - name: Overview
+              href: tutorials/resources/authoring/first-resource/overview.md
+            - name: In Go
+              href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
+  - name: DSC reference
     items:
-      - name: dsc command
-        href: reference/cli/dsc.md
-      - name: dsc completer command
-        href: reference/cli/completer/command.md
-      - name: dsc config command
+      - name: dsc CLI
         items:
-          - name: dsc config
-            href: reference/cli/config/command.md
-          - name: dsc config export
-            href: reference/cli/config/export.md
-          - name: dsc config get
-            href: reference/cli/config/get.md
-          - name: dsc config set
-            href: reference/cli/config/set.md
-          - name: dsc config test
-            href: reference/cli/config/test.md
-      - name: dsc resource command
+          - name: dsc
+            href: reference/cli/index.md
+          - name: dsc completer
+            href: reference/cli/completer/index.md
+          - name: dsc config subcommands
+            items:
+              - name: dsc config
+                href: reference/cli/config/index.md
+              - name: dsc config export
+                href: reference/cli/config/export.md
+              - name: dsc config get
+                href: reference/cli/config/get.md
+              - name: dsc config set
+                href: reference/cli/config/set.md
+              - name: dsc config test
+                href: reference/cli/config/test.md
+          - name: dsc resource subcommands
+            items:
+              - name: dsc resource
+                href: reference/cli/resource/index.md
+              - name: dsc resource delete
+                href: reference/cli/resource/delete.md
+              - name: dsc resource export
+                href: reference/cli/resource/export.md
+              - name: dsc resource get
+                href: reference/cli/resource/get.md
+              - name: dsc resource list
+                href: reference/cli/resource/list.md
+              - name: dsc resource schema
+                href: reference/cli/resource/schema.md
+              - name: dsc resource set
+                href: reference/cli/resource/set.md
+              - name: dsc resource test
+                href: reference/cli/resource/test.md
+          - name: dsc schema
+            href: reference/cli/schema/index.md
+      - name: DSC JSON Schemas
         items:
-          - name: dsc resource
-            href: reference/cli/resource/command.md
-          - name: dsc resource delete
-            href: reference/cli/resource/delete.md
-          - name: dsc resource export
-            href: reference/cli/resource/export.md
-          - name: dsc resource get
-            href: reference/cli/resource/get.md
-          - name: dsc resource list
-            href: reference/cli/resource/list.md
-          - name: dsc resource schema
-            href: reference/cli/resource/schema.md
-          - name: dsc resource set
-            href: reference/cli/resource/set.md
-          - name: dsc resource test
-            href: reference/cli/resource/test.md
-      - name: dsc schema command
-        href: reference/cli/schema/command.md
-  - name: Schema reference
-    items:
-      - name: Configuration
+          - name: dsc command outputs
+            items:
+              - name: dsc config command outputs
+                items:
+                  - name: dsc config get output
+                    href: reference/schemas/outputs/config/get.md
+                  - name: dsc config set output
+                    href: reference/schemas/outputs/config/set.md
+                  - name: dsc config test output
+                    href: reference/schemas/outputs/config/test.md
+              - name: dsc resource command outputs
+                items:
+                  - name: dsc resource get output
+                    href: reference/schemas/outputs/resource/get.md
+                  - name: dsc resource list output
+                    href: reference/schemas/outputs/resource/list.md
+                  - name: dsc resource set output
+                    href: reference/schemas/outputs/resource/set.md
+                  - name: dsc resource test output
+                    href: reference/schemas/outputs/resource/test.md
+          - name: Configuration
+            items:
+              - name: Documents
+                href: reference/schemas/config/document.md
+              - name: Document metadata
+                href: reference/schemas/config/metadata.md
+              - name: Document parameters
+                href: reference/schemas/config/parameter.md
+              - name: Resource instances
+                href: reference/schemas/config/resource.md
+              - name: Functions
+                items:
+                  - name: Overview
+                    href: reference/schemas/config/functions/overview.md
+                  - name: add
+                    href: reference/schemas/config/functions/add.md
+                  - name: base64
+                    href: reference/schemas/config/functions/base64.md
+                  - name: concat
+                    href: reference/schemas/config/functions/concat.md
+                  - name: createArray
+                    href: reference/schemas/config/functions/createArray.md
+                  - name: div
+                    href: reference/schemas/config/functions/div.md
+                  - name: envvar
+                    href: reference/schemas/config/functions/envvar.md
+                  - name: int
+                    href: reference/schemas/config/functions/int.md
+                  - name: max
+                    href: reference/schemas/config/functions/max.md
+                  - name: min
+                    href: reference/schemas/config/functions/min.md
+                  - name: mod
+                    href: reference/schemas/config/functions/mod.md
+                  - name: mul
+                    href: reference/schemas/config/functions/mul.md
+                  - name: parameters
+                    href: reference/schemas/config/functions/parameters.md
+                  - name: reference
+                    href: reference/schemas/config/functions/reference.md
+                  - name: resourceId
+                    href: reference/schemas/config/functions/resourceId.md
+                  - name: sub
+                    href: reference/schemas/config/functions/sub.md
+          - name: Resource
+            items:
+              - name:  Manifests
+                items:
+                  - name: Root
+                    href: reference/schemas/resource/manifest/root.md
+                  - name: Adapter property
+                    href: reference/schemas/resource/manifest/adapter.md
+                  - name: Delete property
+                    href: reference/schemas/resource/manifest/delete.md
+                  - name: Export property
+                    href: reference/schemas/resource/manifest/export.md
+                  - name: Get property
+                    href: reference/schemas/resource/manifest/get.md
+                  - name: Set property
+                    href: reference/schemas/resource/manifest/set.md
+                  - name: Test property
+                    href: reference/schemas/resource/manifest/test.md
+                  - name: Validate property
+                    href: reference/schemas/resource/manifest/validate.md
+                  - name: Schema
+                    items:
+                      - name: Property
+                        href: reference/schemas/resource/manifest/schema/property.md
+                      - name: Embedded schemas
+                        href: reference/schemas/resource/manifest/schema/embedded.md
+              - name: Canonical resource properties
+                items:
+                  - name: Overview
+                    href: reference/schemas/resource/properties/overview.md
+                  - name: _ensure
+                    href: reference/schemas/resource/properties/ensure.md
+                  - name: _exist
+                    href: reference/schemas/resource/properties/exist.md
+                  - name: _inDesiredState
+                    href: reference/schemas/resource/properties/inDesiredState.md
+                  - name: _purge
+                    href: reference/schemas/resource/properties/purge.md
+                  - name: _rebootRequested
+                    href: reference/schemas/resource/properties/rebootRequested.md
+          - name: Metadata
+            items:
+              - name: Microsoft.DSC properties
+                href: reference/schemas/metadata/Microsoft.DSC/properties.md
+          - name: Shared definitions
+            items:
+              - name: message
+                href: reference/schemas/definitions/message.md
+              - name: resourceKind
+                href: reference/schemas/definitions/resourceKind.md
+              - name: resourceType
+                href: reference/schemas/definitions/resourceType.md
+              - name: Parameter dataTypes
+                href: reference/schemas/definitions/parameters/dataTypes.md
+      - name: DSC resources
         items:
-          - name: Documents
-            href: reference/schemas/config/document.md
-          - name: Document metadata
-            href: reference/schemas/config/metadata.md
-          - name: Document parameters
-            href: reference/schemas/config/parameter.md
-          - name: Resource instances
-            href: reference/schemas/config/resource.md
-          - name: Functions
+          - name: Builtin resources
             items:
               - name: Overview
-                href: reference/schemas/config/functions/overview.md
-              - name: add
-                href: reference/schemas/config/functions/add.md
-              - name: base64
-                href: reference/schemas/config/functions/base64.md
-              - name: concat
-                href: reference/schemas/config/functions/concat.md
-              - name: createArray
-                href: reference/schemas/config/functions/createArray.md
-              - name: div
-                href: reference/schemas/config/functions/div.md
-              - name: envvar
-                href: reference/schemas/config/functions/envvar.md
-              - name: int
-                href: reference/schemas/config/functions/int.md
-              - name: max
-                href: reference/schemas/config/functions/max.md
-              - name: min
-                href: reference/schemas/config/functions/min.md
-              - name: mod
-                href: reference/schemas/config/functions/mod.md
-              - name: mul
-                href: reference/schemas/config/functions/mul.md
-              - name: parameters
-                href: reference/schemas/config/functions/parameters.md
-              - name: reference
-                href: reference/schemas/config/functions/reference.md
-              - name: resourceId
-                href: reference/schemas/config/functions/resourceId.md
-              - name: sub
-                href: reference/schemas/config/functions/sub.md
-      - name: Resource
-        items:
-          - name:  Manifests
-            items:
-              - name: Root
-                href: reference/schemas/resource/manifest/root.md
-              - name: Adapter property
-                href: reference/schemas/resource/manifest/adapter.md
-              - name: Delete property
-                href: reference/schemas/resource/manifest/delete.md
-              - name: Export property
-                href: reference/schemas/resource/manifest/export.md
-              - name: Get property
-                href: reference/schemas/resource/manifest/get.md
-              - name: Set property
-                href: reference/schemas/resource/manifest/set.md
-              - name: Test property
-                href: reference/schemas/resource/manifest/test.md
-              - name: Validate property
-                href: reference/schemas/resource/manifest/validate.md
-              - name: Schema
+                href: reference/resources/builtin.md
+              - name: Microsoft/OSInfo
                 items:
-                  - name: Property
-                    href: reference/schemas/resource/manifest/schema/property.md
-                  - name: Embedded schemas
-                    href: reference/schemas/resource/manifest/schema/embedded.md
-          - name: Well-known properties
+                  - name: DSC Resource
+                    href: reference/resources/Microsoft/OSInfo/index.md
+                  - name: Examples
+                    items:
+                      - name: Validate OS with dsc resource commands
+                        href: reference/resources/Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+                      - name: Validate OS in a configuration
+                        href: reference/resources/Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+              - name: Microsoft.Windows/Registry
+                items:
+                  - name: DSC Resource
+                    href: reference/resources/Microsoft/Windows/Registry/index.md
+                  - name: Examples
+                    items:
+                      - name: Manage a key
+                        href: reference/resources/Microsoft/Windows/Registry/examples/manage-a-registry-key.md
+                      - name: Manage a value
+                        href: reference/resources/Microsoft/Windows/Registry/examples/manage-a-registry-value.md
+                      - name: Configure keys and values
+                        href: reference/resources/Microsoft/Windows/Registry/examples/configure-registry-keys-and-values.md
+      - name: DSC tools
+        items:
+          - name: Builtin commands
             items:
               - name: Overview
-                href: reference/schemas/resource/properties/overview.md
-              - name: _ensure
-                href: reference/schemas/resource/properties/ensure.md
-              - name: _exist
-                href: reference/schemas/resource/properties/exist.md
-              - name: _inDesiredState
-                href: reference/schemas/resource/properties/inDesiredState.md
-              - name: _purge
-                href: reference/schemas/resource/properties/purge.md
-              - name: _rebootRequested
-                href: reference/schemas/resource/properties/rebootRequested.md
-      - name: Metadata
-        items:
-          - name: Microsoft.DSC properties
-            href: reference/schemas/metadata/Microsoft.DSC/properties.md
-      - name: Outputs
-        items:
-          - name: dsc config command outputs
-            items:
-              - name: dsc config get output
-                href: reference/schemas/outputs/config/get.md
-              - name: dsc config set output
-                href: reference/schemas/outputs/config/set.md
-              - name: dsc config test output
-                href: reference/schemas/outputs/config/test.md
-          - name: dsc resource command outputs
-            items:
-              - name: dsc resource get output
-                href: reference/schemas/outputs/resource/get.md
-              - name: dsc resource list output
-                href: reference/schemas/outputs/resource/list.md
-              - name: dsc resource set output
-                href: reference/schemas/outputs/resource/set.md
-              - name: dsc resource test output
-                href: reference/schemas/outputs/resource/test.md
-      - name: Shared definitions
-        items:
-          - name: message
-            href: reference/schemas/definitions/message.md
-          - name: resourceKind
-            href: reference/schemas/definitions/resourceKind.md
-          - name: resourceType
-            href: reference/schemas/definitions/resourceType.md
-          - name: Parameter dataTypes
-            href: reference/schemas/definitions/parameters/dataTypes.md
-  - name: Resource reference
-    items:
-      - name: Command-based resources
-        items:
-          - name: Microsoft/OSInfo
-            items:
-              - name: Overview
-                href: reference/microsoft/osinfo/overview.md
-              - name: DSC Resource
-                href: reference/microsoft/osinfo/resource.md
-              - name: DSC Examples
+                href: reference/tools/builtin.md
+              - name: osinfo
+                href: reference/tools/osinfo.md
+              - name: registry commandline
                 items:
-                  - name: Validate with dsc resource
-                    href: reference/microsoft/osinfo/examples/validate-with-dsc-resource.md
-                  - name: Validate in a configuration
-                    href: reference/microsoft/osinfo/examples/validate-in-a-configuration.md
-              - name: Command line reference
-                items:
-                  - name: osinfo command
-                    href: reference/microsoft/osinfo/cli/osinfo.md
-          - name: Microsoft.Windows/Registry
-            items:
-              - name: Overview
-                href: reference/microsoft/windows/registry/overview.md
-              - name: DSC Resource
-                href: reference/microsoft/windows/registry/resource.md
-              - name: DSC Examples
-                items:
-                  - name: Manage a registry key
-                    href: reference/microsoft/windows/registry/examples/manage-a-registry-key.md
-                  - name: Manage a registry value
-                    href: reference/microsoft/windows/registry/examples/manage-a-registry-value.md
-                  - name: Configure registry keys and values
-                    href: reference/microsoft/windows/registry/examples/configure-registry-keys-and-values.md
-              - name: Command line reference
-                items:
-                  - name: registry command
-                    href: reference/microsoft/windows/registry/cli/registry.md
-                  - name: registry config command
+                  - name: registry
+                    href: reference/tools/registry/index.md
+                  - name: registry query
+                    href: reference/tools/registry/query/index.md
+                  - name: registry set
+                    href: reference/tools/registry/set/index.md
+                  - name: registry remove
+                    href: reference/tools/registry/remove/index.md
+                  - name: registry find
+                    href: reference/tools/registry/find/index.md
+                  - name: registry config subcommands
                     items:
                       - name: registry config
-                        href: reference/microsoft/windows/registry/cli/config/command.md
+                        href: reference/tools/registry/config/index.md
                       - name: registry config get
-                        href: reference/microsoft/windows/registry/cli/config/get.md
+                        href: reference/tools/registry/config/get.md
                       - name: registry config set
-                        href: reference/microsoft/windows/registry/cli/config/set.md
-                      - name: registry config test
-                        href: reference/microsoft/windows/registry/cli/config/test.md
-                  - name: registry find command
-                    href: reference/microsoft/windows/registry/cli/find/command.md
-                  - name: registry query command
-                    href: reference/microsoft/windows/registry/cli/query/command.md
-                  - name: registry remove command
-                    href: reference/microsoft/windows/registry/cli/remove/command.md
-                  - name: registry schema command
-                    href: reference/microsoft/windows/registry/cli/schema/command.md
-                  - name: registry set command
-                    href: reference/microsoft/windows/registry/cli/set/command.md
-                  - name: registry test command
-                    href: reference/microsoft/windows/registry/cli/test/command.md
+                        href: reference/tools/registry/config/set.md
+                      - name: registry config delete
+                        href: reference/tools/registry/config/delete.md
+                  - name: registry schema
+                    href: reference/tools/registry/schema/index.md
+  - name: Glossary
+    href: glossary.md

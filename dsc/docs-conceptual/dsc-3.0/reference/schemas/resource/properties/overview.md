@@ -11,7 +11,7 @@ title:       DSC well-known properties
 
 DSC has support for several well-known properties. Some well-known properties enable a DSC Resource
 to use built-in processing. The well-known properties always start with an underscore (`_`) and DSC
-Resources that use these properties may not override or extend them.
+Resources that use these properties can't override or extend them.
 
 ## _exist
 

@@ -40,7 +40,7 @@ When defining a group resource, always explicitly define the `kind` property in 
 ### Adapter resources
 
 An adapter resource makes non-command-based resources available to DSC. They always have a
-`resources` property that takes an array of nested resource instances. Adapters may provide
+`resources` property that takes an array of nested resource instances. Adapters can provide
 additional control over how the adapted resources are processed.
 
 An adapter resource must always define the [adapter][01] and [validate][02] properties in the

@@ -37,7 +37,7 @@ behavior contract:
 1. When the get operation queries for an instance that doesn't exist, the returned JSON always
    defines the `_exist` property as `false`.
 
-   The resource _may_ omit the `_exist` property from the result JSON when the instance exists.
+   The resource _can_ omit the `_exist` property from the result JSON when the instance exists.
 
 To add this property to a resource's instance schema, define the property with the following
 snippet:
