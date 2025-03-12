@@ -55,7 +55,7 @@ Type: System.String
 
 ### Description
 
-Specify a discription for the account as a string.
+Specify a description for the account as a string.
 
 ```
 Type: System.String
