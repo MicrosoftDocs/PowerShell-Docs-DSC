@@ -24,6 +24,11 @@ The `dsc resource get` command returns an instance of the resource. The `Microso
 doesn't require any instance properties to return the instance. The resource returns the available
 information for the operating system.
 
+> [!IMPORTANT]
+> The `osinfo` command and `Microsoft/OSInfo` resource require `pwsh` command on the host system.
+> For information on installing PowerShell,
+> see https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell
+
 # [Linux](#tab/linux)
 
 ```bash
