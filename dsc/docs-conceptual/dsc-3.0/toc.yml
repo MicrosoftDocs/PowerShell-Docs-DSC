@@ -1,5 +1,5 @@
 items:
-  - name: Desired State Configuration (DSC) 3.0 Preview
+  - name: Microsoft DSC 3.0
     href: overview.md
   - name: Glossary
     href: glossary.md
@@ -14,7 +14,7 @@ items:
       - name: Configuration Documents
         href: concepts/configurations.md
       - name: Resources
-        href: concepts/resources.md 
+        href: concepts/resources.md
       - name: Enhanced authoring
         href: concepts/enhanced-authoring.md
       - name: Output accessibility
