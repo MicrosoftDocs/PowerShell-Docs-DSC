@@ -9,13 +9,14 @@ title:  Microsoft Desired State Configuration overview
 
 # Microsoft Desired State Configuration overview
 
-Microsoft's Desired State Configuration (DSC) is a declarative configuration platform. With DSC,
-the state of a machine is described using a format that should be clear to understand even if the
-reader isn't a subject matter expert. Unlike imperative tools, with DSC the definition of an
-application environment is separate from the script logic that implements how it's delivered.
+Microsoft's Desired State Configuration (DSC) is a declarative configuration platform. With DSC, the
+state of a machine is described using a format that should be clear to understand even if the reader
+isn't a subject matter expert. Unlike imperative tools, with DSC the definition of an application
+environment is separate from the script logic that implements how it's delivered.
 
-The DSC command line application (`dsc`) abstracts the management of software components declaratively
-and idempotently. DSC runs on Linux, macOS, and Windows without any external dependencies.
+The DSC command line application (`dsc`) abstracts the management of software components
+declaratively and idempotently. DSC runs on Linux, macOS, and Windows without any external
+dependencies.
 
 With DSC, you can:
 
@@ -34,11 +35,11 @@ standards.
 
 ## DSC Resources
 
-DSC Resources define how to manage state for a particular system or application component.
-Resources describe a schema for the manageable settings of the component. Every resource can be
-used with the **Get** and **Test** operations to retrieve the current state of a resource instance
-and validate whether it's in the desired state. Most resources also support enforcing the desired
-state with the **Set** operation.
+DSC Resources define how to manage state for a particular system or application component. Resources
+describe a schema for the manageable settings of the component. Every resource can be used with the
+**Get** and **Test** operations to retrieve the current state of a resource instance and validate
+whether it's in the desired state. Most resources also support enforcing the desired state with the
+**Set** operation.
 
 Example scenarios include how to update the contents of a file, how to run a utility that changes
 the state of a machine, or how to configure settings of an application.
@@ -48,12 +49,12 @@ the state of a machine, or how to configure settings of an application.
 DSC differs from PowerShell Desired State Configuration (PSDSC) in a few important ways:
 
 - DSC doesn't _depend_ on PowerShell, Windows PowerShell, or the
-  [PSDesiredStateConfiguration module][00]. DSC provides full compatibility with PowerShell DSC
+  [PSDesiredStateConfiguration module][07]. DSC provides full compatibility with PowerShell DSC
   Resources through the `Microsoft.DSC/PowerShell` and `Microsoft.Windows/WindowsPowerShell`
   _adapter resources_.
 
   With the `Microsoft.DSC/PowerShell` adapter resource, you can use any PSDSC resource implemented
-  as a PowerShell class . The resource handles discovering, validating, and invoking PSDSC
+  as a PowerShell class. The resource handles discovering, validating, and invoking PSDSC
   resources in PowerShell. The resource is included in the DSC install package for every platform.
 
   With the `Microsoft.Windows/WindowsPowerShell` adapter resource, you can use any PSDSC resource
@@ -79,7 +80,7 @@ DSC differs from PowerShell Desired State Configuration (PSDSC) in a few importa
 
 To install DSC on any platform:
 
-1. Download the [latest release from the PowerShell/DSC repository][01].
+1. Download the [latest release from the PowerShell/DSC repository][06].
 1. Expand the release archive.
 1. Add the folder containing the expanded archive contents to the `PATH`.
 
@@ -96,43 +97,47 @@ winget search DesiredStateConfiguration
 ```Output
 Name                              Id           Version Source
 ---------------------------------------------------------------
+DesiredStateConfiguration         9NVTPZWRC6KQ Unknown msstore
 DesiredStateConfiguration-Preview 9PCX3HX4HZ0Z Unknown msstore
 ```
 
 Install DSC using the `id` parameter
 
 ```powershell
-winget install --id Microsoft.DesiredStateConfiguration --source winget
+winget install --id Microsoft.DSC --source winget
 ```
 
 ```powershell
-winget install --id Microsoft.DesiredStateConfiguration.Preview --source winget
+winget install --id Microsoft.DSC.Preview --source winget
 ```
 
 ## Integrating with DSC
 
-DSC is a platform tool that abstracts the concerns for defining and invoking resources. Higher
-order tools, like [WinGet](/windows/package-manager/winget),
-[Microsoft Dev Box](/azure/dev-box/overview-what-is-microsoft-dev-box), and
-[Azure Machine Configuration](/azure/governance/machine-configuration/overview) are early partners
-for DSC as orchestration agents.
+DSC is a platform tool that abstracts the concerns for defining and invoking resources. Higher order
+tools, like [WinGet][05], [Microsoft Dev Box][02], and [Azure Machine Configuration][03] are early
+partners for DSC as orchestration agents.
 
-DSC uses JSON schemas to define the structure of resources, configuration documents, and the
-outputs that DSC returns. These schemas make it easier to integrate DSC with other tools,
-because they standardize and document how to interface with DSC.
+DSC uses JSON schemas to define the structure of resources, configuration documents, and the outputs
+that DSC returns. These schemas make it easier to integrate DSC with other tools, because they
+standardize and document how to interface with DSC.
 
-For more information, see [DSC JSON Schema reference overview](./reference/schemas/overview.md).
+For more information, see [DSC JSON Schema reference overview][01].
 
 ## See Also
 
-- [Anatomy of a command-based DSC Resource][02] to learn about authoring a resource in your
-  language of choice.
-- [Command line reference for the 'dsc' command][03]
-- [DSC JSON Schema reference overview](./reference/schemas/overview.md)
-- [WinGet Configuration](/windows/package-manager/configuration/)
+- [Anatomy of a command-based DSC Resource][09] to learn about authoring a resource in your language
+  of choice.
+- [Command line reference for the 'dsc' command][08]
+- [DSC JSON Schema reference overview][01]
+- [WinGet Configuration][04]
 
 <!-- link references -->
-[00]: https://github.com/powershell/psdesiredstateconfiguration
-[01]: https://github.com/PowerShell/DSC/releases/latest
-[02]: resources/concepts/anatomy.md
-[03]: reference/cli/dsc.md
+[01]: ./reference/schemas/overview.md
+[02]: /azure/dev-box/overview-what-is-microsoft-dev-box
+[03]: /azure/governance/machine-configuration/overview
+[04]: /windows/package-manager/configuration/
+[05]: /windows/package-manager/winget
+[06]: https://github.com/PowerShell/DSC/releases/latest
+[07]: https://github.com/powershell/psdesiredstateconfiguration
+[08]: reference/cli/dsc.md
+[09]: resources/concepts/anatomy.md

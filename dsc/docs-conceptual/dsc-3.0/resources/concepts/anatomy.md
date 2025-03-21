@@ -38,7 +38,7 @@ At a minimum, the manifest must define:
   name syntax is `<owner>[.<group>][.<area>]/<name>`. The group and area components of the fully
   qualified name enable organizing resources into namespaces.
 - How DSC can call the command to get the current state of a resource instance.
-- A way to validate an instance. This can be one of the following:
+- A way to validate an instance, which can be one of the following options:
   - A JSON schema that describes an instance
   - A command DSC must call to get the schema at runtime
   - A command to validate nested DSC Resources. This last option only applies to DSC group
@@ -56,14 +56,14 @@ The manifest can define:
   test for resource instances. DSC's synthetic test always gets the actual state of an instance and
   does a strict case-sensitive comparison of the instance's properties to the desired state. If any
   of the properties aren't exactly the same as the defined desired state, DSC reports the instance
-  as being non-compliant.
+  as being noncompliant.
 - How DSC can call the command to set an instance to the desired state.
 
   If the manifest doesn't define how to set an instance of the DSC Resource, DSC can't use the
   resource to enforce desired state.
-- The meaning of the non-zero exit codes returned by the command.
+- The meaning of the nonzero exit codes returned by the command.
 
-  If the manifest doesn't define the meaning for exit codes, all non-zero exit codes are reported
+  If the manifest doesn't define the meaning for exit codes, all nonzero exit codes are reported
   as a generic failure.
 - How DSC can call the command to export a list of every instance of that resource on the machine.
 - How DSC can call the command to delete a specific instance of the resource.
@@ -79,7 +79,7 @@ for each operation is independent.
 
 Command resources always require an executable file for DSC to run. The manifest doesn't need to be
 bundled with the executable. The executable can be any executable file, such as a binary
-application or a shell script. A resource may use different executables for different operations.
+application or a shell script. A resource can use different executables for different operations.
 
 For DSC to use an executable, it must be discoverable in the `PATH` environment variable. DSC calls
 the executable once per operation, using the exit code returned by the executable to determine if
@@ -91,7 +91,7 @@ error.
 
 ### Inputs
 
-DSC sends input to command resources as one of the following:
+DSC sends input to command resources as one of the following methods:
 
 - A JSON data blob over stdin.
 
@@ -115,7 +115,7 @@ DSC sends input to command resources as one of the following:
   property. These environment variables are only defined for the execution of the command for that
   specific operation. The environment variables don't affect any other processes.
 
-Input handling is defined per-operation in the resource manifest. A resource can define differnt
+Input handling is defined per-operation in the resource manifest. A resource can define different
 input handling for the operations it supports.
 
 ### Outputs

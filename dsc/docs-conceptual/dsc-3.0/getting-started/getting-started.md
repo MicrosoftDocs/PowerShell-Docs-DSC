@@ -11,13 +11,13 @@ title: Get started with DSC
 Microsoft's Desired State Configuration (DSC) is a declarative configuration platform. You can use
 DSC resources to query, audit, and set the state of a specific component on a system. You can use
 DSC configuration documents to describe how a system should be configured using one or more
-resources. This document describes how you can discover the resources available on a machine,
-invoke those resources directly, and manage a configuration.
+resources. This document describes how you can discover the resources available on a machine, invoke
+those resources directly, and manage a configuration.
 
 ## Prerequisites
 
-- [Install DSC](../overview.md#installation) version `3.0.0` on a Windows machine.
-- A terminal emulator, like [Windows Terminal](/windows/terminal/).
+- [Install DSC][04] version `3.0.0` on a Windows machine.
+- A terminal emulator, like [Windows Terminal][07].
 
 ## Discover resources
 
@@ -29,8 +29,8 @@ have any of the following suffixes:
 - `.dsc.resource.yaml`
 - `.dsc.resource.yml`
 
-Files with the `.dsc.resource.<extension>` suffix are DSC resource manifests. They describe both
-the settings they enable you to manage and how DSC can invoke them as a command.
+Files with the `.dsc.resource.<extension>` suffix are DSC resource manifests. They describe both the
+settings they enable you to manage and how DSC can invoke them as a command.
 
 Open a terminal and run the following command:
 
@@ -41,13 +41,13 @@ dsc resource list
 DSC outputs a table showing the available resources and summary information about each resource.
 
 ```Output
-Type                                        Kind      Version  Capabilities  RequireAdapter  Description                                                                
+Type                                        Kind      Version  Capabilities  RequireAdapter  Description
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Microsoft.DSC.Debug/Echo                    Resource  1.0.0    gs--t---
 Microsoft.DSC.Transitional/RunCommandOnSet  Resource  0.1.0    gs------                      Takes a single-command line to execute on DSC set operation
-Microsoft.DSC/Assertion                     Group     0.1.0    gs--t---                      `test` will be invoked for all resources in the supplied configuration.    
+Microsoft.DSC/Assertion                     Group     0.1.0    gs--t---                      `test` will be invoked for all resources in the supplied configuration.
 Microsoft.DSC/Group                         Group     0.1.0    gs--t---                      All resources in the supplied configuration is treated as a group.
-Microsoft.DSC/Include                       Importer  0.1.0    gs--t---                      Allows including a configuration file with optional parameter file.        
+Microsoft.DSC/Include                       Importer  0.1.0    gs--t---                      Allows including a configuration file with optional parameter file.
 Microsoft.DSC/PowerShell                    Adapter   0.1.0    gs--t-e-                      Resource adapter to classic DSC Powershell resources.
 Microsoft.Windows/RebootPending             Resource  0.1.0    g-------                      Returns info about pending reboot.
 Microsoft.Windows/Registry                  Resource  0.1.0    gs-w-d--                      Manage Windows Registry keys and values
@@ -59,8 +59,8 @@ Microsoft/Process                           Resource  0.1.0    gs--t-e-         
 
 Together, the columns describe each resource:
 
-- The **Type** column defines the fully qualified type name for a resource. This identifies the
-  resource on a system and in a configuration document.
+- The **Type** column contains the fully qualified type name for a resource. The **Type** identifies
+  the resource on a system and in a configuration document.
 - The **Kind** column indicates how you can use the resource.
   - `Adapter` indicates that the resource is an adapter resource and enables you to configure
     components that don't define a DSC resource manifest, like PowerShell DSC (PSDSC) resources.
@@ -108,16 +108,15 @@ Count Name
 ```
 
 The first command saves the output of `dsc resource list` to the `$resources` variable as an array
-of PowerShell objects. WHen you first ran the `dsc resource list` command, the output in the
+of PowerShell objects. When you first ran the `dsc resource list` command, the output in the
 terminal was a table view. By default, when DSC detects that its output is being redirected to a
 file, variable, or another command in the pipeline, it emits JSON representing the output.
-Converting the JSON into a PowerShell object with the `ConvertFrom-Json` cmdlet enables you to
-treat the output like any other PowerShell object.
+Converting the JSON into a PowerShell object with the `ConvertFrom-Json` cmdlet enables you to treat
+the output like any other PowerShell object.
 
 The second command uses the `Group-Object` cmdlet to summarize the available adapted resources,
 grouped by the adapter that they require. The specific count for adapted resources depends on the
-machine you're using and whether you've installed any PowerShell modules that export any PSDSC
-resources.
+machine you're using and the existence of any PowerShell modules that export any PSDSC resources.
 
 Run the following command to display only the resources available with the
 `Microsoft.Windows/WindowsPowerShell` adapter.
@@ -131,40 +130,40 @@ $adaptedResources |
 ```Output
 type                                                  kind     version capabilities     description
 ----                                                  ----     ------- ------------     -----------
-PSDesiredStateConfiguration/Archive                   resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Environment               resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/File                      resource 1.0.0   {get, set, test} 
-PSDesiredStateConfiguration/Group                     resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/GroupSet                  resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Log                       resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Package                   resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/ProcessSet                resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Registry                  resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Script                    resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/Service                   resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/ServiceSet                resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/SignatureValidation       resource 1.0.0   {get, set, test} 
-PSDesiredStateConfiguration/User                      resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WaitForAll                resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WaitForAny                resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WaitForSome               resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsFeature            resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsFeatureSet         resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsOptionalFeature    resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsOptionalFeatureSet resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsPackageCab         resource 1.1     {get, set, test} 
-PSDesiredStateConfiguration/WindowsProcess            resource 1.1     {get, set, test} 
+PSDesiredStateConfiguration/Archive                   resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Environment               resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/File                      resource 1.0.0   {get, set, test}
+PSDesiredStateConfiguration/Group                     resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/GroupSet                  resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Log                       resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Package                   resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/ProcessSet                resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Registry                  resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Script                    resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/Service                   resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/ServiceSet                resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/SignatureValidation       resource 1.0.0   {get, set, test}
+PSDesiredStateConfiguration/User                      resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WaitForAll                resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WaitForAny                resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WaitForSome               resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsFeature            resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsFeatureSet         resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsOptionalFeature    resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsOptionalFeatureSet resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsPackageCab         resource 1.1     {get, set, test}
+PSDesiredStateConfiguration/WindowsProcess            resource 1.1     {get, set, test}
 PackageManagement/PackageManagement                   resource 1.4.8.1 {get, set, test} PackageManagement (a.k.a. OneGet) is a new way to discover and install software packa…
 PackageManagement/PackageManagementSource             resource 1.4.8.1 {get, set, test} PackageManagement (a.k.a. OneGet) is a new way to discover and install software packa…
 PowerShellGet/PSModule                                resource 2.2.5   {get, set, test} PowerShell module with commands for discovering, installing, updating and publishing …
 PowerShellGet/PSRepository                            resource 2.2.5   {get, set, test} PowerShell module with commands for discovering, installing, updating and publishing …
 ```
 
-For more information about the command, see [dsc resource list](../reference/cli/resource/list.md).
+For more information about the command, see [dsc resource list][06].
 
 ## Invoke a resource
 
-You can use DSC to directly invoke a resource. When you invoke a resource, you are performing a
+You can use DSC to directly invoke a resource. When you invoke a resource, you're performing a
 specific operation on an _instance_ of the resource. A resource instance is a specific item the
 resource represents. The following examples use the `Microsoft.Windows/Registry` resource to invoke
 DSC operations.
@@ -189,8 +188,8 @@ Together, these capabilities tell us that you can use the `Registry` command res
   state of an instance.
 - The `set` capability indicates that you can invoke the **Set** operation to modify the state of
   an instance.
-- The `whatIf` capability indicates that you can invoke the **Set** operation in what-if mode to
-  see how the resource would change the instance without actually modifying the system.
+- The `whatIf` capability indicates that you can invoke the **Set** operation in what-if mode to see
+  how the resource would change the instance without actually modifying the system.
 - The `delete` capability indicates that you can invoke the **Delete** operation to remove an
   instance from the system.
 
@@ -213,7 +212,7 @@ For this example:
   to specify it.
 - The `valueName` property identifies which registry value to manage for the registry key.
 - The `_exist` canonical property indicates whether the registry value should exist. In this example,
-  it's set to `true`, indicating the instance should exist.
+  its value is `true`, indicating the instance should exist.
 
 Run the following command to get the current state of the registry key:
 
@@ -237,10 +236,10 @@ Retrieving the current state of a resource is useful, but in practice you more o
 whether an instance is in the desired state. The `dsc resource test` command not only tells you
 whether an instance is out of state, but how it's out state.
 
-> {!NOTE}
+> [!NOTE]
 > Remember that the `Registry` resource doesn't have the `test` capability. Fortunately, that
 > doesn't mean that you can't use the **Test** operation for a resource. When a resource doesn't
-> have the `test` capability, it is indicating that the resource depends on DSC's synthetic test
+> have the `test` capability, it indicates that the resource depends on DSC's synthetic test
 > capabilities. DSC itself calls the **Get** operation for the resource and compares it to the
 > desired state.
 
@@ -300,12 +299,12 @@ The output indicates that the resource created the missing instance.
 Invoking resources directly is useful, but tedious for defining the desired state of a system. You
 can define a DSC configuration document to describe a set of resource instances together.
 
-Copy the following codeblock and save it in a file named `example.dsc.config.yaml`.
+Copy the following code block and save it in a file named `example.dsc.config.yaml`.
 
 ```yaml
 $schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
 resources:
-- name: Example registry key 
+- name: Example registry key
   type: Microsoft.Windows/Registry
   properties:
     keyPath: HKCU\dsc\example\key
@@ -401,7 +400,8 @@ hadErrors: false
 
 The output shows that:
 
-- The `Registry` instance is in the desired state. This is because the key was created earlier in this article when invoking the **Set** operation directly.
+- The `Registry` instance is in the desired state because the key was created earlier in this
+  article when invoking the **Set** operation directly.
 
 - The adapted `Environment` PSDSC resource reports that the `DSC_EXAMPLE` environment variable is
   _not_ in the desired state.
@@ -524,7 +524,16 @@ hadErrors: false
 
 ## Related content
 
-- [Glossary: Desired State Configuration](../glossary.md)
-- [DSC configuration documents](../concepts/configurations.md)
-- [DSC Resources](../concepts/resources.md)
-- [DSC command reference](../reference/cli/dsc.md)
+- [Glossary: Desired State Configuration][03]
+- [DSC configuration documents][01]
+- [DSC Resources][02]
+- [DSC command reference][05]
+
+<!-- link references -->
+[01]: ../concepts/configurations.md
+[02]: ../concepts/resources.md
+[03]: ../glossary.md
+[04]: ../overview.md#installation
+[05]: ../reference/cli/dsc.md
+[06]: ../reference/cli/resource/list.md
+[07]: /windows/terminal/
