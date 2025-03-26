@@ -274,7 +274,7 @@ ValidValues: [state, stateAndDiff]
 
 <!-- Reference link definitions -->
 [01]: ../../../cli/config/set.md
-[02]: ../../../cli/config/set.md#-w---what-if
+[02]: ../../../cli/config/set.md#--what-if
 [03]: ./set.md
 [04]: ../properties/exist.md
 [05]: ./root.md#schema-1

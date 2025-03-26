@@ -61,7 +61,7 @@ For every version of the schema, there are three valid urls:
   retrieve this schema.
 
   This schema uses the bundling model introduced for JSON Schema 2020-12. While DSC can still
-  validate the document when it uses this schema, other tools may error or behave in unexpected
+  validate the document when it uses this schema, other tools might error or behave in unexpected
   ways.
 
 - `.../bundled/resource/manifest.vscode.json`
@@ -71,7 +71,7 @@ For every version of the schema, there are three valid urls:
   don't include.
 
   This schema uses keywords that are only recognized by VS Code. While DSC can still validate the
-  document when it uses this schema, other tools may error or behave in unexpected ways.
+  document when it uses this schema, other tools might error or behave in unexpected ways.
 
 ```yaml
 Type:        string

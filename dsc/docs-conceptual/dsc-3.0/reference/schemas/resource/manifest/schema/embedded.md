@@ -88,7 +88,7 @@ property's name. The value is a subschema that validates the property.
 Resources can define any properties they need for managing instances. DSC defines shared schemas
 for well-known properties. Some well-known properties enable a DSC Resource to use built-in
 processing. The well-known properties always start with an underscore (`_`) and DSC Resources that
-use these properties may not override or extend them. If a resource specifies a well-known property
+use these properties can't override or extend them. If a resource specifies a well-known property
 in the embedded schema, the schema _must_ define the property as a reference.
 
 - [_exist](#_exist)

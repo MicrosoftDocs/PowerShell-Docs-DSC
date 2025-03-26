@@ -41,9 +41,169 @@
             "redirect_document_id": true
         },
         {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/getting-started/getting-started.md",
+            "redirect_url": "/powershell/dsc/get-started",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "dsc/docs-conceptual/dsc-3.0/reference/schemas/resource/manifest/provider.md",
             "redirect_url": "/powershell/dsc/reference/schemas/resource/manifest/adapter",
             "redirect_document_id": true
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/resources/concepts/anatomy.md",
+            "redirect_url": "/powershell/dsc/concepts/resources/anatomy",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/osinfo/overview.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/OSInfo",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/osinfo/cli/osinfo.md",
+            "redirect_url": "/powershell/dsc/reference/tools/osinfo",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/osinfo/resource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/OSInfo",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/osinfo/examples/validate-in-a-configuration.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/OSInfo/examples/validate-in-a-configuration",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/osinfo/examples/validate-with-dsc-resource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/OSInfo/examples/validate-with-dsc-resource",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/overview.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/Windows/Registry",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/resource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/Windows/Registry",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/registry.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/config/get.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/config/get",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/config/set.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/config/set",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/config/test.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/config",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/config/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/config",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/find/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/find",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/query/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/query",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/remove/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/remove",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/schema/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/schema",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/set/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry/set",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/cli/test/command.md",
+            "redirect_url": "/powershell/dsc/reference/tools/registry",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/cli/dsc.md",
+            "redirect_url": "/powershell/dsc/reference/cli/config",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/cli/completer/command.md",
+            "redirect_url": "/powershell/dsc/reference/cli/completer",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/cli/config/command.md",
+            "redirect_url": "/powershell/dsc/reference/cli/config",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/cli/resource/command.md",
+            "redirect_url": "/powershell/dsc/reference/cli/resource",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/cli/schema/command.md",
+            "redirect_url": "/powershell/dsc/reference/cli/schema",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/examples/configure-registry-keys-and-values.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/Windows/Registry/examples/configure-registry-keys-and-values",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/examples/manage-a-registry-key.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/Windows/Registry/examples/manage-a-registry-key",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/microsoft/windows/registry/examples/manage-a-registry-value.md",
+            "redirect_url": "/powershell/dsc/reference/resources/Microsoft/Windows/Registry/examples/manage-a-registry-value",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/resources/samples/overview.md",
+            "redirect_url": "/powershell/dsc/tutorials/resources/authoring/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/resources/tutorials/overview.md",
+            "redirect_url": "/powershell/dsc/tutorials/resources/authoring/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/resources/samples/first-resource/overview.md",
+            "redirect_url": "/powershell/dsc/tutorials/resources/authoring/first-resource/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/resources/tutorials/first-resource/overview.md",
+            "redirect_url": "/powershell/dsc/tutorials/resources/authoring/first-resource/overview",
+            "redirect_document_id": false
         }
     ]
 }

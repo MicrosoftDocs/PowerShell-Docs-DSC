@@ -83,7 +83,7 @@ For every version of the schema, there are three valid urls:
   retrieve this schema.
 
   This schema uses the bundling model introduced for JSON Schema 2020-12. While DSC can still
-  validate the document when it uses this schema, other tools may error or behave in unexpected
+  validate the document when it uses this schema, other tools might error or behave in unexpected
   ways.
 
 - `.../bundled/config/document.vscode.json`
@@ -93,7 +93,7 @@ For every version of the schema, there are three valid urls:
   don't include.
 
   This schema uses keywords that are only recognized by VS Code. While DSC can still validate the
-  document when it uses this schema, other tools may error or behave in unexpected ways.
+  document when it uses this schema, other tools might error or behave in unexpected ways.
 
 ```yaml
 Type:        string
@@ -130,7 +130,7 @@ defined as key-value pair. The key for each pair defines the name of the paramet
 each pair must be an object that defines the `type` keyword to indicate how DSC should process the
 parameter.
 
-Parameters may be overridden at run-time, enabling re-use of the same configuration document for
+You can override parameters at run-time, enabling re-use of the same configuration document for
 different contexts.
 
 For more information about defining parameters in a configuration, see
@@ -165,8 +165,9 @@ Required: false
 
 ### resources
 
-The `resources` property defines a list of DSC Resource instances that the configuration manages.
-Every instance in the list must be unique, but instances may share the same DSC Resource type.
+The `resources` property defines a list of DSC resource instances that the configuration document
+manages. Every instance in the list must be unique, but instances might share the same DSC resource
+type.
 
 For more information about defining a valid resource instance in a configuration, see
 [DSC Configuration document resource schema][05].

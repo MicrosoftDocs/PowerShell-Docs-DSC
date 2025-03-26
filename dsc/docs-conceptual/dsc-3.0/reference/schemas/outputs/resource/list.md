@@ -251,7 +251,7 @@ Required: true
 [11]: ../../resource/properties/exist.md
 [12]: ../../resource/manifest/set.md#handlesexist
 [13]: ../../resource/manifest/delete.md
-[14]: ../../../cli/config/set.md#-w---what-if
+[14]: ../../../cli/config/set.md#--what-if
 [15]: ../../resource/manifest/whatif.md
 [16]: ../../resource/manifest/test.md
 [17]: ../../../cli/resource/delete.md
