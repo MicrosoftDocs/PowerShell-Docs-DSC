@@ -48,12 +48,12 @@ resources:
 ```
 
 First, get the current state of the configuration without overriding the parameters with the
-[--parameters][02] or [`--parameters_file`][03] options. The output shows the default value for the
+[--parameters][02] or [`--parameters-file`][03] options. The output shows the default value for the
 `message` parameter.
 
 ```bash
 config_file=parameters.example.1.dsc.config.yaml
-cat $config_file | dsc config get
+cat $config_file | dsc config get --file -
 ```
 
 ```yaml
@@ -71,7 +71,7 @@ Next, override the `message` parameter with the `--parameters` option.
 
 ```bash
 params='{"parameters": {"message": "Hi, override."}}'
-cat $config_file | dsc config --parameters $params get
+cat $config_file | dsc config --parameters $params get --file -
 ```
 
 ```yaml
@@ -110,5 +110,5 @@ Type: [string, int, bool, object, array]
 
 <!-- Link reference definitions -->
 [01]: ../parameter.md
-[02]: ../../../cli/config/command.md#-p---parameters
-[03]: ../../../cli/config/command.md#-f---parameters_file
+[02]: ../../../cli/config/index.md#--parameters
+[03]: ../../../cli/config/index.md#--parameters-file

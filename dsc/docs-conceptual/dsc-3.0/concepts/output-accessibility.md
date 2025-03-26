@@ -1,7 +1,9 @@
 ---
-description: This article aims to guide you through methods to output from PowerShell in formats that are friendly for screen readers, enhancing the accessibility of your scripts.
+description: >-
+  This article aims to guide you through methods to output from PowerShell in formats that are
+  friendly for screen readers, enhancing the accessibility of your scripts.
 ms.custom: experience
-ms.date: 09/12/2024
+ms.date: 03/25/2025
 title: Improve the accessibility of DSC output in PowerShell
 ---
 
@@ -100,10 +102,17 @@ dsc resource list -a Microsoft.Windows/WindowsPowerShell |
     Format-List
 ```
 
-## Additional reading
+## Related content
 
-- [Improve the accessibility of output in PowerShell](/powershell/scripting/learn/shell/output-for-screen-reader)
-- [Out-GridView](xref:Microsoft.PowerShell.Utility.Out-GridView)
-- [Export-Csv](xref:Microsoft.PowerShell.Utility.Export-Csv)
-- [ConvertTo-Html](xref:Microsoft.PowerShell.Utility.ConvertTo-Html)
-- [about_Calculated_Properties](/powershell/module/microsoft.powershell.core/about/about_calculated_properties)
+- [Improve the accessibility of output in PowerShell][01]
+- [Out-GridView][02]
+- [Export-Csv][03]
+- [ConvertTo-Html][04]
+- [about_Calculated_Properties][05]
+
+<!-- Link reference definitions -->
+[01]: /powershell/scripting/learn/shell/output-for-screen-reader
+[02]: xref:Microsoft.PowerShell.Utility.Out-GridView
+[03]: xref:Microsoft.PowerShell.Utility.Export-Csv
+[04]: xref:Microsoft.PowerShell.Utility.ConvertTo-Html
+[05]: /powershell/module/microsoft.powershell.core/about/about_calculated_properties
