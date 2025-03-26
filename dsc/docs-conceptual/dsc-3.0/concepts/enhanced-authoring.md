@@ -10,7 +10,7 @@ title:   Authoring with enhanced schemas
 # Authoring with enhanced schemas
 
 <!-- markdownlint-capture -->
-
+**TEST**
 Working with Microsoft's Desired State Configuration (DSC) platform involves writing DSC
 [configuration documents][01] and [resource manifests][02]. Configuration documents are YAML or
 JSON data files that declare the desired state of a system. Resource manifests are JSON or YAML
