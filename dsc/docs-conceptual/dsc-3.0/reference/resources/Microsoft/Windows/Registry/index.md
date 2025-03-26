@@ -94,7 +94,7 @@ The following list describes the properties for the resource.
 
   - [keyPath](#keypath) - The path to the registry key.
 
-- **Key properties:** <a id="key-properties"> The following properties uniquely identify an
+- **Key properties:** <a id="key-properties"></a> The following properties uniquely identify an
   instance. If two instances of a resource have the same values for their key properties, the
   instances are conflicting. For more information about key properties, see the "Key resource
   properties" section in [DSC resource properties][07].
