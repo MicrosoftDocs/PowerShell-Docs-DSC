@@ -13,7 +13,7 @@
   ],
   "dependent_repositories": [
     {
-      "branch": "main",
+      "branch": "pr-963667",
       "branch_mapping": {},
       "path_to_root": "_themes",
       "url": "https://github.com/Microsoft/templates.docs.msft"
