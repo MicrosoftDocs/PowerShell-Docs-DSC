@@ -47,7 +47,7 @@ items:
               href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
   - name: DSC reference
     items:
-      - name: dsc CLI
+      - name: DSC CLI
         items:
           - name: dsc
             href: reference/cli/index.md
