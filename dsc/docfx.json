@@ -47,6 +47,7 @@
       "ms.topic": {
         "docs-conceptual/**": "conceptual",
         "docs-conceptual/**/getting-started/**": "get-started",
+        "docs-conceptual/**/get-started/**": "get-started",
         "docs-conceptual/**/how-tos/**": "how-to",
         "docs-conceptual/**/overview/**": "overview",
         "docs-conceptual/**/quickstarts/**": "quickstart",
@@ -63,7 +64,7 @@
     },
     "globalMetadata": {
       "apiPlatform": "powershell",
-      "author": "sdwheeler",
+      "author": "michaeltlombardi",
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "OpenSource",
@@ -78,7 +79,7 @@
       "open_source_feedback_productName": "DSC",
       "hideScope": false,
       "manager": "jasongroce",
-      "ms.author": "sewhee",
+      "ms.author": "mlombardi",
       "ms.devlang": "powershell",
       "ms.service": "powershell",
       "searchScope": [
