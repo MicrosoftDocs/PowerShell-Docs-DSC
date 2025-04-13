@@ -14,6 +14,8 @@ items:
         href: getting-started/lnxGettingStarted.md
       - name: Get started with DSC for Windows
         href: getting-started/winGettingStarted.md
+      - name: Get started with Microsoft DSC on cross-platform
+        href: /powershell/dsc/get-started
       - name: Get started with DSC on Nano
         href: getting-started/nanoDSC.md
       - name: Get started with DSC in Azure Automation
