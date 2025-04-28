@@ -87,6 +87,10 @@ items:
             href: reference/cli/schema/index.md
       - name: DSC JSON Schemas
         items:
+          - name: Overview
+            href: reference/schemas/overview.md
+          - name: Schema URIs
+            href: reference/schemas/schema-uris.md
           - name: dsc command outputs
             items:
               - name: dsc config command outputs
@@ -205,6 +209,7 @@ items:
                 href: reference/schemas/definitions/resourceType.md
               - name: Parameter dataTypes
                 href: reference/schemas/definitions/parameters/dataTypes.md
+          
       - name: DSC resources
         items:
           - name: Builtin resources
