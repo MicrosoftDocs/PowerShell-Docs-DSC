@@ -1,5 +1,5 @@
 ---
-ms.date: 06/21/2023
+ms.date: 05/08/2025
 keywords:  dsc,powershell,configuration,setup
 title:  Set up a Pull Client using Configuration Names in PowerShell 5.0 and later
 description: The article explains how to set up a Pull Client using Configuration Names in PowerShell 5.0 and later
@@ -12,28 +12,28 @@ description: The article explains how to set up a Pull Client using Configuratio
 > The Pull Server (Windows Feature *DSC-Service*) is a supported component of Windows Server however
 > there are no plans to offer new features or capabilities. we would like you to know that a newer
 > version of DSC is now generally available, managed by a feature of Azure Policy named
-> [guest configuration](/azure/governance/machine-configuration/overview). The guest configuration
-> service combines features of DSC Extension, Azure Automation State Configuration, and the most
-> commonly requested features from customer feedback. Guest configuration also includes hybrid
-> machine support through [Arc-enabled servers](/azure/azure-arc/servers/overview).
+> [guest configuration][03]. The guest configuration service combines features of DSC Extension,
+> Azure Automation State Configuration, and the most commonly requested features from customer
+> feedback. Guest configuration also includes hybrid machine support through
+> [Arc-enabled servers][02].
 
 Before setting up a pull client, you should set up a pull server. Though this order is not required,
 it helps with troubleshooting, and helps you ensure that the registration was successful. To set up
 a pull server, you can use the following guides:
 
-- [Set up a DSC SMB Pull Server](pullServerSmb.md)
-- [Set up a DSC HTTP Pull Server](pullServer.md)
+- [Set up a DSC SMB Pull Server][09]
+- [Set up a DSC HTTP Pull Server][08]
 
 Each target node can be configured to download configurations, resources, and even report its
 status. The sections below show you how to configure a pull client with an SMB share or HTTP DSC
 Pull Server. When the Node's LCM refreshes, it will reach out to the configured location to download
 any assigned configurations. If any required resources do not exist on the Node, it will
 automatically download them from the configured location. If the Node is configured with a
-[Report Server](reportServer.md), it will then report the status of the operation.
+[Report Server][10], it will then report the status of the operation.
 
 > [!NOTE]
 > This topic applies to PowerShell 5.0. For information on setting up a pull client in PowerShell
-> 4.0, see [Set up a pull client using configuration ID in PowerShell 4.0](pullClientConfigID4.md)
+> 4.0, see [Set up a pull client using configuration ID in PowerShell 4.0][07].
 
 ## Configure the pull client LCM
 
@@ -54,7 +54,7 @@ The examples below sets the **ConfigurationName** property of the LCM to the nam
 compiled Configuration, created for this purpose. The **ConfigurationName** is what the LCM uses to
 find the appropriate configuration on the pull server. The configuration MOF file on the pull server
 must be named `<ConfigurationName>.mof`, in this case, "ClientConfig.mof". For more information, see
-[Publish Configurations to a Pull Server (v4/v5)](publishConfigs.md).
+[Publish Configurations to a Pull Server (v4/v5)][05].
 
 ## Set up a Pull Client to download Configurations
 
@@ -62,8 +62,7 @@ Each client must be configured in **Pull** mode and given the pull server url wh
 configuration is stored. To do this, you have to configure the Local Configuration Manager (LCM)
 with the necessary information. To configure the LCM, you create a special type of configuration,
 decorated with the **DSCLocalConfigurationManager** attribute. For more information about
-configuring the LCM, see
-[Configuring the Local Configuration Manager](../managing-nodes/metaConfig.md).
+configuring the LCM, see [Configuring the Local Configuration Manager][01].
 
 The following script configures the LCM to pull configurations from a server named
 "CONTOSO-PullSrv".
@@ -77,14 +76,13 @@ The following script configures the LCM to pull configurations from a server nam
   > [!NOTE]
   > Registration keys work only with **web** pull servers. You must still use **ConfigurationID**
   > with an **SMB** pull server. > For information about configuring a pull server by using
-  > **ConfigurationID**, see
-  > [Setting up a pull client using configuration ID](pullClientConfigId.md)
+  > **ConfigurationID**, see [Setting up a pull client using configuration ID][06]
 
 - The **ConfigurationNames** property is an array that specifies the names of the configurations
   intended for the client node. >**Note:** If you specify more than one value in the
   **ConfigurationNames**, you must also specify **PartialConfiguration** blocks in your
   configuration. >For information about partial configurations, see
-  [PowerShell Desired State Configuration partial configurations](partialConfigs.md).
+  [PowerShell Desired State Configuration partial configurations][04].
 
 ```powershell
 [DSCLocalConfigurationManager()]
@@ -189,5 +187,18 @@ PullClientConfigNames
 
 ## See Also
 
-- [Setting up a pull client with configuration ID](PullClientConfigNames.md)
-- [Setting up a DSC web pull server](pullServer.md)
+- [Setting up a pull client with configuration ID][00]
+- [Setting up a DSC web pull server][08]
+
+<!-- link references -->
+[00]: pullClientConfigID.md
+[01]: ../managing-nodes/metaConfig.md
+[02]: /azure/azure-arc/servers/overview
+[03]: /azure/governance/machine-configuration/overview
+[04]: partialConfigs.md
+[05]: publishConfigs.md
+[06]: pullClientConfigId.md
+[07]: pullClientConfigID4.md
+[08]: pullServer.md
+[09]: pullServerSmb.md
+[10]: reportServer.md
