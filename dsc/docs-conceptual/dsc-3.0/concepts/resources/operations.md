@@ -22,7 +22,7 @@ The **Get** operation returns the actual state of a specific resource instance o
 
 This operation is only available for resources that have the [get capability][01].
 
-DSC invokes the **Test** operation when you use the following commands:
+DSC invokes the **Get** operation when you use the following commands:
 
 - `dsc resource get` to return the actual state for a resource instance.
 - `dsc config get` to return the actual state for every instance in a configuration document.
