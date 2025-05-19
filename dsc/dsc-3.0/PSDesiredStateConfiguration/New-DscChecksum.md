@@ -2,12 +2,12 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 09/14/2021
+ms.date: 05/19/2025
 online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/new-dscchecksum?view=dsc-3.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
-title: New-DscChecksum
+title: New-DscCheckSum
 ---
-# New-DscChecksum
+# New-DscCheckSum
 
 ## SYNOPSIS
 Creates checksum files for DSC documents and DSC resources.
@@ -15,12 +15,13 @@ Creates checksum files for DSC documents and DSC resources.
 ## SYNTAX
 
 ```
-New-DscChecksum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-DscCheckSum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `New-DSCCheckSum` cmdlet generates checksum files for PowerShell Desired State Configuration
+The `New-DscCheckSum` cmdlet generates checksum files for PowerShell Desired State Configuration
 (DSC) documents and compressed DSC resources. This cmdlet generates a checksum file for each
 configuration and resource to be used in pull mode. The DSC service uses the checksums to make sure
 that the correct configuration and resources exist on the target node. Place the checksums together
@@ -37,14 +38,15 @@ PS C:\> New-DscCheckSum -Path "C:\DSC\Configurations\"
 This command creates checksum files for all configurations in the path `C:\DSC\Configurations`.
 Any checksum files that already exist are skipped.
 
-### Example 2: Create checksum files for all configurations in a specific path and overwrite the existing checksum files
+### Example 2: Create checksum files for all configurations in a specific path
 
 ```
 PS C:\> New-DscCheckSum -Path "C:\DSC\Configurations\" -Force
 ```
 
 This command creates new checksum files for all configurations in the path `C:\DSC\Configurations`.
-Specifying the *Force* parameter causes the command to overwrite any checksum files that already exist.
+Specifying the *Force* parameter causes the command to overwrite any checksum files that already
+exist.
 
 ## PARAMETERS
 
@@ -114,8 +116,7 @@ Accept wildcard characters: False
 
 ### -WhatIf
 
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
 Type: System.Management.Automation.SwitchParameter
@@ -149,4 +150,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## RELATED LINKS
 
 [Windows PowerShell Desired State Configuration Overview](/powershell/scripting/dsc/overview/dscforengineers)
-
