@@ -2,12 +2,12 @@
 external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
-ms.date: 09/14/2021
+ms.date: 05/19/2025
 online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/new-dscchecksum?view=dsc-2.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
-title: New-DscChecksum
+title: New-DscCheckSum
 ---
-# New-DscChecksum
+# New-DscCheckSum
 
 ## SYNOPSIS
 Creates checksum files for DSC documents and DSC resources.
@@ -15,12 +15,12 @@ Creates checksum files for DSC documents and DSC resources.
 ## SYNTAX
 
 ```
-New-DscChecksum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-DscCheckSum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `New-DSCCheckSum` cmdlet generates checksum files for PowerShell Desired State Configuration
+The `New-DscCheckSum` cmdlet generates checksum files for PowerShell Desired State Configuration
 (DSC) documents and compressed DSC resources. This cmdlet generates a checksum file for each
 configuration and resource to be used in pull mode. The DSC service uses the checksums to make sure
 that the correct configuration and resources exist on the target node. Place the checksums together

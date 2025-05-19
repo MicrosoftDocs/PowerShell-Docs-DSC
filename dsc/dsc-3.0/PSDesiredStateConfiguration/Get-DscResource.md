@@ -153,7 +153,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Microsoft.PowerShell.DesiredStateConfiguration.DscResourceInfo[]
 
-### string[]
+### System.String[]
 
 ## NOTES
 
