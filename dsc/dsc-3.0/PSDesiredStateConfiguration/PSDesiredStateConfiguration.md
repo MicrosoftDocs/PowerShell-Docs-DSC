@@ -34,12 +34,12 @@ adapters:
 
 ### [Get-DscResource](Get-DscResource.md)
 
-Gets the DSC resources present on the computer.
+Gets Desired State Configuration (DSC) resources present on the computer.
 
 ### [Invoke-DscResource](Invoke-DscResource.md)
 
 Runs a method of a specified PowerShell Desired State Configuration (DSC) resource.
 
-### [New-DscCheckSum](New-DscCheckSum.md)
+### [New-DscChecksum](New-DscChecksum.md)
 
 Creates checksum files for DSC documents and DSC resources.
