@@ -38,7 +38,7 @@ Gets the DSC resources present on the computer.
 ### [Invoke-DscResource](Invoke-DscResource.md)
 Runs a method of a specified DSC resource.
 
-### [New-DSCCheckSum](New-DSCCheckSum.md)
+### [New-DscCheckSum](New-DscCheckSum.md)
 Creates checksum files for DSC documents and DSC resources.
 
 ### [Publish-DscConfiguration](Publish-DscConfiguration.md)
