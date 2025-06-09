@@ -2,7 +2,7 @@
 description: >-
   Learn about Microsoft's Desired State Configuration platform, including what it does and when
   it should be used.
-ms.date: 03/25/2025
+ms.date: 06/09/2025
 ms.topic: overview
 title:  Microsoft Desired State Configuration overview
 ---
@@ -88,12 +88,13 @@ To install DSC on any platform:
 
 ### Install DSC on Windows with WinGet
 
-The following commands can be used to install DSC using the published `winget` packages:
+The following commands can be used to install DSC using the published `winget` packages from the
+Microsoft Store:
 
-Search for the latest version of DSC
+Search for the latest version of DSC:
 
 ```powershell
-winget search DesiredStateConfiguration
+winget search DesiredStateConfiguration --source msstore
 ```
 
 ```Output
