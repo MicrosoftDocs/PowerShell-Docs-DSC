@@ -158,7 +158,7 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
 
 - Added the `--input` and `--file` options to the [dsc resource export][cli.resource.export]
   command to enable filtering the exported instances.
-  
+
   Prior to this change, DSC would send resources the defined properties for filtering when a user
   invoked the `dsc config export` command, but the same behavior wasn't available when directly
   invoking the **Export** operation on a resource.
@@ -171,7 +171,7 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
   </details>
 
 - Added the YAML document separator (`---`) between output objects when you invoke a DSC command
-  with YAML as the output format. Prior to this change, it was dificult to distinguish between
+  with YAML as the output format. Prior to this change, it was difficult to distinguish between
   output objects and to parse the output programmatically.
 
   <details><summary>Related work items</summary>
@@ -328,7 +328,7 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
   </details>
 
 - Fixed the `Microsoft.Windows/Registry` resource to correctly handle being called to delete a
-  nonexistant key instead of erroring.
+  nonexistent key instead of erroring.
 
   <details><summary>Related work items</summary>
 
@@ -435,7 +435,7 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
   - Prepend the built-in module path (`$Env:SystemRoot\System32\WindowsPowerShell\1.0\Modules`).
   - Remove PowerShell modules from the path.
   - Ensure PSDSC resources implemented as classes are discoverable.
-  - Iindicate when a PSDSC resource can't be found that the adapter requires PSDSC resource modules
+  - Indicate when a PSDSC resource can't be found that the adapter requires PSDSC resource modules
     to be installed in the `AllUsers` scope.
 
   <details><summary>Related work items</summary>
@@ -511,7 +511,7 @@ in this release, see the [diff on GitHub][compare-v3.0.1].
 
 - Fixed a bug in the DSC engine to correctly propagate the `_inDesiredState` canonical property for
   resources that implement the **Test** operation. Prior to this change, the engine would
-  erroneously perform a synthetic test, which lead to misreporting.
+  erroneously perform a synthetic test, which leads to misreporting.
 
   <details><summary>Related work items</summary>
 
