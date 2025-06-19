@@ -3,11 +3,11 @@ external help file: PSDesiredStateConfiguration-help.xml
 Locale: en-US
 Module Name: PSDesiredStateConfiguration
 ms.date: 05/19/2025
-online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/new-dscchecksum?view=dsc-3.0&WT.mc_id=ps-gethelp
+online version: https://learn.microsoft.com/powershell/module/psdesiredstateconfiguration/New-DscChecksum?view=dsc-3.0&WT.mc_id=ps-gethelp
 schema: 2.0.0
-title: New-DscCheckSum
+title: New-DscChecksum
 ---
-# New-DscCheckSum
+# New-DscChecksum
 
 ## SYNOPSIS
 Creates checksum files for DSC documents and DSC resources.
@@ -15,13 +15,13 @@ Creates checksum files for DSC documents and DSC resources.
 ## SYNTAX
 
 ```
-New-DscCheckSum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm]
+New-DscChecksum [-Path] <String[]> [[-OutPath] <String>] [-Force] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 
-The `New-DscCheckSum` cmdlet generates checksum files for PowerShell Desired State Configuration
+The `New-DscChecksum` cmdlet generates checksum files for PowerShell Desired State Configuration
 (DSC) documents and compressed DSC resources. This cmdlet generates a checksum file for each
 configuration and resource to be used in pull mode. The DSC service uses the checksums to make sure
 that the correct configuration and resources exist on the target node. Place the checksums together
@@ -32,7 +32,7 @@ with the associated DSC documents and compressed DSC resources in the DSC servic
 ### Example 1: Create checksum files for all configurations in a specific path
 
 ```
-PS C:\> New-DscCheckSum -Path "C:\DSC\Configurations\"
+PS C:\> New-DscChecksum -Path "C:\DSC\Configurations\"
 ```
 
 This command creates checksum files for all configurations in the path `C:\DSC\Configurations`.
@@ -41,7 +41,7 @@ Any checksum files that already exist are skipped.
 ### Example 2: Create checksum files for all configurations in a specific path
 
 ```
-PS C:\> New-DscCheckSum -Path "C:\DSC\Configurations\" -Force
+PS C:\> New-DscChecksum -Path "C:\DSC\Configurations\" -Force
 ```
 
 This command creates new checksum files for all configurations in the path `C:\DSC\Configurations`.
