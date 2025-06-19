@@ -137,12 +137,16 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
   This release also includes an experimental extension for discovering resources installed as Appx
   packages.
 
+  <details><summary>Related work items</summary>
+
   - Issues:
     - [#461][#461]
     - [#681][#681]
   - PRs:
     - [#760][#760]
     - [#762][#762]
+
+  </details>
 
 - Addes support for passing parameters to the `dsc config` commands from stdin. You can pass
   _either_ the configuration document or parameters file contents to the command from stdin, but
