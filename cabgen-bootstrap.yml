@@ -1,8 +1,7 @@
 trigger:
 - live
 
-pr:
-- live
+pr: none
 
 resources:
   repositories:
