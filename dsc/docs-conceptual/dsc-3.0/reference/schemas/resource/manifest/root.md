@@ -38,7 +38,6 @@ The manifest must include these properties:
 - [$schema](#schema)
 - [type](#type)
 - [version](#version)
-- [get](#get)
 
 ## Properties
 
