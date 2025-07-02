@@ -45,7 +45,7 @@ Gets Desired State Configuration (DSC) resources present on the computer.
 
 Runs a method of a specified DSC resource.
 
-### [New-DscCheckSum](New-DscCheckSum.md)
+### [New-DscChecksum](New-DscChecksum.md)
 
 Creates checksum files for DSC documents and DSC resources.
 
