@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for valid parameter data types in a configuration document.
-ms.date:     05/09/2024
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       DSC configuration parameter data type schema reference
 ---
@@ -15,7 +15,7 @@ Defines valid data types for a DSC configuration parameter
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/definitions/parameters/dataTypes.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3.1.0/definitions/parameters/dataTypes.json
 Type:          string
 ValidValues:   [array, bool, int, object, string, secureobject, securestring]
 ```
@@ -117,7 +117,7 @@ parameters:
 
 ## Integers
 
-Integer values are numbers without a fractional part. Integer values can be limited by integrating
+Integer values are numbers without a fractional part. Integer values may be limited by integrating
 tools or the DSC Resources they're used with. DSC itself supports integer values between
 `-9223372036854775808` and `9223372036854775807`.
 
@@ -235,8 +235,8 @@ parameters:
 Secure strings use the same format as strings and secure objects use the same format as objects.
 The `secure*` data types indicate that DSC and integrating tools shouldn't log or record the
 values. If a secure data type parameter is used for a resource instance property that doesn't
-expect a secure value, the resource might still log or record the value. If the resource has
-independent logging or recording that isn't handled by DSC, the value might be stored insecurely.
+expect a secure value, the resource may still log or record the value. If the resource has
+independent logging or recording that isn't handled by DSC, the value may be stored insecurely.
 
 Use secure strings for passwords and secrets. Never define a default value for secure string or
 secure object parameters.
