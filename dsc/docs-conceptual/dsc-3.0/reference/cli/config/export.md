@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc config export' command
-ms.date:     03/25/2025
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       dsc config export
 ---
@@ -29,6 +29,18 @@ dsc config export [Options] --input <INPUT>
 
 ```sh
 cat <FILE> | dsc config export [Options] --file -
+```
+
+### Configuration document from file with parameters from stdin
+
+```sh
+cat <PARAMETERS_FILE> | dsc config --parameters-file - export [Options] --file <FILE>
+```
+
+### Configuration document from option string with parameters from stdin
+
+```sh
+cat <PARAMETERS_FILE> | dsc config --parameters-file - export [Options] --input <INPUT>
 ```
 
 ## Description

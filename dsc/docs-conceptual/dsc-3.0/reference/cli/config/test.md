@@ -1,6 +1,6 @@
 ---
 description: Command line reference for the 'dsc config test' command
-ms.date:     03/25/2025
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       dsc config test
 ---
@@ -22,13 +22,25 @@ dsc config test [Options] --file <FILE>
 ### Configuration document from option string
 
 ```sh
-dsc config test [Options] --document <INPUT>
+dsc config test [Options] --input <INPUT>
 ```
 
 ### Configuration document from stdin
 
 ```sh
 cat <FILE> | dsc config test [Options] --file -
+```
+
+### Configuration document from file with parameters from stdin
+
+```sh
+cat <PARAMETERS_FILE> | dsc config --parameters-file - test [Options] --file <FILE>
+```
+
+### Configuration document from option string with parameters from stdin
+
+```sh
+cat <PARAMETERS_FILE> | dsc config --parameters-file - test [Options] --input <INPUT>
 ```
 
 ## Description

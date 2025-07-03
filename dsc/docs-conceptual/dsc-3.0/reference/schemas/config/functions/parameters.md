@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'parameters' DSC configuration document function
-ms.date:     05/09/2024
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       parameters
 ---
@@ -35,34 +35,34 @@ The configuration uses the `parameters()` function to echo the value of the `mes
 
 ```yaml
 # parameters.example.1.dsc.config.yaml
-$schema: https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/config/document.json
+$schema: https://aka.ms/dsc/schemas/v3/bundled/config/document.json
 parameters:
   message:
     type:         string
     defaultValue: Hello, world!
 resources:
   - name: Echo message parameter
-    type: Test/Echo
+    type: Microsoft.DSC.Debug/Echo
     properties:
-      text: "[parameters('message')]"
+      output: "[parameters('message')]"
 ```
 
 First, get the current state of the configuration without overriding the parameters with the
-[--parameters][02] or [`--parameters-file`][03] options. The output shows the default value for the
+[--parameters][02] or [`--parameters_file`][03] options. The output shows the default value for the
 `message` parameter.
 
 ```bash
 config_file=parameters.example.1.dsc.config.yaml
-cat $config_file | dsc config get --file -
+cat $config_file | dsc config get
 ```
 
 ```yaml
 results:
 - name: Echo message parameter
-  type: Test/Echo
+  type: Microsoft.DSC.Debug/Echo
   result:
     actualState:
-      text: Hello, world!
+      output: Hello, world!
 messages: []
 hadErrors: false
 ```
@@ -71,16 +71,16 @@ Next, override the `message` parameter with the `--parameters` option.
 
 ```bash
 params='{"parameters": {"message": "Hi, override."}}'
-cat $config_file | dsc config --parameters $params get --file -
+cat $config_file | dsc config --parameters $params get
 ```
 
 ```yaml
 results:
 - name: Echo message parameter
-  type: Test/Echo
+  type: Microsoft.DSC.Debug/Echo
   result:
     actualState:
-      text: Hi, override.
+      output: Hi, override.
 messages: []
 hadErrors: false
 ```
@@ -110,5 +110,5 @@ Type: [string, int, bool, object, array]
 
 <!-- Link reference definitions -->
 [01]: ../parameter.md
-[02]: ../../../cli/config/index.md#--parameters
-[03]: ../../../cli/config/index.md#--parameters-file
+[02]: ../../../cli/config/command.md#-p---parameters
+[03]: ../../../cli/config/command.md#-f---parameters_file

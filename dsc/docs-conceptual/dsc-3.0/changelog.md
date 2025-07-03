@@ -130,7 +130,7 @@ in this release, see the [diff on GitHub][compare-v3.1.0].
 - Added support for extensions to DSC. You can now use the `dsc extension list` command to
   enumerate available extensions. DSC now supports a single extension capability, `discover`, which
   returns JSON objects indicating where to find DSC resource manifests that aren't in the `PATH` or
-  `DSC_PATH`, as with resources installed as Appx packages.
+  `DSC_RESOURCE_PATH`, as with resources installed as Appx packages.
 
   Now when DSC performs discovery, it recursively discovers extensions and resources on the system.
 
@@ -586,11 +586,11 @@ Version `3.0.0` is the first generally available release of DSC.
 [release-v3.0.0]: https://github.com/PowerShell/DSC/releases/tag/v3.0.0 "Link to the DSC v3.0.0 release on GitHub"
 
 <!-- Reference doc links -->
-[cli.option.p]: ./reference/cli/index.md#--progress-format
-[cli.resource.export]: ./reference/cli/resource/export.md
-[schema.config.resource]: ./reference/schemas/config/resource.md
-[schema.definitions.resourceKind]: ./reference/schemas/definitions/resourcekind.md
-[schema.metadata]: ./reference/schemas/metadata/Microsoft.DSC/properties.md
+[cli.option.p]: /powershell/dsc/reference/cli/?view=dsc-3.0&preserve-view=true#--progress-format
+[cli.resource.export]: /powershell/dsc/reference/cli/resource/export?view=dsc-3.0&preserve-view=true
+[schema.config.resource]: /powershell/dsc/reference/schemas/config/resource?view=dsc-3.0&preserve-view=true
+[schema.definitions.resourceKind]: /powershell/dsc/reference/schemas/definitions/resourcekind?view=dsc-3.0&preserve-view=true
+[schema.metadata]: /powershell/dsc/reference/schemas/metadata/microsoft.dsc/properties?view=dsc-3.0&preserve-view=true
 
 <!-- Issue and PR links -->
 [#328]: https://github.com/PowerShell/DSC/issues/328
