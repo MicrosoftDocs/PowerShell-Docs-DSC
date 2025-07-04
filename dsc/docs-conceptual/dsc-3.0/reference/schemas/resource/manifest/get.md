@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the 'get' property in a DSC Resource manifest
-ms.date:     05/09/2024
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       DSC Resource manifest get property schema reference
 ---
@@ -15,7 +15,7 @@ Defines how to retrieve a DSC Resource instance.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.get.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3.1.0/resource/manifest.get.json
 Type:          object
 ```
 

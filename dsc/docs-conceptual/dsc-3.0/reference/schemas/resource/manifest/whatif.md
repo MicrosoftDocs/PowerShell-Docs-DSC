@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the 'whatIf' property in a DSC Resource manifest
-ms.date:     01/17/2024
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       DSC Resource manifest whatIf property schema reference
 ---
@@ -15,7 +15,7 @@ Defines how to indicate whether and how the set command will modify an instance.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.whatIf.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3.1.0/resource/manifest.whatIf.json
 Type:          object
 ```
 
@@ -274,7 +274,7 @@ ValidValues: [state, stateAndDiff]
 
 <!-- Reference link definitions -->
 [01]: ../../../cli/config/set.md
-[02]: ../../../cli/config/set.md#--what-if
+[02]: ../../../cli/config/set.md#-w---what-if
 [03]: ./set.md
 [04]: ../properties/exist.md
 [05]: ./root.md#schema-1

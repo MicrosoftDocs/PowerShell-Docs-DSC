@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the 'schema' property in a DSC Resource manifest
-ms.date:     05/09/2024
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       DSC Resource manifest schema property schema reference
 ---
@@ -15,7 +15,7 @@ Defines how to retrieve the JSON Schema that validates a DSC Resource instance.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/manifest.schema.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3.1.0/resource/manifest.schema.json
 Type:          object
 ```
 
@@ -103,9 +103,9 @@ The `command` property defines how DSC must call the resource to get the JSON sc
 its instances. The value of this property must be an object and define the `executable` property.
 
 When publishing a manifest with the `command` property, Microsoft recommends publishing the JSON
-schema to a publicly available URI and setting the `url` property to that URI. This enables
-authoring tools and other integrating applications to validate instances without running the
-command locally.
+schema to a publicly available URI that matches the `$id` property of the instance schema. This
+enables authoring tools and other integrating applications to validate instances without running
+the command locally.
 
 ```yaml
 Type:               object
@@ -144,17 +144,4 @@ Resource. The value for this property must be a valid JSON schema that defines t
 ```yaml
 Type:                 object
 MinimumPropertyCount: 1
-```
-
-### url
-
-The `url` property defines the URL to the resource's published JSON schema. It's used by
-integrating tools for resources that define the `command` property instead of the `embedded`
-property.
-
-<!-- Can it resolve to a JSON schema published as YAML, or JSON only? -->
-
-```yaml
-Type:   string
-Format: uri
 ```

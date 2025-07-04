@@ -1,6 +1,6 @@
 ---
-description: JSON schema reference for the '_exist' well-known DSC Resource property.
-ms.date:     05/09/2024
+description: JSON schema reference for the '_exist' canonical DSC Resource property.
+ms.date:     07/03/2025
 ms.topic:    reference
 title:       DSC Resource _exist property schema
 ---
@@ -15,17 +15,17 @@ Indicates whether an instance should exist.
 
 ```yaml
 SchemaDialect: https://json-schema.org/draft/2020-12/schema
-SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/properties/exist.json
+SchemaID:      https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3.1.0/resource/properties/exist.json
 Type:          boolean
 DefaultValue:  true
 ```
 
 ## Description
 
-The `_exist` property indicates that the resource can enforce whether instances exist, handling
-whether an instance should be added, updated, or removed during a set operation. This property
-provides shared semantics for DSC Resources and integrating tools, but doesn't enable any
-additional built-in processing with DSC.
+The `_exist` canonical property indicates that the resource can enforce whether instances exist,
+handling whether an instance should be added, updated, or removed during a set operation. This
+property provides shared semantics for DSC Resources and integrating tools. Resources that define
+this property indicate to DSC that they adhere to the contract for the canonical property.
 
 Resources should only define this property when their implementation adheres to the following
 behavior contract:
@@ -37,13 +37,13 @@ behavior contract:
 1. When the get operation queries for an instance that doesn't exist, the returned JSON always
    defines the `_exist` property as `false`.
 
-   The resource _can_ omit the `_exist` property from the result JSON when the instance exists.
+   The resource _may_ omit the `_exist` property from the result JSON when the instance exists.
 
 To add this property to a resource's instance schema, define the property with the following
 snippet:
 
 ```json
 "_exist": {
-  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/2024/04/resource/properties/exist.json"
+  "$ref": "https://raw.githubusercontent.com/PowerShell/DSC/main/schemas/v3/resource/properties/exist.json"
 }
 ```
