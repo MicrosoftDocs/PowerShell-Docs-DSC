@@ -15,8 +15,8 @@
       "type_mapping": {
         "Conceptual": "Content",
         "ManagedReference": "Content",
-        "PowershellCmdlet": "Content",
-        "PowershellModule": "Content"
+        "PowerShellCmdlet1": "Content",
+        "PowerShellModule1": "Content"
       },
       "build_entry_point": "docs",
       "template_folder": "_themes",
