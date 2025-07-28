@@ -1,0 +1,25 @@
+items:
+  - name: DSC configuration documents
+    items:
+      - name: Overview
+        href: configuration-documents/overview.md
+  - name: DSC resources
+    items:
+      - name: Overview
+        href: resources/overview.md
+      - name: Resource instances
+        href: resources/instances.md
+      - name: Resource operations
+        href: resources/operations.md
+      - name: Resource properties
+        href: resources/properties.md
+      - name: Resource capabilities
+        href: resources/capabilities.md
+      - name: Resource kinds
+        href: resources/kinds.md
+      - name: Anatomy of a command resource 
+        href: resources/anatomy.md
+  - name: Enhanced authoring
+    href: enhanced-authoring.md
+  - name: Output accessibility
+    href: output-accessibility.md

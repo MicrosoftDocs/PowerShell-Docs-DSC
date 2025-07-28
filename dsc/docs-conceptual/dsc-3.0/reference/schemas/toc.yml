@@ -1,0 +1,151 @@
+items:
+  - name: Overview
+    href: overview.md
+  - name: Schema URIs
+    href: schema-uris.md
+  - name: dsc command outputs
+    items:
+      - name: dsc config command outputs
+        items:
+          - name: dsc config get output
+            href: outputs/config/get.md
+          - name: dsc config set output
+            href: outputs/config/set.md
+          - name: dsc config test output
+            href: outputs/config/test.md
+      - name: dsc extension command outputs
+        items:
+          - name: dsc extension list output
+            href: outputs/extension/list.md
+      - name: dsc resource command outputs
+        items:
+          - name: dsc resource get output
+            href: outputs/resource/get.md
+          - name: dsc resource list output
+            href: outputs/resource/list.md
+          - name: dsc resource set output
+            href: outputs/resource/set.md
+          - name: dsc resource test output
+            href: outputs/resource/test.md
+  - name: Configuration
+    items:
+      - name: Documents
+        href: config/document.md
+      - name: Document metadata
+        href: config/metadata.md
+      - name: Document parameters
+        href: config/parameter.md
+      - name: Resource instances
+        href: config/resource.md
+      - name: Functions
+        items:
+          - name: Overview
+            href: config/functions/overview.md
+          - name: add
+            href: config/functions/add.md
+          - name: base64
+            href: config/functions/base64.md
+          - name: concat
+            href: config/functions/concat.md
+          - name: createArray
+            href: config/functions/createArray.md
+          - name: div
+            href: config/functions/div.md
+          - name: envvar
+            href: config/functions/envvar.md
+          - name: equals
+            href: config/functions/equals.md
+          - name: format
+            href: config/functions/format.md
+          - name: if
+            href: config/functions/if.md
+          - name: int
+            href: config/functions/int.md
+          - name: max
+            href: config/functions/max.md
+          - name: min
+            href: config/functions/min.md
+          - name: mod
+            href: config/functions/mod.md
+          - name: mul
+            href: config/functions/mul.md
+          - name: parameters
+            href: config/functions/parameters.md
+          - name: reference
+            href: config/functions/reference.md
+          - name: resourceId
+            href: config/functions/resourceId.md
+          - name: sub
+            href: config/functions/sub.md
+          - name: variables
+            href: config/functions/variables.md
+  - name: Extension
+    items:
+      - name: Manifests
+        items:
+          - name: Root
+            href: extension/manifest/root.md
+          - name: Discover property
+            href: extension/manifest/discover.md
+      - name: Expected stdout
+        items:
+          - name: Discover operation stdout
+            href: extension/stdout/discover.md
+  - name: Resource
+    items:
+      - name:  Manifests
+        items:
+          - name: Root
+            href: resource/manifest/root.md
+          - name: adapter command field
+            href: resource/manifest/adapter.md
+          - name: delete command field
+            href: resource/manifest/delete.md
+          - name: export command field
+            href: resource/manifest/export.md
+          - name: get command field
+            href: resource/manifest/get.md
+          - name: set command field
+            href: resource/manifest/set.md
+          - name: whatIf command field
+            href: resource/manifest/whatIf.md
+          - name: test command field
+            href: resource/manifest/test.md
+          - name: validate command field
+            href: resource/manifest/validate.md
+          - name: resolve command field
+            href: resource/manifest/resolve.md
+          - name: schema field
+            items:
+              - name: Command
+                href: resource/manifest/schema/property.md
+              - name: Embedded schemas
+                href: resource/manifest/schema/embedded.md
+      - name: Canonical resource properties
+        items:
+          - name: Overview
+            href: resource/properties/overview.md
+          - name: _ensure
+            href: resource/properties/ensure.md
+          - name: _exist
+            href: resource/properties/exist.md
+          - name: _inDesiredState
+            href: resource/properties/inDesiredState.md
+          - name: _purge
+            href: resource/properties/purge.md
+          - name: _rebootRequested
+            href: resource/properties/rebootRequested.md
+  - name: Metadata
+    items:
+      - name: Microsoft.DSC properties
+        href: metadata/Microsoft.DSC/properties.md
+  - name: Shared definitions
+    items:
+      - name: message
+        href: definitions/message.md
+      - name: resourceKind
+        href: definitions/resourceKind.md
+      - name: resourceType
+        href: definitions/resourceType.md
+      - name: Parameter dataTypes
+        href: definitions/parameters/dataTypes.md
