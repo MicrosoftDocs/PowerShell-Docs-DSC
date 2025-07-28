@@ -8,7 +8,7 @@ resources:
     - repository: ReferenceAutomation
       type: git
       name: Content CI/ReferenceAutomation
-      ref: refs/heads/cabgen-test-rc2
+      ref: refs/heads/cabgen-ga
 
 extends:
   template: PowerShell/cabgen.yml@ReferenceAutomation
