@@ -22,7 +22,7 @@ ValidValues:  [resource, adapter, group, importer, exporter]
 
 ## Description
 
-DSC supports three kinds of command-based DSC Resources:
+DSC supports several kinds of command-based DSC Resources:
 
 - `resource` - Indicates that the manifest isn't for a group or adapter resource.
 - `group` - Indicates that the manifest is for a [group resource](#group-resources).
