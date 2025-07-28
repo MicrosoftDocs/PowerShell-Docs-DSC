@@ -1,0 +1,9 @@
+items:
+  - name: DSC CLI
+    href: cli/toc.yml
+  - name: DSC JSON Schemas
+    href: schemas/toc.yml
+  - name: DSC resources
+    href: resources/toc.yml
+  - name: DSC tools
+    href: tools/toc.yml

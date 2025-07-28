@@ -1,0 +1,31 @@
+items:
+  - name: Builtin commands
+    items:
+      - name: Overview
+        href: builtin.md
+      - name: osinfo
+        href: osinfo.md
+      - name: registry commandline
+        items:
+          - name: registry
+            href: registry/index.md
+          - name: registry query
+            href: registry/query/index.md
+          - name: registry set
+            href: registry/set/index.md
+          - name: registry remove
+            href: registry/remove/index.md
+          - name: registry find
+            href: registry/find/index.md
+          - name: registry config subcommands
+            items:
+              - name: registry config
+                href: registry/config/index.md
+              - name: registry config get
+                href: registry/config/get.md
+              - name: registry config set
+                href: registry/config/set.md
+              - name: registry config delete
+                href: registry/config/delete.md
+          - name: registry schema
+            href: registry/schema/index.md
