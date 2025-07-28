@@ -3,9 +3,29 @@ items:
     items:
       - name: Overview
         href: builtin.md
+      - name: DSC.PackageManagement/APT
+        items:
+          - name: DSC resource
+            href: DSC/PackageManagement/APT/index.md
+          - name: Examples
+            items:
+              - name: Manage packages
+                href: DSC/PackageManagement/APT/examples/manage-packages-with-apt.md
+      - name: Microsoft.DSC.Debug/Echo
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Debug/Echo/index.md
+          - name: Examples
+            items:
+              - name: Basic usage
+                href: Microsoft/DSC/Debug/Echo/examples/basic-echo-example.md
+      - name: Microsoft.DSC/PowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/Dsc/PowerShell/index.md
       - name: Microsoft/OSInfo
         items:
-          - name: DSC Resource
+          - name: DSC resource
             href: Microsoft/OSInfo/index.md
           - name: Examples
             items:
@@ -13,9 +33,19 @@ items:
                 href: Microsoft/OSInfo/examples/validate-with-dsc-resource.md
               - name: Validate OS in a configuration
                 href: Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+      - name: Microsoft.Windows/RebootPending
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/RebootPending/index.md
+          - name: Examples
+            items:
+              - name: Check for pending reboot
+                href: Microsoft/Windows/RebootPending/examples/check-for-pending-reboot.md
+              - name: Use in configuration
+                href: Microsoft/Windows/RebootPending/examples/use-rebootpending-in-configuration.md
       - name: Microsoft.Windows/Registry
         items:
-          - name: DSC Resource
+          - name: DSC resource
             href: Microsoft/Windows/Registry/index.md
           - name: Examples
             items:
@@ -25,3 +55,21 @@ items:
                 href: Microsoft/Windows/Registry/examples/manage-a-registry-value.md
               - name: Configure keys and values
                 href: Microsoft/Windows/Registry/examples/configure-registry-keys-and-values.md
+      - name: Microsoft.Windows/WindowsPowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/WindowsPowerShell/index.md
+          - name: Examples
+            items:
+              - name: Manage a Windows service
+                href: Microsoft/Windows/WindowsPowerShell/examples/manage-a-windows-service.md
+      - name: Microsoft.Windows/WMI
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/WMI/index.md
+          - name: Examples
+            items:
+              - name: Query operating system
+                href: Microsoft/Windows/WMI/examples/query-operating-system-info.md
+              - name: Query filtered disk
+                href: Microsoft/Windows/WMI/examples/query-filtered-disk-info.md

@@ -15,6 +15,12 @@ items:
         href: config/set.md
       - name: dsc config test
         href: config/test.md
+  - name: dsc extension subcommands
+    items:
+      - name: dsc extension
+        href: extension/index.md
+      - name: dsc extension list
+        href: extension/list.md
   - name: dsc resource subcommands
     items:
       - name: dsc resource
