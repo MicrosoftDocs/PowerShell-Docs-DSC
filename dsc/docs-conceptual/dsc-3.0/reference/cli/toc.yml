@@ -1,0 +1,37 @@
+items:
+  - name: dsc
+    href: index.md
+  - name: dsc completer
+    href: completer/index.md
+  - name: dsc config subcommands
+    items:
+      - name: dsc config
+        href: config/index.md
+      - name: dsc config export
+        href: config/export.md
+      - name: dsc config get
+        href: config/get.md
+      - name: dsc config set
+        href: config/set.md
+      - name: dsc config test
+        href: config/test.md
+  - name: dsc resource subcommands
+    items:
+      - name: dsc resource
+        href: resource/index.md
+      - name: dsc resource delete
+        href: resource/delete.md
+      - name: dsc resource export
+        href: resource/export.md
+      - name: dsc resource get
+        href: resource/get.md
+      - name: dsc resource list
+        href: resource/list.md
+      - name: dsc resource schema
+        href: resource/schema.md
+      - name: dsc resource set
+        href: resource/set.md
+      - name: dsc resource test
+        href: resource/test.md
+  - name: dsc schema
+    href: schema/index.md

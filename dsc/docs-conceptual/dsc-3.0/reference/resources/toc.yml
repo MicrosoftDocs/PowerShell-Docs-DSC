@@ -1,0 +1,27 @@
+items:
+  - name: Builtin resources
+    items:
+      - name: Overview
+        href: builtin.md
+      - name: Microsoft/OSInfo
+        items:
+          - name: DSC Resource
+            href: Microsoft/OSInfo/index.md
+          - name: Examples
+            items:
+              - name: Validate OS with dsc resource commands
+                href: Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+              - name: Validate OS in a configuration
+                href: Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+      - name: Microsoft.Windows/Registry
+        items:
+          - name: DSC Resource
+            href: Microsoft/Windows/Registry/index.md
+          - name: Examples
+            items:
+              - name: Manage a key
+                href: Microsoft/Windows/Registry/examples/manage-a-registry-key.md
+              - name: Manage a value
+                href: Microsoft/Windows/Registry/examples/manage-a-registry-value.md
+              - name: Configure keys and values
+                href: Microsoft/Windows/Registry/examples/configure-registry-keys-and-values.md
