@@ -135,6 +135,30 @@ items:
             href: resource/properties/purge.md
           - name: _rebootRequested
             href: resource/properties/rebootRequested.md
+      - name: Resource operation stdout schemas
+        items:
+          - name: Overview
+            href: resource/stdout/index.md
+          - name: delete operation stdout
+            href: resource/stdout/delete.md
+          - name: export operation stdout
+            href: resource/stdout/export.md
+          - name: get operation stdout
+            href: resource/stdout/get.md
+          - name: list operation stdout
+            href: resource/stdout/list.md
+          - name: resolve operation stdout
+            href: resource/stdout/resolve.md
+          - name: schema operation stdout
+            href: resource/stdout/schema.md
+          - name: set operation stdout
+            href: resource/stdout/set.md
+          - name: test operation stdout
+            href: resource/stdout/test.md
+          - name: validate operation stdout
+            href: resource/stdout/validate.md
+          - name: what-if operation stdout
+            href: resource/stdout/whatIf.md
   - name: Metadata
     items:
       - name: Microsoft.DSC properties

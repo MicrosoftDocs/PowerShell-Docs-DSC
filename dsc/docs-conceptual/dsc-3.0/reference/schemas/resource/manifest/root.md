@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for a DSC Resource manifest
-ms.date:     07/03/2025
+ms.date:     08/21/2025
 ms.topic:    reference
 title:       Command-based DSC Resource manifest schema reference
 ---
@@ -38,6 +38,7 @@ The manifest must include these properties:
 - [$schema](#schema)
 - [type](#type)
 - [version](#version)
+- [get](#get)
 
 ## Properties
 
@@ -166,12 +167,12 @@ Required: false
 ### kind
 
 The `kind` property defines how DSC should handle the resource. DSC supports several kinds
-ofcommand-based DSC Resources: `resource`, `group`, `adapter`, `importer`, and `exporter`.
+of DSC resources: `resource`, `group`, `adapter`, `importer`, and `exporter`.
 
 When `kind` isn't defined in the resource manifest, DSC infers the value for the property. If the
 `adapter` property is defined in the resource manifest, DSC infers the value of `kind` as
 `adapter`. If the `adapter` property isn't defined, DSC infers the value of `kind` as `resource`.
-DSC can't infer whether a manifest is for a group` or importer resource.
+DSC can't infer whether a manifest is for a `group` or `importer` resource.
 
 When defining a group resource, always explicitly define the `kind` property in the manifest as
 `group`. When defining an importer resource, always explicitly define the `kind` property in the
