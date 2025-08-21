@@ -256,6 +256,6 @@ ValidValues: [state, stateAndDiff]
 <!-- Reference link definitions -->
 [01]: ../properties/exist.md
 [02]: ./root.md#schema-1
-[03]: ../../outputs/resource/list.md#capability-sethandlesexist
-[04]: ../../outputs/resource/list.md#capabilities
+[03]: ../../definitions/resourceCapabilities.md#setHandlesExist
+[04]: ../../definitions/resourceCapabilities.md
 [05]: ./delete.md
