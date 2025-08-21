@@ -278,6 +278,6 @@ ValidValues: [state, stateAndDiff]
 [03]: ./set.md
 [04]: ../properties/exist.md
 [05]: ./root.md#schema-1
-[06]: ../../outputs/resource/list.md#capability-sethandlesexist
-[07]: ../../outputs/resource/list.md#capabilities
+[06]: ../../definitions/resourceCapabilities.md#setHandlesExist
+[07]: ../../definitions/resourceCapabilities.md
 [08]: ./delete.md

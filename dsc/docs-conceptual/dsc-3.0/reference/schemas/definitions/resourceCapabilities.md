@@ -39,15 +39,18 @@ can invoke for a resource and how the resource behaves when invoked.
 
 DSC resources may have the following capabilities:
 
-- `get` - The resource can retrieve the current state of an instance.
-- `set` - The resource can enforce the desired state for an instance.
-- `setHandlesExist` - The resource handles deleting an instance during a **Set** operation.
-- `whatIf` - The resource can report how it would change state for an instance during a **Set**
-  operation.
-- `test` - The resource implements the **Test** operation and doesn't rely on synthetic testing.
-- `delete` - The resource can remove an instance.
-- `export` - The resource can enumerate every instance.
-- `resolve` - The resource can resolve nested instances from an external source.
+- `get` - <a id="get"></a> The resource can retrieve the current state of an instance.
+- `set` - <a id="set"></a> The resource can enforce the desired state for an instance.
+- `setHandlesExist` - <a id="setHandlesExist"></a> The resource handles deleting an instance during
+  a **Set** operation.
+- `whatIf` - <a id="whatIf"></a> The resource can report how it would change state for an instance
+  during a **Set** operation.
+- `test` - <a id="test"></a> The resource implements the **Test** operation and doesn't rely on
+  synthetic testing.
+- `delete` - <a id="delete"></a> The resource can remove an instance.
+- `export` - <a id="export"></a> The resource can enumerate every instance.
+- `resolve` - <a id="resolve"></a> The resource can resolve nested instances from an external
+  source.
 
 For more information about resource capabilities, see [DSC resource capabilities][01]. For more
 information about the operations you can invoke for a resource, see [DSC resource operations][02].
