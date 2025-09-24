@@ -8,12 +8,12 @@ title: about Classes and DSC
 ---
 # about_Classes_and_DSC
 
-## Short description
+## SHORT DESCRIPTION
 
 Describes how you can use classes to develop in PowerShell with Desired State
 Configuration (DSC).
 
-## Long description
+## LONG DESCRIPTION
 
 Starting in Windows PowerShell 5.0, language was added to define classes and
 other user-defined types, by using formal syntax and semantics that are
@@ -22,7 +22,7 @@ developers and IT professionals to embrace Windows PowerShell for a wider
 range of use cases, simplify development of PowerShell artifacts such as DSC
 resources, and accelerate coverage of management surfaces.
 
-## Supported scenarios
+## SUPPORTED SCENARIOS
 
 The following scenarios are supported:
 
@@ -34,7 +34,7 @@ The following scenarios are supported:
 - Generate and handle exceptions by using formal mechanisms, and at the right
   level.
 
-## Define DSC resources with classes
+## DEFINE DSC RESOURCES WITH CLASSES
 
 Apart from syntax changes, the major differences between a class-defined DSC
 resource and a cmdlet DSC resource provider are the following items:
@@ -43,7 +43,7 @@ resource and a cmdlet DSC resource provider are the following items:
 - A DSCResource subfolder in the module folder is not required.
 - A PowerShell module file can contain multiple DSC resource classes.
 
-## Create a class-defined DSC resource provider
+## CREATE A CLASS-DEFINED DSC RESOURCE PROVIDER
 
 The following example is a class-defined DSC resource provider that is saved
 as a module, MyDSCResource.psm1. You must always include a key property in a
@@ -246,7 +246,7 @@ class FileResource
 }
 ```
 
-## Create a module manifest
+## CREATE A MODULE MANIFEST
 
 After creating the class-defined DSC resource provider, and saving it as a
 module, create a module manifest for the module. To make a class-based
@@ -290,7 +290,7 @@ PowerShellVersion = '5.0'
 }
 ```
 
-## Deploy a DSC resource provider
+## DEPLOY A DSC RESOURCE PROVIDER
 
 Deploy the new DSC resource provider by creating a MyDscResource folder in
 `$pshome\Modules` or `$env:SystemDrive\ProgramFiles\WindowsPowerShell\Modules`.
@@ -302,7 +302,7 @@ MyDscResource folder.
 From this point, you create and run a configuration script as you would with
 any DSC resource.
 
-## Create a DSC configuration script
+## CREATE A DSC CONFIGURATION SCRIPT
 
 After saving the class and manifest files in the folder structure as described
 earlier, you can create a configuration that uses the new resource. The
@@ -336,7 +336,7 @@ configuration, in an elevated PowerShell console, run the following:
 
 `PS C:\test> .\MyResource.ps1`
 
-## Inheritance in PowerShell classes
+## INHERITANCE IN POWERSHELL CLASSES
 
 ### Declare base classes for PowerShell classes
 
@@ -467,7 +467,7 @@ $list[0] # return 200
 A limitation with class inheritance is that there is no syntax to declare
 interfaces in PowerShell.
 
-## Defining custom types in PowerShell
+## DEFINING CUSTOM TYPES IN POWERSHELL
 
 Windows PowerShell 5.0 introduced several language elements.
 
@@ -694,7 +694,7 @@ $v = bar
 $v -eq $d # true
 ```
 
-## Example: Create custom classes
+## EXAMPLE: CREATE CUSTOM CLASSES
 
 The following example creates several new, custom classes to implement an HTML
 Dynamic Stylesheet Language (DSL). The example adds helper functions to create
@@ -825,7 +825,7 @@ function Style
 function Html ([HTML] $doc) { return $doc }
 ```
 
-## See also
+## SEE ALSO
 
 [about_DesiredStateConfiguration](/powershell/module/Microsoft.PowerShell.Core/About/about_desiredstateconfiguration)
 
