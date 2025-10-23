@@ -24,6 +24,6 @@ Linux with the [nxtools module][05], which is [available on the PowerShell Galle
 [01]: https://github.com/microsoft/PowerShell-DSC-for-Linux
 [02]: https://github.com/microsoft/omi
 [03]: /azure/governance/machine-configuration/overview
-[04]: ../../../overview.md?view=dsc-3.0&preserveView=true
+[04]: ../../../overview.md?view=dsc-3.0&preserve-view=true
 [05]: https://github.com/azure/nxtools
 [06]: https://www.powershellgallery.com/packages/nxtools/1.6.0

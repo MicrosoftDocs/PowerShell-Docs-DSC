@@ -81,7 +81,7 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxSshAuthorizedKeyResource.md",
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxSshAuthorizedKeysResource.md",
             "redirect_url": "/powershell/dsc/reference/resources/linux",
             "redirect_document_id": false
         },
