@@ -45,7 +45,7 @@
         "dsc-3.0/**/*.yml": "cmdlets"
       },
       "ms.topic": {
-        "docs-conceptual/**": "conceptual",
+        "docs-conceptual/**": "concept-article",
         "docs-conceptual/**/getting-started/**": "get-started",
         "docs-conceptual/**/get-started/**": "get-started",
         "docs-conceptual/**/how-tos/**": "how-to",
@@ -55,11 +55,15 @@
         "docs-conceptual/**/troubleshooting/**": "troubleshooting",
         "docs-conceptual/**/tutorials/**": "tutorial",
         "dsc-1.1/PSDesiredStateConfiguration/*": "reference",
-        "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "conceptual",
+        "dsc-1.1/PSDesiredStateConfiguration/About/*.md": "concept-article",
         "dsc-2.0/PSDesiredStateConfiguration/*": "reference",
-        "dsc-2.0/PSDesiredStateConfiguration/About/*.md": "conceptual",
+        "dsc-2.0/PSDesiredStateConfiguration/About/*.md": "concept-article",
         "dsc-3.0/PSDesiredStateConfiguration/*": "reference",
-        "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "conceptual"
+        "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "concept-article"
+      },
+      "ms.update-cycle": {
+        "dsc-1.1/**": "3650-days",
+        "dsc-2.0/**": "1825-days"
       }
     },
     "globalMetadata": {

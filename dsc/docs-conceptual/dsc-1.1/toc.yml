@@ -10,8 +10,6 @@ items:
         href: overview/DscForEngineers.md
   - name: Getting started
     items:
-      - name: Get started with DSC for Linux
-        href: getting-started/lnxGettingStarted.md
       - name: Get started with DSC for Windows
         href: getting-started/winGettingStarted.md
       - name: Get started with DSC on Nano
@@ -218,27 +216,7 @@ items:
           - name: WindowsProcess Resource
             href: reference/resources/windows/windowsProcessResource.md
       - name: Linux built-in resources
-        items:
-          - name: nxArchive Resource
-            href: reference/resources/linux/lnxArchiveResource.md
-          - name: nxEnvironment Resource
-            href: reference/resources/linux/lnxEnvironmentResource.md
-          - name: nxFile Resource
-            href: reference/resources/linux/lnxFileResource.md
-          - name: nxFileLine Resource
-            href: reference/resources/linux/lnxFileLineResource.md
-          - name: nxGroup Resource
-            href: reference/resources/linux/lnxGroupResource.md
-          - name: nxPackage Resource
-            href: reference/resources/linux/lnxPackageResource.md
-          - name: nxScript Resource
-            href: reference/resources/linux/lnxScriptResource.md
-          - name: nxService Resource
-            href: reference/resources/linux/lnxServiceResource.md
-          - name: nxSshAuthorizedKeys Resource
-            href: reference/resources/linux/lnxSshAuthorizedKeysResource.md
-          - name: nxUser Resource
-            href: reference/resources/linux/lnxUserResource.md
+        href: reference/resources/linux/index.md
       - name: PackageManagement built-in resources
         items:
           - name: PackageManagementDsc Resource

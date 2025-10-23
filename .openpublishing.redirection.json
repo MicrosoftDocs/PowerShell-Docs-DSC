@@ -36,6 +36,61 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/getting-started/lnxGettingStarted.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxArchiveResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxEnvironmentResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxFileLineResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxFileResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxGroupResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxPackageResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxScriptResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxServiceResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxSshAuthorizedKeysResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "dsc/docs-conceptual/dsc-1.1/reference/resources/linux/lnxUserResource.md",
+            "redirect_url": "/powershell/dsc/reference/resources/linux",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "dsc/docs-conceptual/dsc-2.0/concepts/terminology.md",
             "redirect_url": "/powershell/dsc/concepts/glossary?view=dsc-2.0",
             "redirect_document_id": true
