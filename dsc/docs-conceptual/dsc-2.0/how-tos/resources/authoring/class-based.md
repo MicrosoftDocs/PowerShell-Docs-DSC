@@ -25,13 +25,13 @@ For more information about DSC Resources, see [DSC Resources][1].
 ## Folder structure for a class Resource
 
 To implement a DSC Resource with a PowerShell class, create the following folder structure. The
-class is defined in `MyDscResource.psm1` and the module manifest is defined in `MyDscResource.psd1`.
+class is defined in `NewFile.psm1` and the module manifest is defined in `NewFile.psd1`.
 
 ```text
 $env:ProgramFiles\WindowsPowerShell\Modules (folder)
-    |- MyDscResource (folder)
-        MyDscResource.psm1
-        MyDscResource.psd1
+    |- NewFile (folder)
+        NewFile.psm1
+        NewFile.psd1
 ```
 
 ## Create the class
@@ -61,7 +61,7 @@ follows.
 [string] $content
 
 [DscProperty(NotConfigurable)]
-[MyDscResourceReason[]] $Reasons
+[NewFileReason[]] $Reasons
 ```
 
 Notice that the properties are modified by attributes. The meaning of the attributes is as follows:
@@ -90,7 +90,7 @@ If you would like to include a new type with defined properties that you can use
 DSC Resource, create a class with property types as described before.
 
 ```powershell
-class MyDscResourceReason {
+class NewFileReason {
     [DscProperty()]
     [string] $Code
 
@@ -100,7 +100,7 @@ class MyDscResourceReason {
 ```
 
 > [!NOTE]
-> The `MyDscResourceReason` class is declared here with the module's name as a prefix. While you can
+> The `NewFileReason` class is declared here with the module's name as a prefix. While you can
 > give embedded classes any name, if two or more modules define a class with the same name and are
 > both used in a configuration, PowerShell raises an exception.
 >
@@ -134,10 +134,10 @@ function Get-File {
         [String]$content
     )
 
-    $fileContent        = [MyDscResourceReason]::new()
+    $fileContent        = [NewFileReason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [MyDscResourceReason]::new()
+    $filePresent        = [NewFileReason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -309,7 +309,7 @@ enum ensure {
     errors raised when multiple modules with DSC Resources define the
     Reasons property for reporting when they're out-of-state.
 #>
-class MyDscResourceReason {
+class NewFileReason {
     [DscProperty()]
     [string] $Code
 
@@ -332,10 +332,10 @@ function Get-File {
         [String]$content
     )
 
-    $fileContent        = [MyDscResourceReason]::new()
+    $fileContent        = [NewFileReason]::new()
     $fileContent.code   = 'file:file:content'
 
-    $filePresent        = [MyDscResourceReason]::new()
+    $filePresent        = [NewFileReason]::new()
     $filePresent.code   = 'file:file:path'
 
     $ensureReturn = 'Absent'
@@ -502,7 +502,7 @@ class NewFile {
         about the Resource when it is present.
     #>
     [DscProperty(NotConfigurable)]
-    [MyDscResourceReason[]] $Reasons
+    [NewFileReason[]] $Reasons
 
     <#
         This method is equivalent of the Get-TargetResource script function.
@@ -628,9 +628,9 @@ A module can define multiple class-based DSC Resources. You need to declare all 
 
 ```text
 $env:ProgramFiles\PowerShell\Modules (folder)
-    |- MyDscResource (folder)
-        |- MyDscResource.psm1
-            MyDscResource.psd1
+    |- NewFile (folder)
+        |- NewFile.psm1
+            NewFile.psd1
 ```
 
 ## See Also
