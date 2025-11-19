@@ -3,7 +3,6 @@ description: >-
   Describes the capabilities of DSC resources, how DSC discovers them, and how
   the capabilities affect resource behavior and usage.
 ms.date:     03/25/2025
-ms.topic:    conceptual
 title:       DSC resource capabilities
 ---
 

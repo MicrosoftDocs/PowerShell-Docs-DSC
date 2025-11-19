@@ -3,7 +3,6 @@ description: >-
   Describes what DSC resource properties are, how they behave, and how to use
   them.
 ms.date:     03/25/2025
-ms.topic:    conceptual
 title:       DSC resource properties
 ---
 
@@ -32,12 +31,12 @@ attributes for a property that can change how you use the property:
 - If the instance schema defines the `x-dsc-key` keyword for the property subschema as `true`, the
   property is a _key resource property_. Key properties uniquely identify a resource instance on
   the system to prevent conflicts in configuration documents.
-  
+
   For more information, see the [Key properties](#key-resource-properties) section.
 - If the instance schema defines the property name in the `required` keyword, the property is a
   _required resource property_. You _must_ define the property in the desired state for the
   instance. If you omit the property, DSC raises an error because the instance is invalid.
-  
+
   For more information, see the [Required properties](#required-resource-properties) section.
 - If the instance schema defines the `readOnly` keyword for the property subschema as `true`, the
   property is a _read-only resource property_. You can't define the property in the desired state

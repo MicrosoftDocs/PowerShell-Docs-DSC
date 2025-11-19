@@ -2,7 +2,6 @@
 description: >-
   Describes what a DSC resource instance is and how to use them with DSC.
 ms.date:     03/25/2025
-ms.topic:    conceptual
 title:       DSC resource instances
 ---
 
@@ -270,7 +269,7 @@ resources:
       properties: {}
       dependsOn:
         - "[resourceId('Microsoft.DSC/Group', 'Nested Group')]"
-    
+
 ```
 
 #### Example 2 - Invalid reference and dependency on a nested instance
