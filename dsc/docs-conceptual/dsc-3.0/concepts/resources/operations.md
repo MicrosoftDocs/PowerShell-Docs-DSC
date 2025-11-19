@@ -2,7 +2,6 @@
 description: >-
   Describes the operations available for DSC resources and how they're used.
 ms.date:     03/25/2025
-ms.topic:    conceptual
 title:       DSC resource operations
 ---
 
