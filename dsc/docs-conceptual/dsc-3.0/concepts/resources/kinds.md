@@ -2,7 +2,6 @@
 description: >-
   Describes the different kinds of resources that DSC supports.
 ms.date:     03/25/2025
-ms.topic:    conceptual
 title:       DSC resource kinds
 ---
 
