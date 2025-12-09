@@ -10,3 +10,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc].
 [cabgen-log]: https://apidrop.visualstudio.com/Content%20CI/_build/latest?definitionId=5074&repoName=MicrosoftDocs%2FPowerShell-Docs-DSC&branchName=live
 
 [coc]: CODE_OF_CONDUCT.md
+
+
+test
