@@ -175,7 +175,7 @@ For example, you can test whether a specific registry key exists:
 ```powershell
 dsc resource test --resource Microsoft.Windows/Registry --input '{
     "keyPath": "HKCU\\key\\that\\does\\not\\exist",
-    "exist": true
+    "_exist": true
 }'
 ```
 
