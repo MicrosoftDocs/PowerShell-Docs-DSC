@@ -580,7 +580,7 @@ $configData = @{
             Credential = $Credential
             RebootNodeifNeeded = $true
             CertificateFile = 'c:\PullServerConfig\Cert.cer'
-            Thumbprint = 'B9A39921918B466EB1ADF2509E00F5DECB2EFDA9'
+            Thumbprint = 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
             }
         )
     }
