@@ -207,7 +207,7 @@ $ConfigData = @{
 
             # The thumbprint of the Encryption Certificate
             # used to decrypt the credentials on target node
-            Thumbprint      = "AC23EA3A9E291A75757A556D0B71CBBF8C4F6FD8"
+            Thumbprint      = "AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00"
         }
     )
 }

@@ -190,7 +190,7 @@ a `Configuration` that sets up the web service.
 
    # Then include this thumbprint when running the configuration
    $sample_xDscWebServiceRegistrationSplat = @{
-       certificateThumbprint = 'A7000024B753FA6FFF88E966FD6E19301FAE9CCC'
+       certificateThumbprint = 'AA11BB22CC33DD44EE55FF66AA77BB88CC99DD00'
        RegistrationKey = '140a952b-b9d6-406b-b416-e0f759c9c0e4'
        OutputPath = 'C:\Configs\PullServer'
    }
