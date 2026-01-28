@@ -62,8 +62,10 @@
         "dsc-3.0/PSDesiredStateConfiguration/About/*.md": "concept-article"
       },
       "ms.update-cycle": {
+        "docs-conceptual/dsc-1.1/**": "3650-days",
+        "docs-conceptual/dsc-2.0/**": "3650-days",
         "dsc-1.1/**": "3650-days",
-        "dsc-2.0/**": "1825-days"
+        "dsc-2.0/**": "3650-days"
       }
     },
     "globalMetadata": {
@@ -86,6 +88,7 @@
       "ms.author": "mlombardi",
       "ms.devlang": "powershell",
       "ms.service": "powershell",
+      "ms.update-cycle": "365-days",
       "searchScope": [
         "PowerShell"
       ],
