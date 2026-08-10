@@ -2,9 +2,10 @@
 description: >
     Examples showing how you can invoke the Microsoft.Windows/WindowsPowerShell with DSC to manage
     a Windows service using the PSDesiredStateConfiguration module.
-ms.date:     07/03/2025
-ms.topic:    reference
-title:       Manage a Windows service
+
+ms.date: 03/25/2025
+ms.topic: reference
+title: Manage a Windows service
 ---
 
 # Manage a Windows service
@@ -14,12 +15,13 @@ This example shows how you can use the `Microsoft.Windows/WindowsPowerShell` res
 `Spooler` print spooler service.
 
 > [!NOTE]
-> Run this example in an elevated PowerShell session with `dsc.exe` version 3.1.0 or later.
+> Run this example in an elevated PowerShell session with `dsc.exe` version 3.1.0-preview.2 or
+> later.
 
 ## Test whether a service is running
 
-The following snippet shows how you can use the resource with the [dsc resource test][01] command
-to check whether the `Spooler` service is running.
+The following snippet shows how you can use the resource with the [dsc resource test][01] command to
+check whether the `Spooler` service is running.
 
 ```powershell
 $instance = @{
@@ -44,8 +46,8 @@ differingProperties:
 ```
 
 The `inDesiredState` field of the result object is set to `false`, indicating that the instance
-isn't in the desired state. The `differingProperties` field indicates that the `property` property
-is mismatched between the desired state and actual state.
+isn't in the desired state. The `differingProperties` field indicates that the `StartupType`
+property is mismatched between the desired state and actual state.
 
 ## Ensure a service is running with automatic startup
 

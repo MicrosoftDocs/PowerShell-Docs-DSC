@@ -1,6 +1,6 @@
 ---
 description: Demonstrates basic usage of the Microsoft.DSC.Debug/Echo resource
-ms.date:     07/03/2025
+ms.date:     06/22/2025
 ms.topic:    reference
 title:       Basic echo example
 ---
@@ -33,11 +33,10 @@ differingProperties: []
 ```
 
 > [!NOTE]
-> The `Microsoft.DSC.Debug/Echo` resource always returns `inDesiredState: true` because it's a test
-> resource designed to echo back values.
->
-> It doesn't actually check or enforce anything on the system - it simply returns whatever value
-> you provide as output.
+> The `Microsoft.DSC.Debug/Echo` resource always returns `inDesiredState: true` because it's a
+> test resource designed to echo back values.
+> It doesn't actually check or enforce anything on the system - it simply returns whatever value you
+> provide as output.
 
 ## Using the get capability
 
@@ -61,8 +60,8 @@ actualState:
 
 ## Using the set capability
 
-The `Microsoft.DSC.Debug/Echo` resource's `set` capability simply accepts a value and echoes it
-back without modifying anything:
+The `Microsoft.DSC.Debug/Echo` resource's `set` capability simply accepts a value and echoes
+it back without modifying anything:
 
 ```powershell
 $instance = @{

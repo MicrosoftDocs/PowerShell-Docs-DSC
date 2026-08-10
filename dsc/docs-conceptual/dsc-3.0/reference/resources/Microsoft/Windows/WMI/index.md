@@ -1,6 +1,6 @@
 ---
 description: Microsoft.Windows/WMI resource adapter reference documentation
-ms.date:     07/03/2025
+ms.date:     03/25/2025
 ms.topic:    reference
 title:       Microsoft.Windows/WMI
 ---
@@ -32,11 +32,8 @@ resources:
       - name: <nested instance name>
         type: <namespace name>/<class name>
         properties: # adapted resource properties
-```
 
-## Implicit adapted instance definition syntax
-
-```yaml
+# Or from v3.1.0-preview.2 onwards
 resources:
 - name: <instanceName>
   type: <namespace name>/<class name>

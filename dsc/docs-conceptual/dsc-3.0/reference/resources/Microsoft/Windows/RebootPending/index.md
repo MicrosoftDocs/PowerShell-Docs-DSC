@@ -1,6 +1,6 @@
 ---
 description: Microsoft.Windows/RebootPending resource reference documentation
-ms.date:     07/03/2025
+ms.date:     03/25/2025
 ms.topic:    reference
 title:       Microsoft.Windows/RebootPending
 ---
@@ -12,8 +12,8 @@ title:       Microsoft.Windows/RebootPending
 Checks if a Windows system has a pending reboot.
 
 > [!IMPORTANT]
-> The `Microsoft.Windows/RebootPending` resource are a proof-of-concept example for use with DSC.
-> Don't use it in production.
+> The `Microsoft.Windows/RebootPending` resource are a proof-of-concept example
+> for use with DSC. Don't use it in production.
 
 ## Metadata
 
@@ -74,7 +74,7 @@ For more information about resource capabilities, see [DSC resource capabilities
 
 1. [Check for pending reboot][04] - Shows how to check if a system has a pending reboot using the
    `dsc resource get` command.
-2. [Use the RebootPending resource in a configuration][05] - Shows how to include the RebootPending
+1. [Use the RebootPending resource in a configuration][05] - Shows how to include the RebootPending
    resource in a configuration document to check reboot status.
 
 ## Properties
@@ -175,7 +175,7 @@ Indicates the resource operation failed.
 - [Use the RebootPending resource in a configuration][05]
 
 <!-- Link definitions -->
-[01]: ../registry/index.md
+[01]: ../Registry/index.md
 [02]: ../../../../../concepts/resources/capabilities.md
 [03]: ../../../../../concepts/resources/properties.md
 [04]: ./examples/check-for-pending-reboot.md

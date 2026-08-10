@@ -1,6 +1,6 @@
 ---
 description: Microsoft.DSC/PowerShell resource reference documentation
-ms.date:     07/03/2025
+ms.date:     03/18/2025
 ms.topic:    reference
 title:       Microsoft.DSC/PowerShell
 ---
@@ -32,11 +32,8 @@ resources:
       - name: <nested instance name>
         type: <module name>/<class name>
         properties: # adapted resource properties
-```
 
-## Implicit adapted instance definition syntax
-
-```yaml
+# Or from v3.1.0-preview.2 onwards
 resources:
 - name: <instanceName>
   type: <moduleName>/<class name>
@@ -51,7 +48,7 @@ implemented as PowerShell classes.
 
 The adapter manages the PSDSC resources in PowerShell, not Windows PowerShell. To use MOF-based
 PSDSC resources or PSDSC resources that require Windows PowerShell, use the
-[Microsoft.Windows/WindowsPowerShell](../../windows/windowspowershell/index.md) adapter.
+[Microsoft.Windows/WindowsPowerShell](../../Windows/WindowsPowerShell/index.md) adapter.
 
 This adapter doesn't use the **PSDesiredStateConfiguration** module. You don't need to install the
 **PSDesiredStateConfiguration** module to use PSDSC resources in DSC through this adapter.
@@ -98,7 +95,7 @@ $adapterScript = dsc resource list Microsoft.DSC/PowerShell |
 
 - Using this adapter requires a supported version of PowerShell. DSC invokes the adapter as a
   PowerShell script. For more information about installing PowerShell, see
-  [Install PowerShell on Windows, Linux, and macOS](/powershell/scripting/install/installing-powershell).
+  [Install PowerShell on Windows, Linux, and macOS][03].
 
 ## Required properties
 
@@ -201,7 +198,9 @@ The resource uses the following exit codes to report success and errors:
 
 ## See also
 
-- [Microsoft.Windows/WindowsPowerShell](../../windows/WindowsPowerShell/index.md)
+- [Microsoft.Windows/WindowsPowerShell][02]
 
 <!-- Link references -->
-[01]: ../../../../../concepts/resources/overview.md#test-operations
+[01]: ../../../../schemas/definitions/resourceType.md
+[02]: ../../Windows/WindowsPowerShell/index.md
+[03]: /powershell/scripting/install/installing-powershell

@@ -1,16 +1,15 @@
 ---
 description: >
-    Example showing how to use the Microsoft.Windows/RebootPending resource
-    with DSC to check if a Windows system has a pending reboot.
-ms.date:  07/03/2025
+    Example showing how to use the Microsoft.Windows/RebootPending resource with DSC to check if a Windows system has a pending reboot.
+ms.date: 03/25/2025
 ms.topic: reference
-title:    Check for pending reboot
+title: Check for pending reboot
 ---
 
 # Check for pending reboot
 
-This example shows how you can use the `Microsoft.Windows/RebootPending` resource to check whether
-a Windows system has a pending reboot.
+This example shows how you can use the `Microsoft.Windows/RebootPending` resource to check whether a
+Windows system has a pending reboot.
 
 ## Check reboot status
 
@@ -45,7 +44,7 @@ The `rebootPending` property indicates whether the system requires a reboot (`tr
 > operation against the resource and use it in the `Microsoft.Dsc/Assertion` group resource. This
 > resource relies on the synthetic testing provided by DSC. For more information about synthetic
 > testing with DSC, see
-> [DSC resource capabiltiies](../../../../../../concepts/resources/capabilities.md#test).
+> [DSC resource capabilities](../../../../../../concepts/resources/capabilities.md#test).
 >
 > For an example using this resource in an assertion, see
 > [Use the RebootPending resource in a configuration](./use-rebootpending-in-configuration.md).

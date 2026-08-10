@@ -2,9 +2,10 @@
 description: >
     Example showing how to use the Microsoft.Windows/WMI resource adapter to query
     disk information with filtering using the Win32_LogicalDisk class.
-ms.date:  07/03/2025
+
+ms.date: 03/25/2025
 ms.topic: reference
-title:    Query filtered disk information using WMI adapter
+title: Query filtered disk information using WMI adapter
 ---
 
 # Query filtered disk information using WMI adapter
@@ -15,7 +16,8 @@ specific drives using a configuration document.
 
 ## Definition
 
-The configuration document for this example defines one instances of the `Win32_LogicalDisk` resource.
+The configuration document for this example defines one instances of the `Win32_LogicalDisk`
+resource.
 
 The instance defines the properties to return in the output.
 

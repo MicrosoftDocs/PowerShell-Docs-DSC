@@ -275,7 +275,9 @@ hadErrors: false
 
 ## Verify the desired state
 
-DSC can use the resource to validate the operating system information in a configuration with the [dsc config test][03] command. When you use the `dsc config test` command, DSC invokes the **Test** operation against every resource in the configuration document.
+DSC can use the resource to validate the operating system information in a configuration with the
+[dsc config test][03] command. When you use the `dsc config test` command, DSC invokes the **Test**
+operation against every resource in the configuration document.
 
 The `Microsoft/OSInfo` resource doesn't implement the [test operation][04]. It relies on the
 synthetic testing feature of DSC instead. The synthetic test uses a case-sensitive equivalency
@@ -303,8 +305,9 @@ dsc config set --file .\osinfo.config.dsc.yaml
 ---
 
 The output depends on whether the operating system is 32-bit or 64-bit. In all cases, the
-`changedProperties` field for the result is an empty list. The `Microsoft.DSC/Assertion` group resource
-never changes system state and the `Microsoft/OSInfo` resource doesn't implement the **Set**** operation.
+`changedProperties` field for the result is an empty list. The `Microsoft.DSC/Assertion` group
+resource never changes system state and the `Microsoft/OSInfo` resource doesn't implement the
+**Set**** operation.
 
 # [32-bit Linux](#tab/32bit/linux)
 

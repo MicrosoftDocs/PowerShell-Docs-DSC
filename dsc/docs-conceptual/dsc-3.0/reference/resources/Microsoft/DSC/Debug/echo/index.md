@@ -1,6 +1,6 @@
 ---
 description: Microsoft.DSC.Debug/Echo resource reference documentation
-ms.date:     07/03/2025
+ms.date:     06/22/2025
 ms.topic:    reference
 title:       Microsoft.DSC.Debug/Echo
 ---
@@ -54,10 +54,11 @@ The resource has the following capabilities:
 
 - `get` - You can use the resource to retrieve the actual state of an instance.
 - `set` - You can use the resource to enforce the desired state for an instance.
-- `test` - You can use the resource to check if the actual state matches the desired state for an
-  instance.
+- `test` - You can use the resource to check if the actual state matches the desired state
+  for an instance.
 
-For more information about resource capabilities, see [DSC resource capabilities][01].
+For more information about resource capabilities, see
+[DSC resource capabilities][01].
 
 > [!NOTE]
 > Invoking any operation on this resource doesn't affect the system.
@@ -73,8 +74,8 @@ For more information about resource capabilities, see [DSC resource capabilities
 The following list describes the properties for the resource.
 
 - **Required properties:** <a id="required-properties"></a> The following property is always
-  required when defining an instance of the resource. An instance that doesn't define this property
-  is invalid. For more information, see the "Required resource properties" section in
+  required when defining an instance of the resource. An instance that doesn't define this
+  property is invalid. For more information, see the "Required resource properties" section in
   [DSC resource properties][02]
 
   - [output](#output) - The value to be echoed back by the resource.
@@ -114,8 +115,8 @@ following types:
 ## Instance validating schema
 
 The following snippet contains the JSON Schema that validates an instance of the resource. The
-validating schema only includes schema keywords that affect how the instance is validated. All non
-validating keywords are omitted.
+validating schema only includes schema keywords that affect how the instance is validated. All
+non validating keywords are omitted.
 
 ```json
 {
@@ -166,4 +167,4 @@ validating keywords are omitted.
 [01]: ../../../../../../concepts/resources/capabilities.md
 [02]: ../../../../../../concepts/resources/properties.md#required-resource-properties
 [03]: ../../../../../../concepts/resources/properties.md#key-resource-properties
-[04]: ../../../osinfo/index.md
+[04]: ../../../../Microsoft/OSInfo/index.md
