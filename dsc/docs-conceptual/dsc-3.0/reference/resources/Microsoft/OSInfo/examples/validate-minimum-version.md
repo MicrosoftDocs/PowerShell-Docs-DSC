@@ -62,8 +62,7 @@ results:
           architecture: x86_64
           _inDesiredState: true
         inDesiredState: true
-        differingProperties:
-        - version
+        differingProperties: []
     changedProperties: []
 - name: Show operating system
   type: Microsoft.DSC.Debug/Echo

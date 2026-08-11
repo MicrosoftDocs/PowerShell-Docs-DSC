@@ -82,15 +82,15 @@ results:
 - name: os info
   type: Microsoft.DSC/Include
   result:
-  - name: os
-    type: Microsoft/OSInfo
-    result:
-      actualState:
-        $id: https://aka.ms/dsc/schemas/v3/bundled/resource/manifest.json
-        family: macOS
-        version: 15.5.0
-        bitness: '64'
-        architecture: arm64
+    - name: os
+      type: Microsoft/OSInfo
+      result:
+        actualState:
+          $id: https://aka.ms/dsc/schemas/v3/bundled/resource/manifest.json
+          family: macOS
+          version: 15.5.0
+          bitness: 64
+          architecture: arm64
 messages: []
 hadErrors: false
 ```

@@ -56,7 +56,7 @@ dsc --trace-level info config get --file ./winpsscript.config.dsc.yaml
 <timestamp>  INFO Invoking get 'Microsoft.DSC.Transitional/WindowsPowerShellScript' using 'powershell'
 <timestamp>  INFO Invoking get 'Microsoft.DSC.Transitional/WindowsPowerShellScript' using 'powershell'
 <timestamp>  INFO PID <pid>: Checking for MOTD file at 'Temp:/example.motd'
-<timestamp>  INFO PID <pid>: MOTD file not found at 'Temp:/example.motd
+<timestamp>  INFO PID <pid>: MOTD file not found at 'Temp:/example.motd'
 ```
 
 ```yaml
