@@ -1,6 +1,6 @@
 ---
 description: DSC.PackageManagement/Apt resource reference documentation
-ms.date:     07/03/2025
+ms.date:     06/30/2025
 ms.topic:    reference
 title:       DSC.PackageManagement/Apt
 ---
@@ -118,8 +118,8 @@ IsWriteOnly      : false
 
 </details>
 
-Defines the name of the package to query or install. This property is required and serves as the
-key for uniquely identifying the package.
+Defines the name of the package to query or install. This property is required and serves as the key
+for uniquely identifying the package.
 
 ### _exist
 
@@ -136,10 +136,10 @@ DefaultValue     : true
 
 </details>
 
-The `_exist` canonical resource property determines whether a package should exist. When the value
-for `_exist` is `true`, the resource installs the package if it doesn't exist. When the value for
-`_exist` is `false`, the resource removes or uninstalls the package if it does exist. The default
-value for this property when not specified for an instance is `true`.
+The `_exist` canonical resource property determines whether a package should exist. When the
+value for `_exist` is `true`, the resource installs the package if it doesn't exist. When
+the value for `_exist` is `false`, the resource removes or uninstalls the package if it does exist.
+The default value for this property when not specified for an instance is `true`.
 
 ### version
 
