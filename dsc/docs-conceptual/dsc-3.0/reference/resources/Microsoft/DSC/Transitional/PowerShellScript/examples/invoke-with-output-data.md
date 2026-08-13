@@ -880,7 +880,7 @@ instance did modify system state.
 
 <!-- Link reference definitions -->
 [01]: ../index.md
-[02]: /powershell/module/microsoft.powershell.core/about/about_output_streams?view=powershell-7.6#success-stream
+[02]: /powershell/module/microsoft.powershell.core/about/about_output_streams#success-stream
 [03]: /powershell/module/microsoft.powershell.utility/write-output
 [04]: /powershell/module/microsoft.powershell.utility/write-output#-noenumerate
 [05]: ../index.md#emitting-messages

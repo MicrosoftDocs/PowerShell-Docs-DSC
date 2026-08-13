@@ -204,7 +204,7 @@ an error message with details about the failure.
 <!-- Link references -->
 [01]: ../PowerShell/index.md
 [02]: ../../Windows/WindowsPowerShell/index.md
-[03]: ../../../../schemas/config/resource.md#requireAdapter
+[03]: ../../../../schemas/config/resource.md#requireadapter
 [04]: /powershell/module/microsoft.powershell.core/enable-psremoting?view=powershell-5.1&preserve-view=true
 [05]: examples/manage-a-windows-service.md
 [06]: ../../../../schemas/definitions/resourceType.md
