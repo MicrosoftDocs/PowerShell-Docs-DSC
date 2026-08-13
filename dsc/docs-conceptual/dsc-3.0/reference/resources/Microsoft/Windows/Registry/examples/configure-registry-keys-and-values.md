@@ -229,7 +229,7 @@ To return your system to its original state:
 
    :::code language="yaml" source="registry.cleanup.config.dsc.yaml":::
 
-2. Use the **Set** operation on the cleanup configuration document.
+1. Use the **Set** operation on the cleanup configuration document.
 
    ```powershell
    dsc config set --file ./registry.cleanup.config.dsc.yaml

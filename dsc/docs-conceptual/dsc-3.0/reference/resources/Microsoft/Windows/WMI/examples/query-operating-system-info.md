@@ -3,9 +3,9 @@ description: >
     Example showing how to use the Microsoft.Windows/WMI resource adapter to query
     system information using the Win32_ComputerSystem class.
 
-ms.date:  07/03/2025
+ms.date: 03/25/2025
 ms.topic: reference
-title:    Query system information using WMI adapter
+title: Query system information using WMI adapter
 ---
 
 # Query system information using WMI adapter

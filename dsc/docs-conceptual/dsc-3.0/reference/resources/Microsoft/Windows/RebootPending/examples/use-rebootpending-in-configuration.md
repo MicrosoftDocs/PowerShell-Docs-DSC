@@ -2,9 +2,9 @@
 description: >
     Example showing how to use the Microsoft.Windows/RebootPending resource in a 
     configuration document with an assertion to check for a pending reboot.
-ms.date:     07/03/2025
-ms.topic:    reference
-title:       Use RebootPending resource in a configuration
+ms.date: 03/25/2025
+ms.topic: reference
+title: Use RebootPending resource in a configuration
 ---
 
 # Use the RebootPending resource in a configuration
@@ -21,7 +21,7 @@ together with an assertion.
 The first instance defines the desired state for the `ManagedKey` registry key, ensuring it exists
 only if no reboot is pending. It uses the `dependsOn` property to reference the assertion resource,
 which checks the system's reboot status using the `Microsoft.Windows/RebootPending` resource. The
-assertion passes when `rebootPending` is `false`,allowing the registry key resource to run. If a
+assertion passes when `rebootPending` is `false`, allowing the registry key resource to run. If a
 reboot is pending, the assertion fails and the registry key is not set.
 
 :::code language="yaml" source="pendingReboot.config.dsc.yaml":::
@@ -138,8 +138,8 @@ instance indicates it isn't in the desired state.
 
 ## Enforce configuration
 
-To update the system to the desired state, use the [dsc config set][02] command on the
-configuration document.
+To update the system to the desired state, use the [dsc config set][02] command on the configuration
+document.
 
 ```powershell
 dsc config set --file ./pendingReboot.config.dsc.yaml

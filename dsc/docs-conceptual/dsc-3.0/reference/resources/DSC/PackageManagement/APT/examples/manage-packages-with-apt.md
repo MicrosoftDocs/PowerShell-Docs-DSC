@@ -1,7 +1,7 @@
 ---
 description: > 
     Demonstrates how to manage packages with the DSC.PackageManagement/Apt resource
-ms.date:     07/03/2025
+ms.date:     06/30/2025
 ms.topic:    reference
 title:       Manage packages with APT
 ---
@@ -23,8 +23,8 @@ dsc resource test --resource DSC.PackageManagement/Apt --input '{"packageName":"
 When the package is not installed, DSC returns the following result.
 
 > [!NOTE]
-> Note that the version and source values can differ depending on your system's package
-> repositories and available package versions.
+> Note that the version and source values can differ depending on your system's package repositories
+> and available package versions.
 
 ```yaml
 desiredState:
@@ -41,7 +41,8 @@ differingProperties:
 
 ## Ensure a package is installed
 
-To ensure the system is in the desired state, use the [dsc resource set][01] command.
+To ensure the system is in the desired state, use the [dsc resource set][01]
+command.
 
 ```bash
 dsc resource set --resource DSC.PackageManagement/Apt --input '{"packageName":"nginx"}'

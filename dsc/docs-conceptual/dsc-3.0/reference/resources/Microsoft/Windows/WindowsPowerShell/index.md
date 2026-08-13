@@ -1,6 +1,6 @@
 ---
 description: Microsoft.Windows/WindowsPowerShell resource adapter reference documentation
-ms.date:     07/03/2025
+ms.date:     03/25/2025
 ms.topic:    reference
 title:       Microsoft.Windows/WindowsPowerShell
 ---
@@ -32,11 +32,8 @@ resources:
       - name: <nested instance name>
         type: <moduleName>/<resource name>
         properties: # adapted resource properties
-```
 
-## Implicit adapted instance definition syntax
-
-```yaml
+# Or from v3.1.0-preview.2 onwards
 resources:
 - name: <instanceName>
   type: <moduleName>/<resource name>
@@ -53,7 +50,7 @@ resources. The resource can:
 - Execute binary DSC resources
 
 The adapter manages the PSDSC resources in Windows PowerShell, not PowerShell. To use PowerShell
-classes in PowerShell, use the [Microsoft.DSC/PowerShell](../../dsc/powershell/index.md) adapter.
+classes in PowerShell, use the [Microsoft.DSC/PowerShell](../../DSC/PowerShell/index.md) adapter.
 
 This adapter uses the **PSDesiredStateConfiguration** module v1.1. This module is built-in when you
 install Windows and is located in `%SystemRoot%\System32\WindowsPowerShell\v1.0\Modules`
@@ -224,7 +221,7 @@ For more information about type names in DSC, see
 ```yaml
 Type:     string
 Required: true
-Pattern:  ^\w+(\.\w+){0,3}\/\w+$
+Pattern:  ^\w+(\.\w+){0,2}\/\w+$
 ```
 
 ### Adapted instance properties
