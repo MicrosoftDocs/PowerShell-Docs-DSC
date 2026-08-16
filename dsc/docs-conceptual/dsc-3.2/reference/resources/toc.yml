@@ -1,0 +1,215 @@
+items:
+  - name: Built-in resources
+    items:
+      - name: Microsoft.OpenSSH.SSHD/sshd_config
+        items:
+          - name: DSC resource
+            href: Microsoft/OpenSSH/SSHD/sshd_config/index.md
+          - name: Examples
+            items:
+              - name: Export OpenSSH SSH server configuration
+                href: Microsoft/OpenSSH/SSHD/sshd_config/examples/export-openssh-configuration.md
+              - name: Manage SSH server configuration settings
+                href: Microsoft/OpenSSH/SSHD/sshd_config/examples/manage-sshd-settings.md
+      - name: Microsoft.OpenSSH.SSHD/Windows
+        items:
+          - name: DSC resource
+            href: Microsoft/OpenSSH/SSHD/Windows/index.md
+          - name: Examples
+            items:
+              - name: Configure default shell for SSH
+                href: Microsoft/OpenSSH/SSHD/Windows/examples/configure-default-shell-powershell.md
+      - name: Overview
+        href: builtin.md
+      - name: DSC.PackageManagement/Apt
+        items:
+          - name: DSC resource
+            href: DSC/PackageManagement/APT/index.md
+          - name: Examples
+            items:
+              - name: Manage packages
+                href: DSC/PackageManagement/APT/examples/manage-packages-with-apt.md
+      - name: DSC.PackageManagement/Brew
+        items:
+          - name: DSC resource
+            href: DSC/PackageManagement/Brew/index.md
+          - name: Examples
+            items:
+              - name: Install a package
+                href: DSC/PackageManagement/Brew/examples/install-a-package-with-brew.md
+              - name: Remove a package
+                href: DSC/PackageManagement/Brew/examples/remove-a-package.md
+      - name: Microsoft/OSInfo
+        items:
+          - name: DSC resource
+            href: Microsoft/OSInfo/index.md
+          - name: Examples
+            items:
+              - name: Validate OS with dsc resource commands
+                href: Microsoft/OSInfo/examples/validate-with-dsc-resource.md
+              - name: Validate OS in a configuration
+                href: Microsoft/OSInfo/examples/validate-in-a-configuration.md
+              - name: Validate a minimum OS version
+                href: Microsoft/OSInfo/examples/validate-minimum-version.md
+      - name: Microsoft.Adapter/PowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/Adapter/PowerShell/index.md
+          - name: Examples
+            items:
+              - name: Invoke a resource
+                href: Microsoft/Adapter/PowerShell/examples/invoke-a-resource.md
+              - name: Configure a machine
+                href: Microsoft/Adapter/PowerShell/examples/configure-a-machine.md
+      - name: Microsoft.Adapter/WindowsPowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/Adapter/WindowsPowerShell/index.md
+          - name: Examples
+            items:
+              - name: Manage a Windows service
+                href: Microsoft/Adapter/WindowsPowerShell/examples/manage-a-windows-service.md
+      - name: Microsoft.DSC/Include
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Include/index.md
+          - name: Examples
+            items:
+              - name: Include a configuration file
+                href: Microsoft/DSC/Include/examples/include-a-configuration-file.md
+              - name: Include inline configuration content
+                href: Microsoft/DSC/Include/examples/include-inline-configuration-content.md
+      - name: Microsoft.DSC/PowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/PowerShell/index.md
+      - name: Microsoft.DSC.Debug/Echo
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Debug/echo/index.md
+          - name: Examples
+            items:
+              - name: Basic usage
+                href: Microsoft/DSC/Debug/echo/examples/basic-echo-example.md
+      - name: Microsoft.DSC.Transitional/PowerShellScript
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Transitional/PowerShellScript/index.md
+          - name: Examples
+            items:
+              - name: Configure with a script
+                href: Microsoft/DSC/Transitional/PowerShellScript/examples/configure-with-script.md
+              - name: Invoke with input data
+                href: Microsoft/DSC/Transitional/PowerShellScript/examples/invoke-with-input-data.md
+              - name: Invoke with output data
+                href: Microsoft/DSC/Transitional/PowerShellScript/examples/invoke-with-output-data.md
+              - name: Invoke with trace messaging
+                href: Microsoft/DSC/Transitional/PowerShellScript/examples/invoke-with-messaging.md
+      - name: Microsoft.DSC.Transitional/RunCommandOnSet
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Transitional/RunCommandOnSet/index.md
+          - name: Examples
+            items:
+              - name: Run a simple command
+                href: Microsoft/DSC/Transitional/RunCommandOnSet/examples/run-a-simple-command.md
+              - name: Run a PowerShell command
+                href: Microsoft/DSC/Transitional/RunCommandOnSet/examples/run-powershell-command.md
+      - name: Microsoft.DSC.Transitional/WindowsPowerShellScript
+        items:
+          - name: DSC resource
+            href: Microsoft/DSC/Transitional/WindowsPowerShellScript/index.md
+          - name: Examples
+            items:
+              - name: Configure with a script
+                href: Microsoft/DSC/Transitional/WindowsPowerShellScript/examples/configure-with-script.md
+              - name: Invoke with input data
+                href: Microsoft/DSC/Transitional/WindowsPowerShellScript/examples/invoke-with-input-data.md
+              - name: Invoke with output data
+                href: Microsoft/DSC/Transitional/WindowsPowerShellScript/examples/invoke-with-output-data.md
+              - name: Invoke with trace messaging
+                href: Microsoft/DSC/Transitional/WindowsPowerShellScript/examples/invoke-with-messaging.md
+      - name: Microsoft.Windows/FeatureOnDemandList
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/FeatureOnDemandList/index.md
+          - name: Examples
+            items:
+              - name: Get feature on demand state
+                href: Microsoft/Windows/FeatureOnDemandList/examples/get-feature-on-demand.md
+              - name: Install and remove features
+                href: Microsoft/Windows/FeatureOnDemandList/examples/install-remove-feature-on-demand.md
+              - name: Export features on demand
+                href: Microsoft/Windows/FeatureOnDemandList/examples/export-features-on-demand.md
+      - name: Microsoft.Windows/FirewallRuleList
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/FirewallRuleList/index.md
+          - name: Examples
+            items:
+              - name: Get firewall rule state
+                href: Microsoft/Windows/FirewallRuleList/examples/get-firewall-rules.md
+              - name: Configure firewall rules
+                href: Microsoft/Windows/FirewallRuleList/examples/configure-firewall-rules.md
+      - name: Microsoft.Windows/OptionalFeatureList
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/OptionalFeatureList/index.md
+          - name: Examples
+            items:
+              - name: Get optional feature state
+                href: Microsoft/Windows/OptionalFeatureList/examples/get-optional-feature.md
+              - name: Enable and disable features
+                href: Microsoft/Windows/OptionalFeatureList/examples/enable-disable-optional-features.md
+              - name: Export optional features
+                href: Microsoft/Windows/OptionalFeatureList/examples/export-optional-features.md
+      - name: Microsoft.Windows/RebootPending
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/RebootPending/index.md
+          - name: Examples
+            items:
+              - name: Check for pending reboot
+                href: Microsoft/Windows/RebootPending/examples/check-for-pending-reboot.md
+              - name: Use in configuration
+                href: Microsoft/Windows/RebootPending/examples/use-rebootpending-in-configuration.md
+      - name: Microsoft.Windows/Registry
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/Registry/index.md
+          - name: Examples
+            items:
+              - name: Manage a key
+                href: Microsoft/Windows/Registry/examples/manage-a-registry-key.md
+              - name: Manage a value
+                href: Microsoft/Windows/Registry/examples/manage-a-registry-value.md
+              - name: Configure keys and values
+                href: Microsoft/Windows/Registry/examples/configure-registry-keys-and-values.md
+      - name: Microsoft.Windows/Service
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/Service/index.md
+          - name: Examples
+            items:
+              - name: Get service status
+                href: Microsoft/Windows/Service/examples/get-service-status.md
+              - name: Configure a Windows service
+                href: Microsoft/Windows/Service/examples/configure-windows-service.md
+      - name: Microsoft.Windows/WindowsPowerShell
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/WindowsPowerShell/index.md
+          - name: Examples
+            items:
+              - name: Manage a Windows service
+                href: Microsoft/Windows/WindowsPowerShell/examples/manage-a-windows-service.md
+      - name: Microsoft.Windows/WMI
+        items:
+          - name: DSC resource
+            href: Microsoft/Windows/WMI/index.md
+          - name: Examples
+            items:
+              - name: Query operating system
+                href: Microsoft/Windows/WMI/examples/query-operating-system-info.md
+              - name: Query filtered disk
+                href: Microsoft/Windows/WMI/examples/query-filtered-disk-info.md

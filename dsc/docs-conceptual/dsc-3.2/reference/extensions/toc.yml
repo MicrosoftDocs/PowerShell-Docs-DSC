@@ -1,0 +1,11 @@
+items:
+  - name: Microsoft.PowerShell/Discover
+    items:
+      - name: DSC extension
+        href: Microsoft/PowerShell/Discover/index.md
+  - name: Microsoft.Windows.Appx/Discover
+    items:
+      - name: DSC extension
+        href: Microsoft/Windows/Appx/Discover/index.md
+  - name: Overview
+    href: overview.md

@@ -13,14 +13,14 @@ items:
     items:
       - name: Resource authoring
         items:
-        - name: Overview
-          href: tutorials/resources/authoring/overview.md
-        - name: Write your first DSC resource
-          items:
-            - name: Overview
-              href: tutorials/resources/authoring/first-resource/overview.md
-            - name: In Go
-              href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
+          - name: Overview
+            href: tutorials/resources/authoring/overview.md
+          - name: Write your first DSC resource
+            items:
+              - name: Overview
+                href: tutorials/resources/authoring/first-resource/overview.md
+              - name: In Go
+                href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
   - name: DSC reference
     href: reference/toc.yml
   - name: Glossary

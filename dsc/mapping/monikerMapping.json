@@ -1,20 +1,32 @@
 {
-    "dsc-1.1": {
-        "packageRoot": "dsc-1.1",
-        "conceptualToc": "docs-conceptual/dsc-1.1/toc.yml",
-        "conceptualTocUrl": "/powershell/dsc/toc.json",
-        "referenceTocUrl": "/powershell/module/toc.json"
-    },
-    "dsc-2.0": {
-        "packageRoot": "dsc-2.0",
-        "conceptualToc": "docs-conceptual/dsc-2.0/toc.yml",
-        "conceptualTocUrl": "/powershell/dsc/toc.json",
-        "referenceTocUrl": "/powershell/module/toc.json"
-    },
-    "dsc-3.0": {
-        "packageRoot": "dsc-3.0",
-        "conceptualToc": "docs-conceptual/dsc-3.0/toc.yml",
-        "conceptualTocUrl": "/powershell/dsc/toc.json",
-        "referenceTocUrl": "/powershell/module/toc.json"
-    }
+  "dsc-1.1": {
+    "packageRoot": "dsc-1.1",
+    "conceptualToc": "docs-conceptual/dsc-1.1/toc.yml",
+    "conceptualTocUrl": "/powershell/dsc/toc.json",
+    "referenceTocUrl": "/powershell/module/toc.json"
+  },
+  "dsc-2.0": {
+    "packageRoot": "dsc-2.0",
+    "conceptualToc": "docs-conceptual/dsc-2.0/toc.yml",
+    "conceptualTocUrl": "/powershell/dsc/toc.json",
+    "referenceTocUrl": "/powershell/module/toc.json"
+  },
+  "dsc-3.0": {
+    "packageRoot": "dsc-3.0",
+    "conceptualToc": "docs-conceptual/dsc-3.0/toc.yml",
+    "conceptualTocUrl": "/powershell/dsc/toc.json",
+    "referenceTocUrl": "/powershell/module/toc.json"
+  },
+  "dsc-3.1": {
+    "packageRoot": "dsc-3.0",
+    "conceptualToc": "docs-conceptual/dsc-3.1/toc.yml",
+    "conceptualTocUrl": "/powershell/dsc/toc.json",
+    "referenceTocUrl": "/powershell/module/toc.json"
+  },
+  "dsc-3.2": {
+    "packageRoot": "dsc-3.0",
+    "conceptualToc": "docs-conceptual/dsc-3.2/toc.yml",
+    "conceptualTocUrl": "/powershell/dsc/toc.json",
+    "referenceTocUrl": "/powershell/module/toc.json"
+  }
 }

@@ -1,0 +1,7 @@
+items:
+  - name: Microsoft.Windows.Appx/Discover
+    items:
+      - name: DSC extension
+        href: Microsoft/Windows/Appx/Discover/index.md
+  - name: Overview
+    href: overview.md

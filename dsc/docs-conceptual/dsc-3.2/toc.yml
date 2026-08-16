@@ -1,0 +1,27 @@
+items:
+  - name: Microsoft DSC 3.2
+    href: overview.md
+  - name: Changelog
+    href: changelog.md
+  - name: Getting started
+    items:
+      - name: Managing state with DSC
+        href: get-started/index.md
+  - name: Concepts
+    href: concepts/toc.yml
+  - name: Tutorials
+    items:
+      - name: Resource authoring
+        items:
+          - name: Overview
+            href: tutorials/resources/authoring/overview.md
+          - name: Write your first DSC resource
+            items:
+              - name: Overview
+                href: tutorials/resources/authoring/first-resource/overview.md
+              - name: In Go
+                href: https://powershell.github.io/DSC-Samples/tutorials/first-resource/go/
+  - name: DSC reference
+    href: reference/toc.yml
+  - name: Glossary
+    href: glossary.md

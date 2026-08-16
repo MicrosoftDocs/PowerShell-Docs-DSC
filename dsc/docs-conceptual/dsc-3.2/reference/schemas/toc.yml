@@ -1,0 +1,291 @@
+items:
+  - name: Overview
+    href: overview.md
+  - name: Schema URIs
+    href: schema-uris.md
+  - name: dsc command outputs
+    items:
+      - name: dsc config command outputs
+        items:
+          - name: dsc config get output
+            href: outputs/config/get.md
+          - name: dsc config set output
+            href: outputs/config/set.md
+          - name: dsc config test output
+            href: outputs/config/test.md
+      - name: dsc extension command outputs
+        items:
+          - name: dsc extension list output
+            href: outputs/extension/list.md
+      - name: dsc resource command outputs
+        items:
+          - name: dsc resource get output
+            href: outputs/resource/get.md
+          - name: dsc resource list output
+            href: outputs/resource/list.md
+          - name: dsc resource set output
+            href: outputs/resource/set.md
+          - name: dsc resource test output
+            href: outputs/resource/test.md
+  - name: Configuration
+    items:
+      - name: Documents
+        href: config/document.md
+      - name: Document metadata
+        href: config/metadata.md
+      - name: Document parameters
+        href: config/parameter.md
+      - name: Resource instances
+        href: config/resource.md
+      - name: Functions
+        items:
+          - name: Overview
+            href: config/functions/overview.md
+          - name: add
+            href: config/functions/add.md
+          - name: and
+            href: config/functions/and.md
+          - name: array
+            href: config/functions/array.md
+          - name: base64
+            href: config/functions/base64.md
+          - name: base64ToString
+            href: config/functions/base64ToString.md
+          - name: bool
+            href: config/functions/bool.md
+          - name: cidrHost
+            href: config/functions/cidrHost.md
+          - name: cidrSubnet
+            href: config/functions/cidrSubnet.md
+          - name: coalesce
+            href: config/functions/coalesce.md
+          - name: concat
+            href: config/functions/concat.md
+          - name: contains
+            href: config/functions/contains.md
+          - name: context
+            href: config/functions/context.md
+          - name: copy
+            href: config/functions/copy.md
+          - name: copyIndex
+            href: config/functions/copyIndex.md
+          - name: createArray
+            href: config/functions/createArray.md
+          - name: createObject
+            href: config/functions/createObject.md
+          - name: dataUri
+            href: config/functions/dataUri.md
+          - name: dataUriToString
+            href: config/functions/dataUriToString.md
+          - name: div
+            href: config/functions/div.md
+          - name: empty
+            href: config/functions/empty.md
+          - name: endsWith
+            href: config/functions/endsWith.md
+          - name: envvar
+            href: config/functions/envvar.md
+          - name: equals
+            href: config/functions/equals.md
+          - name: "false"
+            href: config/functions/false.md
+          - name: first
+            href: config/functions/first.md
+          - name: format
+            href: config/functions/format.md
+          - name: greater
+            href: config/functions/greater.md
+          - name: greaterOrEquals
+            href: config/functions/greaterOrEquals.md
+          - name: if
+            href: config/functions/if.md
+          - name: indexOf
+            href: config/functions/indexOf.md
+          - name: int
+            href: config/functions/int.md
+          - name: intersection
+            href: config/functions/intersection.md
+          - name: items
+            href: config/functions/items.md
+          - name: join
+            href: config/functions/join.md
+          - name: json
+            href: config/functions/json.md
+          - name: last
+            href: config/functions/last.md
+          - name: lastIndexOf
+            href: config/functions/lastIndexOf.md
+          - name: length
+            href: config/functions/length.md
+          - name: less
+            href: config/functions/less.md
+          - name: lessOrEquals
+            href: config/functions/lessOrEquals.md
+          - name: max
+            href: config/functions/max.md
+          - name: min
+            href: config/functions/min.md
+          - name: mod
+            href: config/functions/mod.md
+          - name: mul
+            href: config/functions/mul.md
+          - name: not
+            href: config/functions/not.md
+          - name: "null"
+            href: config/functions/null.md
+          - name: objectKeys
+            href: config/functions/objectKeys.md
+          - name: or
+            href: config/functions/or.md
+          - name: parameters
+            href: config/functions/parameters.md
+          - name: parseCidr
+            href: config/functions/parseCidr.md
+          - name: path
+            href: config/functions/path.md
+          - name: range
+            href: config/functions/range.md
+          - name: reference
+            href: config/functions/reference.md
+          - name: resourceId
+            href: config/functions/resourceId.md
+          - name: secret
+            href: config/functions/secret.md
+          - name: shallowMerge
+            href: config/functions/shallowMerge.md
+          - name: skip
+            href: config/functions/skip.md
+          - name: startsWith
+            href: config/functions/startsWith.md
+          - name: string
+            href: config/functions/string.md
+          - name: sub
+            href: config/functions/sub.md
+          - name: substring
+            href: config/functions/substring.md
+          - name: systemRoot
+            href: config/functions/systemRoot.md
+          - name: take
+            href: config/functions/take.md
+          - name: toLower
+            href: config/functions/toLower.md
+          - name: toUpper
+            href: config/functions/toUpper.md
+          - name: trim
+            href: config/functions/trim.md
+          - name: "true"
+            href: config/functions/true.md
+          - name: tryGet
+            href: config/functions/tryGet.md
+          - name: tryIndexFromEnd
+            href: config/functions/tryIndexFromEnd.md
+          - name: tryWhich
+            href: config/functions/tryWhich.md
+          - name: union
+            href: config/functions/union.md
+          - name: uniqueString
+            href: config/functions/uniqueString.md
+          - name: uri
+            href: config/functions/uri.md
+          - name: uriComponent
+            href: config/functions/uriComponent.md
+          - name: uriComponentToString
+            href: config/functions/uriComponentToString.md
+          - name: utcNow
+            href: config/functions/utcNow.md
+          - name: variables
+            href: config/functions/variables.md
+  - name: Extension
+    items:
+      - name: Manifests
+        items:
+          - name: Root
+            href: extension/manifest/root.md
+          - name: Discover property
+            href: extension/manifest/discover.md
+      - name: Expected stdout
+        items:
+          - name: Discover operation stdout
+            href: extension/stdout/discover.md
+  - name: Resource
+    items:
+      - name: Manifests
+        items:
+          - name: Root
+            href: resource/manifest/root.md
+          - name: adapter command field
+            href: resource/manifest/adapter.md
+          - name: delete command field
+            href: resource/manifest/delete.md
+          - name: export command field
+            href: resource/manifest/export.md
+          - name: get command field
+            href: resource/manifest/get.md
+          - name: set command field
+            href: resource/manifest/set.md
+          - name: whatIf command field
+            href: resource/manifest/whatIf.md
+          - name: test command field
+            href: resource/manifest/test.md
+          - name: validate command field
+            href: resource/manifest/validate.md
+          - name: resolve command field
+            href: resource/manifest/resolve.md
+          - name: schema field
+            items:
+              - name: Command
+                href: resource/manifest/schema/property.md
+              - name: Embedded schemas
+                href: resource/manifest/schema/embedded.md
+      - name: Canonical resource properties
+        items:
+          - name: Overview
+            href: resource/properties/overview.md
+          - name: _ensure
+            href: resource/properties/ensure.md
+          - name: _exist
+            href: resource/properties/exist.md
+          - name: _inDesiredState
+            href: resource/properties/inDesiredState.md
+          - name: _purge
+            href: resource/properties/purge.md
+      - name: Resource operation stdout schemas
+        items:
+          - name: Overview
+            href: resource/stdout/index.md
+          - name: delete operation stdout
+            href: resource/stdout/delete.md
+          - name: export operation stdout
+            href: resource/stdout/export.md
+          - name: get operation stdout
+            href: resource/stdout/get.md
+          - name: list operation stdout
+            href: resource/stdout/list.md
+          - name: resolve operation stdout
+            href: resource/stdout/resolve.md
+          - name: schema operation stdout
+            href: resource/stdout/schema.md
+          - name: set operation stdout
+            href: resource/stdout/set.md
+          - name: test operation stdout
+            href: resource/stdout/test.md
+          - name: validate operation stdout
+            href: resource/stdout/validate.md
+          - name: what-if operation stdout
+            href: resource/stdout/whatIf.md
+  - name: Metadata
+    items:
+      - name: Microsoft.DSC properties
+        href: metadata/Microsoft.DSC/properties.md
+  - name: Shared definitions
+    items:
+      - name: message
+        href: definitions/message.md
+      - name: resourceKind
+        href: definitions/resourceKind.md
+      - name: resourceType
+        href: definitions/resourceType.md
+      - name: Parameter dataTypes
+        href: definitions/parameters/dataTypes.md
+  - name: DSC Resource capabilities schema reference
+    href: definitions/resourceCapabilities.md
