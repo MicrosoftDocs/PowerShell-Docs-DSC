@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'variables' DSC configuration document function
-ms.date:     02/28/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       variables
 ---

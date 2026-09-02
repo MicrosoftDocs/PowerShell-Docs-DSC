@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'createArray' DSC configuration document function
-ms.date:     07/03/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       createArray
 ---
@@ -29,7 +29,7 @@ function returns an array of arrays.
 
 ### Example 1 - Create an array of integers
 
-example synopsis
+The following example shows how to create a simple array with integers.
 
 ```yaml
 # createArray.example.1.dsc.config.yaml
@@ -42,7 +42,7 @@ resources:
 ```
 
 ```bash
-dsc config get --file createArray.example.1.dsc.config.yaml config get
+dsc config get --file createArray.example.1.dsc.config.yaml
 ```
 
 ```yaml

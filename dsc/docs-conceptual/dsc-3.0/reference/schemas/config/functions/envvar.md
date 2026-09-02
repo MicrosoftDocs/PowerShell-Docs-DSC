@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'envvar' DSC configuration document function
-ms.date:     07/03/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       envvar
 ---
@@ -82,4 +82,4 @@ The `envvar()` function returns the value of the environment variable specified 
 Type: string
 ```
 
-[01]: ../../../cli/config/command.md#environment-variables
+[01]: ../../../cli/config/index.md#environment-variables
