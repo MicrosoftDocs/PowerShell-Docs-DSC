@@ -2,7 +2,7 @@
 description: >-
   Learn about Microsoft's Desired State Configuration platform, including what it does and when
   it should be used.
-ms.date: 06/09/2025
+ms.date: 09/10/2026
 ms.topic: overview
 title:  Microsoft Desired State Configuration overview
 ---
@@ -51,7 +51,7 @@ Example scenarios include:
 
 DSC differs from PowerShell Desired State Configuration (PSDSC) in a few important ways:
 
-- DSC doesn't _depend_ on PowerShell, Windows PowerShell, or the [PSDesiredStateConfiguration][01]
+- DSC doesn't _depend_ on PowerShell, Windows PowerShell, or the [PSDesiredStateConfiguration][06]
   PowerShell module. DSC provides full compatibility with PSDSC resources through the
   `Microsoft.DSC/PowerShell` and `Microsoft.Windows/WindowsPowerShell` _adapter resources_.
 
@@ -78,71 +78,35 @@ DSC differs from PowerShell Desired State Configuration (PSDSC) in a few importa
 
 ## Installation
 
-### Install DSC manually
-
-To install DSC on any platform:
-
-1. Download the [latest release from the PowerShell/DSC repository][02].
-1. Expand the release archive.
-1. Add the folder containing the expanded archive contents to the `PATH`.
-
-### Install DSC on Windows with WinGet
-
-The following commands can be used to install DSC using the published `winget` packages from the
-Microsoft Store:
-
-Search for the latest version of DSC:
-
-```powershell
-winget search DesiredStateConfiguration --source msstore
-```
-
-```Output
-Name                              Id           Version Source
----------------------------------------------------------------
-DesiredStateConfiguration         9NVTPZWRC6KQ Unknown msstore
-DesiredStateConfiguration-Preview 9PCX3HX4HZ0Z Unknown msstore
-```
-
-Install DSC using the `id` parameter:
-
-```powershell
-# Install latest stable
-winget install --id 9NVTPZWRC6KQ --source msstore
-```
-
-```powershell
-# Install latest preview
-winget install --id 9PCX3HX4HZ0Z --source msstore
-```
+DSC v3 installation instructions are covered in [Install DSC v3][07].
 
 ## Integrating with DSC
-
 DSC is a platform tool that abstracts the concerns for defining and invoking resources. Higher
-order tools, like [WinGet][03], [Microsoft Dev Box][04], and [Azure Machine Configuration][05] are
+order tools, like [WinGet][04], [Microsoft Dev Box][01], and [Azure Machine Configuration][02] are
 early partners for DSC as orchestration agents.
 
 DSC uses JSON schemas to define the structure of resources, configuration documents, and the
 outputs that DSC returns. These schemas make it easier to integrate DSC with other tools, because
 they standardize and document how to interface with DSC.
 
-For more information, see [DSC JSON Schema reference overview][06].
+For more information, see [DSC JSON Schema reference overview][09].
 
-## See Also
+## Next steps
 
-- [Anatomy of a command-based DSC Resource][07] to learn about authoring a resource in your
+- [Install DSC v3][07]
+- [Anatomy of a command-based DSC Resource][05] to learn about authoring a resource in your
   language of choice.
 - [Command line reference for the 'dsc' command][08]
-- [DSC JSON Schema reference overview][06]
-- [WinGet Configuration][09]
+- [DSC JSON Schema reference overview][09]
+- [WinGet Configuration][03]
 
 <!-- link references -->
-[01]: https://github.com/powershell/psdesiredstateconfiguration
-[02]: https://github.com/PowerShell/DSC/releases/latest
-[03]: /windows/package-manager/winget
-[04]: /azure/dev-box/overview-what-is-microsoft-dev-box
-[05]: /azure/governance/machine-configuration/overview
-[06]: ./reference/schemas/overview.md
-[07]: ./concepts/resources/anatomy.md
-[08]: ./reference/cli/index.md
-[09]: /windows/package-manager/configuration/
+[01]: /azure/dev-box/overview-what-is-microsoft-dev-box
+[02]: /azure/governance/machine-configuration/overview
+[03]: /windows/package-manager/configuration/
+[04]: /windows/package-manager/winget
+[05]: concepts/resources/anatomy.md
+[06]: https://github.com/powershell/psdesiredstateconfiguration
+[07]: install.md
+[08]: reference/cli/index.md
+[09]: reference/schemas/overview.md
