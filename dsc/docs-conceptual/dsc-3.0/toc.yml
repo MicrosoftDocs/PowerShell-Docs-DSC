@@ -1,6 +1,8 @@
 items:
   - name: Microsoft DSC 3.0
     href: overview.md
+  - name: Install DSC 3.0
+    href: install.md
   - name: Changelog
     href: changelog.md
   - name: Getting started
