@@ -21,6 +21,12 @@ items:
         href: extension/index.md
       - name: dsc extension list
         href: extension/list.md
+  - name: dsc function subcommands
+    items:
+      - name: dsc function
+        href: function/index.md
+      - name: dsc function list
+        href: function/list.md
   - name: dsc resource subcommands
     items:
       - name: dsc resource

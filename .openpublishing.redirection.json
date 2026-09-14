@@ -106,6 +106,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path": "dsc/docs-conceptual/dsc-3.0/reference/schemas/resource/properties/rebootRequested.md",
+            "redirect_url": "/powershell/dsc/reference/schemas/resource/properties/overview",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "dsc/docs-conceptual/dsc-3.0/resources/concepts/anatomy.md",
             "redirect_url": "/powershell/dsc/concepts/resources/anatomy",
             "redirect_document_id": true
