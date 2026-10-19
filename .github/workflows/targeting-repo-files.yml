@@ -3,7 +3,7 @@
 # maintainer or admin rights may modify the actions or the workflow definitions.
 name: Authorization
 on:
-  pull_request_target:
+  pull_request_target: # Required to retrieve permissions to verify for forks
     branches:
       - main
     paths:
@@ -25,9 +25,9 @@ jobs:
         shell: pwsh
     steps:
       - name: Authorized to Modify Repo Files?
-        uses: MicrosoftDocs/PowerShell-Docs/.github/actions/verification/authorization/v1@main
+        uses: MicrosoftDocs/PowerShell-Docs/.github/actions/verification/authorization/v1@a3de8f22552170e70852470d46cd52cd9ca471ec
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           target: |
             path:
               *.yml
