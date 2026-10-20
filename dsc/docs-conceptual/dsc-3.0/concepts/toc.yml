@@ -19,6 +19,8 @@ items:
         href: resources/kinds.md
       - name: Anatomy of a command resource 
         href: resources/anatomy.md
+      - name: Resource authoring design guide
+        href: resources/authoring/toc.yml
   - name: Enhanced authoring
     href: enhanced-authoring.md
   - name: Output accessibility
