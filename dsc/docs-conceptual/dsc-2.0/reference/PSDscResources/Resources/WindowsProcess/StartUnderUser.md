@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources WindowsProcess resource to start a process under a user.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Start a process under a user
 ---
@@ -12,6 +12,8 @@ title: Start a process under a user
 
 This example shows how you can use the `WindowsProcess` resource to ensure a process is running
 under a specific account.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 You are prompted for a credential if you don't pass one explicitly with the **Credential**
 parameter. The **Credential** property of the resource is set to this value.

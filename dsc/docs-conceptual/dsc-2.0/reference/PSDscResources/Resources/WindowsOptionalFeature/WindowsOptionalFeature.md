@@ -1,6 +1,6 @@
 ---
 description: PSDscResources WindowsOptionalFeature resource
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: WindowsOptionalFeature
 ---
@@ -10,6 +10,8 @@ title: WindowsOptionalFeature
 ## Synopsis
 
 Enable or disable a Windows optional feature.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 

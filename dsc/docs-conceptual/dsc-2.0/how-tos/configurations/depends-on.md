@@ -3,7 +3,7 @@ description: >
   As your DSC Configuration grows larger and more complex, you can use the `DependsOn` meta-property
   to change the applied order of your DSC Resources by specifying that one DSC Resource depends on
   another DSC Resource.
-ms.date: 01/06/2023
+ms.date: 10/30/2026
 title: Managing dependencies in DSC Configurations
 ---
 
@@ -48,6 +48,8 @@ Configuration ConfigureExampleUserGroup {
 
 ConfigureExampleUserGroup
 ```
+
+[!INCLUDE [PSDscResources Unsupported](../../../../includes/psdscresources-unsupported.md)]
 
 <!-- Reference Links -->
 

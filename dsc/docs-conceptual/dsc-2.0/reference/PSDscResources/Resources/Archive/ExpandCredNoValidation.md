@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources Archive resource to expand an archive under a credential without file
   validation.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Expand an archive under a credential without file validation
 ---
@@ -14,6 +14,8 @@ title: Expand an archive under a credential without file validation
 This example shows how you can use the `Archive` resource to ensure a `.zip` file is expanded to a
 specific directory under a chosen account. This allows you to specify locations for the archive and
 destination that require authorization for access and writing.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, the **Path** set to `C:\ExampleArchivePath\Archive.zip`, and the
 **Destination** set to `C:\ExampleDestinationPath\Destination`, the resource expands the contents of

@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources ServiceSet composite resource to set multiple services to run under the
   built-in account LocalService.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Set multiple services to run under the built-in account LocalService
 ---
@@ -13,6 +13,8 @@ title: Set multiple services to run under the built-in account LocalService
 
 This example shows how you can use the `ServiceSet` composite resource to ensure multiple services
 exist and run under the `LocalService` built-in account.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **BuiltInAccount** set to `LocalService`, and **Name** set tthe
 array of `Dhcp` and `SstpSvc`, the resource configures the `Dhcp` and `SstpSvc` services to run

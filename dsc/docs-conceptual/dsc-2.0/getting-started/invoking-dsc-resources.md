@@ -2,7 +2,7 @@
 description: >
   This topic explains how to get started using PowerShell Desired State Configuration (DSC) with the
   Invoke-DscResource cmdlet.
-ms.date: 03/15/2023
+ms.date: 10/30/2026
 title:  Get started with invoking DSC Resources
 ---
 
@@ -39,17 +39,20 @@ You can search for DSC resources with the `Find-DscResource` cmdlet. To see the 
 DSC resources, use the following command:
 
 ```powershell
-Find-DscResource -Repository PSGallery | Select-Object -Property ModuleName, Version -Unique
+Find-DscResource -Repository PSGallery |
+    Select-Object -Property ModuleName, Version -Unique
 ```
 
 For more information on searching for DSC resources in a PowerShell repository, see
 [Find-DscResource][3].
 
-To install the latest version of the PSDscResources module, use the following command:
+To install the latest version of the **PSDscResources** module, use the following command:
 
 ```PowerShell
 Install-Module 'PSDscResources' -Repository PSGallery
 ```
+
+[!INCLUDE [PSDscResources Unsupported](../../../includes/psdscresources-unsupported.md)]
 
 ## Invoking DSC resources
 

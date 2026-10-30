@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources WindowsFeature resource to install or uninstall a Windows feature.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Install or uninstall a Windows feature
 ---
@@ -16,6 +16,8 @@ Windows Feature is:
 - Installed or uninstalled
 - Whether it's installed with its subfeatures
 - Whether it's installed as a specific account
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 All the resource's values are user-provided, not hard-coded. The parameters map to the resource's
 properties, changing its behavior.

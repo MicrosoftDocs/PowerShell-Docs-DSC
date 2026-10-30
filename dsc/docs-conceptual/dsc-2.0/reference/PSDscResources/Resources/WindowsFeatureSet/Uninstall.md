@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources WindowsFeatureSet composite resource to uninstall multiple Windows
   features.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Uninstall multiple Windows features
 ---
@@ -13,6 +13,8 @@ title: Uninstall multiple Windows features
 
 This example shows how you can use the `WindowsFeatureSet` composite resource to ensure multiple
 Windows features are installed with their subfeatures.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent` and **Name** set to the array of `Telnet-Client` and
 `RSAT-File-Services`, the resource uninstalls the `Telnet-Client` and `RSAT-File-Services` Windows

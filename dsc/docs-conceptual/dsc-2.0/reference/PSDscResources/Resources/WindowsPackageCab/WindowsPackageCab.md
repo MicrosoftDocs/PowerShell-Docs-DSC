@@ -1,6 +1,6 @@
 ---
 description: PSDscResources WindowsPackageCab resource
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: WindowsPackageCab
 ---
@@ -10,6 +10,8 @@ title: WindowsPackageCab
 ## Synopsis
 
 Install or uninstall a package from a Windows cabinet (`.cab`) file.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 

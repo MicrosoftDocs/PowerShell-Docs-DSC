@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources ServiceSet composite resource to ensure that multiple services are running.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Ensure that multiple services are running
 ---
@@ -12,6 +12,8 @@ title: Ensure that multiple services are running
 
 This example shows how you can use the `ServiceSet` composite resource to ensure multiple services
 exist and are running.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **State** set to `Running`, and **Name** set tthe array of `Dhcp`
 and `MpsSvc`, the resource starts the `Dhcp` and `MpsSvc` services if they aren't running.

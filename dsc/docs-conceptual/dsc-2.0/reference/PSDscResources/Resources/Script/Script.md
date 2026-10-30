@@ -1,6 +1,6 @@
 ---
 description: PSDscResources Script resource
-ms.date: 12/01/2023
+ms.date: 10/30/2026
 ms.topic: reference
 title: Script
 ---
@@ -10,6 +10,8 @@ title: Script
 ## Synopsis
 
 Run PowerShell script blocks.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 

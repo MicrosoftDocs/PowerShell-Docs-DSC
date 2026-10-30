@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Environment resource to remove an environment variable.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Remove an environment variable
 ---
@@ -12,6 +12,8 @@ title: Remove an environment variable
 
 This example shows how you can use the `Environment` resource to ensure a non-path environment
 variable doesn't exist.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent`, **Name** set to `TestEnvironmentVariable`, and **Path** set to
 `$false`, the resource removes the environment variable called `TestEnvironmentVariable` if it
