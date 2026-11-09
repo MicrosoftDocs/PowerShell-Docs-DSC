@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Registry resource to add a registry key.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Add a registry key
 ---
@@ -11,6 +11,8 @@ title: Add a registry key
 ## Description
 
 This example shows how you can use the `Registry` resource to ensure a registry key exists.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **ValueName** set to an empty string, and **Key** set to
 `HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\MyNewKey`, the resource adds the

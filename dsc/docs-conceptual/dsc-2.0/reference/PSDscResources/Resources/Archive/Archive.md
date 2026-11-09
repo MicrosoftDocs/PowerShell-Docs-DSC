@@ -1,6 +1,6 @@
 ---
 description: PSDscResources Archive resource
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Archive
 ---
@@ -10,6 +10,8 @@ title: Archive
 ## Synopsis
 
 Expand or remove the contents of an archive (`.zip`) file.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 

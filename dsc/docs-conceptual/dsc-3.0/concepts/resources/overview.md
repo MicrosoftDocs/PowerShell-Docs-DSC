@@ -2,7 +2,7 @@
 description: >-
   DSC Resources provide a standardized interface for idempotently managing the settings of a
   system. They use a declarative syntax to define what the desired state should be.
-ms.date: 03/25/2025
+ms.date: 10/30/2026
 title: DSC Resources
 ---
 
@@ -17,9 +17,9 @@ imperative. Instead of specifying _how_ to set a system to the desired state, wi
 _what_ the desired state is. Resources handle the "how" for you.
 
 Resources manage _instances_ of a configurable component. For example, the
-`PSDscResources/Environment` resource manages environment variables. Each environment variable is a
-different instance of the resource. Every resource defines a schema that describes how to validate
-and manage an instance of the resource.
+`Microsoft.Windows/EnvironmentVariable` resource manages environment variables. Each environment
+variable is a different instance of the resource. Every resource defines a schema that describes
+how to validate and manage an instance of the resource.
 
 DSC supports several kinds of resources:
 

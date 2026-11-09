@@ -1,14 +1,10 @@
 ---
 author: michaeltlombardi
 ms.author: mlombardi
-ms.date: 04/04/2023
+ms.date: 10/30/2026
 ms.topic: include
 ---
 > [!NOTE]
 > This documentation of this DSC resource covers the version that's included with PowerShell prior
-> to version 7.2. The **PSDscResources** module contains new and updated DSC Resources that are
-> officially supported by Microsoft. The **PSDscResources** module is available from the PowerShell
-> Gallery.
->
-> For more information and updated documentation, see the
-> [PSDscResources reference documentation](/powershell/dsc/reference/psdscresources/overview?view=dsc-2.0&preserve-view=true).
+> to version 7.2. Starting with PowerShell 7.2, the **PSDesiredStateConfiguration** module is
+> separately released and versioned. It doesn't include any DSC resources.

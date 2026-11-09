@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Script resource to create a file with content.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Create a file with content
 ---
@@ -11,6 +11,8 @@ title: Create a file with content
 ## Description
 
 This example shows how you can use the `Script` resource to create a file.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 To use the `Script` resource, you need to specify three code blocks. The **GetScript**,
 **TestScript**, and **SetScript**.

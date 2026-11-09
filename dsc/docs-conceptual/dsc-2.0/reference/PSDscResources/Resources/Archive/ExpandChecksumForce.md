@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources Archive resource to expand an archive with SHA-256 file validation and file
   overwrite allowed
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Expand an archive with SHA-256 file validation and file overwrite allowed
 ---
@@ -13,6 +13,8 @@ title: Expand an archive with SHA-256 file validation and file overwrite allowed
 
 This example shows how you can use the `Archive` resource to ensure a `.zip` file is expanded to a
 specific directory and the expanded contents match the contents in the `.zip` file.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, the **Path** set to `C:\ExampleArchivePath\Archive.zip`, and the
 **Destination** set to `C:\ExampleDestinationPath\Destination`, the resource expands the contents of

@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Service resource to update a service's StartupType.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Update a service's StartupType
 ---
@@ -12,6 +12,8 @@ title: Update a service's StartupType
 
 This example shows how you can use the `Service` resource to ensure a service exists with the
 correct startup type.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **Name** set to `Service1`, and **Path** not set, the resource
 throws an exception if the service doesn't exist.

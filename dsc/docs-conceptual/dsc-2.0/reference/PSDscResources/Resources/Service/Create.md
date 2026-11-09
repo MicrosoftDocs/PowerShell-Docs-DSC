@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Service resource to create a service.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Create a service
 ---
@@ -11,6 +11,8 @@ title: Create a service
 ## Description
 
 This example shows how you can use the `Service` resource to ensure a service exists and is running.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **Name** set to `Service1`, and **Path** set to
 `C:\FilePath\MyServiceExecutable.exe`, the resource creates `Service1` if it doesn't exist with

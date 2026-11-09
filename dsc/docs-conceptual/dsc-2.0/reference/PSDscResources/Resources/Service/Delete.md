@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Service resource to delete a service.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Delete a service
 ---
@@ -11,6 +11,8 @@ title: Delete a service
 ## Description
 
 This example shows how you can use the `Service` resource to ensure a service doesn't exist.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent` and **Name** set to `Service1`, the resource removes the `Service1`
 service if it exists. If `Service1` is running, the resource stops `Service1` before removing it.

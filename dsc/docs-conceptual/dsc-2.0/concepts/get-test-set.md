@@ -1,7 +1,7 @@
 ---
 description: >
   This article illustrates how to implement the Get, Test, and Set methods in a DSC Configuration.
-ms.date: 08/15/2022
+ms.date: 10/30/2026
 title:  Get-Test-Set
 ---
 
@@ -50,6 +50,8 @@ StartupType          [string]             False {Automatic, Disabled, Manual}
 State                [string]             False {Ignore, Running, Stopped}
 TerminateTimeout     [UInt32]             False {}
 ```
+
+[!INCLUDE [PSDscResources Unsupported](../../../includes/psdscresources-unsupported.md)]
 
 ## Get
 

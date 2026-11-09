@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources GroupSet composite resource to add members to multiple groups.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Add members to multiple groups
 ---
@@ -12,6 +12,8 @@ title: Add members to multiple groups
 
 This example shows how you can use the `GroupSet` composite resource to ensure multiple groups exist
 and include a specified list of members.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present` and **GroupName** set to an array of `Administrators` and
 `GroupName1`, the resource adds the `Administrators` and `GroupName1` local groups if they don't

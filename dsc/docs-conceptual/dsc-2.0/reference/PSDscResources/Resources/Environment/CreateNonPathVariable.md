@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Environment resource to create a non-path environment variable.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Create a non-path environment variable
 ---
@@ -12,6 +12,8 @@ title: Create a non-path environment variable
 
 This example shows how you can use the `Environment` resource to ensure a non-path environment
 variable exists with a specific value.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **Name** set to `TestEnvironmentVariable`, and **Value** set to
 `TestValue`, the resource adds an environment variable called `TestEnvironmentVariable` with the

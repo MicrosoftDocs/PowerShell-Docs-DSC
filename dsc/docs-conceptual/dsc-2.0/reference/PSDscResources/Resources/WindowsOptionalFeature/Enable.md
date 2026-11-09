@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources WindowsOptionalFeature resource to enable the specified Windows optional
   feature and output logs to the specified path.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Enable the specified Windows optional feature and output logs to the specified path
 ---
@@ -13,6 +13,8 @@ title: Enable the specified Windows optional feature and output logs to the spec
 
 This example shows how you can use the `WindowsOptionalFeature` resource with user-provided values
 to ensure a Windows optional feature is enabled.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 You must specify the name of the Windows optional feature to enable with the **FeatureName**
 parameter, which sets the **Name** property of the resource.

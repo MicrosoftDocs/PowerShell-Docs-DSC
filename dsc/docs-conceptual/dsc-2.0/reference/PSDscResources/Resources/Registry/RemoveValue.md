@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Registry resource to remove a registry key value.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Remove a registry key value
 ---
@@ -12,6 +12,8 @@ title: Remove a registry key value
 
 This example shows how you can use the `Registry` resource to ensure a registry key value doesn't
 exist.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent`, **ValueName** set to `MyValue`, and **Key** set to
 `HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment`, the resource removes the

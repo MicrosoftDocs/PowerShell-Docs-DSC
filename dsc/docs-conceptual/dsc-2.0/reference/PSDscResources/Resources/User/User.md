@@ -1,6 +1,6 @@
 ---
 description: PSDscResources User resource
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: User
 ---
@@ -10,6 +10,8 @@ title: User
 ## Synopsis
 
 Manage a local user.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 

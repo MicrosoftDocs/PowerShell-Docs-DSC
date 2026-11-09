@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources MsiPackage resource to install the MSI file with the given ID at the given
   HTTPS URL.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Install the MSI file with the given ID at the given HTTPS URL
 ---
@@ -12,6 +12,8 @@ title: Install the MSI file with the given ID at the given HTTPS URL
 ## Description
 
 This example shows how you can use the `MsiPackage` resource to ensure a package is installed.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **ProductID** set to `{DEADBEEF-80C6-41E6-A1B9-8BDB8A05027F}`, and
 **Path** set to `https://contoso.com/example.msi`, the resource installs the `example.msi` package

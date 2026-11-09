@@ -2,7 +2,7 @@
 description: >
   This exercise walks through creating and compiling a DSC Configuration from start to finish. In
   the following example, you will learn how to write and compile a minimal Configuration
-ms.date: 01/06/2023
+ms.date: 10/30/2026
 title:  Write and compile a DSC Configuration
 ---
 
@@ -23,6 +23,8 @@ For an overview of what DSC is and how it works, see [Desired State Configuratio
 ## Requirements
 
 To run this example, you need a Windows computer running PowerShell 7.2 or later.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../includes/psdscresources-unsupported.md)]
 
 ## Write the configuration
 
