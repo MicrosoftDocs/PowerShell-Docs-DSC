@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources User resource to create a new user.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Create a new user
 ---
@@ -9,6 +9,8 @@ title: Create a new user
 # Create a new user
 
 This example shows how you can use the `User` resource to ensure a user exists.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present` and **UserName** set to `SomeUserName`, the resource creates the
 `SomeUserName` account if it doesn't exist.

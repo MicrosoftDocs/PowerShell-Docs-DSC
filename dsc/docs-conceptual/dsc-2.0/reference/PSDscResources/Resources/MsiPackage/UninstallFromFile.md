@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources MsiPackage resource to Uninstall the MSI file with the given ID at the
   given path.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Uninstall the MSI file with the given ID at the given path
 ---
@@ -12,6 +12,8 @@ title: Uninstall the MSI file with the given ID at the given path
 ## Description
 
 This example shows how you can use the `MsiPackage` resource to ensure a package isn't installed.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent`, **ProductID** set to `{DEADBEEF-80C6-41E6-A1B9-8BDB8A05027F}`, and
 **Path** set to `file://Examples/example.msi`, the resource uninstalls the `example.msi` package if

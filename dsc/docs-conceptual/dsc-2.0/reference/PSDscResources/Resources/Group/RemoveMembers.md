@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources Group resource to remove members of a group.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Remove members of a group
 ---
@@ -12,6 +12,8 @@ title: Remove members of a group
 
 This example shows how you can use the `Group` resource to ensure a group exists and excludes a
 specified list of members.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present` and **GroupName** set to `GroupName1`, the resource adds the
 `GroupName1` local group if it doesn't exist.

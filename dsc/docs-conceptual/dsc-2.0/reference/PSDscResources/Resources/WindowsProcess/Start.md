@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources WindowsProcess resource to start a process.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Start a process
 ---
@@ -11,6 +11,8 @@ title: Start a process
 ## Description
 
 This example shows how you can use the `WindowsProcess` resource to ensure a process is running.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present`, **Path** set to `C:\Windows\System32\gpresult.exe`, and
 **Arguments** set to `/h C:\gp2.htm`, the resource starts `gpresult.exe` with the specified

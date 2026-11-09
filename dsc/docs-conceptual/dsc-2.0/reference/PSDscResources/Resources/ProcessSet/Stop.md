@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources ProcessSet composite resource to stop multiple processes.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Stop multiple processes
 ---
@@ -12,6 +12,8 @@ title: Stop multiple processes
 
 This example shows how you can use the `ProcessSet` composite resource to ensure multiple processes
 are stopped.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent` and **Path** set to the array of `C:\Windows\System32\cmd.exe` and
 `C:\TestPath\TestProcess.exe`, the resource stops any running instances of `cmd.exe` and

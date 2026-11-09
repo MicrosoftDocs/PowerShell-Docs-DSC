@@ -1,7 +1,7 @@
 ---
 description: >
   Overview of Desired State Configuration 2.0
-ms.date: 05/15/2023
+ms.date: 10/30/2026
 ms.topic: overview
 title:  Desired State Configuration 2.0
 ---
@@ -104,6 +104,8 @@ Resources.
 | `WindowsOptionalFeatureSet` | Replaced by the [WindowsOptionalFeatureSet DSC Resource in PSDscResources][18]. |
 | `WindowsPackageCab`         | Replaced by the [WindowsPackageCab DSC Resource in PSDscResources][19].         |
 | `WindowsProcess`            | Replaced by the [WindowsProcess DSC Resource in PSDscResources][20].            |
+
+[!INCLUDE [PSDscResources Unsupported](../../includes/psdscresources-unsupported.md)]
 
 <!-- Reference Links -->
 

@@ -2,7 +2,7 @@
 description: >
   Use the PSDscResources WindowsPackageCab resource to install a cab file with the given name from
   the given path.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Install a cab file with the given name from the given path
 ---
@@ -13,6 +13,8 @@ title: Install a cab file with the given name from the given path
 
 This example shows how you can use the `WindowsPackageCab` resource user-provided values to ensure a
 package is installed.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 You must specify the name of the package with the **Name** parameter, which sets the **Name**
 property of the resource.

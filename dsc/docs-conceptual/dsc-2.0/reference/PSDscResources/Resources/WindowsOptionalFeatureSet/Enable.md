@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources WindowsOptionalFeatureSet composite resource to enable multiple features.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Enable multiple features
 ---
@@ -12,6 +12,8 @@ title: Enable multiple features
 
 This example shows how you can use the `WindowsOptionalFeatureSet` composite resource to ensure
 multiple Windows optional features are enabled.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present` and the **Name** property set to the array of
 `MicrosoftWindowsPowerShellV2` and `Internet-Explorer-Optional-amd64`, the resource enables those

@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources WindowsProcess resource to stop a process.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Stop a process
 ---
@@ -11,6 +11,8 @@ title: Stop a process
 ## Description
 
 This example shows how you can use the `WindowsProcess` resource to ensure a process isn't running.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Absent`, **Path** set to `C:\Windows\System32\gpresult.exe`, and
 **Arguments** set to an empty string, the resource stops any running `gpresult.exe` process.

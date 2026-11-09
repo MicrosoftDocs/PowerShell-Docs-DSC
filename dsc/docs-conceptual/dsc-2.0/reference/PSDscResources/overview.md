@@ -2,15 +2,16 @@
 description: >
   The PSDscResources module includes improved versions of the resources found in earlier versions of
   the PSDesiredStateConfiguration module.
-ms.date: 01/06/2023
+ms.date: 10/30/2026
 ms.topic: reference
 title: Overview of the PSDscResources module
 ---
 
 # PSDscResources
 
-**PSDscResources** is the new home of the in-box resources from **PSDesiredStateConfiguration**. The
-resources in this module are maintained and supported by Microsoft.
+[!INCLUDE [PSDscResources Unsupported](../../../../includes/psdscresources-unsupported.md)]
+
+**PSDscResources** is a replacement for the in-box resources from **PSDesiredStateConfiguration**.
 
 These resources are a combination of those in the in-box **PSDesiredStateConfiguration** module as
 well as community contributions from our experimental [xPSDesiredStateConfiguration][1] module on

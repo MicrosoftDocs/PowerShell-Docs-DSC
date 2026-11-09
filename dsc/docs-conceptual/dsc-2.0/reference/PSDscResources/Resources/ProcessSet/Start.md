@@ -1,7 +1,7 @@
 ---
 description: >
   Use the PSDscResources ProcessSet composite resource to start multiple processes.
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: Start multiple processes
 ---
@@ -12,6 +12,8 @@ title: Start multiple processes
 
 This example shows how you can use the `ProcessSet` composite resource to ensure multiple processes
 are running.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 With **Ensure** set to `Present` and **Path** set to the array of `C:\Windows\System32\cmd.exe` and
 `C:\TestPath\TestProcess.exe`, the resource starts `cmd.exe` and `TestProcess.exe` without any

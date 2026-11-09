@@ -1,6 +1,6 @@
 ---
 description: PSDscResources WindowsFeature resource
-ms.date: 08/08/2022
+ms.date: 10/30/2026
 ms.topic: reference
 title: WindowsFeature
 ---
@@ -10,6 +10,8 @@ title: WindowsFeature
 ## Synopsis
 
 Install or uninstall a Windows role or feature.
+
+[!INCLUDE [PSDscResources Unsupported](../../../../../../includes/psdscresources-unsupported.md)]
 
 ## Syntax
 
