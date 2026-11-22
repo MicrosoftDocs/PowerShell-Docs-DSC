@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the expected stdout from the schema resource command
-ms.date:     08/21/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       DSC resource schema command stdout schema reference
 ---

@@ -1,6 +1,6 @@
 ---
 description: Reference for the 'format' DSC configuration document function
-ms.date:     07/03/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       format
 ---

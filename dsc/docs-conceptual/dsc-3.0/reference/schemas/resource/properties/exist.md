@@ -1,6 +1,6 @@
 ---
 description: JSON schema reference for the '_exist' canonical DSC Resource property.
-ms.date:     07/03/2025
+ms.date:     09/01/2026
 ms.topic:    reference
 title:       DSC Resource _exist property schema
 ---
