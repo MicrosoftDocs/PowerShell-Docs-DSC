@@ -70,7 +70,7 @@
     },
     "globalMetadata": {
       "apiPlatform": "powershell",
-      "author": "michaeltlombardi",
+      "author": "diberry",
       "breadcrumb_path": "/powershell/dsc/breadcrumb/toc.json",
       "extendBreadcrumb": true,
       "feedback_system": "OpenSource",
@@ -85,7 +85,7 @@
       "open_source_feedback_productName": "DSC",
       "hideScope": false,
       "manager": "jasongroce",
-      "ms.author": "mlombardi",
+      "ms.author": "diberry",
       "ms.devlang": "powershell",
       "ms.service": "powershell",
       "ms.update-cycle": "365-days",
